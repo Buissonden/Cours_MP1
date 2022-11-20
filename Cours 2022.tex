@@ -1,0 +1,1137 @@
+\documentclass[a4paper,12pt]{book}
+\usepackage{ae}
+\usepackage{aeguill}
+\usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[left=1cm, right= 1cm, top=2cm, bottom = 2cm]{geometry}
+\usepackage{array,multirow}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{amsfonts}
+\usepackage{stmaryrd}
+\usepackage{tcolorbox}
+\usepackage{lmodern}
+
+
+
+\newcommand{\Def}[2]{\begin{tcolorbox}[sharp corners, colback=white,colframe=red!90!black!75, title=Définition : #1]#2\end{tcolorbox}}
+\newcommand{\Thr}[2]{\begin{tcolorbox}[sharp corners, colback=white,colframe=red!90!black!75, title=Théorème : #1]#2\end{tcolorbox}}
+\newcommand{\Prop}[2]{\begin{tcolorbox}[sharp corners, colback=white,colframe=red!90!black!75, title=Proposition : #1]#2\end{tcolorbox}}
+\newcommand{\Pre}[1]{\begin{tcolorbox}[sharp corners, colback=white,colframe=green!60!green!30!black!75, title=Preuve]#1\end{tcolorbox}}
+
+\newcommand{\Meth}[2]{\begin{tcolorbox}[colback=white,colframe=green!60!green!30!black!75, title=Méthode :  #1]#2\end{tcolorbox}}
+
+\newtheorem{Exe}{Exemple}[section]
+\newtheorem{Exes}{Exemples}[section]
+\newtheorem{Rem}{Remarque}[section]
+\newtheorem{Rems}{Remarques}[section]
+
+\def\R{\mathbb{R}}
+\def\D{\mathbb{D}}
+\def\C{\mathbb{C}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\K{\mathbb{K}}
+
+\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\Roman{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\Roman{section}.\arabic{subsection}.\Alph{subsubsection}}
+\title{Cours}
+\author{Chakroun}
+
+\begin{document}
+\tableofcontents
+\chapter{Rappels séries numériques}
+\section{Généralités}
+\Def{Convergence série}{Avec $u_n\in\K^\N$ on dit que la série $(\sum u_n)$ converge si la suite $(\sum\limits_{k=1}^n u_k)_{n\in\N}$ converge. En cas de convergence, on définit la somme de la série $\sum_{n = 0}^{\infty} u_n = \lim\limits_{n\to+\infty} \sum u_n$ seulement si la série est convergente. $(S_n) = \left(\sum\limits_[k=0]^n\right)$ est la suite des sommes partielles de la série. En cas de convergence, $(R_n) =\left(\sum_{k = n+1}^{\infty} u_n\right)$ est la suite des restes (d'ordre $n$) de la série. $R_n$ tend vers 0 par définition.}
+\Thr{de divergence grossière}{$(u_n)\in\K^\N$, si $(\sum u_n)$ converge, alors $(u_n)\to0$.}
+\Pre{$\forall n\in\N, u_n = S_n-S_{n-1}$ donc quand $(u_n)$ tend vers une limite $l$, alors $u_n$ tend vers 0.}
+\Thr{Séries géométriques}{On prend $a\in\C$, la série $(\sum a^n)$ converge si, et seulement si, $\vert a\vert<1$ et alors : $\sum_{n = 0}^{\infty} a^n = \dfrac{1}{1-a}$}
+\Pre{Si $\vert a\vert\geq 1$ alors la série diverge grossièrement. Si $\vert a\vert<1$ en particulier $a\neq1$, donc $\forall n\in\N,\sum\limits_{k=0}^n a^n =\dfrac{1-a^{n+1}}{1-a}$}
+\Thr{Dominos ou série téléscopique}{$(a_n)\in\K^\N$, la série $(\sum a_n - a_{n+1})$ converge si, et seulement si, la suite $(a_n)$ converge.}
+\Pre{Soit $n\in\N, \sum\limits_{k=0}^n a_k - a_{k+1} = a_0 -a_1 + a_1 -a_2+a_2... = a_0+a_{n+1}$. Alors la suite des sommes partielles converge si, et seulement si, $a_n$ converge. En cas de convergence, on a $\sum_{n = 0}^{\infty} a_n - a_{n+1} = a_0 - \lim\limits_{n\to+\infty}a_n$}
+\Prop{Opérations sur les séries convergentes}{$(u_n),(v_n)\in\K^\N$ termes généraux de séries convergentes, alors $(\sum u_n + v_n)$ converge. Pour tout $\lambda\in\K$, alors $(\sum \lambda u_n)$ converge aussi.}
+\begin{Exe}
+Avec $\sum u_n$ convergente et $\sum v_n$ divergente, quel est le comportement de $\sum u_n + v_n$ ? Elle diverge. Prouvons-le par l'absurde. Supposons que $\sum (u_n +v_n)$ converge. On a que $\forall n\in\N, v_n = (u_n + v_n) - u_n$. Donc $\sum v_n$ converge. D'où la contradiction.
+\end{Exe}
+\section{Cas des séries à terme général réel positif}
+\Def{Série à terme général réel positif}{Soit $(u_n)\in\R_+^\N$, alors $(\sum\limits_{k=0}^n u_k)$ est croissante. Elle converge si, et seulement si, $(\sum\limits_{k=0}^n u_k)$ est majorée, et $(\sum u_n)$ diverge si, et seulement si, $(\sum\limits_{k=0}^n u_k)\to +\infty$.}
+\Thr{Critères de convergence d'une série}{Si $(u_n), (v_n)\in\R_+^\N$ : \begin{itemize}
+\item Si $\forall n\in\N, v_n\leq u_n$, alors si $\sum u_n$ converge alors $\sum u_n$ converge. De même, si $\sum u_n$ diverge, alors $\sum v_n$ aussi (critère de majoration positif)
+\item Si $u_n = o(v_n)$, alors si $\sum v_n$ converge, alors $\sum u_n$ converge (critère de domination positif)
+\item Si $u_n\sim v_n$, alors $\sum v_n$ et $\sum u_n$ sont de même nature (critère d'équivalent positif)\end{itemize}}
+\Thr{Séries de Riemann}{Pour $\alpha\in\R$, alors $(\sum \dfrac{1}{n^\alpha})$ converge si, et seulement si, $\alpha>1$.}
+\Pre{Avec $\alpha\in\R,\alpha\neq1$, on a que $(n+1)^{\alpha+1}=n^{\alpha +1}(1+\dfrac{1}{n})^{\alpha+1} = n^{\alpha+1}(1+\dfrac{\alpha +1}{n} + o(\dfrac{1}{n})) = n^{\alpha+1} + (\alpha+1)n^\alpha + o(n^\alpha)$.
+\par $(n+1)^{\alpha+1} - n^{\alpha+1}\sim  (\alpha+1)n^\alpha$, $(n^\alpha)>0$ donc $\sum n^\alpha$ et $\sum (n+1)^{\alpha+1} - n^{\alpha+1}$ sont de même nature.
+\par Alors la suite des $\sum n^\alpha$ converge si, et seulement si, la somme des $n^{\alpha+1}$ converge, donc quand $\alpha+1<0$, donc $\alpha<-1$.
+\par Dans le cas de $\alpha =-1$...}
+\begin{Exes}\begin{enumerate}
+\item Avec $u_n =\dfrac{(n^2+n+3)^{2/3}}{n(n+\sqrt{n})^{3/2}}$. C'est un terme général positif. $(u_n) \sim \dfrac{n^{4/3}}{n\times n^{3/2}}$ (ce qu'on prouve en mettant en facteur le prépondérant sur le dénominateur et le numérateur).
+\par $u_n\sim \dfrac{n^{4/3}}{n\times n^{3/2}}\sim n^{-7/6}\sim\dfrac{1}{n^{7/6}}$.
+\par $\sum \dfrac{1}{n^{7/6}}$ est une série de Riemann convergente, donc par critère d'équivalent positif, $\sum u_n$ converge.
+\item $u_n = th(n) + \dfrac{1}{n}$, d'un côté $\sum th(n)$ diverge grossièrement et accessoirement $\sum\dfrac{1}{n}$ diverge, donc par critère de majoration positive, $\sum th(n) +\dfrac{1}{n}$ diverge.
+\item $u_n = th(\dfrac{1}{n}) + ln(1-\dfrac{1}{n})$ or $th(x) = \dfrac{1}{2}(1+x+o(x) - 1 - x + o(x)) = x + o(x)$ et $ln(1+x) = x -\dfrac{x^2}{2} + \dfrac{x^3}{6} + o(x^3)$ en 0. Donc en l'infini $u_n = \dfrac{1}{n} + o(\dfrac{1}{n^2}) - \dfrac{1}{n} + -\dfrac{1}{2n^2} + o(\dfrac{1}{n^2}) = -\dfrac{1}{2n^2} + o(\dfrac{1}{n^2})$ Donc par critère d'équivalent positif avec une série convergente, $\sum u_n$ converge.
+\item $u_n = e - \left(1+\dfrac{1}{n}\right)^n$, et $\left(1+\dfrac{1}{n}\right)^n = \exp(n\ln(1+\dfrac{1}{n})) = \exp(n (\dfrac{1}{n} - \dfrac{1}{2n^2} +)$
+\end{enumerate}\end{Exes}
+
+\Thr{Critère de d'Alembert}{Soit $(u_n)\in\R_+^{*\N}$. Si $\left(\dfrac{u_{n+1}}{u_n}\right)\to l\in\R$, alors :\begin{itemize}
+\item Si $l<1$ alors $\sum u_n$ converge.
+\item Si $l>1$ alors $\sum u_n$ diverge grossièrement.
+\item Si $l=1$ alors on ne peut rien dire.\end{itemize}}
+\Pre{C'est le rapport entre un terme et son successeur, donc c'est la raison locale en comparaison à une série géométrique. Si $l<1$, prenons $\varepsilon = \dfrac{1-l}{2}$. On peut fixer $n_0$ tel que $\forall n\geq n_0, \dfrac{u_{n+1}}{u_n}< l+\varepsilon \Rightarrow \dfrac{u_{n+1}}{u_n}<\dfrac{1+l}{2}$ donc pour $n\geq n_0 : u_n \leq \left(\dfrac{1+l}{2}u_{n_0}\right)$. $\dfrac{1+l}{2}<1$ donc $\sum u_n $ converge par critère de majoration positif.
+\par Si $l>1$, on prend $\varepsilon = \dfrac{l-1}{2}, \exists n_0\in\N,\forall n\in\N, n\geq n_0 \Rightarrow u_n \geq (\dfrac{1+L}{2})^{n-n_0}u_{n_0}$}
+\Prop{Comparaisons séries-intégrales}{Si $f:\R_+\to\R$ fonction réelle positive décroissante, continue par morceaux alors : $\forall n\in\N^*, \int_n^{n+1}f(t)dt\leq f(n)\leq \int_{n-1}^nf(t)dt$.}
+\Thr{Comparaisons séries-intégrales}{Si $f:\R_+\to\R$ fonction positive décroissante continue par morceaux, alors $\left(\sum f(n)\right)$ est de même nature que la suite $\left(\int_0^nf(t)dt\right)$}
+\Pre{Montrer que la suite des sommes partielles converge c'est que la suite est majorée, et on doit utiliser la croissance de l'intégrale.}
+\begin{Rem}
+L'encadrement de $f(n)$ par les intégrales $\int_{n-1}^nf(t)dt, \int_n^{n+1}f(t)dt$ peut être exploité dans d'autres cadres, par exemple dans le cas où la série $\sum f(n)$ converge, on peut écrire pour $n,p\in\N^*, n< p, \int_n^{p+1}f(t)dt\leq\sum\limits_{k=n}^p f(n)\leq \int_{n-1}^pf(t)dt$, et par passage à la limite quand $p\to+\infty, \lim\limits_{p\to+\infty}\int_n^pf(t)dt\leq\sum\limits_{k=n}^\infty f(k)\leq\lim\limits_{p\to+\infty}\int_{n-1}^pf(t)dt$.
+\end{Rem}
+\begin{Exe}
+On peut retrouver par comparaisons séries-intérales que $\sum \dfrac{1}{n^\alpha}$ converge si, et seulement si, $\alpha<1$ (ce qui n'est valable que pour $\alpha>0$). Soit $\alpha\in\R, \alpha>1,R_n = \sum_{k=n+1}^\infty \dfrac{1}{k^\alpha}$. On cherche un équivalent de $R_n$.
+\par Alors : $t\mapsto \dfrac{1}{t^\alpha}$ est positive décroissante. Donc : $\forall n,p\in\N, 2\leq n<p,\int_n^{p+1}\dfrac{dt}{t^\alpha}\leq\sum\limits_{k=n}^pf(k)\leq\int_{n-1}^p\dfrac{dt}{t^\alpha}$. On a que $\int_a^b\dfrac{dt}{t^\alpha} = \left[-\dfrac{1}{-\alpha+1}t^{-\alpha+1}\right]_a^b$.
+\par Par passage à la limite quand $p$ tend vers l'infini, on a pour $n\in\N$ : $\dfrac{1}{(\alpha-1)(n+1)^{\alpha-1}}\leq\sum\limits_{k=n+1}^{+\infty}\dfrac{1}{k^\alpha}\leq \dfrac{1}{(\alpha-1)n^{\alpha-1}}$
+\par Et, les suites encadrantes étant positives et équivalentes à $\dfrac{1}{n^{\alpha-1}}$ donc par théorème d'endcadrement des équivalents, $R_n \sim\dfrac{1}{(\alpha-1)n^{\alpha-1}}$
+\par On cherche un équivalent de $\left(\sum\limits_{k=1}^n\dfrac{1}{n}\right)$. Par séries-intégrales, on obtient que $\left(\sum\limits_{k=1}^n\dfrac{1}{n}\right)\sim (log(n))$
+\end{Exe}
+\Thr{Sommation des ordres de grandeur}{Avec $(a_n),(b_n)$ deux suites réelles positives :\begin{itemize}
+    \item Si $b_n = O(a_n)$ : si $\sum a_n$ converge, alors $\sum b_n$ converge et $\sum\limits_{k=n+1}^{+\infty} b_k = O(\sum\limits_{k=n+1}^{+\infty} a_k)$ ; si $\sum a_n$ diverge, alors $\sum\limits_{k=0}^n b_k = O(\sum\limits_{k=0}^n a_k)$.
+    \item Si $b_n = o(a_n)$ : si $\sum a_n$ converge, alors $\sum b_n$ converge et $\sum\limits_{k=n+1}^{+\infty} b_k = o(\sum\limits_{k=n+1}^{+\infty} a_k)$ ; si $\sum a_n$ diverge, alors $\sum\limits_{k=0}^n b_k = o(\sum\limits_{k=0}^n a_k)$.
+    \item Si $b_n\sim(a_n)$ : si $\sum a_n$ converge, alors $\sum b_n$ converge et $\sum\limits_{k=n+1}^{+\infty} b_k \sim \sum\limits_{k=n+1}^{+\infty} a_k$ ; si $\sum a_n$ diverge, alors $\sum b_n$ diverge et $\sum\limits_{k=0}^n b_k \sim \sum\limits_{k=0}^n a_k$.
+    \end{itemize}
+}
+
+\Pre{Prenons $(u_n), (v_n)\in\R_+^\N$, avec $(u_n)=o(v_n)$. On suppose que $\sum v_n$ converge.
+\par Alors $\sum u_n$ converge par critère de domination positif. Donc $(u_n) = (v_n\varepsilon_n)$ avec $(\varepsilon_n)\to 0$. Soit $\varepsilon>0$, on peut fixer $n_0$ tel que $\forall n\geq n_0, \varepsilon_n<\varepsilon$
+\par Donc pour $n_0\leq n\leq p$ : $\sum\limits_{k=p}^nu_k\leq \left(\sum\limits_{k=n}^p v_k\right)\varepsilon$.
+\par Donc par passage à la limite quand $p\to+\infty, \sum\limits_{k=n}^\infty u_k\leq \varepsilon\sum\limits_{k=n}^{\infty}v_k$
+\par Si $(v_n)$ n'est pas la suite nulle, $\sum v_k>0$. On a montré que : $\forall\varepsilon\in\R_+^*, \exists n_0\in\N, \forall n\geq n_0, \dfrac{\sum\limits_{k=n}^\infty u_k}{\sum\limits_{k=n}^\infty v_k}<\varepsilon$
+\par $(u_n), (v_n) \geq 0$, si $\sum v_n$ diverge alors : on pose aussi $(u_n)=(\varepsilon v_n)$ avec $\varepsilon_n\to 0$
+\par Soit $n\in_N, \sum\limits_{k=0}^nu_k = \sum v_k\varepsilon_k$
+\par Soit $\varepsilon\in\R_+^*$, on fixe $n_0$ tel que $\forall n\geq n_0, \varepsilon_n\leq \varepsilon$.
+\par Pour $n\geq n_0, \sum u_k = \sum\limits_{k=0}^{n_0} \varepsilon_k v_k + \sum\limits_{k=n_0}^n \varepsilon_k v_k$
+\par On peut supposer $\sum v_k>0$, alors : $\dfrac{\sum\limits_{k=0}^n u_k}{\sum\limits_{k=0}^n v_k} \leq \dfrac{\sum\limits_{k=0}^{n_0} \varepsilon_k v_k}{\sum\limits_{k=0}^n v_k} + \varepsilon$
+\par $\left( \dfrac{\sum\limits_{k=0}^{n_0}\varepsilon_k v_k}{\sum\limits_{k=0}^n v_k}\right)\to 0$ donc on peut fixer $n_1\in\N, \forall n\geq n_1, \dfrac{\sum\limits_{k=0}^{n_0}\varepsilon_k v_k}{\sum\limits_{k=0}^n v_k} < \varepsilon$
+\par Alors $\forall\varepsilon\in\R_+^*, \exists N=\max(n_0, n_1), \forall n\geq N, \dfrac{\sum\limits_{k=0}^n u_k}{\sum\limits_{k=0}^n v_k} < 2\varepsilon$
+\par Pour les équivalents : $u_n\sim v_n \Rightarrow (u_n) =(v_n) + o(v_n) = (v_n) + (w_n)$ avec $\dfrac{w_n}{v_n}\to 0$.
+\par Dans le cas convergent : $\left(\sum\limits_{k=n}^\infty u_k\right) = \left(\sum\limits_{k=n}^\infty v_k\right) + \left(\sum\limits_{k=n}^\infty w_k\right)$ mais comme $w_n = o(v_n)$, on a bien l'équivalence.
+\par Pour les O : $\exists M\in\R,\forall n\in\N, u_n\leq Mv_n$. Il suffit de majorer les sommes.
+}
+
+\section{Séries de terme général quelconque}
+Ici, $(u_n)\in\K^\N$
+\Def{Absolue convergence}{Soit $(u_n)\in\C^\N$, on dit que $\sum u_n$ converge absolument si $\sum \vert u_n\vert$ converge.}
+\Thr{Conséquences de l'absolue convergence}{Toute série absolument convergente est convergente}
+\Pre{Dans le cas réel, en utilisant que $u_n^+\leq\vert u_n\vert$ et $u_n^-\leq\vert u_n\vert$ donc les deux convergent par critère de majoration, comme $\sum u_n = \sum u_n^+ - u_n^-$.
+\par Dans le cas complexes, les séries des parties réelles et imaginaires sont majorées par les modules.}
+\begin{Rem}
+Pour une série absolument convergente, $\left|\sum\limits_{n=0}^{+\infty}\right| \leq \sum\limits_{n=0}^{+\infty}\vert u_n\vert$. Comme on a $\forall p\in\N, \left|\sum\limits_{n=0}^pu_n\right|\leq \sum\limits_{n=0}^p\vert u_n\vert$, on passe à la limite et on a la propriété.
+\end{Rem}
+\begin{Exe}
+Quelques exemples de séries absolument convergentes sont $\sum \dfrac{(-1)^n}{n^2}, \sum \dfrac{sin(n)}{n^2}$, mais il existe cependant des séries qui soient convergentes sans l'être absolument, telles que $\sum \dfrac{(-1)^n}{n}$ ou $\sum \dfrac{sin(n)}{n}$.
+\end{Exe}
+\Thr{Théorème spécial des séries alternées}{Soit $(a_n)$ une suite réelle positive décroissante de limite nulle. Alors $\sum(-1)^n a_n$ converge et $\forall n\in\N, \left|\sum\limits_{k=n}^{+\infty}(-1)^ka_k\right|\leq a_n$}
+\Pre{Pour montrer la convergence, considérons la suite $(S_n)$ des sommes partielles : $\forall n\in\N, S_n = \sum\limits_{k=0}^n (-1)^ku_k$ ;
+\par Alors pour tout $n\in\N$ on a :\begin{itemize}
+\item $S_{2n+2}-S_{2n} = u_{2n+2}-u_{2n+1} \leq0$ donc la suite $(S_{2n})$ est décroissante ;
+\item $S_{2n+3}-S_{2n+1} = -u_{2n+3} + u_{2n+2}\geq 0$ donc la suite $(S_{2n+1})$ est croissante ;
+\item $S_{2n} - S_{2n+1} = u_{2n+1}\to0$ en l'infini\end{itemize}
+Donc les suites $(S_{2n}), (S_{2n+1})$ sont adjacentes : elles convergent vers une même limite l qui est donc la limite de $(S_n)$. Donc la série $\sum (-1)^nu_n$ est convergente, de somme $l$. Et de plus, $l$ vérifie :
+\par $\forall n,m\in\N, S_{2m+1}\leq l\leq S_{2n}$
+\par Pour la majoration de $\vert R_n\vert$ on procède par disjonction de cas :\begin{itemize}
+\item Si $n$ est pair : on a par propriétés des suites adjacentes que : $S_{n+1}\leq l\leq S_n$. Et donc $R_n = l-S_n\in [S_{n+1} - S_n, 0] = [-u_{n+1}, 0]$. Donc $\vert R_n\vert = -R_n \leq u_{n+1}$.
+\item Si $n$ est impair : on a de même que : $S_n\leq l\leq S_{n+1}$ et donc $R_n\in[0, u_{n+1}]$. Donc $\vert R_n\vert = R_n \leq u_{n+1}$.
+\end{itemize}
+}
+
+\begin{Exe}
+On a ainsi cet exemples de série semi-convergente, pour $0<\alpha\leq1$ : $\sum \dfrac{(-1)^n}{n^\alpha}$. Pour $\alpha\leq 0$, on a divergence grossière, et pour $\alpha>0$, on a $(\dfrac{1}{n^\alpha})$ positive décroissante tendant vers $0$, donc le critère spécial des séries alternées dit que ces séries sont convergentes.
+\par On en tire aussi cette inégalité pour $\alpha>0$ : $\forall n\in\N, \left|\sum_{k=n}^{+\infty}\right|\leq \dfrac{1}{n^\alpha}$
+\end{Exe}
+
+\begin{Rem}
+Les critères des séries positives ne s'appliquent plus pour ces séries.
+\par Pour le critère des équivalents : on peut prendre la série de terme général $u_n = \dfrac{(-1)^n}{\sqrt{n}} + \dfrac{1}{n}$. On a que $u_n\sim\dfrac{(-1)^n}{\sqrt{n}}$, dont la série associée est convergente. Mais $\sum u_n$ n'est pas convergente à cause de la somme harmonique.
+\par Pour le critère de domination : on peut prendre la série de terme général $\dfrac{1}{n}$, dominée par $\dfrac{(-1)^n}{\sqrt{n}}$. Si le terme général qui domine est celui d'une série convergente, on sait que $\sum \dfrac{1}{n}$ n'est pas convergente.
+\par On a donc un nouveau critère de domination positive : Si $(u_n), (v_n)$ termes généraux de séries, qu'on a que $v_n>0$, que $\sum v_n$ converge et que $u_n = o(v_n)$, alors on aura bien que $u_n$ est absolument convergente.
+\par Le critère de d'Alembert subit une petite modification : On considère $(u_n)$ terme général d'une série, si $\left|\dfrac{u_{n+1}}{u_n}\right|$ admet une limite $l$, on a que $\sum u_n$ est absolument convergente si $l<1$ et diverge grossièrement si $l>1$. Toujours pas de lois s'appliquant sur le cas où $l=1$ cependant.
+\par Pour le théorème de sommation des ordres de grandeur, on a pour le o et le O besoin que $v_n>0$ pour que le théorème fonctionne, le signe de $u_n$ n'a pas besoin d'être controlé. "La suite de référence doit être positive pour appliquer le théorème." Pour les équivalents, on a que les deux sont déjà du même signe.
+\end{Rem}
+
+\begin{Exe}
+On fait les séries de Bertrand, alternées et non.
+\par Pour les séries de Bertrand : on finit par trouver une convergence si, et seulement si, $\alpha >1$ ou $\alpha = 1, \beta >1$
+\par Pour les séries de Bertrand alternée : on étudie $\sum\dfrac{(-1)^n}{n^\alpha ln(n)^\beta}$. On commence par regarder les divergences grossières : $\sum u_n$ diverge si $\alpha<0$ ou si $\alpha = 0$ et $\beta\leq0$.
+\par Les cas de convergence absolue sont les cas où $\alpha >1$ ou  $\alpha=1, \beta>1$ d'après ce qui venait avant.
+\par On prend le cas de $\alpha =0$ et $\beta>0$, alors $u_n$ tend vers $0$, et elle est décroissante en l'infini, donc par critère des séries alternées on a la convergence.
+\par Si $0<\alpha<1$, alors $\exists \alpha'>0$ tel que $\vert u_n\vert\ll\dfrac{1}{n^{\alpha'}}$ Ainsi, $w_n$ est positive et décroissante à partir d'un certain rang, et tend vers $0$, donc en utilisant le critère des séries alternées on a la convergence.
+\par Si $\alpha =1$, $\sum u_n$ est semi-convergente. 
+\end{Exe}
+
+\begin{Exe}
+Exemple de série avec un terme en $(-1)^n$ : on pose $u_n = \dfrac{(-1)^n}{n^\alpha + (-1)^n}$ terme général d'une série.
+\par Les cas de divergence grossière sont si $\alpha< 0$ et on a des impossibilités si $\alpha =0$.
+\par Si $\alpha>1$, alors la série converge absolument puisqu'on trouve un équivalent qui converge par Riemann à $\vert u_n\vert$
+\par Prenons les cas $0<\alpha\leq 1$ : on va faire un "éclatement des termes" (un DL quoi) : $\dfrac{(-1)^n}{n^\alpha}\left(\dfrac{1}{1+\frac{(-1)^n}{n^\alpha}}\right) = \dfrac{(-1)^n}{n^\alpha}\left(1+\dfrac{(-1)^n}{n^\alpha} + o(\dfrac{1}{n^\alpha})\right) = \dfrac{(-1)}{n^\alpha} - \dfrac{1}{n^{2\alpha}} + o(\dfrac{1}{n^\alpha})$. On pose $v_n$ tel que $\forall n\in\N, u_n =\dfrac{(-1)^n}{n^\alpha}+ v_n$, avec $(v_n)\sim\dfrac{1}{n^{2\alpha}}$. On a que $(-v_n)$ est positive, et que $\sum v_n$ converge si, et seulement si, $\alpha >\dfrac{1}{2}$. Donc on en déduit que $\sum u_n$ converge si $\alpha >\dfrac{1}{2}$ et diverge sinon.
+\par Donc $\sum u_n$ converge si, et seulement si, $\alpha >\dfrac{1}{2}$
+\end{Exe}
+
+
+
+\chapter{Familles sommables}
+\section{Dénombrabilité}
+\Def{Dénombrable}{On dit qu'un ensemble est dénombrable s'il est en bijection avec $\N$.}
+\Def{Au plus dénombrable}{Un ensemble est au plus dénombrable s'il est fini ou dénombrable.}
+\begin{Exe}
+$\Z$ est dénombrable avec $\varphi:\N\to\Z, \varphi:n\mapsto (-1)^{n+1}\left\lfloor\dfrac{n+1}{2}\right\rfloor$ bijective :\begin{itemize}
+\item Injectivité : supposons $\varphi(n_1)=\varphi(n_2)$, si $n_1$ pair, alors $n_1$...
+\item surjectivité : Soit $n\in\Z$, trouvons un antécédent ; si $n$ est positif on a $2n-1$, si $n$ est négatif $-2n$\end{itemize} 
+\end{Exe}
+\Prop{Parties infinies de $\N$}{Toute partie infinie de $\N$ est dénombrable.}
+\Pre{Soit $X$ une partie infinie de $\N$. On construit $(x_n)\in X^\N$ par récurrence. $x_0 =\min(X)$ qui existe comme toute partie non-vide de $\N$ possède un plus petit élément. Avec $n\in\N$, on suppose $x_0,... x_n$ bien définies, et on définit $x_{n+1} = min(X\backslash\{x_0,...,x_n\})$.
+\par Il faut démontrer que $(x_n)$ est une bijection. Elle est injective parce que par construction, elle est croissante. Elle est surjective par l'absurde : s'il y avait un élément qui n'avait pas d'antécédent, considérons le plus petit élément sans antécédent, mais son prédécesseur aurait un antécédent, etc.}
+\Prop{Parties infinies}{Toute partie infinie d'un ensemble dénombrable est dénombrable.}
+\Pre{Soit $X$ dénombrable, $Y\subset X$ infinie, alors on peut composer la bijeection avec laquelle on obtient les éléments de $Y$ par les éléments de $X$ avec la bijection entre $X$ et $\N$, qui est donc bijective aussi.}
+\Prop{Produit cartésien}{$\N^2$ est dénombrable.}
+\Pre{$\varphi :\left\{\begin{array}{rcl} \N^2&\to&\N \\ (p,q) &\mapsto&2^p(2q+1) \end{array}\right.$. Prouvons sa bijectivité. 
+\par Pour l'injectivité, avec $(p,q), (p',q')\in\N^2$, on suppose que $2^p(2q+1) = 2^{p'}(2q'+1)$. Par lemme de Gauss : $2^p\vert 2^{p'}(2q'+1)$, or $2^p\wedge (2q'+1)=1$ donc $2^p\vert 2^{p'}$ donc $p\leq p'$, de même on a $p'\leq p$ donc $p=p'$ et $q=q'$, d'où l'injectivité.
+\par Pour la surjectivité, soit $n\in\N$. Considérons $A=\{p\in\N\vert 2^p\vert n\}$. $A$ est non-vide car $2^0=1$ divise tout, c'est une partie de $\N$ et $A$ est majoré ($2^p$ tend vers l'infini et $n$ est fini). Donc $A$ possède un plus grand élément $p_0$. Donc $\frac{n}{2^{p_0}}$ est impair, alors $(p_0, \dfrac{1}{2}(\dfrac{n}{2^{p_0}}-1))$ est antécédent de $n$, d'où la surjectivité.}
+\Prop{Produit cartésien étendu}{$\N^p$ est dénombrable.}
+\Pre{Par récurrence, avec l'application de la preuve précédente mais des ensembles $\N^{n-1}\times \N\to\N$ pour prouver le tout.}
+\Prop{Dénombrabilité de $\Q$}{$\Q$ est dénombrable.}
+\Pre{C'est une partie infinie de $\N\times\N^*$, donc elle est dénombrable.}
+\Prop{Dénombrabilité de $\R$}{$\R$ est en bijection avec $[0,1[$, donc $\R$ n'est pas dénombrable.}
+\Pre{Avec un nombre écrit sous la forme $0,a_1a_2a_3...$. On peut écrire $a_1=\lfloor 10x\rfloor$, $a_2 = \left\lfloor(x-\dfrac{a_1}{10})10^2\right\rfloor$,...
+\par On peut construire une bijection avec $\R$. Par diagonalisation (on indexe tous les réels entre 0 et 1 par des entiers, et ensuite on construit un nouveau réel qui n'est pas du tout présent dans la suite), on a que $\N$ n'est pas en bijection avec $[0,1[$. Ainsi, $\N$ n'est vraiment pas en bijection avec $\R$.}
+\begin{Rem}
+L'hypothèse du continu est indécidable, et dit que tout ensemble inclus dans $\R$ est soit en bijection avec $\N$, soit avec $\R$, sans entre-deux. Il faut le rajouter à l'axiomatique pour ne pas créer de paradoxes en se posant la question.\end{Rem}
+\Prop{Réunion}{Toute réunion au plus dénombrable d'ensembles au plus dénombrables est au plus dénombrable. Si $I$ est au plus dénombrable, avec $(A_i)_{i\in I}$ est une famille d'ensembles au plus dénombrable, alors $\cup_{i\in I} A_i$ est au plus dénombrables.}
+\Pre{$E$ ensemble, $A,B$ deux parties de $E$. Alors $A\cup B = \{x\in E\vert (x\in A)\vee (x\in B)\}$. Alors $(A_i)_{i\in I}\in\mathcal{P}(E)^I$, et donc $\cup_{i\in I}A_i = \{x\in E\vert \exists i\in I, x\in A_i\}$. }
+
+\section{Familles sommables de réels positifs}
+\Def{Somme de familles réelles positives}{Soit I un ensemble, soit $(u_i)_{i\in I}\in \R_+^I$. On définit la somme des $(u_i)_{i\in I}$ comme : $\sum\limits_{i\in I} u_i = \sup\left(\sum\limits_{j\in J, J\subset I\text{ fini}} u_j\right)$ si ces sommes sont majorées et $+\infty$ sinon.}
+\Def{Familles sommables de réels positifs}{Soit $(u_i)_{i\in I}\in\R_+^I$, on dit que $(u_i)_{i\in I}$ est sommable si $\sum\limits_{i\in I} u_i\in \R_+$}
+\Prop{Sommabilité et dénombrabilité}{Si $I$ est non-dénombrable et $(u_i)_{i\in I}\in \R_+^I$, alors $(u_i)_{i\in I}$ n'est pas sommable.}
+\Pre{Ici, $I$ est non-dénombrable. Pour $n\in\N^*$, on note $A_n=\left\{i\in I\vert u_i>\dfrac{1}{n}\right\}$. Alors $\cup_{n\in\N^*} A_n = I$.
+\par On a une réunion dénombrable d'ensembles donnant un ensemble non-dénombrable, donc il existe $n_0$ tel que $A_{n_0}$ non-dénombrable. Donc $A_{n_0}$ est infini : pour tout $p\in\N^*$, on peut trouver $J\subset A_{n_0}$ tel que $\mathrm{card}(J)= p$. 
+\par Donc $\sum\limits_{j\in J} u_j>\dfrac{p}{n_0}$ donc la somme n'est pas majorée. Donc $\sum\limits_{i\in I} u_i = +\infty$}
+Dans la suite du cours, $I$ est dénombrable.
+\Thr{}{Soit $I$ un ensemble dénombrable, soit $\begin{array}{rcl} \N&\to&I \\n&\mapsto&i_n\end{array}$ une bijection de $\N$ dans $I$. Soit $(u_i)_{i\in I}\in\R_+^I$. $(u_i)_{i\in I}$ est sommable si, et seulement si, la série $\sum u_{i_n}$ est convergente. En cas de convergence, $\sum\limits_{i\in I} u_i = \sum\limits_{n=0}^{+\infty} u_{i_n}$.}
+\Pre{Dans le cadre de l'énoncé, on suppose $(u_i)_{i\in I}$ sommable.\par Fixons $n\in\N, \sum\limits_{k=0}^n u_{i_k} = \sum\limits_{k\in\llbracket0,n\rrbracket}u_{i_k}$ donc $\sum\limits_{k=0}^nu_k \leq \sum\limits_{i\in I}u_i$.\par Donc $\sum u_{i_n}$ converge et $\sum\limits_{n=0}^{+\infty}u_n\leq \sum\limits_{i\in I} u_i$.
+\par Soit $J\subset \N$ fini. $\sum\limits_{j\in J}u_{i_j}\leq \sum\limits_{n=0}^{\max(J)} u_{i_n} \leq \sum\limits_{i=0}^{+\infty}u_{i_n}$ \par donc $\sum\limits_{i\in I}u_i \leq \sum\limits_{n=0}^{+\infty}u_{i_n}$
+\par Pour $(u_i)_{i\in I}\in\R_+^I$, avec $I$ dénombrable. Alors $\sum\limits_{i\in I} u_i = \sum\limits_{n=0}^{+\infty} u_{\varphi(n)}$ si la sére converge et $+\infty$ sinon.}
+\Thr{Sommation par paquets positif}{Soit $I$ dénombrable et $(J_j)_{j\in J}$ une partition de $I$ avec $J$ au plus dénombrable, ie $\cup_{j\in J} J_j = I, \forall j, h\in I, j\neq h \Rightarrow J_j\cap J_h = \emptyset$. Soit $(u_i)_{i\in I}\in\R_+^I$, alors : $\sum\limits_{i\in I} u_i = \sum\limits_{j\in J}\left(\sum\limits_{k\in J_j}u_k\right)$ }
+\begin{Exe}
+$\sum\limits_{n\in\N^*} \dfrac{1}{n^2} = \sum\limits_{n\in\N^*}\dfrac{1}{(2n)^2} + \sum\limits_{n\in\N}\dfrac{1}{(2n+1)^2}$ d'où $\dfrac{3}{4}\sum\limits_{n\in\N^*}\dfrac{1}{(2n+1)^2}$
+\par Mais en revanche, on n'a pas que $\sum\limits_{n=1}^{+\infty}\dfrac{(-1)^n}{n} = \sum\limits_{n=1}^{+\infty}\dfrac{1}{2n} - \sum\limits_{n=0}^{+\infty}\dfrac{1}{2n+1}$ puisque ces deux séries ne sont pas convergentes.
+\par $\left(\dfrac{1}{n^2+p^2}\right)_{(n,p)\in\N^{*2}}$ est-elle sommable ? D'abord, notons que $\left(\sum\dfrac{1}{n^2+p^2}\right)_{np}$ est positive, et donc on a le droit d'écrire :
+\par $\sum\limits_{n,p\in\N}\dfrac{1}{n^2+p^2} = \sum\limits_{n\in\N^*}\sum\limits_{p\in\N^*} \dfrac{1}{n2+p^2}$ car $\N^{*2}=\cup \{(n,p)\vert n\in\N^*, p\in\N^*\}$ et la réunion est disjointe (signe $\coprod$, non homologué)
+\par $= \sum\limits_{n\in\N^*}I_n$ avec $I_n=\sum{p\in\N^*}\dfrac{1}{n^2+p^2}$. Soit $n\in\N^*$, alors $\left(\dfrac{1}{n^2+p^2}\right)_p\sim \dfrac{1}{p^2}$, donc $\forall n\in\N^*, I_n<+\infty$. Soit $n\in\N^*$. On définit $f:x\mapsto \dfrac{1}{n^2+p^2}$ décroissante et positive. On fixe  $p\in\N^*a$. Et alors : $\int_p^{p+1}\dfrac{dt}{n^1+t^2}\leq\dfrac{1}{n^2+p^2}$.
+\par Donc $\forall N\in\N,\sum\limits_{p=1}^N\dfrac{1}{n^2+p^2}\geq \int_1^{N+1}\dfrac{dt}{n^2+t^2} \geq \frac{1}{n}\left[\arctan(u)\right]_{\frac{1}{n}}^{\frac{N+1}{n}}\geq \dfrac{1}{n}\left(\arctan(\dfrac{N+1}{n})-\arctan(\dfrac{1}{n})\right)$. Par passage à la limite quand $N$ tend vers $+\infty$, on a que $I_n\geq \dfrac{\pi}{2n}\arctan(\dfrac{1}{n})$.
+\par Donc $\dfrac{\pi}{2n}-\dfrac{1}{n}\arctan(\dfrac{1}{n})\sim\dfrac{\pi}{n}$. Or $\dfrac{\pi}{n}$ diverge, donc $\sum I_n$ diverge. Donc $\sum\limits_{n\in\N^*} =+\infty$. Donc $\left(\dfrac{1}{n^2+p^2}\right)_{n,p}$ n'est pas sommable.
+\par Dans le cas plus général de $\left(\dfrac{1}{n^\alpha+p^\alpha}\right)_{(n,p)\in\N^{*2}}$
+\end{Exe}
+
+\section{Familles de complexes.}
+\Def{Sommabilité complexe}{Soit $(u_i)_{i\in I}\in\C^I$. On dit que la famille est sommable si $(|u_i|)_{i\in I}$ est sommable, donc que $\sum\limits_{i\in I}|u_i|<+\infty$}
+\Prop{Somme d'une famille sommable.}{Soit $I$ dénombrable et $(u_i)_{i\in I}$ sommable. Alors : pour toute bijection $\varphi:\left\{\begin{array}{rcl} \N&\to&I \\ n&\mapsto&\varphi(n)\end{array}\right.$ pn a que $\sum\limits_{n}u_{\varphi(n)}$ est une série absolument convergente et $\sum\limits_{n=0}^{+\infty}u_{\varphi(n)}$ ne dépend pas de $\varphi$.
+\par On appelle somme de $(u_i)_{i\in I}$ : $\sum\limits_{i\in I} =\sum\limits_{n=0}^\infty u_{\varphi(n)}$ où $\varphi$ est une bijection donnée. La somme d'une famille non-sommable n'est pas définie.}
+\Pre{$(u_i)$ sommable. $\varphi$ bijection de $\N$ dans $I$. $\sum \vert u_i\vert = \sum \vert u_{\varphi(n)}\vert = \sum\limits_{n=0}^\infty\vert u_{\varphi(n)}$. $\sum u_{\varphi(n)}$ est absolument convergente. De plus, $\forall N\in\N, \sum\limits_{k=0}^N u_{\varphi(k)} = \sum\limits_{k=0}^N\mathcal{Re}(u_{\varphi(k)})_+ - \mathcal{Re}(u_{\varphi(k)})_- + i(\mathcal{Im}(u_{\varphi(k)})_+ - \mathcal{Im}(u_{\varphi(k)})$.
+\par Tous ces restes sont majorés par $\vert u_{\varphi(k)}\vert$ donc sommables. Donc $\sum\limits_{k=0}u_{\varphi(k)}\to \sum\limits_{n\in\N} \mathcal{Re}(u_{\varphi(n)})_+ + \sum\limits_{n\in\N} \mathcal{Re}(u_{\varphi(n)})_-+...$}
+\Thr{Sommation par paquets}{$I$ dénombrable, dont les $J_j$ sont une partition. Avec $(u_i)_{i\in I}\in\C^I$ sommable. Alors $\sum\limits_{i\in I}u_i = \sum\limits_{j\in J}\sum\limits_{k\in J_j} u_k$}
+
+\section{Applications}
+\Thr{de Fubini}{Soit $(u_{i,j})_{(i,j)\in I\times J}\in\C^{I\times J}$ sommable. Alors $\sum\limits_{i,j\in I\times J} u_{i,j} = \sum\limits_{i\in I}\sum\limits_{j\in J}u_{i,j} = \sum\limits_{j\in J}\sum\limits_{j\in J}$, avec le cas particulier où $u_{i,j} = a_ib_j$ où : $(a_ib_j)_{i,j\in I\times J}$ qui est sommable si, et seulement si, $(a_i)_{i\in I}$ et $(b_j)_{j\in J}$ sont sommables et dans ce cas, $\sum\limits_{(i,j)\in I\times J} a_ib_j = \left(\sum\limits_{i\in I}a_i\right)\left(\sum\limits_{j\in J}b_j\right)$}
+\Pre{On prend $I\times J = \cup_{i\in I}\{(i,j), j\in J, i\in I\}$. Par sommation par paquets : $\sum\limits_{(i,j)\in I\times J}\vert a_ib_j\vert = \sum\limits_{i\in I} \left(\sum\limits_{j\in J} \vert a_i\vert \vert b_j\vert\right) = \sum\limits_{i\in I}\vert a_i\vert \left(\sum\limits_{j\in J}\vert b_j\vert\right) = \left(\sum\limits_{i\in I}\vert a_i\vert\right)\left(\sum\limits_{j\in J}\vert b_j\vert\right)$
+\par Donc $\sum\vert a_ib_j\vert<+\infty$ si, et seulement si, $\sum\vert a_i\vert<+\infty$ et $\sum\vert b_j\vert < +\infty$. Dans le cas de sommabilité, on peut reprendre tous ces calculs en enlevant les modules.}
+\Thr{Produit de Cauchy}{Soit $(a_n), (b_n)\in\C^\N$. Si $\sum a_n, \sum b_n$ sont abolument convergentes alors $\sum\left(\sum\limits_{k=0}^na_nb_{n-k}\right)$ est absolument convergente et $\left(\sum\limits_{n=0}^{+\infty}a_n\right)\left(\sum\limits_{n=0}^{+\infty}b_n\right) = \sum\limits_{n=0}^{+\infty}\left(\sum\limits_{k=0}^n a_kb_{n-k}\right)$}
+\Pre{$(a_nb_p)_{(n,p)\in\N^2}$ est sommable. $\N^2 = \cup_{s\in\N} \{(n,p)\in\N^2\vert n+p=s\} = \cup_{s\in\N} S_s$ donc par théorème de sommation par paquets, on a que $\sum\limits_{(n,p)\in\N^2}a_nb_p = \sum\limits_{s\in\N} \sum\limits_{(n,p)\in S_s}a_nb_p = \sum\limits_{s\in\N}\left(\sum\limits_{k=0}^na_kb_{s-k}\right)$}
+\begin{Exe}
+Avec $t\in]-1,1[$, montrez que $\dfrac{1}{(1-t)^2} = \sum\limits_{n=0}^{+\infty}(n+1)t^n$. C'est convergent par $(n+1)t^n$ est absolument convergent en remarquant que $[n+1]t^n = o(\dfrac{1}{n^2})$. On peut donc faire un produit de Cauchy : $\left(\sum\limits_{n=0}^{+\infty} t^n\right) \left(\sum\limits_{n=0}^{+\infty} t^n\right) = \sum\limits_{n=0}^{+\infty}\left(\sum\limits_{k=0}^n t^k t^{n-k}\right)$
+\end{Exe}
+
+\begin{Exe}
+Prenons l'exponentielle complexe, définie par : pour $z\in\C$, on définit : $\exp(z) = \sum\limits_{n=0}^{+\infty} \dfrac{z^n}{n!}$.
+\par On prouve sa convergence facilement par le critère de d'Alembert : $\left\vert\dfrac{\vert z\vert}{n+1}\right\vert$ qui tend vers 0. Donc par critère de d'Alembert, on a sa convergence absolue. Comme elle est absolument convergence, on peut l'écrire comme une famille sommable : $\sum\limits_{n\in\N}\dfrac{z^n}{n!}$.
+\par Prouvons que $\forall z,z'\in\C, \exp(z+z') = \exp(z)\exp(z')$ : comme la famille est sommable, avec $z,z'\in\C$, on a donc que $\exp(z)\exp(z')$ existe en tant que limite de la famille $\sum\limits_{p\in\N}\sum\limits_{n\in\N} \dfrac{z^n}{n!}\dfrac{z'^{p-n}}{(p-n)!} = \sum\limits_{p\in\N}\sum\limits_{p\in\N} \dfrac{1}{p!}\binom{p}{n}zz'^{n-p} = \sum\limits_{n\in\N} \dfrac{(z+z')^{n}}{n!}$
+\par Prouvons que $\forall z\in\C, \exp(\bar{z}) = \bar{\exp(z)}$. Soit $z\in\C$, soit $n\in\N$ : $\sum\limits_{k=0}^n \dfrac{\bar{z}^k}{k!} = \bar{\sum\limits_{k=0}^n\dfrac{z^k}{k!}}$. Par passage à la limite lorsque $n$ tend vers l'infini, on a donc que $\exp(\bar{z})=\bar{\exp(z)}$.
+\par On peut alors utiliser que $\forall \theta\in\R, \exp(i\theta)\bar{\exp(i\theta)} = \exp(i\theta)\exp(-i\theta) = \exp(i(\theta - \theta)) = \exp(0) = 1$
+\par La restriction de l'exponentielle à $\R$ coïncide bien avec la fonction exponentielle réelle.
+\end{Exe}
+
+
+
+\chapter{Espaces vectoriels normés}
+\section{Généralités}
+On note $\K$ un corps, $\R$ ou $\C$. Dans tous les cours, $E$ est un $\K$-ev.
+\Def{Norme}{Soit $E$ un $\K$-ev. Soit $\varphi$ une application de $E$ dans $\R_+$. On dit que $\varphi$ est une norme si elle vérifie:\begin{enumerate}
+\item $\forall u\in E, \varphi(u) = 0\Rightarrow u=0$ (on dit que l'application est définie)
+\item homogénéité : $\forall\lambda\in\K, \forall u\in E,\varphi(\lambda u) =\vert \lambda\vert \varphi(u)$
+\item inégalité triangulaire : $\forall u, v\in E, \varphi(u+v) \leq \varphi(u)+\varphi(v)$
+\end{enumerate}}
+\Def{EVN}{On dit que $E$ est un espace vectoriel normé si on a choisi une norme dans $E$. On note alors $(E,\varphi), (E,N), (E,\Vert.\Vert)$.}
+\Def{Boule unité}{Avec $(E,\Vert.\Vert)$, on appelle la boule unité de $E$ l'ensemble $\mathcal{B}(\vec{0}, 1) = \{x\in\K^p, \Vert x\Vert\leq 1\}$. Une norme est définie par sa boule unité.}
+\begin{Exe}
+Dans $\K^p$, avec $p\in\N, p\geq 1$, pour $(x_1,x_2,..., x_p)\in\K^p, \Vert x\Vert_{\infty} = \max\limits_{1\leq i\leq p} \vert x_i\vert$ est une norme : prenons un vecteur $x = (x_1,..., x_p)$, alors si leur max est nul leur vecteur est nul, pour l'homogénéité, toutes les composantes sont multipliées fonctionne
+\par Pour l'inégalité triangulaire, prenons aussi $y= (y_1,..., y_p)$. Alors $\Vert x+y\Vert_\infty =\max\limits_{1\leq i\leq p} \vert x_i+y_i\vert\leq\max\limits_{1\leq i\leq p}(\vert x_i\vert +\vert y_i\vert)\leq\max\limits_{1\leq i\leq p}\vert x_i\vert + \max\limits_[1\leq i\leq p]\vert y_i\vert \leq \Vert x\Vert_\infty + \Vert y\Vert_\infty$
+\par Dans $\R^2$, on note $\mathcal{B}(\vec{0}, 1)$ la boule de centre $0$ de rayon 1, telle que $\mathcal{B}(\vec{0}, 1) =\{\vec{x}\in\R^2\vert \Vert x\Vert_\infty\leq 1\}$. Dans $\R^2$ munie de la norme infinie précédente, on obtient un carré et pas un rond, comme on aurait pu l'attendre. Les différentes nrmes sont donc catégorisées par leurs boules unités, ce qui découle de l'homogénéité.
+\par On appelle la norme 1 de $x = (x_1,...,x_p)\in\K^p$ l'application : $\Vert x\Vert_1 = \sum\limits_{i=1}^p \vert x_i\vert$, qui est bien une norme. L'inégalité triangulaire vient des propriétés du module. Sa boule unité est un carré dont les sommets sont sur les axes.
+\par On appelle la norme 2 de $x = (x_1,...,x_p)\in\K^p$ l'application : $\Vert x\Vert_2 = \sqrt{\sum\limits_{i=1}^p \vert x_i\vert^2}$, qui est bien une norme : la définition est assurée par le fait que si une somme de réels positifs est nulle, ils sont nuls, l'homogénéité se fait par calcul direct (sur les modules, sur les facteurs de sommes, sur la racine carrée) et l'inégalité triangulaire est prouvée par : $\forall x,y\in\C^{2p},\sqrt{\sum\limits_{i=1}^p\vert x_i+y_i\vert^2} \leq \sqrt{\sum\limits_{i=1}^p\vert  x_i\vert^2}+\sqrt{\sum\limits_{i=1}^p\vert y_i\vert^2}$.
+\par En considérant $\R^p$ muni du produit scalaire canonique et $\vec{xtilde} = (\vert x_1\vert,..., \vert x_p\vert), \vec{ytilde}=(\vert y_1\vert,...,\vert y_p\vert)$. Alors $\Vert \vec{xtilde}+\vec{ytilde}\Vert_{euclidienne}\leq \Vert\vec{xtilde}\Vert + \Vert\vec{y}\Vert$ donc on a l'égalité précédente.
+\par Donc on a trois normes usuelles pour $\K^p$.
+\end{Exe}
+
+\begin{Exe}
+Si $E$ est de dimension finie, on choisit une base $B = (e_1,..., e_p)$. On pourra parler de la norme infinie, de la norme 1 et de la norme 2 relativement à la base $B$ : si $x$ élément de $E$ avec une décomposition $x\sum\limits_{i=1}^px_ie_i$, alors on définira $\Vert x_i\Vert_\infty = \max\limits_{1\leq i\leq p}\vert x_i\vert, \Vert x\Vert_1 = \sum\limits_{i=1}^p\vert x_i\vert, \Vert x\Vert_2 = \sqrt{\sum\limits_{i=1}^p \vert x_i\vert^2}$
+\par Si $E$ est en dimension infinie, par exemple $E=\K[X]$ (réunion dénombrable d'espaces de dimension finie), on peut définir pour $P=\sum\limits_{k=0}^pa_kX^k$ les mêmes normes : $\Vert P\Vert_\infty = \max\limits_{k\in\N} \vert a_k\vert$, $\Vert P\Vert_1 = \sum\limits_{k=0}^{\deg P} \vert a_k\vert$, $\Vert P\Vert_2 = \sqrt{\sum\limits_{k=0}^{\deg P}\vert a_k\vert^2}$
+\par Si $E = \mathcal{C}([0,1],\K)$, pour $f\in E$, on considère $\Vert f\Vert_\infty =\sup\limits_{[0,1]}\vert f\vert$ qui est d'ailleurs même un max mais le sup est toujours plus adapté. C'est une norme : elle est définie car si le sup du module de la fonctin est nul, elle est nulle partout ; soit $\lambda\in\K$, montrons l'homogénéité avec deux inégalités :
+\par On doit majorer l'ensemble : $\forall x\in[0,1], \vert\lambda f(x)\vert =\vert\lambda\vert\vert f(x)\vert \leq\vert\lambda\vert\sup\limits_{[0,1]}\vert f(x)\vert$ 
+\par On doit minorer l'ensemble : si $\lambda=0$, on a $\vert\lambda\vert \sup\vert f\vert\leq \sup\vert\lambda f\vert$. \par Si $\lambda\neq 0$, $\forall x\in[0,1], \vert f(x)\vert \dfrac{1}{\vert\lambda\vert}\vert\lambda\vert \vert f(x)\vert \leq \dfrac{1}{\vert\lambda\vert}\sup\limits_{[0,1]}\vert\lambda\vert\vert f\vert$ \par donc $\sup\vert f\vert\leq\dfrac{1}{\vert\lambda\vert}\sup\limits_{[0,1]}\vert\lambda f\vert$. D'où l'homogénéité.
+\par Pour l'inégalité triangulaire : $\sup\limits_{[0,1]}\vert f+g\vert \leq \sup\limits_{[0,1]} \vert f\vert +\vert g\vert\leq \sup\limits_{[0,1]}\vert f\vert +\sup\limits_{[0,1]}\vert g\vert$. Soit $x\in[0,1], \vert f(x)\vert + \vert g(x)\vert\leq \sup\limits_{[0,1]}\vert f\vert + \sup\limits_{[0,1]}\vert g\vert$, voilà l'inégalité prouvée.
+\par Pour $\mathcal{C}([0,1,\K)$, on définit pour $f\in\mathcal{C}([0,1],\K), \Vert f\Vert_1 =\int_0^1\vert f(t)\vert dt, \Vert f\Vert_2=\sqrt{\int_0^1\vert f(t)\vert^2dt}$.
+\par Pour la norme 1 : soit $f\in E$, supposons que $\Vert f\Vert_1 = 0$, alors on a la définition par positivité (améliorée) de l'intégrale puisqu'on a une fonction continue sur tout le segment $[0,1]$ positive d'intégrale nulle. Le reste est évident.
+\par Pour la norme 2 : soit $f, g\in E$, montrons que $\sqrt{\int_0^1\vert f+g\vert^2}\leq\sqrt{\int_0^1\vert f\vert^2} +\sqrt{\int_0^1\vert g\vert^2}$. On en déduit son produit scalaire $<f,g> = \int_0^1 f(t)g(t)dt$, puis on applique Cauchy-Schwarz avec les modules des deux fonctions.
+\par Si on prend $E=\K^\N$, alors on peut définir pour $(u_n)\in E$, on a besoin de restreindre aux suites bornées pour que $\Vert u\Vert_\infty = \sup\limits_{n\in\N}\vert u_n\vert$, ou pour que $\Vert u\Vert_1 = \sum\limits_{n=0}^{+\infty} u_n$, il faut se restreindre à l'ev des termes généraux de séries absolument convergentes ($L_1$), tandis que la norme $\Vert u\Vert_2 = \sqrt{\sum\limits_{n=0}^{+\infty} \vert u_n\vert^2}$ n'est bien définie que sur $L_2$, ensemble des suites dont le module au carré est sommable. Mais il faut encore savoir si c'est un ev...
+\par $\vert u_n+v_n\vert^2\leq (\vert u_n\vert+\vert v_n\vert)^2\leq \vert u_n\vert^2 +\vert v_n\vert^2 + 2\vert u_n\vert\vert v_n\vert\leq 2(\vert u_n\vert^2 + \vert v_n\vert^2)$
+\end{Exe}
+
+\Prop{Produit fini d'EVN}{Avec $E,F$ deux EVN de normes $\Vert.\Vert_E,\Vert.\Vert_F$, alors $E\times F$ est un EVN qui admet comme norme l'application : $\left\{\begin{array}{rcl} E\times F & \to & \R_+ \\ (e,f) & \mapsto & \max (\Vert e\Vert_E,\Vert f\Vert_F) \end{array}\right.$.
+\par On peut étendre par récurrence : si $E_1,..., E_p$ un nombre fini d'EVN, on peut définir une norme sur $\prod\limits_{i=1}^p E_i$ par : $\forall (e_1,...,e_p)\in E_1\times E_2\times...\times E_p, \Vert(e_1,...,e_p)\Vert = \max\limits_{i\in\{1,...,p\}} \Vert e_i\Vert$.}
+\Def{Distance}{Soit $E$ un EVN. On appelle distance associée à la norme sur $E$ l'application :\par \begin{center}$d:\left\{\begin{array}{rcl} E & \to & \R_+ \\ (x,y) & \mapsto & \Vert x-y\Vert \end{array}\right.$\end{center} \par Une distance définit un espace métrique.}
+\Prop{Propriétés de la distance}{\begin{itemize}
+\item $\forall x,y\in E, d(x,y) = 0 \Rightarrow x=y$ ;
+\item $\forall x,y,z\in E, d(x,z)\leq d(x,y) + d(y,z)$.\end{itemize}}
+\Prop{Deuxième forme de l'inégalité triangulaire}{Soit $E$ un EVN, $\forall x,y\in E, \vert\Vert x\Vert-\Vert y\Vert\vert\leq\Vert x\pm y\Vert \leq \Vert x\Vert + \Vert y\Vert$}
+\Pre{L'inégalité de droit est déjà une des propriétés des normes. Pour l'inégalité de gauche, elle est équivalente à $\begin{array}{rcl} \Vert x\Vert -\Vert y\Vert & \leq & \Vert x-y\Vert \\ -\Vert x-y\Vert & \Vert x\Vert - \Vert y\Vert \end{array}$.
+\par On la prouve en utilisant $x = x-y+y$ et puis $\Vert x\Vert \leq \Vert x-y\Vert +\Vert y\Vert$}
+\Def{Boule ouverte}{Avec $E$ un EVN, soit $x\in E, r\in\R_+$, on appelle la boule ouverte de centre $x$ et de rayon $r$ : $\mathcal{B}(x,r)=\{y\in E, \Vert x-y\Vert<r\}$}
+\Def{Boule fermée}{Avec $E$ un EVN, soit $x\in E, r\in\R_+$, on appelle la boule fermée de centre $x$ et de rayon $r$ : $\mathcal{B}_f(x,r)=\{y\in E, \Vert x-y\Vert\leq r\}$}
+\Def{Sphère}{Avec $E$ un EVN, soit $x\in E, r\in\R_+$, on appelle la sphère de centre $x$ et de rayon $r$ : $\mathcal{S}(x,r)=\{y\in E, \Vert x-y\Vert=r\}$}
+\Def{Partie convexe}{Soit $E$ un $\R$-ev, soit $A\subset E$, on dit que $A$ est convexe si : $\forall x,y\in A, [x,y]\subset A$, où $[x,y] = \{tx + (1-t)y, 0\leq t\leq 1\} = \{y+t(x-y), 0\leq t\leq 1\}$}
+\Prop{Convexité des boules}{Soit $E$ un EVN. Toute boule de $E$ est convexe.}
+\Pre{Prenons $x\in E, r\in\R_+$ et $\mathcal{B}(x,r)$ la boule ouverte qu'ils définissent. Alors, pour $y,z\in \mathcal{B}(x,r)$, on a que $\Vert x-z\Vert< r$ et $\Vert x- y\Vert<r$. Prenons $\exists t\in[0,1]$, ce qui donne que $ty+(1-t)z\in [y,z]$.
+\par On a que $\Vert ty + (1-t)z - x\Vert = \Vert ty - tx + (1-t)z - (1-t)x\leq\vert t\vert\Vert y-x\Vert + \vert 1-t\vert\Vert z-x\Vert < (t+(1-t))r = r$ ce qui est justifié par $t\neq0$ ou $(1-t)\neq0$ et par les inégalités strictes de la boule ouverte.
+\par Donc $ty+(1-t)z\in\mathcal{B}(x,r)$.
+\par On procède de même pour les boules fermées, sauf qu'on n'a pas besoin de justifier une inégalité stricte.}
+\Prop{Séparabilité}{Soit $E$ un EVN. Soient $x,y\in E$ tels que $x\neq y$. Alors il existe deux boules disjointes centrées en $x$ et $y$.}
+\Pre{Soient $x,y\in E$ différents. Alors $\Vert x-y\Vert \neq 0$, notons $\Vert x-y\Vert = d$.
+\par Prenons les boules ouvertes $B_1 = \mathcal{B}(x,\frac{d}{4}), B_2 = \mathcal{B}(y,\frac{d}{4})$.
+\par Soit $z\in B_1$, alors $\Vert z-x\Vert<\frac{d}{4}$.
+\par On note que $\Vert z-y\Vert = \Vert z-x+x-y\Vert$, donc $\Vert z-y\Vert\geq\Vert y-x\Vert-\Vert z-x\Vert\geq d-\frac{d}{4}$
+\par Donc $\Vert z-y\Vert\geq \dfrac{d}{4}$}
+
+\Def{Normes équivalentes}{Soit $E$ un espace vectoriel, et $\Vert.\Vert_1, \Vert.\Vert_2$ deux normes sur $E$. On dit que $\Vert.\Vert_1$ et $\Vert.\Vert_2$ sont équivalentes si : $\exists \alpha,\beta\in\R_+^*,\forall x\in E, \alpha\Vert x\Vert_1\leq \Vert x\Vert_2\leq \beta\Vert x\Vert_1$, ou si $x\neq0$ : $\alpha\leq\dfrac{\Vert x\Vert_2}{\Vert x\Vert_2}\leq\beta$}
+\Prop{Bornes pour normes équivalentes}{Soit $E$ un espace vectoriel avec $\Vert.\Vert_1, \Vert.\Vert_2$ deux normes équivalentes. Toute partie de $E$ bornée pour $\Vert.\Vert_1$ est bornée pour $\Vert.\Vert_2$}
+\begin{Exe}
+Sur $\K^p$, comparons $\Vert.\Vert_\infty, \Vert.\Vert_1,\Vert.\Vert_2$. Soit $(x_1,..., x_p)\in\K^p$ : $\Vert x\Vert_1=\sum\limits_{i=1}^p\vert x_i\vert\leq p\Vert x\Vert_\infty$ et $\Vert x\Vert_\infty \leq \Vert x\Vert_1$. Donc les deux normes sont équivalentes.
+\par Comparsons $\Vert.\Vert_2$ et $\Vert.\Vert_\infty$ : $\Vert x\Vert_2 =\sqrt{\sum\limits_{i=1}^p\vert x\vert^2}\leq \sqrt{p}\Vert x\Vert_\infty$ et $\Vert x\Vert_\infty\leq \Vert x\Vert_2$.
+\par On a bien prouvé les équivalences (c'est une relation d'équivalence donc $\Vert.\Vert_1$ et $\Vert.\Vert_2$ aussi), mais on n'a pas forcément les constantes optimales. On a donc besoin d'établir que $\Vert x\Vert_2\leq\Vert x\Vert_1$ (en mettant au carré) et que $\Vert x\Vert_1\leq \sqrt{p} \Vert x\Vert_2$ qui est immédiat en considérant $\Vert.\Vert_1$ comme un produit scalaire avec un vecteur de norme infinie valant 1, et ayant sur chaque coordonnée le même signe.
+\par On admet provisoirement le théorème : Dans un espace de dimension finie, toutes les normes sont équivalentes.
+\end{Exe}
+\begin{Exe}
+Prenons les normes qu'on a défini sur $E =\mathcal{C}([0,1],\R)$ (rappel : $\forall f\in E, \Vert f\Vert_\infty = \sup\limits_{[0,1]}\vert f\vert, \Vert f\Vert_1 = \int_0^1\vert f(t)\vert dt$).
+\par Pour prouver que deux normes ne sont pas équivalentes, prouvons qu'un ensemble borné pour l'une ne l'est pas pour l'autre (rappel : avec $A\subset E$, $A$ bornée signifique $\exists M\in\R_+^*, \forall x\in A, \Vert x\Vert\leq M$ et $A$ non-bornée signifie $\forall M\in\R_+^*,\exists x\in A, \Vert x\Vert\geq M$). On peut donc prouver la non-bornaison avec l'aide d'une suite tendant vers l'infini.
+\par Soit $f\in E$, alors $\int_0^1\vert f\vert \leq\sup\limits_{[0,1]}\vert f\vert (1-0)\leq \Vert f\Vert_\infty$. Cependant, il n'existe pas de constantes permettant une seconde inégalité, donc on peut faire des suites de fonction avec une norme 1 qui tend vers 0 et une norme infinie restant à 1. Par exemple : $\forall n\in\N, f_n:\left\{\begin{array}{rcl} [0,1] & \to & \R \\ x & \mapsto & e^{-nx} \end{array}\right.$. Alors, $\Vert f_n\Vert_1 = \dfrac{1}{n}(1-e^{-n})$ mais $\Vert f_n\Vert_\infty = 1$ donc les deux normes ne sont pas équivalentes.
+\end{Exe}
+
+\section{Suites d'un EVN}
+\Def{Convergence}{Soit $E$ un EVN sur $\K$, soit $(u_n)\in E^\N$. Soit $l\in E$. On dit que $(u_n)$ converge vers $l$ si $(\Vert u_n-l\Vert)\to 0$
+\par On peut aussi écrire :
+\par\begin{center} $\forall\varepsilon\in\R_+^*, \exists n_0\in\N,\forall n\in\N, n\geq n_0\Rightarrow u_n\in\mathcal{B}(l, \varepsilon)$\end{center}
+\par On parle de suites convergentes et de limites (notées $\lim (u_n)=l$ et $(u_n)\to l$) dans un EVN}
+\Thr{Unicité de la limite}{La limite d'une suite convergente est unique.}
+\Pre{Supposons qu'une suite soit convergente avec deux limites $l_1, l_2$, on prend deux boules centrées sur les deux qui soient disjointes, puis on applique le fait qu'à partir d'un certain rang, tous les termes de la suite soient dedans. On y trouve une contradiction, et donc la limite est unique.}
+\Prop{Convergences équivalentes}{Si E est un ev et que $\Vert.\Vert_1, \Vert.\Vert_2$ sont deux normes de $E$ équivalentes, alors les suites convergentes de $(E, \Vert.\Vert_1)$ sont exactement les suites convergentes de $(E,\Vert.\Vert_2)$}
+\Pre{Il existe $\alpha, \beta$ tels que : $\forall x\in E, \alpha \Vert x\Vert_1\leq \Vert x\Vert_2\leq \beta\Vert x\Vert1$.
+\par Alors si $u_n\to l$ en norme 1, alors $\Vert u_n - l\Vert_1\to 0$.
+\par Comme $\forall n\in\N, \Vert u_n-l\Vert_2 \leq \beta\Vert u_n-l\Vert_1$, alors $(\Vert u_n-l\Vert_2)\to 0$
+\par Et de même pour la réciproque.}
+\begin{Rem}
+Si $\Vert.\Vert_1$ et $\Vert.\Vert_2$ ne sont pas équivalentes, il existe des suites qui convergent pour l'une et pas pour l'autre.
+\par En effet, si $\Vert.\Vert_1$ et $\Vert.\Vert_2$ ne sont pas équivalentes, on a soit $x\mapsto\dfrac{\Vert x\Vert_1}{\Vert x\Vert_2}$ non majorée, soit $x\mapsto\dfrac{\Vert x\Vert_1}{\Vert x\Vert_2}$.
+\par Dans le premier cas, on peut construire $(u_n)\in E^\N$ telle que $\frac{\Vert u_n\Vert_1}{\Vert u_n\Vert_2}\to+\infty$ (existe par caractérisation séquentielle de la non-majoration). Prenons alors $v_n = \frac{1}{\Vert u_n\Vert_1}u_n$. Alors $\Vert v_n\Vert_2 = \frac{\Vert u_n\Vert_2}{\Vert u_n\Vert_1}\to 0$ et $\Vert v_n-0\Vert_2\to 0$ et donc $v_n$ tend vers 0 au sens de la norme 2 alors qu'elle tend vers 1 au sens de la norme 1.
+\par On rappelle que c'est seulement possible dans le cas de la dimension infinie, même si l'on n'a pas encore démontré qu'en dimension finie toutes les normes sont équivalentes.
+\end{Rem}
+\Prop{Opérations sur les suites convergentes}{Avec $E$ un EVN, $(u_n)$ qui tend vers $l_u$ et $(v_n)$ qui tend vers $l_v$, $\lambda,\mu\in\K$, alors :
+\par \begin{center} $\left((\lambda u+\mu v)_n\right)\to \lambda l_u+\mu l_v$.\end{center}}
+\Pre{Soit $n\in\N$, alors $\Vert \lambda u_n+\mu v_n-(\lambda l_u + \mu l_v)\Vert \leq \vert\lambda\vert\Vert u_n - l_u\Vert + \vert\mu\vert\Vert v_n-l_v\Vert$.}
+\Prop{Corollaire}{L'ensemble des suites convergentes est un sev de l'ensemble des suites d'un EVN.}
+\Prop{Extension}{Si $(u_n)\in E^\N$, $(u_n)\to a$ et $(\lambda_n)\in\K^\N$ avec $(\lambda_n)\to\alpha$, alors $\lambda_nu_n\to\alpha a$}
+\Pre{Soit $n\in\N$ :
+\par $\Vert\lambda_nu_n-\alpha a\Vert=\Vert\lambda_nu_n-\lambda_na+\lambda_na-\alpha a\Vert$
+\par $\leq \Vert\lambda_n(u_n-a)\Vert + \Vert(\lambda_n-\alpha)a\Vert$
+\par $\leq \vert\lambda_n\Vert u_n-a\Vert + \vert\lambda-\alpha\vert\Vert a\Vert$
+\par $\leq \sup\vert\lambda_n\vert \Vert u_n-a\Vert + \vert\lambda_n-\alpha\vert\Vert a\Vert$}
+\begin{Rem}
+On "rappelle" rapidement ce que sont des algèbres :
+\par Une algèbre $(E, +,\times, \cdot)$ est un ensemble munis des lci $+$ et $\times$ et de la lce $\cdot$ tel que que $(E,\K,\cdot)$ est un $\K$-ev et $(E,+,\times)$ est un anneau où on a pour $\lambda\in\K, a,b\in E, \lambda(ab)=a(\lambda b)$
+\par $\K[X], (\mathcal{L}(E), +,\circ,\cdot), (\mathcal{M}_n(\K),+, \times,\cdot)$ sont des $\K$-algèbres. De plus, $\K[X]$ est commutatif intègre. $\mathcal{L}(E)$ et $\mathcal{M}_n(\K)$ ne sont ni commutatifs ni intègres (il y a bijection entre les deux).
+\end{Rem}
+\Def{Algèbre normée}{Soit $(A,+,\times,\cdot)$ une algèbre, on dit qu'elle est normée si on la munit d'une norme $\Vert.\Vert$ vérifiant de plus : $\forall x,y\in A, \Vert x\times y\Vert\leq \Vert x\Vert \Vert y\Vert$}
+\Prop{Produit de suites dans une algèbre normée}{Avec $\mathcal{A}$ algèbre normée, soient $(u_n), (v_n)\in \mathcal{A}^\N$ qui tendent vers $x$ et $y$. Alors $(u_nv_n)\to xy$}
+\Pre{Soit $n\in\N$ : $\Vert u_nv_n - xy\Vert = \Vert u_nv_n -u_ny+u_ny - xy$
+\par $\leq \Vert u_n(v_n-y)\Vert + \Vert (u_n-x)y\Vert$
+\par $\leq \Vert u_n\Vert\Vert v_n-y\Vert + \Vert u_n-x\Vert\Vert y\Vert$ (propriété de la norme d'algèbre)
+\par $\leq \sup\Vert u_n\Vert\Vert v_n-y\Vert + \Vert u_n-x\Vert \Vert y\Vert$}
+\Thr{Convergence dans un produit cartésien fini}{Soient $E_1,...,E_p$ p $\K$-ev normés. Avec $E=E_1\times...\times E_p$, $(u_n)\in E^\N$ s'écrivant $(u_n^1,...,u_n^p)$.
+\par Alors $(u_n)$ tend vers $l=(l_1,...l_p)$ si, et seulement si, $\forall i\in\{1,...,p\}, u_n^i\to l_i$}
+\Pre{$\forall i\in\{1,...,p\}, \Vert u_n^i - l_i\Vert\leq \Vert u_n-l\Vert$ Donc si $(u_n)$ tend vers $l$, alors $\forall i\in\{1,...,p\}, u_n^i\to l_i$
+\par Réciproquement, supposons que $\forall i\in\{1,...,p\}, u_n^i\to l_i$.
+\par Soit $\varepsilon\in\R_+^*$.
+\par Pour $i\in\{1,...,p\}$, comme $u_n^i\to l_i$ on peut trouver $n_i\in\N, \forall n\geq n_i, \Vert u_n^i-l_i\Vert <\varepsilon$
+\par Donc pour $n\geq\max\limits_{i\in\{1,...,p\} } n_i, \Vert u_n-l\Vert<\varepsilon$}
+\begin{Rem}
+Ce théorème s'applique notamment à $\K^n$ pour $n\in\N^*$ et donc à tout $\K$-ev de dimension finie. Et comme en dimension finie, toutes les normes sont équivalentes, on a la propriété pour les normes qui ne sont pas la norme infinie.
+\par On a la propriété : Si $E$ est un $\K$-ev de dimension finie $p$ et $B=(e_1,...,e_p)$ base de de $E$. Alors à toute suite de $E$ $(u_n) =(\sum\limits_{i=1}^pu_n^ie_i)$ on peut associer ses suites coordonnées $(u_n^i)$ dans la base $B$.
+\par Donc $(u_n)\to l = \sum\limits_{i=1}^pl_ie_i$ si, et seulement si, $\forall i\in\{1,...,p\}, u_n^i\to l_i$.
+\end{Rem}
+\begin{Exe}
+$\left(\begin{pmatrix} \dfrac{1}{n} & \dfrac{2+n}{1+n} \\ \sin\left(\dfrac{1}{n}\right) & \exp\left(\dfrac{n}{n+1}\right) \end{pmatrix}\right)_{n\in\N} \to \begin{pmatrix} 0 & 1 \\ 0 & e \end{pmatrix}$
+\par $\left(\begin{pmatrix} \dfrac{1}{n} & \dfrac{2+n}{1+n} \\ \sin\left(\dfrac{1}{n}\right) & (-1)^n \end{pmatrix}\right)_{n\in\N}$ diverge.
+\end{Exe}
+
+\subsection{Séries d'un EVN}
+\Def{Série d'un EVN}{Soit $E$ un $\K$-ev normé. Avec $(u_n)\in\K^\N$, on dit que $\sum u_n$ converge si $\left(\sum\limits_{k=0}^nu_k\right)$ converge.}
+On a les mêmes propriétés sur le fait que la suite des termes généraux tende vers 0.
+\Prop{Absolue convergence en dimension finie}{Si $E$ est de dimension finie, alors toute série absolument convergente est convergente.}
+\Pre{Si on fixe une base $B=(e_1,...,e_p)$ de $E$ de dimension finie $p$.
+\par Soit $(u_n)\in E^\N$. Pour $n\in\N, u_n = \sum\limits_{i=1}^pu_n^ie_i$.
+\par La série $\sum u_n$ converge si, et seulement si, $\forall i\in\{1,...,p\}, \sum u_n^i$ converge.
+\par Si $\sum \Vert u_n\Vert$ converge, alors $\sum\Vert u_n\Vert_\infty$ converge (car on est en dimension finie)
+\par Or $\forall i\in\{1,...,p\}, \vert u_n^i\leq\Vert u_n\Vert_\infty$
+\par Donc par critère de majoration positif, $\sum u_n^i$ converge absolument, donc converge.
+\par Donc $\sum u_n$ converge.}
+
+\subsection{Application dans une algèbre normée}
+\Prop{Série exponentielle}{Soit $\mathcal{A}$ une algèbre normée de dimension finie. On peut définir pour $u\in\mathcal{A}$ : $\exp(u) = \sum\limits_{n=0}^{+\infty}\frac{1}{n!}u^n$}
+\Pre{Prouvons la convergence de $\sum \frac{1}{n!}u^n$ : $\frac{1}{n!}\Vert u^n\Vert\leq \frac{\Vert u\Vert^n}{n!}$ qui est le terme général d'une série convergente. La série exponentielle converge absolument, et comme on est en dimension finie, elle converge aussi dans $\mathcal{A}$.}
+\begin{Exe}
+Dans $\mathcal{M}_p(\K)$ qui est une algèbre de dimension $p^2$, on peut définir pour $A\in\mathcal{M}_p(\K)$ : $\exp(A)=\sum\limits_{n=0}^{+\infty}\dfrac{1}{n!}A^n$
+\end{Exe}
+\Prop{Série géométrique}{Avec $\mathcal{A}$ algèbre normée, on peut définir pour $u\in\mathcal{A}$ tel que $\Vert u\Vert < 1$, la somme géométrique $\sum\limits_{n=0}^{+\infty}u^n$. Et si $\Vert u\Vert<1$, alors $1-u$ est inversible et $(1-u)^{-1}=\sum\limits_{n=0}^{+\infty}u^n$}
+\Pre{Pour $n\in\N, (1-u)\sum\limits_{k=0}^nu^k = 1-u^{n+1}$ et donc par passage à la limite quand $n\to+\infty$, on a $(1-u)\sum\limits_{k=0}^{+\infty}u^n=1$. Donc $(1-u)$ possède un inverse à droite.
+\par De même : $\sum\limits_{n=0}^{+\infty}(1-u)=1$, d'où le résultat.}
+\begin{Exe}
+Exemple d'anneau où un inverse à droite n'est pas u n inverse à gauche aussi : 
+\par $f:\left\{\begin{array}{rcl}\R[X]&\to&\R[X] \\ X^p & \mapsto & X^{p+1}\end{array}\right.$ et $g:\left\{\begin{array}{rcl}\R[X]&\to&\R[X] \\ X^p & \mapsto & \left\{\begin{array}{cl}X^{p-1} & \text{si $p\geq 1$} \\ 0 & \text{sinon}\end{array}\right.\end{array}\right.$
+\par On peut alors composer les deux applications, mais selon l'ordre dans lequel on les compose, on n'aura pas nécessairement l'identité.
+\end{Exe}
+
+\subsection{Familles sommables d'un K-ev}
+\Def{Familles sommables d'un $K$-ev de dimension finie}{Avec $E$ un $\K$-ev de dimension finie muni d'une base $B=(e_1,...,e_p)$, avec $I$ dénombrable et avec $(u_i)_{i\in I}\in E^I$, on dit que $(u_i)_{i\in I}$ est sommable si $\Vert u_i\Vert_{i\in I}$ est sommable.}
+\Prop{Sommabilité des familles coordonnées}{Une famille $(u_i)_{i\in I}$ s'écrivant : $\forall i\in I, u_i=\sum\limits_{k=1}^p u_i^k$ est sommable si, et seulement si, $\forall k\in\{1,...,p\}, (u_i^k)_{i\in I}$ est sommable.}
+Tous les théorèmes comme la sommations par paquets ou l'indiçage en identifiant $I$ à $\N$ par une bijection sont valides pour toutes les familles sommables de $E$.
+\begin{Exe}
+Si $\mathcal{A}$ est une algèbre de dimension finie, alors avec $u,v\in\mathcal{A}, uv=vu$ ($u$ et $v$ commutants), on a que $\exp(u+v)=\exp(u)+\exp(v)$ (la commutativité est utilisée lors du binôme de Newton)
+\par $\sum\limits_{i\in\N}\frac{1}{i!}u^i\sum\limits_{j\in\N}\frac{1}{j!}u^j = \sum\limits_{(i,j)\in\N^2}\frac{1}{i!}u^i\frac{1}{j!}u^j=\sum\limits_{s\in\N}\frac{1}{s!}\sum\limits_{i+j=s}\frac{s!}{i!j!}u^iv^j=\sum\limits_{s\in\N}\frac{1}{s!}(u+v)^s$
+\end{Exe}
+
+\subsection{Suites extraites}
+\Def{Suites extraites}{Soit $E$ un $\K$-EVN, avec $(u_n)\in E^\N$. On extrait une suite de $(u_n)$ en se donnant une fonction $\varphi:\N\to\N$ strictement croissante. $(u_{\varphi(n)})_{n\in\N}$ est alors une suite extraite de $(u_n)$.}
+\Thr{Convergence des suites extraites}{Si une suite $(u_n)\in E^\N$ converge $l$ alors toute suite extraite de $(u_n)$ converge vers $l$.}
+\Thr{Union d'applications d'extraction}{Si $\varphi, \psi$ sont deux applications de $\N$ dans $\N$ strictement croissantes vérifiant $\varphi(\N)\cup\varphi(\N)=\N$, si $(u_{\varphi(n)})$ et $(u_{\psi(n)})$ convergent vers $l$, alors $u_n$ est convergente de limite $l$.}
+\Thr{Bolzano-Weierstrass}{De toute suite bornée dans un $\K$-ev de dimension finie on peut extraite une suite convergente.}
+\Pre{Soit $E$ un $\R$-ev de dimension finie, avec $B=(e_1,...,e_p)$ une base et $(u_n)\in E^\N$ bornée.
+\par Pour $n\in\N, u_n=\sum\limits_{i=1}^pu_n^ie_i$, donc $(u_n^1)\in\R^\N$ est bornée, donc on peut en extraire une suite convergente $(u_{\varphi_1(n)}^1)$ de $(u_n^1)$.
+\par Pour $(u_n^2)$, on a encore une suite bornée réelle, on peut en extraire une suite convergente $(u_{\varphi_1\circ\varphi_2(n)}^2)$.
+\par On itère ce résultat jusqu'à $(u_{\varphi_1\circ...\circ\varphi_{p-1}(n)}^p)$ qui est une suite bornée de $\R^\N$, donc on peut en extraire la suite $(u_{\varphi_1\circ...\circ\varphi_p(n)}^p)$ convergente.
+\par On a donc que $\forall i\in\{1,...,p\}, (u_{\varphi_1\circ...\circ\varphi_p(n)}^i)$ est convergente, donc $(u_{\varphi_1\circ...\varphi_p(n)})$ est convergente.
+\par Le cas dans un $\C$-ev en découle par le fait que les $\C$-ev de dimension $p$ soient isomorphes aux $\R$-ev de dimensions $2p$. }
+
+
+\section{Topologie}
+Dans toute cette section, $E$ sera un $\K$-EVN de dimension quelconque
+\subsection{Ouverts}
+\Def{Point intérieur}{Soit $A\subset E$ et $a\in A$, on dit que $a$ est intérieur à $A$ si $\exists\alpha\in\R_+^*,\mathcal{B}(a,\alpha)\subset A$}
+\Def{Intérieur}{Soit $A\subset E$, on appelle intérieur de $A$ l'ensemble des points intérieurs de $A$, noté $\overset{\circ}{A}$ ; on a donc $\overset{\circ}{A}\subset A$}
+\begin{Exe}
+Soient $x\in E,r\in\R_+^*$, alors $\overset{\circ}{\mathcal{B}_f(x,r)} =\mathcal{B}(x,r)$.
+\par Soit $y\in\mathcal{B}(x,r)$. \par Considérons $r'=r-\Vert y-x\Vert$. \par Soit $z\in E$, tel que $\Vert z-y\Vert \leq r'$, alors on a que $\Vert z-x\Vert\leq\Vert z-y\Vert + \Vert y-x\Vert\leq r$ \par Donc $\mathcal{B}(y,r)\subset \mathcal{B}_f(x,r)$ donc $y\in\mathcal{B}_f(x,r)$
+\par Pour l'intre inclusion : soit $y\in E$ tel que $\Vert y-x\Vert=r$. Soit $\alpha\in\R_+^*$. \par Considérons $z=y+\frac{\alpha}{2\Vert y-x\Vert}(y-x)$ \par alors $z\in\mathcal{B}(y,\alpha)$ \par $\Vert z-x\Vert = (1+\frac{\alpha}{2\Vert y-x\Vert})\Vert y-x\Vert = r+\frac{\alpha}{2}>r$
+\par Donc $z\notin\mathcal{B}_f(x,r)$ \par donc : $\forall\alpha\in\R_+^*, \mathcal{B}(y,\alpha)\cap\mathcal{CB}_f(x,r)\neq\emptyset$
+\par Donc $\overset{\circ}{\mathcal{B}_f(x,r)}=\mathcal{B}(x,r)$
+\end{Exe}
+\Def{Ouvert}{Soit $A\subset E$, on dit que $A$ est ouvert si tous les points de $A$ sont intérieurs (ou si $A$ contient un voisinage de chacun de ses points), ce qui signifie $A\subset\overset{\circ}{A}$}
+\Prop{Ouverture de la boule}{Une boule ouverte d'un EVN est un ouvert}
+\Pre{Soient $x\in E,r\in\R_+^*$
+\par Soit $y\in\mathcal{B}(x,r)$ ; on pose $r'=1-\Vert x-y\Vert$\par Soit $z\in\mathcal{B}(y,r')$ : $\Vert z-x\Vert\leq\Vert z-y\Vert + \Vert y-x\Vert < r -\Vert y-x\Vert + \Vert y-x\Vert < r$ \par Donc $\mathcal{B}(y,r')\subset\mathcal{B}(x,r)$\par Donc $\mathcal{B}(x,r)$ est un ouvert.}
+\Prop{Plus grand ouvert}{$\overset{\circ}{A}$ est le plus grand ouvert inclus dans $A$ (au sens de l'inclusion)}
+\Pre{Montrons que $\overset{\circ}{A}$ est un ouvert :
+\par Soit $x\in\overset{\circ}{A}$ : par définition de $\overset{\circ}{A}$, on peut fixer $\alpha\in\R_+^*$ tel que $\mathcal{B}(x,\alpha)\subset A$ \par Soit $y\in\mathcal{B}(x,\alpha)$ \par $\exists \alpha'\in\R_+^*,\mathcal{B}(y, \alpha')\subset\mathcal{B}(x,\alpha)\subset A$ puisque que $\mathcal{B}(x,\alpha)$ est un ouvert
+\par Donc $y\in\overset{\circ}{A}$ \par Donc $\mathcal{B}(x,\alpha)\subset\overset{\circ}{A}$ \par $\overset{\circ}{A}$ est donc un ouvert inclus dans $A$
+\par Pour la maximalité : Soit $B$ un ouvert, $B\subset A$. \par Soit $b\in B$ \par Comme $B$ ouvert $\exists\alpha\in\R_+^*,\mathcal{B}(b\alpha)\subset A$ \par $b\in\overset{\circ}{A}$ \par Donc $B\subset\overset{\circ}{A}$}
+\Prop{Réunion et intersection d'ouverts}{Avec $E$ un EVN, $(O_i)_{i\in I}$ une famille d'ouverts de $E$, on a que :\begin{itemize}
+\item $\cup_{i\in I}O_i$ est un ouvert
+\item $\cap_{i\in I}O_i$ est un ouvert à condition que $I$ soit fini\end{itemize}}
+\subsection{Adhérence}
+\Def{Point adhérent}{Soit $A\subset E$ et $x\in E$, on dit que $x$ est adhérent à $A$ si : $\forall\alpha\in\R_+^*, \mathcal{B}(x,\alpha)\cap A\neq\emptyset$}
+\Def{Adhérence}{Soit $A\subset E$, on appelle adhérence de $A$ l'ensemble des points adhérents à $A$, noté $\bar{A}$. On notera que $A\subset\bar{A}$}
+\begin{Exe}
+On a que $\overset{\circ}{\Q}=\emptyset$ par densité des irrationnels dans les réels, et, symétriquement, $\bar{\Q}=\R$
+\end{Exe}
+\Thr{Caractérisation séquentielle de l'adhérence}{Soient $A\subset E,x\in E$, alors $x$ est adhérent à $A$ si, et seulement si, $\exists (a_n)\in A^\N, (a_n)\to x$}
+\Pre{Procédons par double-implication.
+\par Supposons que $x$ soit adhérent à $A$ : alors on peut choisir (axiome du choix) pour $n\in\N$, $a_n\in A\cap\mathcal{B}(x,\frac{1}{n+1})$ \par La suite ainsi construite converge vers $x$ et $(a_n)\in A^\N$
+\par Réciproquement : on suppose l'existence de $(a_n)\in A^\N, (a_n)\to x$. \par soit $\alpha\in\R_+^*$ \par comme $(a_n)\to x, \exists n_0\in\N, \forall n\in\N, n\geq n_0\Rightarrow a_n\in\mathcal{B}(x,\alpha)$ \par Donc $\mathcal{B}(x,\alpha)\cap A\neq\emptyset$
+\par D'où l'équivalence.}
+\Def{Fermé}{Si $A\subset E$, $A$ est fermé si $\bar{A}=A$ (donc que $\bar{A}\subset A$), donc que $A$ contient tous les points qui lui sont adhérents.}
+\Thr{Caractérisation séquentielle des fermés}{Soit $A\subset E$, $A$ est fermé si, et seulement si, pour toute suite d'éléments de $A$ convergente vers $l$, $l\in A$. ie $\forall (a_n)\in A^\N, (a_n)\to l\Rightarrow l\in A$}
+\Pre{Découle de la caractérisation séquentielle de l'adhérence.}
+\begin{Exe}
+Soit $A=\{(x,y)\in\R^3\vert x+2y\geq 0\}$, montrons que $A$ est feré. Soit $((\alpha_n,\beta_n))\in A^\N$. \par On soppose que $((\alpha_n, \beta_n))\to (a,b)\in\R^2$ \par Or $\forall n\in\N, \alpha+2\beta\geq 0$ et on a que $(\alpha_n)\to a$ et $(\beta_n)\to b$ \par donc par passage à la limite : $a+2b\geq 0$ \par donc $(a,b)\in A$
+\par $\{(x,y,z)\in\R^3\vert x^2+y^2+z^2\leq 1\text{ et } 0\leq z\leq x^2+y^2\}$ est un fermé
+\par $\mathcal{S}_p(\R)=\{M\in\mathcal{M}_p(\R)\vert M^T=M\}$, montrons que $\mathcal{S}_p(\R)$ est un fermé de $\mathcal{M}_p(\R)$. \par Soit $(A_n)_{n\in\N}\in\mathcal{S}_p(\R)$. On suppose que $(A_n)\to M\in\mathcal{M}_p(\R)$ \par $(A_n^T)\to M^T$ donc que $\forall i,j\in\llbracket 1,p\rrbracket, [A_n^t]_{i,j}\to [M]_{i,j}$ \par et $\forall n\in\N, A_n^T=A_n$ \par Donc par passage à la limite : $M^T=M$ \par Donc $M\in\mathcal{S}_p(\R)$ \par Donc $\mathcal{S}_p(\R)$ est un fermé.
+\par La sphère $S(x,r)=\{y\in E\vert\Vert y-x\Vert=r\}$ est un fermé.
+\end{Exe}
+\Prop{Fermeture de la boule}{Une boule fermée est un fermé}
+\Pre{Soit $x\in E$ \par Soit $r\in\R_+^*$\par Soit $(u_n)\in\mathcal{B}_f(x,r)^\N$ qui tend vers $y\in E$. \par Or $\forall n\in \N, \Vert u_n-x\Vert \leq r$ \par et comme $(u_n)\to y$, on a $(u_n-x)\to y-x$\par On a que la limite de la norme d'une suite est la norme de sa limite par la deuxième inégalité triangulaire : $\vert\Vert v_n\Vert - \Vert m\Vert\vert\leq\Vert v_n-m\Vert$ \par Donc $\Vert u_n-x\Vert\to \Vert y-x\Vert$
+\par Et donc par passage à la limite : $\Vert y-x\Vert\leq r$\par donc $y\in\mathcal{B}_f(x,r)$}
+\Prop{Produit de fermés}{Tout produit cartésien fini de fermés est un fermé}
+\begin{Exe}
+Soit $(u_n)\in E^\N$. On dit que $x\in E$ est une valeur d'adhérence de $u$ si $x$ est limite d'une suite extraite de $E$. Par exemple, les valeurs d'adhérence de $(-1)^n$ sont $1$ et $(-1)$ et les valeurs d'adhérence de $\sin(n)$ sont l'ensemble des réels entre $-1$ et $1$. Attention à ne pas confondre les valeurs d'adhérence d'une suite et l'adhérence d'une suite, qui est l'ensemble des points de la suite.
+\par On peut reformuler Bolzano-Weierstrass : Toute suite bornée admet au moins une valeur d'adhérence.
+\par \underline{\textbf{Exercice :}} Montrer que l'ensemble des valeurs d'adhérence d'une suite est fermé. 
+\end{Exe}
+\Thr{Complémentarité d'un ouvert}{Soit $E$ un EVN et $A\subset E$, alors $A$ est fermé si, et seulement si, $\mathcal{C}_EA$ est ouvert.}
+\Pre{La proposition est équivalente à : $A$ est ouvert si, et seulement si, $\mathcal{C}_EA$ est fermé. On montrera la contraposée des deux implications.
+\par Soit $A\subset E$\par On suppose $A$ non-ouvert. On peut donc prendre $a\in A$ tel que $\forall\alpha\in\R_+^*, \mathcal{B}(a,\alpha)\cap \mathcal{C}_EA\neq\emptyset$ \par Donc $a$ est adhérent à $\mathcal{C}_EA$ et $a\notin\mathcal{C}_EA$ \par Donc le complémentaire de $A$ dans $E$ n'est pas fermé.
+\par On suppose $A$ non-fermé. On a donc l'existence de $x\in\bar{A}\backslash A$. \par Et donc $\forall \alpha\in\R_+^*,\mathcal{B}(x, \alpha)\in A\neq\emptyset$ \par Donc $x\in\mathcal{C}_EA$ et $x\notin\overset{\circ}{\mathcal{C}_EA}$\par Donc $\mathcal{C}_EA$ n'est pas ouvert.}
+"Plutôt que de me prendre l'oreille gauche avec la main droite, je prends $A$" - Sami Chakroun, tranquillement, 2022
+\Prop{Réunion et intersection de fermés}{Avec $E$ un EVN, $(F_i)_{i\in I}$ une famille de fermés de $E$, on a que :\begin{itemize}
+\item $\cap_{i\in I}F_i$ est un fermé
+\item $\cup_{i\in I}F_i$ est un fermé à condition que $I$ soit fini\end{itemize}}
+\Pre{Si $(F_i)_{i\in I}$ est une famille de fermés, alors $\mathcal{C}_E\cap_{i\in I}F_i=\cup_{i\in I}\mathcal{C}_EF_i$ qui est ouvert
+\par $\mathcal{C}_E\cup_{i\in I}F_i=\cap_{i\in I}\mathcal{C}_CF_i$}
+\begin{Exe}
+$A=\{(x,y)\in\R^2\vert x^2+y<0\text{ et }x+3y>0\}$ est un ouvert comme son complémentaire est une réunion de fermés.
+\par $\cup_{n\in\N^*}\left[\dfrac{1}{n}, 1\right] = ]0,1]$ est une réunion infinie de fermés qui est ouverte.
+\end{Exe}
+\Def{Densité}{Soit $A\subset E$. On dit que $A$ est dense dans $E$ si $\bar{A}=E$
+\par i.e. $\forall x\in E,\exists (a_n)\in A^\N, (a_n)\to x$
+\par i.e. Tout élément de $E$ est limite d'une suite d'éléments de $E$}
+\begin{Exe}
+$\Q$ est dense dans $\R$, $\Q^2$ est dense dans $\R^2$, $\Q\times (\R\backslash\Q)$ est dense dans $\R^2$...
+\end{Exe}
+\Def{Frontière}{Soit $A\subset E$, on appelle frontière de $A$ : $F_r(A) = \bar{A}\backslash\overset{\circ}{A}$}
+\begin{Exe}
+Avec $x\in E,r\in\R_+^*$, et donc $F_r(B(x,r))=S(x,r)$
+\par On a que $F_r(\Q)=\R$
+\end{Exe}
+\begin{Rem}
+Toutes les notions topologiques évoquées dans ce chapitre sont invariantes par changement de normes équivalentes. En particulier en dimension finie, ces notions sont indépendantes de la norme.
+\end{Rem}
+\subsection{Relativité vaguement générale quand même}
+\Def{Ouvert relatif}{Soit $E$ un EVN, $A\subset E$. Soit $B\subset A$. On dit que $B$ est ou ouvert relatif de $A$ si $\forall x\in B,\exists\alpha\in\R_+^*,\mathcal{B}(x,\alpha)\cap A\subset B$}
+\Prop{Ouvert induit}{Soit $E$ un EVN, $A\subset E$. Avec $B\subset A$, $B$ est un ouvert relatif de $A$ si, et seulement si, il existe un ouvert $O$ de $E$ tel que $B=O\cap A$}
+\Pre{Supposons $O$ ouvert de $E$ et $B=O\cap A$. \par Soit $x\in B$. Comme $O$ est ouvert, on peut fixer $\alpha\in\R_+^*$ tel que \par $\mathcal{B}(x,\alpha)\subset O$\par Donc $\mathcal{B}(x,\alpha)\cap A\subset B$
+\par Réciproquement, si $B$ est un ouvert relatif de $A$, pour $b\in B$, on peut choisir $\alpha_b\in\R_+^*, \mathcal{B}(b,\alpha_b)\cap A\subset B$ \par Donc $B=\cup_{b\in B}(\mathcal{B}(b,\alpha_b)\cap A)=\left(\cup_{b\in B}(\mathcal{B}(b,\alpha_b))\right)\cap A$ \par Donc il existe un ouvert (réunion d'ouverts) dont l'intersection avec $A$ donne $B$.}
+\begin{Exe}
+Avec $E=\R$ et $A=]0,1]$. $B=\left]\frac{1}{2},1\right]$ n'est pas un ouvert de $E$ car $1\in B$ et $1$ n'est pas intérieur à $B$. Mais c'est un ouvert relatif de $A$ car $B=\left]\frac{1}{2},2\right[\cap A$.
+\end{Exe}
+\Def{Fermé relatif}{Soit $E$ un EVN, $A\subset E$. Soit $B\subset A$. On dit que $B$ est un fermé relatif de $A$ s'il vérifie l'une des propriétés équivalentes suivantes :\begin{enumerate}
+\item $\mathcal{C}_AB$ est un ouvert relatif de $A$ ($\mathcal{C}_AB=A\backslash B=A\cap\mathcal{C}_EB$) ;
+\item $\exists F$ fermé de $E$ tel que $B=F\cap A$ ;
+\item Caractérisation séquentielle : pour toute suite $(b_n)\in B^\N$ convergente de limite $l\in A$, alors $l\in B$. \end{enumerate}}
+
+\subsection{Compacts}
+\Def{Compact}{Soit $E$ un EVN, soit $A\subset E$. On dit que $A$ est compact si de toute suite de $A$, on peut extraire une suite convergente dans $A$.}
+\begin{Exe}
+Les segments sont des compacts de $\R$, les réunions de segments sont des compacts, les intervalles semi-ouverts ne sont pas des compacts.
+\par Pour $a,b\in\R, a<b$, $[a,b]$ est un compact de $\R$ mais $[a,b[$ n'est pas compact. $[a,b]$ est bornée, donc Bolzano-Weierstrass pour l'existence d'une suite convergente, qui a bien une limite dans le segment $[a,b]$ par passage à la limite et inégalités larges. Cependant, cette inégalité large mène à ce que $b$ soit une limite possible, alors que $b$ n'est pas dans l'ensemble.
+\end{Exe}
+\Prop{Fermeture du compact}{Tout compact est fermé et borné.}
+\Pre{Soit $K$ un compact. \par Soit $(k_n)\in K^\N$ une suite convergent vers $l\in E$. \par Comme $K$ est compact, on peut extraire de de $(k_n)$ une suite $(k_{\varphi(n)})$ de limite dans $K$. \par Or comme $(k_n)$ est convergente de limite $l$, alors $(k_{\varphi(n)})\to l$ donc $l\in K$. \par Donc $K$ est fermé.
+\par Supposons $K$ non-borné. \par On peut construire une suite $(k_n)$ de $K$ telle que $\Vert k_n\Vert\to+\infty$ (comme $K$ est non-borné, pour tout $n\in\N$, on peut choisir $k_n\in K$ tel que $\Vert k_n\Vert\geq n$) \par Pour toute suite extraite de $(k_n)$ $(k_{\varphi(n)})$, la suite $\Vert k_{\varphi(n)}\Vert\to+\infty$ donc $(k_{\varphi(n)})$ diverge. \par Donc $K$ est non-compact.}
+\Prop{Produit cartésien de compacts}{Avec $E_1,..., E_p$ des EVN, $E=E_1\times E_2\times...\times E_p$ et $K_1,..., K_p$ des compacts, alors $K_1\times K_2\times...\times K_p$ est un compact.}
+\Pre{Soit $(x_n)\in (K_1\times K_2\times...\times K_p)^\N$ (ie $(x_n)= (x^1_n, x^2_n,..., x^p_n)$), et on refait la démonstration de BW. La seule différence c'est qu'au lieu d'avoir des suites scalaires, on a des suites de vecteurs.
+\par $K_1$ est compact, donc on peut extraire de $(x^1_n)$ une suite $(x_{\varphi_1(n)^1})$ convergente dans $K_1$. Ensuite $(x_{\varphi_2(n)}^2)\in K_2^\N$, qui est compact, donc on peut extraire de $(x_{\varphi_1(n)}^2)$ une suite $(x_{\varphi_1\circ\varphi_2(n)}^2)$ convergente dans $K^2$. \par Au final on aura une suite extraite $(x_{\varphi_1\circ...\circ\varphi_p})$ qui converge.}
+\Prop{Fermé d'un compact}{Un fermé dans un compact est compact (ou un fermé relatif d'un compact, même si tout fermé relatif d'un compact serait un fermé)}
+\Pre{Soit $K$ un compact et $B\subset K$ fermé. \par Soit $(x_n)\in B^\N$, alors $(x_n)\in K^\N$. \par Alors on peut extraire $(x_{\varphi(n)})$ de $(x_n)$ convergente vers $l\in K$. \par Comme $B$ est fermé, $l\in B$. \par Donc $B$ est compact.}
+\Thr{Compacts}{Dans un espace de dimension finie $E$, les compacts sont les fermés bornés.}
+\Pre{On a déjà vu que tout compact est fermé borné. Réciproquement : \par Soit $A$ un fermé borné. Soit $(x_n)\in A^\N$ \par $A$ est bornée, donc par Bolzano-Weierstrass en dimension finie, on peut trouver une suite extraite $(x_{\varphi(n)})$ qui converge vers $l\in E$. \par Comme A est fermé, $l\in A$. \par Donc $A$ est compact.}
+\begin{Exe}
+Une boule fermée en dimension finie est compacte. En dimension infinie, il est possible de démontrer qu'une boule fermée n'est jamais compacte. \par Une sphère est compacte en dimension finie.
+\par On prend $E$ un $\K$-ev et $A\subset E, A\neq\emptyset$. Pour $x\in E$, on définit $d(x,A)=\inf\limits_{a\in A}\Vert x-a\Vert$. \par 1) Montrer que si $A$ est compact, $d(x, A)$ est atteinte. \par 2) Montrer que si $E$ est de dimension finie et $A$ est fermée, alors $d(x, A)$ est atteinte. \par 3) Pour $A,B\subset E$ on définit $d(A,B)=inf\{\Vert a-b\Vert, a\in A, b\in B\}$. \par a) Montrer que si $A$ et $B$ sont compactes, $d(A,B)$ est atteinte. \par Si $E$ de dim finie, $A$ compact et $B$ fermé, $d(A,B)$ atteinte. \par c) Si $A$ et $B$ sont fermés, $d(A, B)$ est-elle atteinte ?
+\begin{enumerate}
+\item Dans $\R$, $\sup A\in\bar A$ et $\inf A\in\bar{A}$. Ici, $d(x,A)=\inf\{\Vert x-a\Vert \vert a\in A\}$ donc on peut trouver $(a_n)\in A^\N$ telle que $d(x,A)=\lim\limits_{n\to+\infty}\Vert x-a_n\Vert$. \par $A$ est un compact, et comme $(a_n)$ est à valeurs dans un compact, on peut extraire de $(a_n)$ une suite convergente $(a_{\varphi(n)})$ de limite $\alpha\in A$. \par $(\Vert x-a_{\varphi(n)}\Vert)\to d(x,A)$ \par Et $\Vert x-a_{\varphi(n)}\Vert \to \Vert x-\alpha\Vert$ \par Donc la distance est atteinte. 
+\item Avec $E$ de dimension finie et $A$ fermé, $d(x,A)=\lim\limits_{n\to+\infty}\Vert x_n-a_n\Vert$ avec $(a_n)\in A^\N$ qu'on prend. \par $\forall n\in\N,\Vert a_n\Vert\leq \Vert x\Vert + \Vert x-a_n\Vert$ \par $(\Vert x-a_n\Vert)$ est convergente donc bornée \par Donc $(a_n)$ est bornée. \par Donc par Bolzano-Weierstrass, on peut extraire de $(a_n)$ une suite $(a_{\varphi(n)})$ convergente vers $l\in E$. Comme $A$ est fermée et que $(a_n)$ est une suite convergente de $A$, $l\in A$. \par Donc $d(x,A)=\Vert x-l\Vert$
+\item \begin{itemize}
+\item On a $A$ et $B$ deux compacts, donc on prend $(a_n)\in A^\N, (b_n)\in B^\N$ telle que $d(A,B)=\lim\limits_{n\to +\infty} \Vert a_n-b_n\Vert$ \par Comme $A$ est borné, on peut prendre $(a_{\varphi(n)})$ convergente vers $l\in A$. \par De $(b_{\varphi(n)})$ bornée, on peut extraire la suite convergente $(b_{\varphi\circ\psi(n)})$ qui tend vers $l'\in B$ \par Donc $\left(\Vert a_{\varphi\circ\psi(n)}-b_{\varphi\circ\psi(n)}\right)\to \Vert l-l'\Vert  = d(A,B)$ \par Donc la distance est atteinte.
+\item Avec $E$ de dimension finie, $A$ compact et $B$ fermé. On a que $d(A,B)=\lim\limits_{n\to+\infty} \Vert a_n-b_n\Vert$ en ayant pris $(a_n)\in A^\N$ et $b_n\in B^\N$. \par $A$ est compact, donc on extrait de $(a_n)$ la suite $(a_{\varphi(n)})$ convergente vers $l\in A$. \par Donc $d(A,B)=\lim\limits_{n\to+\infty}\Vert a_{\varphi(n)}-b_{\varphi(n)}$ \par Et comme $\forall n\in\N, \Vert b_{\varphi(n)}\Vert\leq\Vert a_{\varphi(n)}\Vert +\Vert b_{\varphi(n)}-a_{\varphi(n)}\Vert$, alors $b_{\varphi(n)}$ est bornée. \par Donc par BW (car la dimension est finie), on peut extraire de $(b_{\varphi(n)})$ une suite extraite $(b_{\varphi\circ\psi(n)})$ convergent vers $l'$. \par Comme $B$ est fermé, $l'\in B$. Donc $d(A,B)=\Vert l-l'\Vert$
+\item Prenons un contre-exemple en dimension infinie, dans l'espace vectoriel des courbes de fonctions. Avec $A = \{(x,e^x)\vert x\in\R\}$ et $B=\{(x,-e^x)\vert x\in\R\}$ on a une distance de $0$, bien que les deux courbes ne se rencontrent jamais. $O_n(\R)$ (groupe orthogonal) n'est plus du tout au programme mais permettrait d'avoir un exemple d'un compact.
+\end{itemize}
+\end{enumerate}
+\end{Exe}
+\Prop{Convergence d'une suite compacte}{Une suite d'un compact est convergente si, et seulement si, elle admet une unique valeur d'adhérence}
+\Pre{Soit $A$ un compact. \par Montrons la première implication : soit $(u_n)\in A^\N$ convergente. \par Alors elle admet une unique valeur d'adhérence.
+\par Réciproquement, montrons la contraposée : toute suite divergente dans un compact admet au moins deux valeurs d'adhérence. \par Soit $(u_n)\in A^\N$ divergente. \par $A$ est compact, donc $(u_n)$ possède une valeur d'adhérence $\lambda$. \par Mais $(u_n)$ ne tend pas vers $\lambda$, on a donc : $\exists\varepsilon\in\R_+^*,\forall n_0\in\N,\exists n\in\N,n\geq n_0\Rightarrow\Vert u_n-\lambda\Vert>\varepsilon$ \par Donc $\{n\in\N\vert \Vert u_n-\lambda\Vert>\varepsilon\}$ est infini. \par Donc on peut extraite de $(u_n)$ une suite $(u_{\varphi(n)})$ telle que $\forall n\in\N, \Vert u_{\varphi(n)}-\lambda\Vert>\varepsilon$ \par Mais $(u_{\varphi(n)})$ est une suite de $A$, donc elle possède une valeur d'adhérence $\lambda'\neq\lambda$, avec $\lambda'\in A$.}
+
+\section{Limites de fonctions}
+\subsection{Définitions}
+\Def{Limite}{Soient $E,F$ deux EVN, et $A\subset E$. Soit $f\in\mathcal{F}(A,F)$, $x_0\in\bar{A}$. Soit $l\in F$. On dit que $f$ converge vers $l$ en $x_0$ si :
+\par \begin{center} $\forall\varepsilon\in\R_+^*,\exists\alpha\in\R_+^*,\forall x\in\mathcal{B}(x_0,\alpha)\cap A, f(x)\in\mathcal{B}(l,\varepsilon)$ \end{center}
+\par On notera $f\to_{x_0} l$ ou $f(x)\to_{x\to x_0} l$ (notation plus abusive) ou $\lim f = l$ (notation plus adaptée à une conclusion) et $\lim\limits_{x\to x_0}f(x)=l$ (le combo que Chakroun aime pas).}
+\Def{Vocabulaire du voisinage}{Avec $E$ un EVN et $b\in E$, on appelle voisinage de $b$ un ensemble contenant une boule ouverte centrée en $b$.
+\par Avec ce vocabulaire, $f\to_{x_0} l$ si, pour tout voisinage de $l$ $\mathcal{V}_l$, il existe un voisinage relatif de $x_0$ $\mathcal{V}_{x_0}$ tel que $f(\mathcal{V}_{x_0})\subset\mathcal{V}_l$
+\par On étend la définition de voisinage à $+\infty$ :
+\par Dans $E$ un EVN quelconque, $\mathcal{V}$ est un voisinage de $+\infty$ est si $\exists A\in\R_+^*,\{x\in E, \Vert x\Vert>A\}\subset\mathcal{V}$.
+\par Dans $\R$ on définit des voisinages de $\pm\infty$
+\par $\mathcal{V}$ est un voisinage de $+\infty$ si $\exists A\in\R_+^*, ]A,+\infty[\subset\mathcal{V}$
+\par $\mathcal{V}$ est un voisinage de $-\infty$ si $\exists B\in\R_-^*, ]-\infty, B[\subset\mathcal{V}$
+\par On peut aussi étendre la notion de convergence en $+\infty$ (ou $-\infty$)}
+\begin{Exe}
+$f\to_{+\infty} l$ donne que $\forall\varepsilon\in\R_+^*,\exists M\in\R_+^*,\forall x\in A, \Vert x\Vert\geq M\Rightarrow \Vert f(x)-l\Vert<\varepsilon$
+\end{Exe}
+\Prop{Caractérisation séquentielle de la limite}{Avec $f\in\mathcal{F}(A,F)$ avec $A\subset E$ et $E,F$ deux EVN. Avec $x_0\in\bar{A}$ et $l\in F$, alors :
+\par \begin{center}$f\rightarrow_{x_0}l\Leftrightarrow \forall (u_n)\in A^\N, (u_n)\to x_0, (f(x_0))\to l$ \end{center}}
+\Pre{On suppose que $f$ tend vers $l$ en $x_0$ : \par Soit $(u_n)\in A^\N$ tel que $(u_n)\to x_0$ \par Soit $\varepsilon\in\R_+^*$ \par $f\to_{x_0} l$, on peut trouver $\alpha\in\R_+^*, \forall x\in A\cap\mathcal{B}(x_0,\alpha), \Vert f(x)-\alpha\Vert<\varepsilon$ \par Or $(u_n)\to x_0$ donc on peut trouver $n_0\in\N,\forall n\in\N, n\geq n_0\Rightarrow \Vert u_n-x_0\Vert<\alpha$ \par Donc pour $n\geq n_0$ : $\Vert f(u_n)-l\Vert<\varepsilon$
+On suppose que $\forall (u_n)\in A^\N, (u_n)\to x_0, (f(x_0))\to l$ : on prouve la contraposée : \par $f$ ne tend pas vers $l$ en $x_0$ donc on peut construire une suite $(u_n)$ tendant vers $x_0$ telle que $(f(u_n))$ ne tend pas vers $l$. \par On peut donc prendre un $\varepsilon\in\R_+^*$ tel que $\forall\alpha\in\R_+^*,\exists x\in A\cap\mathcal{B}(x_0,\alpha)\text{ et }\Vert f(x)-l\Vert>\varepsilon$ \par Pour $n\in\N^*$, on peut donc choisir $u_n\in A\cap\mathcal{B}(x_0,\frac{1}{n})$ et $\Vert f(u_n)-l\Vert>\varepsilon$ \par On a donc construit $(u_n)\in A^\N$ tel que $\forall n\in\N, \Vert u_n-x_0\Vert<\varepsilon\frac{1}{n}$ et $\Vert f(u_n)-l\Vert>\varepsilon$}
+\begin{Exe}
+$f:\left\{\begin{array}{rcl} \R^2\backslash\{(0,0)\} & \to & \R \\ (x,y) & \mapsto & \frac{xy}{\vert x\vert+\vert y\vert} \end{array}\right.$
+\par $f$ a-t-elle une limite en $(0,0)$ ? \par Soient $(x,y)\in\R^2\backslash\{(0,0)\}$, alors $\vert f(x,y)\vert\leq \frac{(\vert x\vert + \vert y\vert)^2}{\vert x\vert + \vert y\vert}\leq \vert x\vert+\vert y\vert$ \par Donc $f\to_{(0,0)}0$
+\par $f:\left\{\begin{array}{rcl} \R^2\backslash\{(0,0)\} & \to & \R \\ (x,y) & \mapsto & \frac{x^\alpha y^\beta}{\Vert(x,y)\Vert^\gamma} \end{array}\right.$
+\par $f$ a-t-elle une limite en $(0,0)$ ? \par On a l'équivalence des normes en dimension finie, donc $\exists K_1,K_2>0, \frac{K_1\vert x^\alpha y^\beta\vert}{\Vert(x,y)\Vert_\infty^\gamma}\leq\vert f(x,y)\leq\frac{K_2 \vert x^\alpha y^\beta\vert}{\Vert(x,y)\Vert_\infty^\gamma}$ \par Dans un premier cas, où $\alpha+\beta>\gamma$ : $\frac{\vert x^\alpha\vert\vert y^\beta\vert}{\Vert(x,y)\Vert_\infty^\gamma}\leq\Vert(x,y)\Vert_\infty^{\alpha+\beta-\gamma}$ \par et donc $f\to_{(0,0)}0$
+\par Dans un second cas, $\alpha+\beta=\gamma$ : Soit $\lambda\in\R$, \par considérons la suite $(u_n)=((\frac{1}{n},\frac{\lambda}{n}))_{n\in\N}$ \par Alors $f(u_n)=\dfrac{(\frac{1}{n})^{\alpha+\beta}\lambda^\beta}{\vert\frac{1}{n}\vert^\gamma\Vert(1,\lambda)\Vert^\gamma} = \dfrac{\lambda^\beta}{\Vert(1,\lambda)\Vert^\gamma}$, une constante qui dépend de $\lambda$ en général. \par Donc on n'a pas de limite en $(0,0)$ 
+\par Dans un troisième cas, $\alpha+\beta<\gamma$ : \par Prenons la suite, pour $n\in\N : f\left(\left(\frac{1}{n},\frac{1}{n}\right)\right)=\dfrac{(\frac{1}{n})^{\alpha+\beta-\gamma}}{\Vert(1, 1)\Vert^\gamma}\to+\infty$ \par Donc $f$ n'a pas de limite en $(0,0)$. \par Attention, on n'a pas nécessairement $f\to_{(0,0)}+\infty$ :
+\par prenons le cas particulier de $f:\left\{\begin{array}{rcl} \R^2\backslash\{(0,0)\} & \to & \R \\ (x,y) & \mapsto & \frac{x^2 y}{(\vert x\vert+\vert y\vert)^4} \end{array}\right.$ \par On a alors, pour $n\in\N^*$ : $f\left(\left(\frac{1}{n},\frac{1}{n^2}\right)\right)=\dfrac{\frac{1}{n^4}}{2^4\frac{1}{n^4}}\to\frac{1}{2^4}$ qui tend bien vers $0$.
+\par Avec $f:\left\{\begin{array}{rcl} \R^2\backslash D & \to & \R \\ (x,y) & \mapsto & \frac{x^{12}y^{15}}{x+y} \end{array}\right.$ et avec $D=\{(x,y)\in\R^2\vert x+y=0\}$. Est-ce que $f$ admet une limite en $(0,0)$ ? \par On prend la suite $\vert f\left(\frac{-1}{n}, \frac{1}{n}+\frac{1}{n^{100}}\right)\vert\sim\dfrac{\frac{1}{n^{27}}}{\frac{1}{n^{100}}}\to+\infty$
+\end{Exe}
+
+\subsection{Opérations sur les limites}
+\Prop{Limite d'une fonction à valeurs dans un produit cartésien}{Soit $f:A\to F_1\times F_2\times...\times F_p$ avec $(F_i)$ famille d'EVN et $A\subset E$ une partie d'un EVN. On a alors $f:x\mapsto (f_1(x),f_2(x),... f_p(x))$ et on peut caractérister $f$ par ses fonctions composantes $f_i:A\to F_i$
+\par Soit $x_0\in\bar{A}$ et $l=(l_1,...,l_p)\in F_1\times...\times F_p$, alors $f\to_{x_0} l$ si, et seulement si, $\forall i\in\{1,...,p\}, f_i\to_{x_0} l_i$.
+\par En particulier, si $F$ est un EVN de dimension finie ramené à une base $B=(u_1, u_2,...,u_p)$, $F$ est isomorphe à $\K^p$ par la bijection $\sum\limits_{i=1}^px_iu_i\mapsto (x_1,...,x_p)$. Si $f\in\mathcal{F}(A,F) : x\mapsto f(x)=\sum\limits_{i=1}^pf_i(x)u_i$, on appelle les $f_i$ les applications coordonénes et $f$ a une limite si, et seulement si, les applications coordonnées ont des limites.}
+\Prop{Opérations sur les fonctions convergentes}{\begin{itemize}
+\item Avec $f,g\in\mathcal{F}(A,E)$, on a que $f$ converge et $g$ converge $\Rightarrow f+g$ converge et $\lim(f+g) = \lim f+\lim g$
+\item Avec $\lambda\in\mathcal{F}(A,\K), f\in\mathcal{F}(A,F)$, $\lambda$ converge et $f$ converge $\Rightarrow \lambda f$ converge et $\lim(\lambda f) =(\lim\lambda)(\lim f)$
+\item Si $F$ est une algèbre munie d'une norme d'algèbre : Si $f,g\in\mathcal{F}(A,F)$, $g$ converge et $f$ converge $\Rightarrow fg$ converge et $\lim (f\times g)=(lim f)\times(\lim g)$
+\item Si $F=\K$, alors avec $f\in\mathcal{F}(A,F)$, si $f$ est convergente de limite $l\neq0$, alors $\frac{1}{f}$ converge et $lim\frac{1}{f}=\frac{1}{l}$
+\item Avec $E,F,G$ des EVN, avec $A\subset E$ et $B\subset F$, $f\in\mathcal{A,F}, g\in\mathcal{F}(B,G)$, $x_0\in\bar{A}, y_0\in\bar{G}, f\to_{x_0} y_0, g\to_{y_0}l$, alors on peut affirmer que $g\circ f\to_{x_0} l$
+\end{itemize}}
+\Pre{Pour la composition : soit $\mathcal{V}_l$ un voisinage de $l$, comme $g\to_{y_0} l$, on peut trouver un voisinage relatif à B de $y_0$ $\mathcal{V}_{y_0}$ tel que $g(\mathcal{V}_{y_0})\subset\mathcal{V}_l$. \par Comme $f\to_{x_0}y_0$, on peut trouver un voisinage relatif à A de $x_0$ $\mathcal{V}_{x_0}$ tel que $f(\mathcal{V}_{x_0})\subset\mathcal{V}_{y_0}$ \par Donc $(g\circ f)(\mathcal{V}_{x_0})\subset\mathcal{V}_l$}
+\begin{Rem}
+Cette démonstration s'étend au cas $\Vert x_0\Vert=+\infty, \Vert y_0\Vert=+\infty$ 
+\end{Rem}
+
+\subsection{Continuité de fonctions}
+\Def{Continuité}{Soit $f\in\mathcal{F}(A,F)$ avec $A\subset E$ et $E,F$ deux EVN. Soit $a\in A$, on dit que $f$ est continue en $a$ si $f\to_a f(a)$.}
+\begin{Rem}
+C'est une notion locale ; deux fonctions coïncidant sur un voisinage ont les mêmes propriétés de continuité.
+\end{Rem}
+\Prop{Opérations}{Localement, la somme de deux fonctions continues est continue, le produit par un scalaire d'une fonction continue est continue, le produit d'une fonction continue et d'une fonction scalaire continue est continu, dans un algèbre le produit de deux fonctions continues est continu, la composition de deux fonctions continues est continue.}
+\begin{Rem}
+Toutes les notions vues sur les limites de fonctions s'étendent sur les fonctions continues en $a$, notamment sur les fonctions coordonnées.
+\end{Rem}
+\Prop{}{Si $E$ est de dimension finie associé à une vase $B=(e_1,...,e_p)$, alors :
+\par \begin{center} $P_j:\left\{\begin{array}{rcl} E & \to & \K \\ x=\sum\limits_{i=1}^px_ie_i & \mapsto & x_j \end{array}\right.$\end{center}
+\par Alors : $\forall x,y\in E, x=\sum x_ie_i, y=\sum y_ie_i, \vert p_j(x) - p_j(y)\vert\leq\Vert x-y\Vert_\infty$ et l'application projection est une application continue en tous points. (1-lipschitzienne donc absolument continue)}
+\begin{Exe}
+$f:\left\{\begin{array}{rcl} \R^2 & \to & \R^3 \\ (x,y) & \mapsto & \left(\frac{\arctan(xy^2sin(x+y))}{\sqrt{x^2+y^2+1}}, \frac{\log(1+x^2y^4)}{\cosh(x+3y)},x+y\right) \end{array}\right.$
+\par Cette fonction est continue car toutes ses coordonnées sont continues, en tant que produits, sommes et compositions de fonctions continues. En effet, $x$ et $y$, en tant que projecteurs, sont nécessairement continus.
+\par $f:\left\{\begin{array}{rcl} \mathcal{M}_n(\K) & \to & \R \\ A & \mapsto & \det(A) \end{array}\right.$ \par est une application continue en tant que polynôme avec comme coefficients des coordonnées.
+\par $f:\left\{\begin{array}{rcl} E & \to & \R \\ x & \mapsto & \Vert x\Vert \end{array}\right.$ \par est continue car par seconde inégalité triangulaire ($\forall x,y\in E, \vert\Vert x\Vert-\Vert y\Vert\vert\leq\Vert x-y\Vert$), elle est lipschitzienne.
+\par Avec $E$ un espace préhilbertien réel :
+\par $f:\left\{\begin{array}{rcl} E\times E & \to & \R \\ (u,v) & \mapsto & \langle u,v\rangle \end{array}\right.$ \par est continue, montrons-le, même quand $E$ n'est pas de dimension finie :
+\par En $(0,0)$ : Montrons que $\langle h,k\rangle\to_{(0,0)}0$ : $\vert\langle h,k\rangle\vert\leq\Vert h\Vert \Vert k\Vert$ par Cauchy-Schwarz donc $f$ est continue en $(0,0)$ \par En $(u_0,v_0)$ quelconques : $\vert\langle u_0+h,v_0+k\rangle - \langle u_0,v_0\rangle\vert = \vert\langle h,v_0\rangle+\langle k,u_0\rangle+\langle h,k\rangle\vert\leq\Vert u_0\Vert\Vert h\Vert+\Vert v_0\Vert\Vert k\Vert+\Vert h\Vert\Vert k\Vert$ \par Donc $f$ est continue en $(u_0,v_0)$ et est donc continue sur $E\times E$.
+\end{Exe}
+
+
+\subsection{Propriétés globales des fonctions continues}
+\Prop{Images réciproques}{Soit $f\in\mathcal{F}(A,F)$ continue, alors l'image réciproque d'un ouvert de $F$ par $f$ est un ouvert relatif de $A$
+\par L'image réciproque d'un fermé de $F$ par $f$ est un fermé relatif de $A$.}
+\Pre{Pour les fermés : \par Soit $B$ un fermé de $F$, on veut démontrer que $f^{-1}(B)$ est un fermé relatif de $A$. \par Soit $(x_n)\in (f^{-1}(B))^\N$, on suppose que $(x_n)\to l\in A$. \par Alors pour $n\in\N, f(x_n)\in B$ et $f$ est continue en $l$ donc $f(x_n)\to f(l)$\par Donc $(f(x_n))$ est une suite convergente du fermé $B$, donc sa limite est dans $B$ \par Donc $f(l)\in B$, donc $l\in f^{-1}(B)$ \par Donc $f^{-1}(B)$ est bien un fermé relatif de $A$.
+\par Pour les ouverts : \par Soit $O$ un ouvert de $F$, $\mathcal{C}_FO$ est un fermé de $F$, donc $f^{-1}(\mathcal{C}_FO)$ est un fermé relatif de $A$.\par Donc $\mathcal{C}_Af^{-1}(O)$ est un fermé relatif de $A$ \par Donc $f^{-1}(O)$ est un ouvert relatif de $A$.}
+\begin{Exe}
+$A=\{(x,y)\in\R^2\vert\sin(x)+2y<0\text{ et }x+3y>0\text{ et }\arctan(\frac{x}{x^2+y^2+1})>0\}$ est l'image réciproque par $f:(x,y)\mapsto\left(\sin(x)+2y, x+3y, \frac{x}{x^2+y^2+1}\right)$ de $(\R_-^*, \R_+^*,\R_+^*)$, qui est un ouvert. Or $f$ est continue, donc $A$ est ouvert.
+\end{Exe}
+\Prop{Continuité coïncidante}{Deux applications continues qui coïncident sur une partie dense sont égales}
+\Pre{Soient $f,g\in\mathcal{C}(A,F)$ avec $A\subset E$, $E,F$ des EVN, $B$ une partie dense dans $A$, et $\forall x\in B, f(x)=g(x)$ \par Soit $x\in A$, alors on prend $(x_n)\in B^\N,(x_n)\to x$ qui existe par densité de $B$ \par $\forall n\in\N, f(u_n)=g(u_n)$ et par passage à la limite (comme $f$ et $g$ sont continues) : $f(u_n)\to f(x)$ et $g(u_n)\to g(x)$ \par Et donc par unicité de la limite, $f(x)=g(x)$}
+\begin{Exe}
+On recherche la partie de $\mathcal{C}(\R,\R)$ telles que : $\forall x,y\in\R, f(x+y)=f(x)+f(y)$. \par On prouve d'abord que $f(0)=0$ et que $\forall x\in\R,\forall n\in\N, f(x)=nf(x)$, puis on l'étend à $\Z$ et enfin à $\Q$. Et ensuite on se sert du théorème pour conclure
+\end{Exe}
+\Def{Uniforme continuité}{Soit $f\in\mathcal{F}(A,F)$ où $A\subset E$ avec $E,F$ deux EVN. On dit que $f$ est uniformément continue si :
+\par\begin{center} $\forall\varepsilon\in\R_+^*,\exists\eta\in\R_+^*,\forall x,y\in A,\Vert x-y\Vert<\eta\Rightarrow\Vert f(x)-f(y)<\varepsilon$\end{center}}
+\begin{Rem}
+La continuité uniforme implique la continuité. \par On peut trouver un contre-exemple à la réciproque, comme $f:\left\{\begin{array}{rcl} \R & \to & \R \\ x & \mapsto & e^x\end{array}\right.$ \par La négation de la continuité uniforme, c'est que : $\exists\varepsilon\in\R_+^*,\forall\eta\in\R_+^*,\exists x,y\in A, (\Vert x-y\Vert<\eta)\text{ et }(\Vert f(x)-f(y)\Vert\geq\varepsilon)$
+\par C'est peu exploitable, donc on fait une caractérisation séquentielle de la non-continuité uniforme : $\exists\varepsilon\in\R_+^*,\exists(x_n),(y_n)\in A^\N, (\Vert x_n-y_n\Vert)\to 0\text{ et }\Vert f(x_n)-f(y_n)\geq\varepsilon$ \par On note P1 la négation et P2 la caractérisation séquentielle. Prouvons leur équivalence. \par Supposons P1, et prenons $\varepsilon\in\R_+^*$ vérifiant la propriété. 
+\par Soit $(\eta_n)=(\frac{1}{n+1})$, prenons $(x_n), (y_n)\in A^\N$ telles que :\par $\Vert x_n-y_n\Vert<\eta_n\text{ et }\Vert f(x_n)-f(y_n)\Vert\geq\varepsilon$ \par On a ainsi défini $(x_n),(y_n)$ avec $(\Vert x_n-y_n)\to 0\text{ et }\Vert f(x_n)-f(y_n)\Vert\geq\varepsilon$
+\par L'autre implication est immédiate. \par On reprend $f$ telle que définie plus haut, on note $(x_n)=(n), (y_n)=(n+\frac{1}{n})$. \par On a $(x_n-y_n)\to 0$ 
+\par Alors $e^{x_n}-e^{y_n}=e^{n}-e^{n+\frac{1}{n}}=e^{n}(1-e^{\frac{1}{n}})=e^{n}(\frac{1}{n}+o(\frac{1}{n}))=\frac{e^{n}}{n}+o(\frac{e^{n}}{n})$ \par Or ça tend vers $+\infty$, donc on a bien une fonction non-uniformément continue.
+\par "L'exponentielle ça amplifie à mort, donc on s'en fout." - Chakroun, 2022
+\end{Rem}
+
+\subsection{Fonctions lipschitziennes}
+\Def{Fonctions lipschitziennes}{Soit $f\in\mathcal{F}(A,F)$, où $A\subset E$ avec $E,F$ EVN. Soit $k\in\R_+^*$. On dit que $f$ est $k-lipschitzienne$ si :
+\par \begin{center} $\forall x,y\in A,\Vert f(x)-f(y)\Vert\leq k\Vert x-y\Vert$ \end{center}}
+\Prop{Uniforme continuité des fonctions lipschitziennes}{Toute fonction lipschitzienne est uniformément continue}
+\Pre{Le $\eta$ qu'on prend est le $k$.}
+\begin{Rem}
+Dans $\R$, si $f$ est dérivable sur un intervalle $I$, $f$ est lipschitzienne si, et seulement si, sa dérivée est bornée. \par Si $f'$ est bornée, on conclut par inégalité des accroissements finis. \par Si $f$ est déribale, on passe à la limite de l'expression de la dérivée.
+\end{Rem}
+\begin{Exe}
+Donnons un exemple de fonction uniformément continue non-lipschitzienne. \par Prenons $f:\left\{\begin{array}{rcl} [0,1] & \to & \R \\ x & \mapsto & \sqrt{r} \end{array}\right.$ \par Alors $f$ est uniformément continue mais non lipschitzienne (elle est dérivable de dérivée non-bornée)
+\end{Exe}
+\Prop{Distance lipschitzienne}{Avec $E$ un EVN, $A\subset E$, l'application $\begin{array}{rcl} E & \to & \R \\ x & \mapsto & d(x,A)\end{array}$ est $1-lipschitzienne$.}
+\Pre{Soient $x,y\in E$. \par Soit $a\in A$ \par $\Vert y-a\Vert\geq\Vert x-a\Vert-\Vert y-x\Vert\geq d(x,A)-\Vert x-y\Vert$ qui est constante \par donc : $d(y,A)\geq d(x,A)-\Vert x-y\Vert$ \par La fonction est donc lipschitzienne}
+\Thr{Théorème de Heine}{Toute fonction continue sur un compact est uniformément continue.}
+\Pre{Avec $E,F$ deux EVN, $A$ un compact de $E$, $f\in\mathcal{f}(A,F)$ non-uniformément continue. \par On peut donc fixer $\varepsilon\in\R_+^*$ et prendre deux suites $(x_n), (y_n)\in A^\N$, avec $(\Vert x_n-y_n\Vert)\to 0\text{ et }\forall n\in\N, \Vert f(x_n)-f(y_n)\Vert>\varepsilon$ \par Comme $A$ est compact, on peut extraire de $(x_n)$ une suite $(x_{\varphi(n)})$ convergente vers $a\in A$. Comme $(\Vert x_n-y_n\Vert)\to 0$, alors $(y_{\varphi(n)})\to a$ et $(f(x_{\varphi(n)})-f(y_{\varphi(n)})$ ne tend pas vers 0. \par Donc $f$ n'est pas continue en $a$.}
+\Thr{Bornes atteintes le retour}{L'image d'un compact par une application continue est un compact.}
+\Pre{Soit $f\in\mathcal{F}(A,F)$ avec $A\subset E$ un compact. Montrons que $f(A)$ est compact. \par Soit $(y_n)\in f(A)^\N$ \par Alors pour $n\in\N$, on peut prendre $x_n\in A, f(x_n)=y_n$. \par Donc $(x_n)\in A^\N$ \par $A$ est compact donc on peut extraire de $(x_n)$ une suite $(x_{\varphi(n)})$ convergente vers $a\in A$. \par Comme $f$ est continue, la suite $\left(f(x_{\varphi(n)})\right)\to f(a)$ \par Donc $(y_{\varphi(n)})\to f(a)$ et par compacité de $A$, $f(a)\in f(A)$. \par Donc $f(A)$ est compact.}
+\Prop{Corollaire}{Le théorème des bornes atteintes : si $f\in\mathcal{C}(A,\R)$ avec $A$ compact, alors $f$ est borné et "atteint ses bornes". ie $f$ est bornée ($f(A)$ est compact donc bornée). \par $\exists a\in A, \sup f = f(a)$ \par $\exists b\in A,\sup f=f(b)$}
+\begin{Exe}
+Soit $f:\left\{\begin{array}{rcl}[0,1]^2 & \to & \R \\ (x,y) & \to & e^{x^2\sin(3y)\arctan(x+y)}\end{array}\right.$
+\par Montrer que $\exists d\in\R_+^*, \forall (x,y)\in [0,1]^2,f(x,y)\geq d$. \par Par compacité comme $[0,1]^2$ compact, la borne inférieure de f est atteinte et est supérieure à $0$,, d'om l'existence de $]0,f(x,y)]$
+\end{Exe}
+\Prop{Corollaire}{Si $f\in\mathcal{C}(A,F)$, avec $A$ compact de $F$, l'application $\Vert f\Vert:\left\{\begin{array}{rcl} A&\to&\R \\ x&\mapsto&\Vert f(x)\Vert\end{array}\right.$ atteint ses bornes.}
+\begin{Exe}
+Soit $f:\left\{\begin{array}{rcl} \R^2 & \to & \R \\ (x,y) & \mapsto & (2x^4+3y^2+1)e^{-(x^2+3y^2)} \end{array}\right.$ \par $\forall x,y\in\R^2, f(x,y)\geq 0$, donc $f$ est minorée et admet une borne inférieure. \par Avec $x\in\R$, $f(x,0) = (2x^4+1)e^{-x^2}$ et alors $\left(f(x,0)\right)\to 0$ donc $\inf f=0$ 
+\end{Exe}
+
+\subsection{Continuité des applications linéaires}
+\Thr{Critère de continuité des applications linéaires}{Soit $E, F$ des $\K$-EVN et $f\in\mathcal{L}(E,F)$. $f$ est continue si, et seulement si, elle vérifie l'une des propriétés équivalentes suivantes :\begin{enumerate}
+\item $f$ est continue en $0$ ;
+\item $\exists k\in\R_+^*,\forall x\in E, \Vert f(x)\Vert_F\leq k\Vert x\Vert_E$ ;
+\item $f$ est lipschitzienne.\end{enumerate}}
+\Pre{$f$ continue implique $1$ de manière immédiate. \par Pour $1\Rightarrow 2$ : supposons $f$ continue en $0$. \par Donc on peut prendre $\alpha\in\R_+^*$, $\forall x\in E, \Vert x\Vert<\alpha\Rightarrow\Vert f(x)\Vert < 37$ \par Soit $x\in E, x\neq 0$, prenons $u=\frac{\alpha}{2\Vert x\Vert}x$ \par On a bien $\Vert u\Vert<\alpha$ \par Donc $\Vert f(u)\Vert<37$ \par Donc par linéarité de $f$ et homogénéité de $\Vert.\Vert$ : $\Vert f(x)\Vert\leq\frac{37}{2}<\Vert x\Vert$
+\par $2\Rightarrow 3$ : On suppose $\exists k\in\R_+^*, \forall x\in E,\Vert f(x)\Vert \leq k\Vert x\Vert$ \par Donc $\forall x,y\in E, \Vert f(x)-f(y)\Vert\leq \Vert f(x-y)\Vert\leq k\Vert x-y\Vert$}
+\begin{Exe}
+Soit $E=\mathcal{C}([0,1],\R)$, qu'on munit de $\Vert.\Vert_\infty$ et $\Vert.\Vert_1$. \par On cherche à connaître la continuité de l'application linéaire : \par $\varphi:\left\{\begin{array}{rcl} E & \to & \R \\ f & \mapsto & f(0) \end{array}\right.$ \par On peut avoir la continuité si le rapport $\dfrac{\vert\varphi(f)\vert}{\Vert f\Vert}$ pour $f\neq 0$ est borné. \par Soit $f\in E$\par Alors $\vert f(0)\vert \leq \Vert f\Vert_\infty$ donc $\varphi$ est continue pour la norme infinie.
+\par Pour la norme 1, considérons $(f_n)_{n\in\N^*}$ telle que : $f_n : t\mapsto e^{-nt}$ \par $\forall n\in\N^*,\varphi(f_n)=1 \text{ et }\Vert f_n\Vert = \frac{1}{n}(1-e^{-n})$ \par Et donc $\frac{\vert \varphi(f_n)\vert}{\Vert f_n\Vert}\to +\infty$ et donc si $E$ est muni de $\Vert.\Vert_1$, alors $\varphi$ n'est pas continue.\end{Exe}
+\begin{Rem}
+En dimension finie, toute application linéaire est continue, par continuité des projecteurs (les applications linéaires sont des polynômes de degré au plus 1 sur les coordonnées).
+\par Si $\varphi$ est linéaire et injective en dimension finie, on a que $\Vert\varphi\Vert$ est une norme, qu'on appelle la norme $\varphi$.
+\end{Rem}
+\Prop{Fermeture des sev}{Tout sous-espace de dimension finie d'un $\K$-ev est fermé.}
+\Pre{Soit $F$ un sev de $E$, $F$ de dimension finie. \par Si $E$ est de dimension finie, on peut considérer $G$ un supplémentaire de $F$. Alors la projection $p_G$ sur $G$ parallèlement à $F$ est continue puisqu'on est en dimension finie. \par Et comme $F=\ker p_G = p_g^{-1}(\{0_E\})$ donc $F$ est fermé.
+\par Le résultat reste vrai si $E$ n'est pas de dimension finie : \par Soit $f_n$ une suite de $F$ convergente vers $l\in E$. \par $(f_n)$ est convergente donc bornée, donc il existe une boule fermée $B$ contenant l'ensemble des $f_n$ pour $n\in\N$ \par $\forall n\in\N, f_n\in B\cap F$ \par $B\cap F$ est une boule fermée de $F$ pour la restriction de $\Vert.\Vert$ à $F$, et comme $F$ est de dimension finie, $B\cap F$ est un compact. \par Donc on peut extraire de $(f_n)$ une suite convergent vers $l'\in B\cap F$ \par Et par unicité de la limite, $l=l'$ donc $l\in F$.}
+\begin{Rem}
+Si $F,G$ deux sev de $E$, tels que $F\oplus G=E$, notons : $p_F$ la projection sur $F$ parallèlement à $G$ et $p_G$ la projection sur $G$ parallèlement à $F$. \par Si $p_F$ et $p_G$ sont continues, alors $F$ et $G$ sont fermés.
+\end{Rem}
+\begin{Exe}
+Prenons $E=\mathcal{C}([0,1],\Vert 1\Vert)$ et $\varphi : f\mapsto f(0)$ \par Alors $F =\{f\in E,\varphi(f)=0\}$ est un hyperplan, mais $F$ n'est pas fermé.
+\end{Exe}
+\Prop{Norme triple}{Soit $E,F$ deux EVN, on appelle $\mathcal{L}_C(E,F$) l'ensemble des applications linéaires continues de $E$ dans $F$. Alors $\mathcal{L}_C(E,F)$ est un espace vectoriel normé pour la norme $\varphi\mapsto \vert\Vert\varphi\Vert\vert=\sup\limits_{x\in E, x\neq 0} \frac{\Vert \varphi(x)\Vert_F}{\Vert x\Vert_E} = \sup\limits_{x\in E, \Vert x\Vert=1}\Vert \varphi(x)\Vert$}
+\Pre{soit $\varphi\in\mathcal{L}_C(E,F)$ \par On suppose $\vert\Vert\varphi\Vert\vert=0$ alors $\forall x\in E, x\neq 0, \Vert \varphi(x)\Vert\leq 0$ donc $\varphi(x)=0$ \par Et comme $\varphi$ est linéaire, $\varphi(0)=0$ donc $\varphi=0$ \par L'inégalité triangulaire et l'homogénéité sont immédiates.}
+\begin{Rem}
+Dans le cas où $E$ et $F$ sont de dimensions finies : $\mathcal{L}_C(E,F)=\mathcal{L}(E,F)$ \par et $\mathcal{L}_C(E,F)$ est isomorphe à $\mathcal{M}_{n,p}(\K)$ \par Si on fixe une norme dans $\mathcal{M}_{n,1}(\K)$ et une norme dans $\mathcal{M}_{p,1}(\K)$, il est naturel de parler de la norme $\vert\Vert.\Vert\vert$ associée pour $\mathcal{M}_{n,p}(\K)$ \par $A\in\mathcal{M}_{n,p}(\K), \vert\Vert A\Vert\vert =\sup\limits_{\Vert X\Vert=1, X\in\mathcal{M}_{p,1}(\K)} \Vert AX\Vert_n = \sup\limits_{X\in\mathcal{M}_{n,1}(\K), X\neq 0} \frac{\Vert AX\Vert_n}{\Vert X\Vert_p}$
+\end{Rem}
+\begin{Exe}
+$\mathcal{M}_{n,1}(\K)$ muni de la norme $\Vert.\Vert_\infty$, déterminons la norme triple sur $\mathcal{M}_n(\K)$ \par $\vert\Vert A\Vert\vert=\sup\limits_{X\in\mathcal{M}_{n,1}(\K), x\neq 0} \frac{\Vert AX\Vert_\infty}{\Vert X\Vert_\infty}$ \par $\Vert AX\Vert_\infty=\max\limits_{1\leq i\leq n}\vert\sum\limits_{j=1}^n A_{i,j}X_j\vert$ \par $\vert\sum\limits_{j=1}^n A_{i,j}X_j\vert\leq \sum\limits_{j=1}^n \vert A_{i,j}X_j\vert\leq\left(\sum\limits_{j=1}^n \vert A_{i,j}\vert\right)\Vert X\Vert_\infty\leq \max\limits_{1\leq i\leq n}\left(\sum\limits_{j=1}^n\vert A_{i,j}\vert\right) \Vert X\Vert_\infty$
+\par Pour prouver qu'on a bien la meilleure majoration possible, on doit trouver un exemple de vecteur $X$ pour que l'inégalité soit une égalité. \par Prenons $i_0$ tel que $\sum\limits_{j=1}^n\vert A_{i_0}, j\vert=\max\limits_{i}\sum\limits_{j=1}^n\vert A_{i,j}\vert$ \par Prenons $X=(e^{i\theta_1},..., e^{i\theta_n})$ avec $\theta_1,...,\theta_n\in\R$ tel que $\theta_j=-\arg(A_{i_0,j})$ \par Alors pour tout $j\in\llbracket 1,n\rrbracket$ : $A_{i_0,j}e^{i\theta_j} = \vert A_{i_0,j}\vert$ \par Donc $\Vert AX\Vert_\infty=\max\limits_{1\leq i\leq n}\left(\sum\limits_{j=1}^n\vert A_{i,j}X_j\vert\right)\Vert X\Vert_\infty$
+\par Donc $\vert\Vert A\Vert\vert = \max\limits_{1\leq i\leq n} \sum\limits_{j=1}^n\vert A_{i,j}\vert$
+\par Faisons de même pour $\Vert.\Vert_1$ : soit $X\in\mathcal{M}_{n,1}(\K)$ \par $\Vert AX\Vert_1 = \sum\limits_{i=1}^n\vert\sum\limits_{j=1}^nA_{i,j}X_j\vert\leq \sum\limits_{i=1}^n\sum\limits_{j=1}^n\vert A_{i,j}X_j\vert\leq \sum\limits_{j=1}^n\vert X_j\vert \sum\limits_{i=1}^n\sum \vert A_{i,j}\vert \leq \left(\max\limits_{1\leq i\leq n} \sum\limits_{i=1}^n\vert A_{i,j}\vert\right)\sum\limits_{k=1}^n X_k$ \par Donc $\vert\Vert A\Vert\vert\leq\left(\max\limits_{1\leq i\leq n} \sum\limits_{i=1}^n\vert A_{i,j}\vert\right)\sum\limits_{k=1}^n X_k$
+\par Pour la majoration atteinte, on prend le $j_0\in\llbracket 1,n\rrbracket$ tel que $\sum\limits_{i=1}^n\vert A_{i,j_0}\vert =\max\limits_{j}\sum\limits_{i=1}^n\vert A_{i,j}\vert$ \par Soit $X=(0_1,...,0, 1, 0,...,0)$ avec le $1$ en position $j_0$ \par $\Vert AX\Vert_1 = \sum\limits_{i=1}^n\vert A_{i,j_0}\vert$ donc $\vert\Vert A\Vert\vert =\max\limits_{1\leq j\leq n}\sum\limits_{i=1}^n\vert A_{i,j}\vert$ 
+\end{Exe}
+\Thr{Sous-multiplicativité}{Soit $E,F,G$ des EVN, soit $f\in\mathcal{L}_C(E,F)$ et $g\in\mathcal{L}_C(F,G)$, alors $\Vert g\circ f\Vert\leq \Vert g\Vert \Vert f\Vert$}
+\Pre{Soit $x\in E$, tel que $\Vert x\Vert=1$ \par Alors $\Vert g\circ f(x)\Vert = \Vert g(f(x))\Vert \leq \Vert g\Vert \Vert f(x)\Vert$ par définition de $\Vert.\Vert$ dans $\mathcal{L}_C(E,F)$ \par Et $\Vert g\Vert \Vert f(x)\Vert\leq\Vert g\Vert \Vert f\Vert \Vert x\Vert\leq \Vert g\Vert \Vert f\Vert$ \par Donc $\sup\limits_{\Vert x\Vert =1}\Vert g\circ f(x)\Vert\leq \Vert g\Vert \Vert f\Vert$}
+\Prop{Corollaire}{$\mathcal{L}_C(E)$ est munie naturellement d'une norme d'algèbre.}
+
+\subsection{Continuité des applications p-linéaires}
+\Def{Application p-linéaire}{Soit $f\in\mathcal{F}(E_1\times...\times E_p, F)$ est dite p-linéaire si : \par $\forall x_1,...,x_p\in E_1\times...\times E_p, \forall j\in \llbracket 1,p\rrbracket, x_j\mapsto f(x_1,..., x_j,..., x_p)$ est linéaire.}
+\begin{Exe}
+Le déterminant est une application $n$-linéaire de $(\K^n)^n$ \par Le produit scalaire dans une espace préhilbertien est bilinéaire.
+\end{Exe}
+\Prop{Critère de continuité des applications multilinéaires}{Soit $E_1,..., E_p, F$ des EVN, soit $f$ p-linaire de $E_1\times ...\times E_p$ dans $F$. \par $f$ est continue si, et seulement si, $\exists k\in\R_+^*,\forall x_1,...,x_p\in E_1\times...\times E_p, \Vert f(x_1,..., x_p)\Vert\leq k\Vert x_1\Vert ...\Vert x_p\Vert\leq k\Vert x\Vert^p$}
+\Pre{Supposons $f$ continue, donc $f$ est continue en $0$. \par Donc on peut prendre $\alpha\in\R_+^*$ tel que $\forall x\in E_1\times...\times E_p, \Vert x\Vert \leq\alpha\Rightarrow \Vert f(x)\Vert \leq 1$ \par Soit $x=(x_1,..., x_p)\in E_1\times...\times E_p$, on suppose pour tout $i\in\llbracket 1,p\rrbracket x_i\neq 0$ \par Posons $u=(\frac{\alpha}{\Vert x_1\Vert}x_1,\frac{\alpha}{\Vert x_2\Vert}x_2,..., \frac{\alpha}{\Vert x_p\Vert})$, alors $\Vert u\Vert\leq \alpha$
+\par Donc $\Vert f(u)\Vert\leq 1$ \par Par p-linéarité de $f$, on a $\Vert f(x)\Vert \leq \frac{1}{\alpha^p}\Vert x_1\Vert...\Vert x_p\Vert\leq \frac{1}{\alpha^p}\Vert x\Vert^p$ \par L'inégalité reste vraie si $x_1=0$ ou $x_2=0$ ou... ou $x_p=0$.
+\par Réciproquement, on suppose que : $\exists k\in\R_+^*, \forall x_1,..., x_p\in E_1\times...\times E_p, \Vert f(x_1,..., x_p)\leq k\Vert x_1\Vert...\Vert x_p\Vert$ \par Soit $x=(x_1,...,x_p)\in E_1\times...\times E_p$ \par Soit $h=(h_1,...,h_p)\in E_1\times...\times E_p$ tel que $\Vert h\Vert\leq\Vert x\Vert$ \par $f(x+h)-f(x) =f(x_1+h_1,..., x_p+h_p)-f(x_1,...,x_p)$ \par $=\sum\limits_{y_1\in [x_1,h_1], y_p\in [x_p, h_p]} f(y_1,...,y_p)-f(x_1,...,x_p)$ \par On obtient une somme de $2^{p-1}$ termes, chaque terme de la forme $f(y_1,..., y_p)$ où au moins un des $y_i$ est égale à $h_i$
+\par Pour un tel terme : $\Vert f(y_1,..., y_p)\Vert\leq k\Vert y_1\Vert...\Vert y_p\Vert\leq k\Vert h\Vert \Vert x\Vert^{p-1}$ \par Donc $\Vert f(x+h)-f(x)\Vert\leq K(2^p-1)\vert x\Vert^{p-1}\Vert h\Vert$ \par Donc $f(x+h)-f(x)\to_{h\to 0} 0$ \par Donc $f$ est continu en $x$.} 
+Attention, ça ne veut pas dire que toute fonction multilinéaire continue est lipschitzienne, elle l'est juste sur des voisinages.
+\Prop{Application}{Si $E$ est un espace préhilbertien réel, alors $\begin{array}{rcl} E\times E & \to & \R \\ (x,y) & \mapsto & \langle x,y \rangle\end{array}$ est continue ($\forall x,y\in E, \langle x,y\rangle \leq \Vert x\Vert\Vert y\Vert$)}
+
+\section{Connexité par arcs}
+\Def{Chemin}{Soit $E$ un EVN, $x,y\in E$, on appelle chemin de $x$ à $y$ une application continue $\varphi$ de $[0,1]$ dans $E$ telle que $\varphi(0)=x$ et $\varphi(1)=y$}
+\begin{Rem}
+Dans la définition, $0$ et $1$ n'ont pas d'importance. Si on a $\varphi:[a,b]\to E$ continue telle que $\varphi(a)=x$ et $\varphi(b)=y$ \par On a $\psi :\left\{\begin{array}{rcl} [0,1] & \to & [a,b] \\ t & \mapsto & a+t(b-a)\end{array}\right.$ \par Alors $\varphi\circ\psi$ est continue, $\varphi\circ\psi(0)=x$ et $\varphi\circ\psi(1)=y$
+\end{Rem}
+\Def{Chemin dans une partie}{Si $A\subset E$, si $x,y\in A$ un chemin $\varphi$ est un chemin dans $A$ si $\forall t\in [0,1],\varphi(t)\in A$}
+\Prop{Relation d'équivalence}{Avec $E$ un EVN, $A\subset E$, on définit sur $A$ la relation $x\mathcal{R}_Ay \Leftrightarrow$ il existe un chemin dans $A$ joignant $x$ à $y$. \par $\mathcal{R}_A$ est une relation d'équivalence.}
+\Def{Connexes}{On appelle composantes connexes les classes d'équivalences par la relation précédente \par Un ensemble est connexe par arc si $\mathcal{R}_A$ a une seule classe d'équivalence.}
+\begin{Exe}
+Les convexes sont tous connexes par arcs. La réciproque est en générale fausse, sauf sur $\R$. \par Les parties étoilées ($A$ est étoilée s'il existe $c\in A$ tel que $\forall x\in A, [x,c]\subset A$) sont connexes par arcs. \par Les connexes par arcs de $\R$ sont les intervalles. $\R\backslash \{a\}$ n'est pas connexe. $\R^2\backslash D$ avec $D$ une droite n'est pas connexe. $\R^2\backslash \{a\}$ est connexe par arcs. 
+\end{Exe}
+\Thr{Valeurs intermédiaires}{L'image d'un connexe par arcs par une application continue est connexe par arcs.}
+\Pre{Soient $E,F$ EVN, $A\subset E$ et $f\in\mathcal{C}(A,F)$, et $B\subset A$ connexe par arcs. \par Soit $y_1, y_2\in f(B)$ on prend donc $x_1, x_2\in B$ tels que $f(x_1)=y_1$ et $f(x_2)=y_2$ \par Comme $B$ est connexe par arcs on a $\varphi : \left\{\begin{array}{rcl} [0,1] & \to & B \\ t & \mapsto & \varphi(t) \end{array}\right.$ continue avec $\varphi(0)=x_1$ et $\varphi(1)=x_2$ \par Alors $f\circ\varphi$ est un chemin dans $f(B)$ joignant $y_1$ à $y_2$ \par Donc $f(B)$ est connexe par arc.}
+\begin{Exe}
+$\mathcal{GL}_n(\R)$ n'est pas connexe par arcs : $\det(\mathcal{GL}_n(\R))=\R^*$ \par Il n'existe aucune application injective continue de $\R^2$ dans $\R$ : \par Supposons par l'absurde $f:\R^2\to \R$ continue et injective. \par L'image de $\R^2$ par $f$ est alors connexe par arcs, donc un intervalle $I$. \par Notons $(x,y)\in \R^2$ tel que $f(x,y)\in\overset{\circ}{I}$. Alors $f(\R^2 \backslash \{(x,y)\})$ est privé de $f(x,y)$ par injectivité et n'est donc pas l'intervalle $I$, d'où la contradiction comme $\R^2\backslash\{(x,y)\}$ est connexe par arc.
+\par Montrons que $\mathcal{GL}_n(\C)$ est connexe par arc. \par Soit $M\in\mathcal{GL}_n(\C)$, on prend $A\in\mathcal{M}_n(\C)$ telle que $\exp(A)=M$ \par Notons : $P :\left\{\begin{array}{rcl} [0,1] & \to & \mathcal{GL}_n(\C) \\ t & \mapsto & \exp(tA) \end{array}\right.$ \par Alors $P(0)=I$ et $P(1)=M$, donc $\mathcal{GL}_n(\C)$ est connexe par arc. \par Pour $\mathcal{GL}_n(\R)$, il y a au moins deux composantes connexes : celles avec un déterminant positif et celles avec un déterminant négatif.
+\end{Exe}
+
+\section{Théorème d'équivalence des normes}
+\Thr{L'équivalence des normes}{Toutes les normes sont équivalentes en dimension finie}
+\Pre{Soit $E$ un $\K$-ev de dimension finie, avec $B=(e_1,...,e_p)$ une base de $E$. \par Soit $\Vert.\Vert_\infty\left\{\begin{array}{rcl} E&\to&\K \\ x=\sum\limits_{i=1}^px_ie_i & \mapsto & \max\limits_{1\leq i\leq p}\vert x_i\vert \end{array}\right.$
+\par Soit $N$ un e norme sur $E$ \par Pour $x\in E$, en notant $x=\sum\limits_{i=1}^px_ie_i$ : \par $N(x)\leq\sum\limits_{i=1}^p\vert x_i\vert N(e_i)\leq\Vert x\Vert_\infty\sum\limits_{i=1}^p N(e_i)$ \par Or, par la seconde inégalité triangulaire : \par $\forall x,y\in E, \vert N(x)-N(y)\vert\leq N(x-y)\leq K\Vert x-y\Vert_\infty$, où $K$ est une constante. \par Si on considère $(E,\Vert.\Vert_\infty)$, on a donc que $N$ est lipschitzienne, et donc continue.
+\par On a que $\mathcal{S}_\infty(0,1)=\{x\in E\vert \Vert x\Vert_\infty=1\}$ est compact. \par Donc $N$ étant continue, elle atteint ses bornes supérieures et inférieures sur $\mathcal{S}_\infty(0,1)$. \par Donc $m=\inf\limits_{x\in\mathcal{S}(0,1)}N(x)>0$ \par Et donc $\forall x\in E,x\neq 0\Rightarrow N\left(\frac{1}{\Vert x\Vert_\infty}x\right)\leq m\Rightarrow N(x)\geq m\Vert x\Vert_\infty$
+\par D'où l'équivalence entre $N$ quelconque et $\Vert.\Vert_\infty$. Par transitivité de la relation d'équivalence des normes, on a donc que toutes les normes en dimension finie sont équivalentes.}
+
+
+
+\chapter{Réduction des endomorphismes}
+\section{Généralités}
+\Def{Valeur propre}{Soit $E$ un $\K$-ev et $f\in\mathcal{L}(E)$. Soit $\lambda \in\K$. \par On dit que $\lambda$ est une valeur propre de $f$ si : $f-\lambda id$ n'est pas injective. \par Ce qui correspond à $\ker (f-\lambda id)\neq\{0\}$ \par Ce qui correspond à $\exists x\in E, x\neq 0, (f-\lambda id)(x)=0$ \par Ce qui correspond à $\exists x\in E,x\neq 0, f(x)-\lambda x=0$}
+\begin{Rem}
+On étend la notion de valeurs propres à l'ensemble des matrices $\mathcal{M}_n(\K)$ : pour $A\in\mathcal{M}_n(\K)$, $\lambda$ est une valeur propre de $A$ si $\lambda$ est une valeur propre de l'endomorphisme canoniquement associé. \par Ce qui correspond à $\ker (A-\lambda I_n) \neq \{0\}$ \par Ce qui correspond à $\exists X\in\mathcal{M}_{n,1}(\K), X\neq 0, (A-\lambda I_n)(X) = 0$ \par Ce qui correspond à $\exists X\in\mathcal{M}_{n,1}(\K), X\neq 0, AX=\lambda X$
+\end{Rem}
+\Def{Spectre d'un endomorphisme}{Soit $E$ un $\K$-ev et $f\in \mathcal{L}(E)$. On appelle spectre de $f$ l'ensemble des valeurs propres de $f$, noté $S_p(f)$. \par On peut étendre la notion aux matrices.}
+\Prop{}{Deux matrices semblables ont même spectre.}
+\begin{Exe}
+Si $A$ est triangulaire supérieure avec une diagonale $\lambda_1,..., \lambda_n$, alors $S_p(A)=\{\lambda_1,...,\lambda_n\}$. Attention, un spectre n'est pas forcément de cardinal $n$.
+\par Soit $E=\mathcal{C}^\infty(\R,\C)$ et $\varphi:\left\{\begin{array}{rcl} E & \to & E \\ f & \mapsto & f' \end{array}\right.$ \par Déterminons les valeurs propres de $\varphi$ \par Supposons $\lambda\in S_p(\varphi) \Leftrightarrow \exists f\in E, f\neq 0, \varphi(f)=\lambda f$ \par $\Leftrightarrow$ l'équation $\varphi(f)=\lambda f$ admet au moins une solution non-nulle. \par Soit $\lambda\in\C$, soit $f\in E$. Alors : \par $\varphi(f)=\lambda f \Leftrightarrow f'=\lambda f \Leftrightarrow f\in Vect(t\mapsto e^{\lambda t})$ \par Donc $\lambda \in S_p(\varphi)$ \par Donc $S_p(\varphi)=\C$
+\par Soit $E=\R[X]$, et $\varphi:\left\{\begin{array}{rcl} E & \to & E \\ P & \mapsto & P' \end{array}\right.$ \par Déterminons les valeurs propres de $\varphi$. Soit $\lambda\in\K$, soit $P\in E$ : \par Si $\lambda=0$ : \par $\varphi(P)=\lambda P \Leftrightarrow P'=\lambda P \Leftrightarrow P\in Vect(1)$ \par Donc $0$ est valeur propre. \par Si $\lambda\neq 0$ : \par $P'=\lambda P \Rightarrow \deg P'=\deg P \Rightarrow P=0$ \par Donc si $\lambda =0$, alors $\lambda\notin S_p(\varphi)$ \par Donc $S_p(\varphi)=\{0\}$
+\end{Exe}
+\Def{Espace propre}{Soit $E$ un $\K$-ev, $f\in\mathcal{L}(E)$ et $\lambda\in S_p(f)$. On appelle espace propre associé à $\lambda$ l'ensemble $\ker (f-\lambda id)$, qu'on note $E_\lambda(f)$ \par C'est un sev de $E$ non-réduit à $0$. \par On étend la notion aux matrices de $\mathcal{M}_n(\K)$. Pour $A\in\mathcal{M}_n(\K)$ et $\lambda\in S_p(A)$, alors $E_\lambda(A) = \ker (A-\lambda I_n)$ est un sev de $\mathcal{M}_{n,1}(\K)$.}
+\begin{Rem}
+Attention, deux matrices semblables n'ont pas les mêmes espaces propres. Ils sont simmplement isomorphes : $E_\lambda(A')=P(E_\lambda(A))$ avec $P$ la matrice de passage entre $A$ et $A'$.
+\end{Rem}
+\Def{Vecteur propre}{Soit $E$ un $\K$-ev, $f\in\mathcal{L}(E)$ et $\lambda\in S_p(f)$. Soit $x\in E$, on dit que $x$ est un vecteur propre de $f$ relativement à $\lambda$ si $x$ est un vecteur non-nul de $E_\lambda(f)$.}
+\Thr{}{Une somme finie de sous-espaces propres d'un endomorphisme associés à des valeurs propres distinctes est directe.\par Ce qui correspond à : si $\lambda_1,...,\lambda_p$ sont des valeurs propres distinctes de $f\in\mathcal{L}(E)$, alors $E_1+...+E_p$ est une somme directe.}
+\Pre{Par récurrence sur le nombre d'espaces propres : Soit, pour $p\in \N^*$, $H_p$ : Pour tout $\K$-ev $E$ et toute application $f\in\mathcal{L}(E)$, la somme de $p$ espaces propres de $f$ associés à des valeurs propres distinctes est directe.
+\par $H_1$ est vérifiée. \par Soit $p\in\N^*$, on suppose $H_p$. Soit $E$ un $\K$-ev, soit $f\in\mathcal{L}(E)$ et $\lambda_1,...,\lambda_{p+1}$ $p+1$ valeurs propres de $f$. \par Soit $(u_1,..., u_{p+1})\in E_{\lambda_1}\times...\times E_{\lambda_{p+1}}$, et on suppose $u_1+...+u_{p+1}=0$ (1). \par On a donc $f(u_1)+...+f(u_{p+1})=0$ ie $\lambda_1 u_1 +...+\lambda_{p+1}u_{p+1}=0$ (2) \par On fait $\lambda_1(1)-(2)$ : \par $(\lambda_1-\lambda_1)u_2 +...+(\lambda_{p+1}-\lambda_1)u_{p+1}=0$
+\par Or par $H_p$, on a que $E_{\lambda_2}+...+E_{\lambda_{p+1}}$ est directe, donc $\forall i\in\llbracket2,p+1\rrbracket, (\lambda_i-\lambda_1)u_i=0$ donc $u_i=0$ \par Donc d'après (1), on a aussi $u_1=0$ \par Donc $E_{\lambda_1}(f)+...+E_{\lambda_{p+1}}(f)$ est directe. \par D'où la récurrence.}
+\Prop{Corollaire}{Si $\dim E$ est finie : $f\in\mathcal{L}(E), n=\dim E$ :\begin{itemize}
+\item $S_p(f)$ est fini et $card S_p(f)\leq n$ ($\lambda \in S_p(f)\Rightarrow \dim E_\lambda(f)\geq 1$) ;
+\item $f$ est diagonalisable (ie il existe une base de $E$ dans laquelle $Mat_B(f)$ est diagonale) si, et seulement si, $\sum\limits_{\lambda\in S_p(f)}\dim E_\lambda(f)=\dim E$
+\item Si $f$ admet $n$ valeurs propres distinctes, alors $f$ est diagonalisables.
+\end{itemize}}
+\Pre{Si $\sum\limits_{\lambda\in S_p(f)}\dim E_\lambda(f)=\dim E$ : \par $S_p(f)=\{\lambda_1,...,\lambda_p\}$, on prend $B_1,...,B_p$ bases respectivement de $E_{\lambda_1}(f),...,E_{\lambda_p}(f)$ \par On considère $B=(B_1,...,B_p)$ \par $B$ est une famille libre (la somme des espaces propres est directe) et $\dim E_{\lambda_1}(f)+...\dim E_{\lambda_p}(f) =\dim E$ vecteurs de $E$ \par Donc $B$ est une base. Et alors la matrice de $f$ dans cette base est diagonale de coefficients les éléments du spectre selon leurs dimensions.
+\par On suppose qu'il existe $B=(e_1,...,e_n)$ telle qu'il existe $(\lambda_1,...,\lambda_n)\in\K^n$ telle que la matrice de $f$ dans $B$ soit diagonale de coefficients les $\lambda_i$. \par On a donc $\forall i\in\llbracket 1,n\rrbracket, e_i\in E_{\lambda_i}(f)$ \par Donc $E\subset E_{\lambda_1}(f)+...+E_{\lambda_n}(f)\subset\bigoplus\limits_{\lambda\in S_p(f)}E_\lambda(f)$ \par Donc $\dim E\leq \sum\limits_{\lambda\in S_p(f)}\dim E_{\lambda}(f)$, l'égalité étant assurée par le fait que les espaces propres sont des sev de $E$.}
+\begin{Exe}
+Soit $E=\mathcal{C}^\infty(\R,\C)$ et $(e_\lambda)_{\lambda\in\C}$ telle que : $e_\lambda:\left\{\begin{array}{rcl} \R & \to & \C \\ t & \mapsto & e^{\lambda t} \end{array}\right.$ \par Pour montrer que $(e_\lambda)$ est libre, on considère l'application $\varphi$ qui à tout élément de $E$ associe sa dérivée. \par Alors $S_p(\varphi)=\C$\par Prenons $\lambda_1,...,\lambda_p\in\C$ deux-à-deux distincts : alors $(e_{\lambda_1},...,e_{\lambda_p})$ est une famille de $p$ vecteurs non-nuls des espaces propres de $\varphi$ $E_{\lambda_1}(\varphi),...,E_{\lambda_p}(f)$ \par Donc $(e_{\lambda_1},...,e_{\lambda_p})$ est libre.
+\end{Exe}
+\Prop{}{Soit $E$ un $\K$-ev. Soient $u,v\in\mathcal{L}(E)$ tels que $u\circ v=v\circ u$. Alors :\begin{itemize}
+\item $Im v$ et $\ker v$ sont stables par $u$
+\item $\forall\lambda\in S_p(v), E_\lambda(v)$ est stable par $u$
+\end{itemize}}
+\Pre{Soit $y\in Im v$ \par Donc on peut prendre $x\in E, y=v(x)$
+\par donc $u(y)=u(v(x))=v(u(x))$ donc $u(x)\in Im v$ \par Soit $\lambda \in S_p(f)$ \par Soit $x\in E_\lambda(v)$ \par alors $v(u(x))=u(v(x))=u(\lambda x)=\lambda u(x)$ \par Et donc $u(x)\in Ker(v-\lambda id)$ \par Donc $E_\lambda(v)$ est stable.}
+
+\section{Polynôme caractéristique}
+Dans la suite du chapitre, $E$ est de dimension finie
+Avec $f\in\mathcal{L}(E), \lambda\in\K$ on a :\par $\lambda\in S_p(f)\Leftrightarrow (f-\lambda id)\text{ est non injective}$ \par $\Leftrightarrow (f-\lambda id)\text{ est non inversible dans $\mathcal{L}(E)$ en dim finie}$\par $\Leftrightarrow \det (f-\lambda id)=0$
+\Prop{Polynôme caractéristique}{Avec $f\in\mathcal{L}(E)$, on a que $\begin{array}{rcl} \K & \to & \K \\ \lambda & \mapsto & \det (f-\lambda id)\end{array}$ est polynomiale. Le polynôme associé est de degré $n$ unitaire.
+\par On appelle ce polynôme le polynôme caractéristique de $f$, noté $\chi_f$}
+\Pre{Soit $A$ la matrice de $f$ dans une base quelconque fixée. \par $\det (\lambda id-f)=\det (\lambda I - A)=\sum\limits_{\sigma\in\mathfrak{S}_n}\varepsilon(\sigma)\prod\limits_{k=1}^n(\lambda I-A)_{\sigma(k),k}$\par Cette fonction est polynomiale, associée au polynôme : \par $\det(XI-A)=\sum\limits_{\sigma\in\mathfrak{S}(n)}\varepsilon(\sigma)\prod\limits_{K=1}^n[XI-A]_{\sigma(k),k}$ \par Or $[XI-A]_{\sigma(k),k}$ est un polynôme de degré inférieur ou égal à $1$ (qui vaut $1$ si, et seulement si, $\sigma(k)=k$)
+\par Donc $\det(XI-A)$ est une somme de polynômes de degré $\leq n$, donc un polynôme de degré $\leq n$ \par On remarque que $\prod\limits_{k=1}^n[XI-A_{\sigma(k),k}$ est de degré $n$ si, et seulement si, $\sigma =id$ \par donc $\det(XI-A)=\prod\limits_{i=1}^n(X-A_{i,i})+Q$ avec $Q\in\K_{n-1}[X]$ \par Donc $\deg(\det(XI-A))=n$ est le coefficient le degré $n$ de ce polynôme et celui de $\sum\limits_{i=1}^n(X-A_{i,i}$ c'est-à-dire 1}
+\Prop{Valeurs propres}{Soit $E$ un $\K$-ev de dimension finie. \par $\lambda$ est une valeur propre de $f$ si, et seulement si, $\lambda$ est une racine de $\chi_f$}
+\begin{Rem}
+On retrouve le fait qu'un endomorphisme en dimension finie $n$ possède au plus $n$ valeurs propres réelles.
+\end{Rem}
+\subsection{Coefficients du polynôme caractéristique}
+Avec $f\in\mathcal{L}(E)$, $A=Mat_B(f)$ dans une base $B$ fixée. \par $\chi_f=\sum\limits_{\sigma\in\mathfrak{S}_n}\varepsilon(\sigma)\prod\limits_{k=1}^n[XI-A]_{\sigma(k),k}$ \par Pour $j\in\{1,n\}$, calculsons le coefficient devant $X^{n-j}$ de $\chi_f$ : $\alpha_{n-j}$ \par Pour le coefficient de degré $n-1$ : soit $\sigma\in\mathfrak{S}_n$, si $\sigma\neq id$, alors $\sigma$ a au plus $n-2$ points fixes \par Donc $\forall\sigma\in\mathfrak{S}_n,\sigma\neq id, \deg(\prod\limits_{k=1}^n[XI-A]_{\sigma(k),k})\leq n-2$ \par Donc $\chi_f = \prod\limits_{i=1}^n[X-A_{i,i}] + Q$ avec $\deg Q\leq n-2$ \par Donc le coefficient de degré $n-1$ de $\chi_f$ est : $-\sum\limits_{i=1}^nA_{i,i}=-tr(A)$
+\par Le coefficient constant de $\chi_f$ est la valeur en $0$ du polynôme caractéristique, donc c'est $\chi_f(0)=\det(-A)=(-1)^n\det(A)$ \par Donc $\chi_f = X^n-tr(f)X^{n-1} +...+(-1)^n\det(A)$
+\begin{Exe}
+Application : si $\chi_f$ est scindé, alors $\chi_f=\prod\limits_{k=1}^n(X-\lambda_i)$ où les $\lambda_i$ sont les racines de $\chi_f$, non nécessairement distinctes. \par Alors $\left\{\begin{array}{ccl}\sum\limits_{i=1}^n\lambda_i & = & tr(f) \\ \prod\limits_{i=1}^n\lambda_i & = & \det (f) \end{array}\right.$
+\end{Exe}
+\Def{Ordre d'une valeur propre}{Soit $E$ un $\K$-ev de dimension finie. Soit $f\in\mathcal{L}(E)$. Soit $\lambda \in\K$. \par On dit que $\lambda$ est une valeur propre d'ordre $\alpha$ si $\lambda$ est une racine de $\chi_f$ d'ordre $\alpha$
+\par Ce qui correspond à $(X-\lambda)^\alpha|\chi_f$ et $(X-\lambda)^{\alpha+1}$ ne divise pas $\chi_f$ \par Ce qui correspond à $\chi_f = (X-\lambda)^\alpha Q$ pour $Q\in\K[X], Q(\lambda)\neq 0$}
+\Thr{}{Soit $E$ un $\K$-ev de dimension finie. Soit $f\in\mathcal{L}(E)$. Soit $\lambda$ une valeur propre de $f$ d'ordre $\alpha$ \par Alors $\dim E_\lambda(f)\leq\alpha$}
+\Pre{Dans le cadre de l'énoncé, on note $p=\dim E_\lambda(f)$. \par On peut prendre $(e_1,..., e_p)$ une base de $E_\lambda(f)$ \par On complète cette famille libre de $e$ par $e_{p+1}, ..., e_n$ en une base $B$ de $E$. \par Alors $Mat_B(A) = \begin{pmatrix} \lambda I_p & C\\ 0 & D\end{pmatrix}$ avec $C\in\mathcal{M}_{p,n-p}(\K)$ et $D\in\mathcal{M}_{n-p, n-p}(\K)$ \par Donc $\chi_f  = \det\begin{pmatrix}(X-\lambda)I_p & -C \\ 0 & XI-D \end{pmatrix} = (X-\lambda)^p\det(XI-D)$ \par Donc $(X-\lambda)^p$ divise $\chi_f$ \par Donc $p\leq\alpha$}
+\Prop{Corollaire}{Si $E$ de dimension finie, $f\in\mathcal{L}(E)$, alors $f$ est diagonalisable si, et seulement si : $\left\{\begin{array}{l} \chi_f\text{ est scindé} \\ \text{Pour tout }\lambda\in S_p(f)\text{, la dimension de }E_\lambda(f)\text{ est égale à l'ordre de }\lambda\end{array}\right.$}
+\Pre{On note $\alpha_\lambda$ l'ordre de $\lambda$ pour $\lambda\in S_p(f)$ \par Par contraposée : si $\chi_f$ est non-scindé. \par On a alors $\sum\limits_{\lambda\in S_p(f)}\alpha_\lambda$ \par On sait que $\dim\bigoplus_{\lambda\in S_p(f)}E_\lambda(f)=\sum\limits_{\lambda\in S_p(f)}\dim E_\lambda(f)$ \par Donc $\dim\bigoplus_{\lambda\in S_p(f)}E_\lambda(f)\leq \sum\limits_{\lambda\in S_p(f)}\alpha_\lambda<n$ \par Donc $\bigoplus E_\lambda(f)\neq E$ \par $f$ n'est pas diagonalisable.
+\par On suppose maintenant $\chi_f$ scindé. \par Pour $\lambda\in S_p(f)$, on note $n_\lambda$ la dimension de $E_\lambda(f)$ \par $f$ est diagonalisable si, et suelement si $\bigoplus\limits_{\lambda\in S_p(f)}E_\lambda(f)=E$ \par $\Leftrightarrow \sum\limits_{\lambda\in S_p(f)}n_i=n$ \par $\Leftrightarrow \sum\limits_{\lambda\in S_p(f)}(\alpha_\lambda-n\lambda)=0$ \par $\forall\lambda\in S_p(f),\alpha_\lambda=n_\lambda$}
+\begin{Exe}
+Avec $A=\begin{pmatrix} 4&1&1\\1&4&1\\1&1&4\end{pmatrix}$ \par On a immédiatement $rg(A-3I_3)=1$ et donc $\dim\ker(A-3I_3)=2$ \par Donc $3$ est une valeur propre de $A$ d'ordre au moins $2$. \par Donc les valeurs propres de $A$ comptées avec ordre de multiplicité sont $3,3,X$ telles que $3+3+X=tr(A)$ \par Donc $X=6$ et donc $\chi_A=(X-A)^2(X-6)$
+\end{Exe}
+
+\section{Trigonalisation}
+\Def{Trigonalisation}{Soit $E$ un $\K$-ev de dimension finie, on dit que $f\in\mathcal{L}(E)$ esat trigonalisable si il existe une base $B$ telle que $Mat_B(f)$ est triangulaire.}
+\begin{Rem}
+Si $Mat_B(f)\in T_n^+(\K)$ : $f(e_1)\in Vect(e_1), f(e_2)\in Vect(e_1,e_2),..., f(e_n)\in Vect(e_1,...,e_n)$ et donc $\forall i\in\llbracket 1,n\rrbracket, f(F_i)\subset F_i$. \par Posons $B'(e_n,...,e_1)$. Alors : $f(e_n)\in Vect(e_n,...,e_1), f(e_{n-1})\in Vect(e_{n-1},..., e_1),..., f(e_1)\in Vect(e_1)$ \par Et alors $Mat_{B'}(f)\in T_n^+(\K)$ \par Donc quand une matrice est trigonalisable, elle l'est de manière inférieure et supérieure.
+\par Une matrice est dite trigonalisable si son endomorphisme canoniquement associé est trigonalisable. ie elle est semblable à une matrice triangulaire.
+\end{Rem}
+\Thr{}{Un endomorphisme d'un $\K$-ev $E$ de dimension finie est trigonalisable si, et seulement si, son polynôme caractéristique est scindé.}
+\Pre{On suppose $f$ trigonalisable. On a donc $B$ une base de $E$ telle que : $Mat_B(f)= T$ est triangulaire, de coefficients diagonaux $\alpha_1,...,\alpha_n$. \par Et donc $\chi_f=\chi_T=(X-\alpha_1)...(X-\alpha_n)$ \par Donc $\chi_f$ est scindé.
+\par Réciproquement, raisonnons par récurrence sur la dimension de l'espace. \par Montrons que $\forall n\in\N^*, H_n :$ pour tout $\K$-ev $E$ de dimension $n$, pour tout endomorphisme $f$ de $E$ de polynôme caractéristique scindé, $f$ est trigonalisable.
+\par $H_1 :$ En dimension 1, les endomorphismes sont uniquement $x\mapsto \lambda x$, on a donc une matrice à un seul coefficient $\lambda$.
+\par Soit $n\in\N$, on suppose $H_n$. Soit $E$ un $\K$-ev de dimension $(n+1)$. \par Soit $f\in\mathcal{L}(E)$ tel que $\chi_f$ est scindé. \par Donc $\chi_f$ a au moins une racine dans $\K$, notée $\lambda$. Donc $\lambda\in S_p(f)$. \par On considère $e_1\in E$ un vecteur propre (non nul) associé à $\lambda$ et on complète $e_1$ par $(e_2,..., e_{n+1})$ en une base $B$ de $E$. \par Alors $Mat_B(f) =\begin{pmatrix} \lambda & L \\ 0 & A \end{pmatrix}$ avec $A\in\mathcal{M}_n(\K), L\in\mathcal{M}_{1,n}(\K)$
+\par On note $F=Vect(e_2,...,e_{n+1})$. \par On note $p$ la projection sur $F$ parallèlement à $Vect(e_1)$. On appelle $g$ l'application $g:\left\{\begin{array}{rcl} F & \to & F \\ x & \mapsto & p\circ f(x) \end{array}\right.$. \par Et alors $A=Mat_{(e_2,...,e_{n+1})}(g)$ \par On a que $\dim F =n$ et donc $g\in\mathcal{L}(F)$ \par On a que $\chi_f = (X-\lambda)\chi_A = (X-\lambda)\chi_g$ or $\chi_f$ est scindé, donc $\chi_g$ est scindé. \par Donc par $H_n$, on peut trouver une base $B'_f$ de $F$ dans laquelle $Mat_{B'_f}(g)=T\in T_n^+(\K)$ \par Donc $B'=(e_1,e'_2,..., e'_n)$ est une base de $E$ \par Donc $Mat_{B'}(f)=\begin{pmatrix} \lambda & L' \\ 0 & T\end{pmatrix}$ qui est triangulaire supérieure. \par Ce qui conclut la récurrence.}
+\begin{Exe}
+Soit $E$ un $\C$-ev de dimension $n$ et $f\in\mathcal{L}(E)$ \par Notons $\chi_f = \prod\limits_{i=1}^n (X-\lambda_i)$ \par Déterminer $\chi_{f^p}$ pour $p\in\mathcal{N}$ et $\chi_{f^p}$ pour $p\in\Z$ si $f\in\mathcal{GL}_n(\C)$ \par Comme $\chi_f\in\C[X]$, il est scindé : on fixe $B$ une base de $E$ dans laquelle $Mat_B(f)$ est triangulaire supérieure de coefficients diagonaux $\alpha_1,...,\alpha_2$ \par Comme un produit de matrices triangulaires supérieures est triangulaire supérieur avec les coefficients diagonaux qui sont les produits des éléments des deux diagonales, et donc $Mat_B(f^2)$ est une matrice triangulaire supérieure avec comme coefficients diagonaux les $\lambda_1^2,...,\lambda_n^2$
+\par Donc $\chi_{f^2} = \prod\limits_{i=1}^n(X-\lambda_i^2)$ \par Par récurrence immédiate, on a $\chi_{f^p} = \prod\limits_{i=1}^n (X-\lambda_i^p)$ \par Si $f\in\mathcal{GL}_n(\K)$, alors tous ses coefficients diagonaux dans $B$ sont non-nuls et son inverse a comme coefficients diagonaux les $\frac{1}{\lambda_1},...,\frac{1}{\lambda_n}$. On peut alors étendre $\chi_{f^p}(X-\lambda_i^p)$ pour $n\in\Z$
+\end{Exe}
+\begin{Exe}
+Est-ce qu'il y a un lien entre $f$ diagonalisable et $f^2$ diagonalisable ? \par Si $f$ est diagonalisable, alors $f^2$ l'est pour les mêmes matrices de passage. On peut trouver $B=(e_1,...e_n)$ une base de vecteurs propres de $f$ tels que $f(e_i)=\lambda_i e_i$ \par On a alors $f^2(e_i)=f(\lambda_i e_i) = \lambda_i^2e_i$ et par récurrence immédiate $f^p(e_i)=\lambda_i^pe_i$ \par On a cependant des exemples de réciproque fausse, avec la valeur propre 0. Par exemple, $\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}= \begin{pmatrix} 0 & 0 \\ 0 & 0\end{pmatrix}$ n'est pas diagonalisable mais son carré est la matrice nulle, qui est diagonale.
+\end{Exe}
+\begin{Rem}
+Avec la trigonalisation, on retrouve le fait que : \par $\forall A\in\mathcal{GL}_n(\K), tr(A)$ est la somme des vp de $A$ comptées avec leur ordre de multiplicité. \par $\det (A)$ est le produit des vp de $A$ comptées avec leur ordre de multiplicité.
+\end{Rem}
+
+\section{Endomorphismes nilpotents}
+\Def{Nilpotence}{Soit $E$ un $\K$-ev de dimension finie et $f$ un endomorphisme de $E$. $f$ est nilpotent si il existe $k\in\N^*$ tel que $f^k=0$. On appelle ordre de nilpotence de $f$ le plus petit entier $p$ tel que $f^p=0$}
+\Thr{}{Soit $E$ un $\K$-ev de dimension finie $n$, $f\in\mathcal{L}(E)$. Alors $f$ est nilpotente si, et seulement si, $\chi_f = X^n$ et $\chi_f=X^n$ si, et seulement si, il existe une base $B$ de $E$ dans laquelle $Mat_B(f)$ est triangulaire avec des 0 sur la diagonale.}
+\Pre{Supposons $\chi_f=X^n$. Alors $\chi_f$ est scindé, et $f$ est trigonalisable. \par Mais comme ses valeurs propres sont $0,...,0$, il existe donc une base $B$ de $E$ telle que $Mat_b(f)$ est triangulaire avec des zéros sur la diagonale.
+\par On suppose qu'il existe $B$ base de $E$ telle que $Mat_B(f)$ est triangulaire avec une diagonale nulle. \par On note pour $i\in\llbracket 1,n\rrbracket : F_i = Vect(e_1,...,e_i)$. \par Pour $i\in\llbracket 1,n\rrbracket, f(F_i)\subset F_{i-1}$ avec $F_0=\{0\}$ \par Et donc par récurrence : $\forall p\in\N^*, p\leq i, f^p(F_i)\subset F_{i-p}$ \par Et en particulier, $f^n(F_n)\subset F_0$ \par Et donc $f$ est nilpotente.
+\par Supposons $f$ nilpotente. On considère une base $B$ de $E$ et $A = Mat_f(B)$ \par Donc $A\in\mathcal{M}_n(\K)$. \par Donc on sait que $\chi_A = \chi_f$ \par Montrons que la seule valeur propre de $A$ dans $\C$ est $0$, donc on a besoin d'une complexification de l'espace. \par Donc on prend $\lambda \in S_{p,\C}(A)$ \par On peut donc prendre $X\in\mathcal{M}_{n,1}(\C), X\neq 0$ tel que $AX=\lambda X$ \par Par récurrence, $\forall k\in\N, A^kX = \lambda^kX$ \par $f$ est nilpotente d'ordre $\leq n$, donc $A$ aussi. \par Donc $\lambda^nX = 0$ \par Mais $X\neq 0$ donc $\lambda^n=0$ donc $\lambda=0$ \par Et donc $0$ est valeur propre d'ordre $n$ \par Donc $\chi_f=\chi_A=X^n$}
+
+\section{Polynômes d'endomorphismes}
+Un projecteur, défini polynomialement, est un endomorphisme vérifiant $p^2-p=0$. Une symétrie est un endomorphisme qui vérifie $s^2-id=0$. \par On parle dans les deux cas de polynômes annulateurs. Dans les deux cas, les endomorphismes sont diagonalisables.
+\par Dans toute cette partie, $E$ est un $\K$-ev de dimension finie.
+\Def{Polynôme d'endomorphismes}{Soit $f\in\mathcal{L}(E)$. On note $\K[f]$ la sous-algèbre de $\mathcal{L}(E)$ engendrée par $f$.\par Donc $\K[f] = Vect((f^n)_{n\in\N})=\{\sum\limits_{k=0}^na_kf^k|n\in\N, (a_0,...,a_n)\in\K^{n+1}\}$
+\par On peut donc considérer l'application $\left\{\begin{array}{rcl} \K[X] & \to & \K[f] \\ P = \sum\limits_{k=0}^na_kX^k & \mapsto & \sum\limits_{k=0}^na_kf^k = P(f)\end{array}\right.$}
+\Prop{Opérations sur les polynômes d'endomorphismes}{Pour $P,Q\in\K[X]$, $\lambda\in\K$ et $f\in\mathcal{L}(E)$, on a :\begin{itemize}
+\item $(P+Q)(f) = P(f) + Q(f)$
+\item $(\lambda\cdot P)(f) = \lambda P(f)$
+\item $(P\times Q)(f) = P(f)\circ Q(f)=Q(f)\circ P(f)$
+\item $(P\circ Q)(f) = P(Q(f))$
+\end{itemize}}
+\Pre{Les deux premières sont immédiates. \par Pour le produit, si $P=\sum\limits_{k=0}a_kX^k, Q=\sum\limits_{k=0}^nb_kX^k$ alors : \par $PQ=\sum\limits_{0\leq i\leq n, 0\leq j\leq n} a_ib_jx^{i+j}$ \par Et donc $(PQ)(f) = \sum\limits_{0\leq i\leq n,0\leq j\leq n} a_ib_jf^{i+j} = \left(\sum\limits_{i=0}^na_if^i\right)\circ\left(\sum\limits_{j=0}^nb_jf^j\right)$
+\par Pour la composée, on montre par récurrence que $(X^n\circ Q)(f) = Q^n(f) = Q(f)^n$ \par Et ensuite on a que pour $P=\sum\limits_{k=0}^na_kX^k$ : $P\circ Q(f) = \sum\limits_{k=0}^na_kQ^k(f) = \sum\limits_{k=0}^na_kQ(f)^k = P(Q(f))$}
+\begin{Rem}
+Si $E$ est de dimension finie, alors $\K[f]$ est un sev de $\mathcal{L}(E)$, donc $\K[f]$ est de dimension finie. Donc l'application $\varphi:\left\{\begin{array}{rcl} \K[X] & \to & \K[f] \\ P & \mapsto & P(f)\end{array}\right.$ n'est pas injective. \par $\ker\varphi$ n'est pas réduit à $\{0\}$
+\end{Rem}
+\Def{Polynôme annulateur}{Soit $P\in\K[X]$ et $f\in\mathcal{L}(E)$. On dit que $P$ est un polynôme annulateur de $f$ si $P(f)=0$}
+\Def{Polynôme minimal}{Soit $f\in\mathcal{L}(E)$. On appelle polynôme minimal de $f$ un polynôme non-nul unitaire annulateur de $f$ de degré minimal, qu'on note $\pi_f$ ou $\mu_f$ (cette notation existe mais elle est très rare).}
+\Prop{}{Avec $E$ un $\K$-ev de dimension finie et $f\in\mathcal{L}(E)$ : \begin{enumerate}
+\item $\K[f]$ est de dimension $\deg (\pi_f)$ et $(id,f,..., f^{\deg(\pi_f)-1})$ est une base de $\K[f]$
+\item $P$ est annulateur de $f$ si, et seulement si, $\pi_f\vert P$
+\item Si $P$ est annulateur de $f$, alors toute valeur propre de $f$ est une racine de $P$.
+\item Les valeurs propres de $f$ sont les racines de $\pi_f$
+\end{enumerate}}
+\Pre{\underline{Montrons le 1 :} On note $p=\deg\pi_f$. Soit $(a_0,..., a_{p-1})\in\K^p$. \par On suppose $a_0id + a_1f + ... + a_{p-1}f^{p-1}=0$ \par Par l'absurde, si $(a_0,...,a_{p-1})\neq (0,...,0)$, alors le polynôme $Q=\sum\limits_{k=0}^{p-1}a_kX^k$ est non-nul, annulateur de $f$ et de degré strictement inférieur à $\deg\pi_f$. D'où la contradiction. \par Donc la famille $(id,f,...,f^{p-1})$ est libre.
+\par Soit $g\in\K[X]$. on a donc $P\in\K[X], g=P(f)$. \par Par division euclidienne, $P=\pi_fQ + R$ avec $\deg R< \deg\pi_f$. \par ALors $P(f)=(\pi_fQ+R)(f) = \pi_f(f)\circ Q(f) + R(f) = R(f)$ \par Donc $g\in Vect(id,f,..., f^{p-1})$ \par D'où le résultat.
+\par \underline{Montrons le 2 :} Tout multiple de $\pi_f$ est annulatgeur (immédiat) \par Réciproquement, soit $P$ un polynôme annulateur de $f$. Par division euclidienne, soit $P = \pi_fQ+R$ avec $\deg R<\deg\pi_f$ \par Alors $P(f) = 0 = R(f)$ \par Donc $R$ est annulateur de degré strictement inférieur à $\deg\pi_f$, donc $R=0$. \par De là, on a peut assurer l'unicité du polynôme minimal : s'il y en avait deux, ils se diviseraient l'un l'autre et seraient associés. Mais puisqu'ils sont unitaires, ils sont égaux.
+\par \underline{Montrons le 3 :} Soit $\lambda\in S_p(f)$ \par On peut donc prendre $x\in E$ non-nul tel que $f(x)=\lambda(x)$ \par Par récurrence, $\forall i\in\N, f^i(x) = \lambda^ix$ \par Et donc, $\forall P\in\K[X], P(f)(x) = \P(\lambda)x$ \par Et si $P$ est annulateur de $f$, $P(\lambda)x=0$, et comme $x\neq 0$, $P(\lambda)=0$ \par Donc $\lambda$ est une racine de $P$.
+\par \underline{Montrons le 4 :} $\pi_f$ est annulateur de $f$, donc toute valeur propre de $f$ est racine de $\pi_f$. \par Réciproquement, soit $\lambda$ une racine de $\pi_f$ \par On a donc $Q\in\K[X]$ tel que $\pi_f=(X-\lambda)Q$ \par $\pi_f(f)=0$, ce qui s'écrit $(f-\lambda id)\circ Q(f) = 0$ \par Par l'absurde, si $\lambda\notin S_p(f)$, alors $(f-\lambda id)$ est bijective. \par Donc $(f-\lambda id)^{-1}\circ(f-\lambda)\circ Q(f) = Q(f) = 0$ \par Donc $Q$ est annulateur de $f$, mais $Q\neq 0$ alors que $\deg Q<\deg\pi_f$, d'où la contradiction. \par Donc $\lambda\in S_p(f)$}
+\begin{Rem}
+On étend toutes ces notions aux racines de $\mathcal{M}_n(\K)$ par passage à l'endomorphisme canoniquement assotions. On note avec les notations $\K[A]$ et $\pi_f$ pour $A\in\mathcal{M}_n(\K)$ et au passage si $A$ et $B$ sont semblables, alors $\pi_A=\pi_B$.
+\end{Rem}
+\begin{Exe}
+À refaire pendant la toussaint.
+\end{Exe}
+\Thr{}{Avec $E$ un $\K$-ev de dimension finie, $f\in\mathcal{L}(E)$. $f$ est diagonalisable si, et seulement si, $\pi_f$ est scindé à racines simples \par Ce qui correspond à ce qu'il existe un polynôme annulateur non-nul scindé à racines simples de $f$.}
+\Pre{Supposons $f$ diagonalisable. \par $S_p(f) = \{\lambda_1,...,\lambda_p\}$ et donc $\chi_f = (X-\lambda_1)^{\alpha_1}...(X-\lambda_p)^{\alpha_p}$ \par Donc il existe une base dans laquelle la matrice de l'endomorphisme est une diagonale avec $\alpha_1$ fois $\lambda_1$, $\alpha_2$ fois $\lambda_2$... \par Et alors $\pi_f = \pi_A = (X-\lambda_1)...(X-\lambda_p)$
+\par Réciproquement, on suppose qu'il existe $\lambda_1,...,\lambda_p$ distincts tels que  $pi_f=(X-\lambda_1)...(X-\lambda_p)$. On considère $L_i$ les polynômes de Lagrange associés à $\lambda_1,...,\lambda_p$ (on rappelle que $Li = \prod\limits_{j=1,j\neq i}^p\dfrac{X-\lambda_j}{\lambda_i-\lambda_j}$ et que $\forall i,j\in\llbracket 1,p\rrbracket, L_i(\lambda_j) = \delta_{i,j}$) \par Donc $(L_1,...,L_p)$ est une base de $\K_{p-1}[X]$ où on peut écrire $P = \sum\limits_{k=1}^p P(\lambda_k)L_k$. En particulier, le polynôme constant de valeur 1 est $1|=\sum\limits_{k=1}^pL_k$.
+\par Alors $1|(f) =\sum\limits_{i=1}^pL_i(f)$ ce qui correspond à $id = \sum\limits_{i=1}^pL_i(f)$ \par Donc $\forall x\in E, x=\sum\limits_{i=1}^pL_i(f)(x)$ avec $L_i(f)(x)\in\ker (f-\lambda_i id)$ \par Donc $E$ est la somme des espaces propres \par Donc $f$ est diagonalisable. \par En effet, $(f-\lambda_i id)(L_i(f)(x)) = ((f-\lambda_i id)\circ Li(f))(x) = ((X-\lambda_i)L_i)(f)(x) = (\mu\pi_f)(f)(x)$ avec $\mu = \prod\limits_{j=1, j\neq i}^p\frac{1}{\lambda_i-\lambda_j}$ \par Donc $E\subset \bigoplus\limits_{i=1}^p E_{\lambda_i}(f)$}
+\Thr{Cayley-Hamilton}{Avec $E$ un $\K$-ev de dimension finie, $f\in\mathcal{L}(E)$, alors $\chi_f$ est un polynôme annulateur de $f$.}
+\Pre{On se place d'abord dans le cas où $\K=\C$. \par On sait que les valeurs propres sont les racines de $\pi_f$ et de $\chi_f$. \par $\pi_f = \prod\limits_{\lambda\in S_p(f)}(X-\lambda)^{\alpha_\lambda}$ et $\chi_f=\prod\limits_{\lambda\in S_p(f)}(X-\lambda)^{\beta_\lambda}$ \par On va montrer que $\forall\lambda\in S_p(f), \alpha_\lambda\leq \beta_\lambda$ \par Soit $\lambda\in S_p(f)$. On considère $F=Ker(f-\lambda id)^{\alpha_\lambda}$ \par $F$ est stable par $F$, donc on peut considérer $f_\lambda$ l'endomorphisme induit par $f$ sur $F$
+\par Donc $(X-\lambda)^{\alpha_\lambda}$ est annulateur de $f_\lambda$ \par Donc $\pi_{f_\lambda} = (X-\lambda)^\gamma$ où $\gamma\leq\alpha_\lambda$ \par Supposons par l'absurde $\gamma<\alpha_\lambda$ :\par Rappel : $\pi_f = (X-\lambda)^{\alpha_\lambda}Q$ avec $Q(\lambda)\neq 0$ \par $\forall x\in E, ((X-\lambda)^\gamma Q)(f)(x) = (f-\lambda id)^\gamma(Q(f)(x))$ \par Or $(f-\lambda id)^{\alpha_\lambda}Q(f)(x)=0$ \par Donc $Q(f)(x)\in F$ \par Donc $(f-\lambda id)^\gamma(Q(f)(x)) = (f_\lambda-\lambda id)^\gamma(Q(f)(x))=0$ \par Donc $(X-\lambda)^\gamma Q$ est un polynôme annulateur de $f$ de degré strictement inférieur à $\deg\pi_f$
+\par D'où la contradiction. Donc $\gamma = \alpha_\lambda$ \par Donc $(f_\lambda - \lambda id)$ est donc nilpotent d'ordre $\alpha_\lambda$, donc $\dim F\geq \alpha_\lambda$ \par On prend une base de $F$ $(e_1,...,e_p)$ qu'on complète en une base de $E$. La matrice de $f$ dans cette base est une matrice par blocs triangulaire supérieure.$\begin{pmatrix}A & C \\ 0 & B\end{pmatrix}$ \par Donc $\chi_f = \chi_A\chi_B=(X-\lambda)^p\chi_B$ \par Donc $\alpha_\lambda\leq p\leq\beta_\lambda$ \par Donc le polynôme minimal divise le polynôme caractéristique.
+\par Avec $\K=\R$, avec $B$ une base de $E$. On considère $M=Mat_B(f)\in\mathcal{M}_n(\R)$ \par On a que $\pi_f=\pi_M$ et $\chi_f=\chi_M$ \par $M\in\mathcal{M}_n(\R)$ et $\mathcal{M}_n(\R)\subset \mathcal{M}_n(\C)$ \par Donc $\pi_{M,\C}\vert \chi_{M,\C}$ \par $\chi_M = \det(XI-M)$ ne dépend pas du corps considéré. Donc $\chi_{M,\C}=\chi_{M,\R}$ \par $\pi_{M,\C}\vert\pi_{M,\R}$ \par Rappelons que pour $P\in \C[X]$ : $P(M)=0\Rightarrow \bar{P}(\bar{M})$ \par Mais si $M\in\mathcal{M}_n(\R)$, alors $\bar{P}(M)=0$ aussi. \par $\bar{\pi}_{M,C}$ est annulateur de $M$ et de même degré que $\pi_{M,\C}$, donc $\pi_{M,\C}=\bar{\pi}_{M,\C}$ \par Donc $\pi_{M,\C}\in\R[X]$ \par Donc $\pi_{M,\R}\vert\pi_{M,\C}$
+}
+
+\chapter{Suites et sérties de fonctions}
+\section{Suites de fonctions}
+\Def{Convergence simple}{Soit $E,F$, 2 $\K$-ev de dimension finie. Soit $A\subset E$. Soit $(f_n)\in\mathcal{F}(A,F)^\N$.
+\par On dit que $(f_n)$ converge simplement vers $g\in\mathcal{F}(A,F)$ si $\forall t\in A, (f_n(t))\to g(t)$}
+\Def{Convergence uniforme}{Soit $E,F$, 2 $\K$-ev de dimension finie. Soit $A\subset E$. Soit $(f_n)\in\mathcal{F}(A,F)^\N$.
+\par On dit que $(f_n)$ converge uniformément vers $g\in\mathcal{F}(A,F)$ si $\sup\limits_{A}\Vert f_n-g\Vert \to_{n\to\infty} 0$}
+\begin{Rem}
+$(f_n)$ converge simplement (CVS) vers $g$ si, et seulement si, $\forall t\in A, \forall\varepsilon\in\R_+^*, \exists n_0\in\N, \forall n\in\N, n\geq n_0\Rightarrow \Vert f_n(t)-g(t)\Vert\leq\varepsilon$
+\par $(f_n)$ converge uniformément (CVU) vers $g$ si, et seulement si, $\forall\varepsilon\in\R_+^*, \exists n_0\in\N, \forall t\in A,\forall n\in\N, n\geq n_0\Rightarrow \Vert f_n(t)-g(t)\Vert\leq\varepsilon$
+\end{Rem}
+\begin{Exe}
+$f_n:\left\{\begin{array}{rcl} \R & \to & \R \\ x & \mapsto & \begin{array}{rl} 0 & \text{si $x\leq n$} \\ 1 & \text{si $x>n$}\end{array}\end{array}\right.$ converge simplement vers 0, mais ne converge pas uniformément vers 0 : $\sup\limits_A \Vert f_n(t)-g(t)\Vert = 1$
+\end{Exe}
+\begin{Exe}
+$f_n:\left\{\begin{array}{rcl} ]0,1[ & \to & \R \\ x & \mapsto & \begin{array}{rl} 0 & \text{si $x\leq 1-\frac{2}{n}$} \\ n & \text{si $1-\frac{2}{n}<x<\frac{1}{n}-\frac{2}{n}$} \\ 0 & \text{sinon}\end{array}\end{array}\right.$converge simplement vers 0, mais ne converge pas uniformément vers 0 : $\sup\limits_A \Vert f_n(t)-g(t)\Vert\to_{n\to+\infty}+\infty$
+\end{Exe}
+\begin{Rem}\begin{itemize}
+\item Si $f_n$ converge uniformément vers $g$ alors $f_n$ converge simplement vers $g$.
+\item La notion de convergence simple n'est pas une notion de convergence dans un EVN (suites non-bornées convergentes)
+\item Sur $\mathcal{B}(A,F)$ (fonctions bornées) la notion de convergence uniforme est celle de convergence pour la norme infinie ($\sup\limits_A\Vert f\Vert$)
+\end{itemize}\end{Rem}
+\begin{Exe}
+Prenons un exemple de fonction qui converge uniformément sans notion de norme infinie : 
+\par $f_n:\left\{\begin{array}{rcl} \R & \to & \R \\ x & \mapsto & x+\frac{1}{n}\end{array}\right.$ qui converge uniformément vers $x\mapsto x$ car, $\forall x\in\R, \vert f_n(x)-x\vert\leq \frac{1}{n}$ et donc $\sup\vert f_n-id\vert\leq\frac{1}{n}$
+\end{Exe}
+\begin{Exe}
+Etudier la convergence simple et uniforme de $f_n:\left\{\begin{array}{rcl} \R_+^* & \to & \R \\ x & \mapsto & \dfrac{n^\alpha}{1+nx} \end{array}\right.$ \par À $x\in\R_+^*$ fixé : $f_n\sim \frac{n^\alpha}{nx}\sim\frac{n^{\alpha-1}}{x}$ qui converge simplement si $\alpha\leq 1$.\begin{itemize} \item si $\alpha<1$, $f_n(x)$ tend vers 0. \item si $\alpha=1$, $f_n(x)$ tend vers $\frac{1}{x}$ \item si $\alpha>1$, $f_n(x)$ diverge.\end{itemize} \par Donc :\begin{itemize} \item si $\alpha<1$, $(f_n)$ converge simplement vers 0. \item si $\alpha=1$, $(f_n)$ converge simplement vers $\frac{1}{x}$ \item si $\alpha>1$, $(f_n)$ ne converge pas simplement.\end{itemize} 
+\par Si $\alpha=1$, pour la convergence uniforme, il y a deux candidats, $x\mapsto\frac{1}{x}$ et $x\mapsto 0$. \par Pour $x\in\R_+^*$ : $f_n(x)-\frac{1}{x}=\frac{n}{1+nx}-\frac{1}{x}=\frac{-1}{x(1+nx)}=g_n(x)$ \par Alors $\forall n\in\N^*,\vert g(\frac{1}{n})\vert=\frac{n}{2}$ et donc $(f_n)$ ne converge pas uniformément vers $x\mapsto\frac{1}{x}$
+\par Si $\alpha<1$, étudions $f_n$ pour $n\in\N^*$. $f_n$ est dérivable et $\forall x\in\R_+^*, f_n'(x) = -n^\alpha n\frac{1}{(1+nx)^2} = \frac{-n^{\alpha+1}}{(1+nx)^2}$ et donc $f_n$ est décroissante positive donc $\sup\vert f_n\vert=n^\alpha$ \par Et donc $(f_n)$ converge uniformément vers la fonction nulle si, et seulement si, $\alpha<0$
+\end{Exe}
+
+\section{Séries de fonctions}
+Dans la suite du chapitre, on aura $E,F$ deux $\K$-ev de dimension finie, et $A\subset E$
+\Def{Convergences}{Soit $(u_n)\in\mathcal{F}(A,F)^\N$, on dit que la série de fonction $(\sum u_n)$ converge simplement si la suite des sommes partielles $\left(\sum\limits_{k=0}^n u_k\right)$ converge simplement.
+\par On dit que $(\sum u_n)$ converge uniformémemnt si la suite des sommes partielles $\left(\sum\limits_{k=0}^nu_k\right)$ converge uniformémement.}
+\begin{Rem}
+Si $(\sum u_n)$ converge simplement sur $A$, on peut définir la fonction "somme" de $\sum u_n$ sur A : c'est l'application $\begin{array}{rcl} A & \to & F \\ t & \mapsto & \sum\limits_{n=0}^{+\infty}u_n(t)\end{array}$
+\end{Rem}
+\begin{Exe}
+$(\sum( z\mapsto z^n))$ (on notera le plus souvent $(u_n)\in\mathcal{C,C}^\N$ définie par $u_n(z)=z^n$ pour $z\in\C$). Pour quelle valeur de $z$ $(\sum u_n)$ est-elle définie ? $(\sum u_n)$ converge simplement sur $\mathbb{D}(0,1)$ (disque ouvert de centre 0 de rayon 1) et $\forall z\in \mathbb{D}(0,1); \sum\limits_{n=0}^{+\infty}u_n=\frac{1}{1-z}$ \par $(\sum u_n)$ converge simplement vers $z\mapsto \frac{1}{1-z}$
+\par Pour la convergence uniforme : soit $z\in\mathbb{D}(0,1)$, $n\in\N$ \par $\vert\sum\limits_{k=0}^nz^k - \frac{1}{1-z}\vert = \vert\sum\limits_{k=n+1}^{+\infty} z^k\vert =\frac{\vert z^{n+1}}{1-z}$ \par On trouver une suite de $z\in\mathbb{D}(0,1)$ telle que le reste diverge : $\vert R_n(1-\frac{1}{n})\vert = (n+1)(1+\frac{1}{n+1})^{n+1}\sim ne^{-1}$ \par Et donc il n'y a pas convergence uniforme sur $\mathbb{D}(0,1)$.
+\par Par contre, avec $R\in[0,1[$ : $\forall n\in\N,\forall z\in\mathbb{D}(0,R), \vert R_n(z)\vert\leq \frac{R^{n+1}}{1-R}$ (on minore le dénominateur et on majore le numérateur) \par Donc $\sup\limits_{z\in\mathbb{D}(0,R)}\vert R_n(z)\vert\leq \frac{R^{n+1}}{1-R}$ \par Donc $\sum z\mapsto z^n$ converge uniformémement sur $\mathbb{D}(0,R)$ pour tout $R\in[0,1[$
+\end{Exe}
+\begin{Rem}
+$\cup_{R\in[0,1[}\mathbb{D}(0,R)=\mathbb{D}(0,1)$. Il y a convergence uniforme sur $\mathbb{D}(0,R)$ pour tout $R$ mais pas convergence uniforme sur $\mathbb{D}(0,1)$. Cependant, si on avait une réunion finie, il y aurait convergence uniforme (en prenant le maximum des deux majorants). \par La convergence uniforme n'est pas une notion locale.
+\end{Rem}
+\Prop{}{Soit $(u_n)\in\mathcal{F}(A,F)^\N$, alors $(\sum u_n)$ converge uniformémement si, et seulement si, $\sum u_n$ converge simplement et $(R_n)=\sum\limits_{k=n+1}^{+\infty}u_k$ converge uniformément vers $0$.}
+\begin{Exe}
+$f:\begin{array}{rcl}]-1,1] & \to & \R \\ x & \mapsto & \sum\limits_{n=1}^{+\infty}\frac{(-1)^nx^n}{n}\end{array}$ \par Montrer que $f$ est bien définie. La série de fonctions $\sum(-1)^n\frac{x^n}{n}$ converge-t-elle uniformémemnt vers $f$ ? Trouver des domaines sur lesquels $(\sum (-1)^n\frac{x^n}{n})$ converge uniformément.
+\par Soit $n\in\N^*$, alors $\vert\frac{(-1)^nx^n}{n}\vert\leq\vert\frac{x^n}{n}\vert\leq\vert x\vert^n$ \par Or $\sum\vert x\vert^n$ converge pour $\vert x\vert <1$ \par Donc $\sum\frac{(-1)^nx^n}{n}$ converge absolument. \par D'autre part, $\left(\frac{1}{n}\right)$ est positive, décroissante et de limite nulle, donc $\sum\frac{(-1)^n}{n}$ converge pour $x\in]-1,1]$ \par Et donc on a bien la convergence simple.
+\par Soit $x\in]-1,1]$, alors $\vert R_n(x)\vert = \vert\sum\limits_{k=n+1}^{+\infty}(-1)^k\frac{x^k}{k}\vert$ \par $\vert R_n(-1+\frac{1}{n+1})\vert=\vert\sum\limits_{k=n+1}^{+\infty}(-1)^n\frac{(-1+\frac{1}{n+1})^k}{k}\vert = \vert (-1+\frac{1}{n+1}^{n+1}\vert \vert\sum\limits_{k=0}^{+\infty}\frac{(-1+\frac{1}{n+1})^k}{n+k+1}\vert$ \par $\forall k\in\N^*, (-1+\frac{1}{n+1})^k$ est du signe de $(-1)^k$ \par Donc $\vert B_n\vert=\vert \sum\limits_{k=0}^{+\infty}\frac{(-1)^{n+1+k}(-1+\frac{1}{n+1})^k}{n+k+1}\vert= \sum\limits_{k=0}^{+\infty}\frac{(1-\frac{1}{n+1})^k}{n+k+1}$ \par $\geq \sum\limits_{k=0}^{+\infty}\frac{(1-\frac{1}{n+1})^k}{n}\geq \sum\limits_{k=0}^N\frac{(1-\frac{1}{n+1})^k}{n+k+1}$ pour $N\in\N$ quelconque
+\par $\geq \sum\limits_{k=0}^N\dfrac{(\frac{n}{n+1})^k}{n+N+1}\geq \dfrac{1-(\frac{n}{n+1})^{N+1}}{(1-\frac{n}{n+1})(n+N+1)}\geq (n+1)\frac{(1-(\frac{n}{n+1})^{N+1})}{n+N+1}$ \par ceci est vrai en particulier pour $N=n$ et alors $\vert B_n\vert\geq \frac{(n+1)(1-(\frac{n}{n+1})^{n+1})}{2n+1}\sim \frac{1}{2}e^{-1}$
+\par Donc $\vert R_n(1-\frac{1}{n+1})\vert\geq (1-\frac{1}{n+1})^{n+1}\vert B_n\vert$ qui ne tend pas vers $0$ : la série de fonctions ne converge pas uniformément sur $]-1,1]$.
+\par Soit $a\in]0,1[$, $\forall x\in [-a,a]$, $\forall n\in\N, \vert\sum\limits_{k=n+1}^{+\infty}(-1)^l\frac{x^k}{k}\vert\leq \sum\limits_{k=n+1}^{+\infty}\frac{\vert x\vert^k}{k}\leq \sum\limits_{k=n+1}^{+\infty}\frac{a^k}{k}$ qui tend vers $0$ et est indépendant de $x$, d'où la convergence uniforme. Donc $\sup\limits_{x\in [-a,a]}\vert R_n(x)\vert\to_{n\to+\infty} 0$ donc la série converge uniformémement sur $[-a,a]$ pour $a\in]0,1[$
+\par Soit $x\in[0,1]$, soit $n\in\N$ \par $(\frac{x^k}{k}$ est positive, décroissante et de limite nulle. \par Donc $\vert\sum\limits_{k=n+1}^{+\infty}(-1)^k\frac{x^k}{k}\vert\leq \frac{x^{n+1}}{n+1}\frac{1}{n+1}$ \par Donc $\sup\limits_{x\in[0,1]}R_n(x)\leq \frac{1}{n+1}$ et tend donc vers $0$ \par Donc la série converge uniformément sur $[0,1]$ \par Donc $\left(\sum\frac{(-1)^nx^n}{n}\right)$ converge uniformément sur $[-a,1]$ pour tout $a\in]0,1[$
+\end{Exe}
+\Def{Convergence normale}{Soit $(u_n)\in\mathcal{F}(A,F)^\N$. On dit que $\sum u_n$ converge normalement si $\sum \sup\limits_A \Vert u_n\Vert$ converge.}
+\begin{Exe}
+$\sum(-1)^n\frac{x^n}{n}$ converge normalement sur $\left[-\frac{3}{4}, \frac{3}{4}\right]$ : soit $x\in\left[-\frac{3}{4},\frac{3}{4}\right],\forall n\in\N, \vert (-1)^n\frac{x^n}{n}\vert\leq \frac{1}{n}\left(\frac{3}{4}\right)^n$ et $\sum \frac{\left(\frac{3}{4}\right)^n}{n}$ converge \par Donc $\sup\limits_{x\in\left[-\frac{3}{4},\frac{3}{4}\right]}\vert(-1)^n\frac{x^n}{n}\vert\leq \frac{1}{n}\left(\frac{3}{4}\right)^n$ donc $\sum\sup\left|\frac{(-1)^nx^n}{n}\right|$ converge par critère de majoration positif.
+\end{Exe}
+\Prop{}{Tout série de fonction qui converge normalement converge uniformément}
+\Pre{Si $\sum u_n$ converge normalement : \par $\forall x\in A,\sum u_(x)$ converge absolument \par Par critère de majoration positif et $\forall x\in A, \Vert R_n(x)\Vert=\Vert \sum\limits_{k=n+1}^{+\infty} u_k(x)\Vert\leq \sum\limits_{k=n+1}^{+\infty}\Vert u_k(x)\Vert\leq \sum\limits_{k=n+1}^{+\infty}\sup\limits_A\Vert u_k\Vert$.
+\par Donc $\sup\limits_A \Vert R_n(x)\Vert\leq \sum\limits_{k=n+1}^{+\infty}\sup\limits_A\Vert u_n\Vert$ \par Donc $\sup\limits_A \Vert R_n(x)\Vert\to 0$}
+\begin{Rem}
+Résumé :\begin{itemize}
+\item Pour les suites de fonctions, on a deux notions, et la convergence uniforme entraîne la convergence simple.
+\item Pour les séries de fonctions, on a trois notions : la convergence normale, la convergence uniforme, la convergence simple et on peut rajouter la convergence absolue en tout point. On a que la convergence normale entraîne la convergence uniforme. La convergence uniforme entraîne la convergence simple. La convergence absolue en tout point entraîne la convergence simple. Par définition, la convergence normale entraîne la la convergence absolue en tous points. Par transitivité, la convergence normale entraîne la convergence simple. 
+\end{itemize}\end{Rem}
+
+\section{Continuité d'une limite uniforme}
+\Thr{Continuité uniforme}{Soit $(f_n)\in\mathcal{F}(A,F)^\N$ une suite de fonctions.
+\par Si $\forall n\in\N$, $f_n$ est continue sur $A$ et que $(f_n)$ converge uniformémement vers $g$, alors $g$ est continue.
+\par Ce qui correspond à : une limite uniforme de fonctions continues est continue.}
+\Pre{Soit $x\in A$ \par Soit $\varepsilon\in\R_+^*$\par $f_n$ converge uniformémement vers $g$, on fixe donc $n_0\in\N$ tel que $\sup\limits_{x\in A}\Vert g(x)-f_{n_0}(x)\Vert<\frac{\varepsilon}{3}$ \par $f_{n_0}$ est continue en $x$, on peut donc prendre $\alpha\in\R_+^*$ tel que :\par $\forall h\in E, \Vert h\Vert <\alpha \text{ et } x+h\in A \Rightarrow \Vert f_{n_0}(x+h)-f_{n_0}(x)\Vert<\frac{\varepsilon}{3}$
+\par Pour $h\in E$ tel que $\Vert h\Vert<\alpha$ et $x+h\in A$, on a :\par $\Vert g(x+h) - g(x)\Vert\leq\Vert g(x+h)-f_{n_0}(x+h)\Vert + \Vert f_{n_0}(x+h) -f_{n_0}(x) \Vert +\Vert f_{n_0}(x)-g(x)\Vert \leq \varepsilon$ \par Et donc $g(x+h)\to_{h\to 0} g(x)$ \par Donc $g$ est continue sur $A$}
+\Thr{Application aux séries de fonctions}{Soit $(u_n)\in \mathcal{C}(A,F)^\N$, si $\sum u_n$ converge uniformément sur $A$, alors $x\mapsto\sum\limits_{n=0}^{+\infty}u_n(x)$ est continue.}
+\Pre{On a que la suite des sommes partielles est une suite de sommes finies de fonctions continues, donc de fonctions continues. Et donc par le théorème précédent, on a que $\sum\limits_{n=0}^{+\infty}u_n$ est continue.}
+\begin{Exe}
+Notons $f:\left\{\begin{array}{rcl} \R_+ & \to & \R \\ x & \mapsto & \sum\limits_{n=1}^{+\infty}\frac{1}{n\sqrt{n+x}}\end{array}\right.$ \par Montrer que $f$ est bien définie et continue. \par Soit $x\in\R_+$, on a donc que $\frac{1}{n\sqrt{n+x}}>0$ et que $\frac{1}{n\sqrt{n+x}}\sim\frac{1}{n^{3/2}}$. Or $\sum \frac{1}{n^{3/2}}$ est convergente \par Donc $\sum\frac{1}{n\sqrt{n+x}}$ converge simplement vers $f$ par critère d'équivalent positif. \par Pour $n\in\N^*$, on a que $x\mapsto \frac{1}{n\sqrt{n+x}}$ est continue.\par Montrons la convergence uniforme.
+\par Soient $n\in\N^*, x\in\R_+$. \par Alors on a que $\vert \frac{1}{n\sqrt{n+x}}\leq\frac{1}{n^{3/2}}$ \par Or $\sum\frac{1}{n^{3/2}}$ converge donc $\left(\sum x\mapsto\frac{1}{n\sqrt{n+x}}\right)$ converge normalement sur $\R_+$ donc converge uniformément sur $\R_+$ \par Donc $f$ est continue par théorème de continuité uniforme
+\end{Exe}
+\begin{Exe}
+Notons $f:\left\{\begin{array}{rcl} \R_+ & \to & \R \\ x & \mapsto & \sum\limits_{n=1}^{+\infty}\frac{\sqrt{x^2+n}}{n(n+2)}\end{array}\right.$ \par Montrer que $f$ est bien définie et continue. \par Soit $x\in\R_+$, on a donc que $\frac{\sqrt{x^2+n}}{n(n+2)}>0$ et que $\frac{\sqrt{x^2+n}}{n(n+2)}\sim\frac{1}{n^{3/2}}$. Or $\sum \frac{1}{n^{3/2}}$ est convergente \par Donc $\sum\frac{\sqrt{x^2+n}}{n(n+2)}$ converge simplement vers $f$ par critère d'équivalent positif. \par Pour $n\in\N^*$, on a que $x\mapsto \frac{1}{n\sqrt{n+x}}$ est continue.\par Montrons la convergence uniforme.
+\par On a que $u_n(n)\sim\frac{1}{2n}$, et donc $\sup\limits_{\R_+}\Vert u_n\Vert>\frac{1}{2n}$, donc $\sum \frac{\sqrt{x^2+n}}{n(n+2)}$ ne converge pas normalement sur $\R_+$. \par Soit $A\in\R_+$, soit $x\in [0,A]$ \par Soit $n\in\N^*$, alors $\vert \frac{\sqrt{x^2+n}}{n(n+2)}\vert\leq \vert\frac{\sqrt{A^2+n}}{n^2}\sim \frac{1}{n^{3/2}}$ \par Par critère d'équivalent positif, on a que $\sum u_n$ converge normalement sur $[0,A]$ pour tout $A\in\R_+$ \par Donc pour tout $A\in\R_+$, $(\sum u_n)$ converge uniformément sur $[0,A]$ \par Par théorème de continuité uniforme : Pour $A\in\R_+$, $(\sum\limits_{n=1}^{+\infty}u_n)$ est continue sur $[0,A]$.
+\par Donc $\sum\limits_{n=1}^{+\infty}u_n$ est continue sur $\R_+$ : en effet, la continuité est une notion locale, l'intersection infinie conserve la propriété.
+\end{Exe}
+\begin{Exe}
+Notons $f:\left\{\begin{array}{rcl} \R_+^* & \to & \R \\ x & \mapsto & \sum\limits_{n=1}^{+\infty}\frac{1}{1+n^2x}\end{array}\right.$ \par Montrer que $f$ est bien définie et continue. \par Soit $x\in\R_+$, on a donc que $\frac{1}{1+n^2x}>0$ et que $\frac{1}{1+n^2x}\sim\frac{1}{n^2x}$. Or $\sum \frac{1}{n^2x}$ est convergente \par Donc $\frac{1}{1+n^2x}$ converge simplement vers $f$ par critère d'équivalent positif. \par Pour $n\in\N^*$, on a que $x\mapsto \frac{1}{1+n^2x}$ est continue.\par Montrons la convergence uniforme.
+\par Soit $A\in\R_+$, soit $x\in [0,A]$ \par Soit $n\in\N^*$, alors $\vert \frac{1}{1+n^2x}\vert\leq \vert\frac{1}{1+n^2A}\sim \frac{1}{n^2A}$ \par Par critère d'équivalent positif, on a que $\sum u_n$ converge normalement sur $[0,A]$ pour tout $A\in\R_+$ \par Donc pour tout $A\in\R_+$, $(\sum u_n)$ converge uniformément sur $[0,A]$ \par Par théorème de continuité uniforme : Pour $A\in\R_+$, $(\sum\limits_{n=1}^{+\infty}u_n)$ est continue sur $[0,A]$.
+\par Donc $\sum\limits_{n=1}^{+\infty}u_n$ est continue sur $\R_+$.
+\end{Exe}
+\begin{Exe}
+Notons $\exp:\left\{\begin{array}{rcl} \mathcal{M}_n(\K) & \to & \mathcal{M}_n(\K) \\ A & \mapsto & \exp(A)\end{array}\right.$ \par Montrer que $f$ est bien définie et continue. \par Soit $N$ une norme d'algèbre sur $\mathcal{M}_n(\K)$ \par Par récurrence on prouve que $N(A^n)\leq N(A)^n$ \par Et donc $\frac{1}{n!}N(A^n)\leq \frac{1}{n!}N(A)^n$ et donc $\sum\frac{1}{n!}A^n$ converge simplement dans $\mathcal{M}_n(\K)$
+\par $\forall n\in\N, \frac{1}{n!}A^n$ est continue \par Montrons la convergence normale : \par Si $R\in\R_+^*$, $A\in\mathcal{B}(0,R)$ alors $\frac{1}{n!}N(A^n)\leq \frac{R^n}{n!}$ et comme $\sum \frac{R^n}{n!}$ converge, alors on a que $\exp$ converge normalement (et donc uniformément) dans $\mathcal{B}(0,R)$. \par Donc par théorème de continuité uniforme, $A\mapsto \exp(A)$ est continue sur $\mathcal{B}(0,R)$ pour tout $R\in\R_+$ \par Et donc $A\mapsto\exp(A)$ est continue sur $\mathcal{M}_n(\K)$
+\end{Exe}    
+\Thr{Extension de limite uniforme}{Soit $(f_n)\in\mathcal{F}(A,F)^\N$, soit $a\in\bar{A}$. \par Si $\forall n\in\N, f_n(x)\to_{x\to a}l_n\text{ et }f_n\text{ converge uniformement vers }g$ \par Alors $(l_n)$ est convergente et $g(x)\to_{x\to a}\lim\limits_{n\to+\infty}l_n$
+\par ie : $g$ a une limite finie en $a$ et $\lim\limits_{x\to a} \lim\limits_{n\to+\infty}l_n = \lim\limits_{n\to+\infty}\lim\limits_{x\to a} f_n$ \par Ce théorème s'étend lorsque $E=\R$ et que $a=\pm\infty$}
+\Pre{Sous les hypothèses du théorème : si on admet que $(l_n)$ est convergente, on a une démonstration identique à celle de la continuité. \par Pour $x\in A$, on a : $\Vert g(x)-\lim l_n\Vert\leq \Vert g(x)-f_n(x)\Vert + \Vert f_n(x)-l_n\Vert + \Vert l_n-\lim l_n\Vert$ \par Ces trois termes sont plus petit qu'un $\varepsilon$ donné pour $n$ suffisamment grand pour le premier et troisième terme et pour $\Vert x-a\Vert<\alpha$ pour le deuxième terme.}
+\Thr{échange de limites de séries}{Avec $(u_n)\in\mathcal{F}(A,F)^\N$ et $a\in\bar{A}$ \par Si $\forall n\in\N, u_n(x)\to_{x\to a}v_n$ et que $(\sum u_n)$ converge uniformément, alors $\left(\sum\limits_{n=0}^{+\infty}u_n\right)$ a une limite ene $a$ et $\lim\limits_{x\to a}\sum\limits_{n=0}^{+\infty}u_n(x)=\sum\limits_{n=0}^{+\infty}u_n(x)=\sum\limits_{n=0}^{+\infty}v_n$}
+\begin{Exe}
+Reprenons $f:\left\{\begin{array}{rcl} \R_+ & \to & \R \\ x & \mapsto & \sum\limits_{n=1}^{+\infty}\frac{1}{n\sqrt{n+x}}\end{array}\right.$ \par On rappelle que $f$ converge normalement sur $\R_+$ puisque $\forall n\in\N*, \forall x\in\R_+, \vert u_n(x)\vert\leq \frac{1}{n^{3/2}}$, terme général d'une série convergente. \par Pour déterminer la limite de $f$ en l'infini, on note que $\forall n\in\N, u_n(x)\to_{x\to+\infty}0$ \par $\sum u_n$ converge normalement donc uniformément sur $\R_+$, donc $\lim\limits_{x\to+\infty} f_x$ existe et $f(x)\to \sum\limits_{n=0}^{+\infty}\lim\limits_{x\to+\infty} u_n(x) = 0$
+\end{Exe}
+\begin{Exe}
+Soit $\zeta:x\mapsto \sum\limits_{n=1}^{+\infty}\frac{1}{n^x}$ sur $\R$. Donner son domaine de définition, sa continuité et sa limite en $+\infty$. \par Soit $x\in\R$, alors $\sum\frac{1}{n^x}$ converge si, et seulement si, $x>1$ \par Donc le domaine de définition de $\zeta$ est $D=]1,+\infty[$ \par Soit $a\in D, n\in\N^*, x\in[a, +\infty[$, on a $0<\frac{1}{x}\leq\frac{1}{n^a}$ \par $\sum\frac{1}{n^a}$ converge et donc $\sum\left(x\mapsto\frac{1}{n^x}\right)$ converge normalement sur $[a,+\infty[$
+\par De plus, pour tout $n\in\N^*$, on a que $x\mapsto\frac{1}{n^x}$ est uniforme \par Donc par théorème de continuité uniforme, $\zeta$ est continue sur $[a,+\infty[$ pour tout $a>1$ donc sur $]1,+\infty[$ \par Pour la limite en l'infini : $\forall n\in\N^*, \frac{1}{n^x}\to_{x\to\infty} \left\{\begin{array}{rc} 1 & n=1 \\ 0 & n>1\end{array}\right.$ \par $\sum x\mapsto\frac{1}{n^x}$ converge normalement donc uniformément sur $[2022,+\infty[$ \par Donc par théorème d'échange de limites de séries, $\zeta(x)\to_{x\to+\infty}1$ \par Pour la "limite" en $1$ de $\zeta$. Soit $A>0$ \par $\sum\frac{1}{n}$ diverge comme $\frac{1}{n}>0$ et $\left(\sum\limits_{k=1}^n\frac{1}{k}\right)\to+\infty$
+\par On peut donc trouver $N$ tel que $\sum\limits_{k=1}^N\frac{1}{k}>A+1$ \par $\sum\limits_{k=1}^N\frac{1}{k^x}\to_{x\to 1}\sum\limits_{k=1}^N\frac{1}{k}$ \par On peut donc fixer $\alpha$ tel que $1<x<\alpha\Rightarrow \left|\sum\limits_{k=1}^N\frac{1}{k^x}-\sum\limits_{k=1}^N\frac{1}{k}\right|<1$ \par Pour $x\in]1,\alpha[$, alors $\zeta(x)\geq \sum\limits_{k=1}^N\frac{1}{k^x}\geq \left|-\vert\sum\limits_{k=1}^N\frac{1}{k^x}-\sum\limits_{k=1}^N\frac{1}{k}\vert + \sum\limits_{k=1}^N\frac{1}{k}\right|\geq A$ \par Donc $\lim\limits_{x\to 1}\zeta(x)=+\infty$
+\end{Exe}
+
+\section{Intégration et dérivation}
+On s'intéresse aux fonctions de $I\subset\R$ à valeurs dans $F$ où $I$ est un intervalle.
+\Thr{Intégration uniforme ou théorème d'échange limite-intégrale uniforme}{Soit ${a,b}$ un segment, $(f_n)\in\mathcal{C}_0([a,b],F)^\N$ \par si $(f_n)$ converge uniformément vers $g$ sur $[a,b]$, alors $\int_a^bf_n\to \int_a^bg$ \par Ce qui correspond à $\lim\limits_{n\to+\infty}\int_a^bf_n = \int_a^b\lim\limits_{n\to+\infty}f_n$}
+\Pre{$\left\Vert\int\limits_{[a,b]}f_n-\int\limits_{[a,b]}g\right\Vert\leq \int\limits_{[a,b]}\Vert f_n-g\Vert\leq \vert b-a\vert\Vert f_n-g\Vert_\infty$ \par Comme $f_n$ converge uniformément vers $g$, alors $\Vert f_n-g\Vert_\infty\to 0$ \par Donc $\int\limits_{[a,b]}f_n\to\int\limits_{[a,b]}g$}
+\begin{Exe}
+$\int_0^1n^2t^n(1-t)dt = n^2(\frac{1}{n+1}-\frac{1}{n+1}) = \frac{n^2}{(n+1)(n+2)}$ \par Et $\dfrac{n^2}{(n+1)(n+2)}\to_{n\to +\infty} 1$ \par La fonction $f_n:\left\{\begin{array}{rcl} [0,1] & \to & \R \\ t & \mapsto & n^2t^n(1-t)\end{array}\right.$ converge simplement vers 0. \par Donc si elle converge uniformément, ça sera vers 0, cependant son intégrale ne tend pas vers $0$, donc il n'y a pas de convergence uniforme.
+\end{Exe}
+\begin{Rem}
+Pour une série de fonctions, le théorème devient : si $(u_n)\in\mathcal{C}_0([a,b],F)^\N$ et si $\sum u_n$ converge uniformément sur $[a,b]$ alors $\int_a^b\sum\limits_{n=0}^{+\infty}u_n(t)dt = \sum\limits_{n=0}^{+\infty}\int_a^bu_n(t)dt$
+\end{Rem}
+\Thr{}{Soit $(f_n)$ une suite de fonctions continues d'un intervalle $I$ de $\R$ à valeurs dans $F$ convergeant uniformément vers $g$ sur tout segment de $I$ \par Soit $a\in I$, on a alors : $F_n:\begin{array}{rcl}I & \to & F \\ x & \mapsto & \int_a^bf_n(t)dt\end{array}$ et $G:F_n:\begin{array}{rcl}I & \to & F \\ x & \mapsto & \int_a^bg(t)dt\end{array}$ \par Alors $F_n$ converge uniformément vers $G$ sur tout segment de $I$.}
+\Pre{La définition de $G$ est correcte car $f_n$ converge uniformément sur vers $g$ sur tout segment de $I$ donc $g$ est continue
+\par À $x$ fixé, comme $f_n$ converge uniformément vers $g$ sur le segment $[a,x]$, d'après le théorème précédent $\int\limits_{[a,x]}f_n\to \int\limits_{[a,x]}g$ donc $F_n$ converge simplement vers $G$ sur $I$
+\par Soit $S$ un segment inclu dans $I$, soit $b$ un point de $S$, alors $\forall x\in S, \Vert F_n(x)-G(x)\Vert =\left\Vert\int_b^x f_n(t) - g(t) dt\right\Vert$ \par $\leq \int_b^x\Vert f_n(t)-g(t)\Vert dt\leq \vert x-b\vert \sup\limits_{t\in[b,x]}\Vert f_(t)-g(t)\Vert\leq diam(S)\sup\limits_{S}\Vert f_n-g\Vert$ \par Qui tend vers 0 quand $n$ tend vers l'infini \par Ce qui conclut}
+\Thr{Dérivation uniforme des suites de fonctions}{Avec $I$ un intervalle, si :\begin{itemize}\item $(f_n)\in\mathcal{C}^1(I,F)^\N$ \item $(f_n)$ converge simplement vers $g_0$ \item $(f'_n)$ converge uniformément vers $g_1$ sur tout segment de $I$\end{itemize} alors $g_0$ est $\mathcal{C}^1$ tel que $g_0'=g_1$ et $(f_n)$ converge uniformément sur tout segment de $I$.
+\par Ce qui correspond à $g_0'=g_1 \Rightarrow (\lim f_n)=\lim (f_n')$}
+\Pre{Pour $n\in\N$, $(f_n)$ est $\mathcal{C}^1$, donc $(f_n')$ est continue. \par Donc par théorème de continuité uniforme, $g_1$ est continue. \par D'autre part, si on fixe $a\in I, \forall x\in I, f_n(x)=f_n(a)+\int_a^xf_n'(t)dt$ \par Donc par théorème d'intégration uniforme, $g_0=\lim\limits_{n\to+\infty}f_n=g_0(a)+\int_a^xg_1(t)dt$ \par Et donc $g_0$ est $\mathcal{C}^1$ et $g_0'=g_1$ \par La suite $(f_n)$ converge uniformément sur tout segment vers $g_0$.}
+\Thr{Théorème de dérivation des suites à l'ordre k}{Avec $I$ un intervalle, si :\begin{itemize}\item $(f_n)\in\mathcal{C}^k(I,F)^\N$ \item $\forall j\in\llbracket0,k-1\rrbracket, (f_n^{(j)})$ converge simplement vers $g_j$ \item $(f_n^{(k)})$ converge uniformément vers $g_k$ sur tout segment de $I$\end{itemize} alors $g_0$ est $\mathcal{C}^l$ tel que $\forall j\in\llbracket0,k\rrbracket, g_0^{(j)}=g_j$ et $(f_n^{(j)})$ converge uniformément sur tout segment de $I$.}
+\Thr{Théorème de dérivation terme à terme à l'ordre k}{Avec $I$ un intervalle, si :\begin{itemize}\item $(u_n)\in\mathcal{C}^1(I,F)^\N$ \item $(\sum u_n)$ converge simplement \item $(\sum u_n)$ converge uniformément vers sur tout segment de $I$\end{itemize} alors $\sum\limits_{n=0}^{+\infty}u_n$ est $\mathcal{C}^k$ tel que $\forall j\in\llbracket0,k\rrbracket, \left(\sum\limits_{n=0}^{+\infty}u_n\right)^{(j)}=\sum\limits_{n=0}^{+\infty}u_n^{(j)}$ et la somme converge uniformément sur tout segment de $I$.}
+\begin{Exe}
+$f:\left\{\begin{array}{rcl}\R_+^* & \to & \R \\ x & \mapsto & \sum\limits_{n=0}^{+\infty}e^{-n^2x}\end{array}\right.$ en notant $u_n=e^{n^2x}$ \par Pour $n\in\N$, $u_n$ est $\mathcal{C}^\infty$, $u_n':x\mapsto -n^2e^{n^2x}$ et $u_n'':x\mapsto n^4e^{n^2x}$ \par Soit $x\in\R_+^*$, alors $\vert u_n(x)\vert=o(\frac{1}{n^2}), \vert u_n'(x)\vert=o(\frac{1}{n^2})$ \par $\sum u_n$ et $\sum u_n'$ convergent simplement sur $\R_+^*$ \par Soit $a\in\R_+^*$, soit $n\in\N$, soit $x\in[a,+\infty[$ \par $\vert n^4e^{-n^2x}\vert\leq n^4e^{-an^2}$ \par Or $\sum n^4e^{-an^2}$ est convergente
+\par Donc la série $\sum x\mapsto n^4e^{-n^2x}$ converge normalement donc uniformément sur $[a,+\infty[$ pour tout $a$ \par Donc par théorème de dérivation terme à terme d'ordre 2, $f$ est $\mathcal{C}^2$ et $f':x\mapsto \sum\limits_{n=0}^{+\infty}-n^2e^{-n^2x}$ et $f'':x\mapsto \sum\limits_{n=0}^{+\infty}n^4e^{-n^2x}$
+\end{Exe}
+
+\section{Résultats de densité}
+\Thr{Stone-Weierstrass (admis)}{Toute fonction continue sur un segment à valeurs dans $\K$ est limite uniforme d'une suite de fonctions polynomiales.
+\par Ce qui correspond à : l'ensemble des fonctions polynomiales est dense dans $(\mathcal{C}([a,b],\K),\Vert.\Vert_\infty)$}
+\begin{Exe}
+Soit $E=\mathcal{C}([a,b],\R)$ un espace préhilbertien réel pour le produit scalaire $\langle f,g\rangle = \int\limits_{[a,b]}fg$ \par On a que $\R[X]\subset E$, déterminer $\R[X]^\perp$ \par Soit $f\in\R[X]^\perp$. Alors $f$ vérifie : $\forall P\in \R[X], \langle f,P\rangle = 0$
+\par Par théorème de Stone-Weierstrass, on peut prendre $(P_n)\in\R[X]^\N$ qui converge uniformémemnt vers $f$ \par Donc $P_nf$ converge uniformément vers $f^2$ (comme $P_n$ borné sur $[a,b]$, avec $x\in[a,b], \Vert P_n(x)g(x)-f(x)g(x)\Vert_\infty=\Vert g(x)\Vert_\infty\Vert P_n(x)-f(x)\Vert_\infty\leq\Vert g(x)\Vert\sup\Vert f-P_n\Vert$)
+\par Donc $\left(\int_a^bP_n(t)f(t)dt\right)\to \int_a^bf^2(t)dt$ \par Or $\forall n\in\N, \langle P_n,f\rangle=0$ \par Donc $\langle f,f\rangle=0$ donc $f=0$ \par Donc $\R[X]^\perp=\{0\}$
+\end{Exe}
+\begin{Rem}
+Dans le théorème de Stone-Weierstrass, l'hypothèse du segment est fondametale.
+\end{Rem}
+\begin{Exe}
+Il n'existe aucune suite de polynôme réels qui converge uniformément vers $\exp$ sur $\R$.
+\par Supposons par l'absurde que $(P_n)\in\R[X]^\N$ converge uniformément vers $\exp$ sur $\R_+$ \par On a que $\frac{1}{\exp}$ est bornée sur $\R_+$, donc $t\mapsto P_n(t)e^{-t}$ converge uniformément vers la fonction constante de valeur 1.
+\par Poru $n\in\N$ fixé, $P_n(t)e^{-t}\to_{t\to+\infty} 0$ par croissance comparée. Comme $t\mapsto P_n(t)e^{-t}$ converge uniformément sur $\R_+$, on peut appliquer le théorème d'échange des limites \par Donc $\lim\limits_{t\to+\infty}\lim\limits_{n\to+\infty}P_n(t)e^{-t}=\lim\limits_{n\to+\infty}\lim\limits_{t\to+\infty}P_n(t)e^{-t}$ \par Et donc $1=0$, ce qui est absurde. D'où le résultat.
+\end{Exe}
+\Thr{Approximmation uniforme par des fonctions en escalier}{Toute fonction continue sur un segment à valeurs dans $F$ est limite uniforme d'une suite de fonctions en escaliers \par Ce théorème est encore valable pour les fonctions continues par morceaux sur un segment.}
+\Pre{Soit $f\in\mathcal{C}([a,b],F)$. Par théorème de Heine, $f$ est uniformément continue. \par Soit $n\in\N^*$, par uniforme continuité de $f$ on peut trouver $\alpha\in\R_+^*$ tel que $\forall x,y\in[a,b], \vert x-y\vert<\alpha\Rightarrow \Vert f(x)-f(y)\Vert < \frac{1}{n}$
+\par On fixe $p\in\N^*$ tel que $\frac{b-a}{p}<\alpha$ (qui existe comme $\R$ est archimédien) \par On considère la subdivision $(x_i)_{0\leq i\leq p} = \left(a+i\frac{b-a}{p}\right)_{0\leq i\leq p}$ \par On définit la fonction en excalier $\varphi_n$ par $\forall t\in [a,b], (\exists i\in\llbracket 0,p\rrbracket \text{ tel que } t=x_i) \Rightarrow \varphi(t)=f(t)$ et $\forall i\in\llbracket 0,n-1\rrbracket,\forall t\in]x_i,x_{i+1}[, \varphi(t) = f\left(\frac{x_{i}+x_{i+1}}{2}\right))$
+\par Alors $\forall t\in[a,b], \Vert \varphi_n(t)-f(t)\Vert\leq \frac{1}{n}$ car $\forall t\in[a,b],\exists i\in\llbracket 0,p-1\rrbracket, t\in ]x_{i}, x_{i+1}[, \vert t-\frac{x_i+i_{i+1}}{2}\vert\leq \vert x_{i+1}-x_i\vert \leq \frac{b-a}{p}< \alpha$ \par Donc $\Vert f(t)-f\left(\frac{x_i+x_{i+1}}{2}\right)\Vert<\frac{1}{n}$
+\par Donc $\sup\limits_{t\in [a,b]}\Vert\varphi_n(t)-f(t)\Vert\leq \frac{1}{n}$}
+\begin{Rem}
+Ce résultat s'étend sans difficulté aux fonctions continues par morceaux. Il suffit de prendre une subdivision plus fine qu'une subdivision adaptée sur chaque intervalle continu.
+\end{Rem}
+
+
+\chapter{Séries entières}
+\section{Généralités}
+\Def{}{Soit $(a_n)\in\C^\N$. On appelle série entière associée à $(a_n)$ (de variable complexe) la série de fonctions $\left(\sum (z\mapsto a_nz^n)\right)$ qu'on notera en général $\left(\sum a_nz^n\right)$
+\par $z\mapsto \sum\limits_{n=0}^{+\infty}a_nz^n$ est la somme de cette série entière.}
+On va étudier en général le domaine de définition, les paramètres de continuité, de dérivabilité de la restriction à $\R$ se ces fonctions. 
+\begin{Exe}
+$\exp{z}=\sum\limits_{n=0}^{+\infty}\frac{z^n}{n!}$ est définie sur $\C$
+\par $\sum\limits_{n=0}^{+\infty}z^n=\frac{1}{1-z}$ est définie pour $z\in\C, \vert z\vert<1$
+\end{Exe}
+\Prop{Lemme d'Abel}{Soit $(\sum a_nz^n)$ une série entière. Soit $z_0\in\C^*$. Si $(a_nz_0^n)$ est bornée, alors la série $\sum a_nz^n$ converge absolument pour $z\in\C,\vert z\vert < \vert z_0\vert$}
+\Pre{Dans les conditons de l'énoncé : \par soit $n\in\N$, soit $z\in\C$ tel que $\vert z\vert<\vert z_0\vert$ \par Alors $\vert a_nz^n\vert = \vert a_n z_0^n \frac{z^n}{z_0^n}\vert \leq \vert a_nz_0^n\vert \left\vert\frac{z}{z_0}^n\right\vert \leq \sup\limits_{n\in\N}\vert a_nz_0^n\vert \left\vert\frac{z}{z_0}^n\right\vert$
+\par $\vert\frac{z}{z_0}\vert<1$ donc $\sum(\frac{z}{z_0})^n$ est une série géométrique convergente \par Donc par critère de majoration positif, $\sum a_nz^n$ converge absolument.}
+\Def{Rayon de convergence}{Soit $\sum a_nz^n$ une série entière. On appelle rayon de cette série $R = \sup\{\vert z\vert | z\in\C, (a_nz^n)\text{ est bornée}\}$ \par Par convention, $R=+\infty$ si cet ensemble n'est pas majoré.}
+\Prop{}{Soit $\sum a_nz^n$ une série entière de rayon $R\in\bar{\R}$ \begin{itemize} \item $\forall z\in\mathcal{D}(0,R), \sum a_nz^n$ converge absolument \item $\forall z\in\C, \vert z\vert>R, a_nz^n$ est non-bornée.\end{itemize}}
+\Pre{Soit $z\in\C, \vert z\vert<R$ \par Par caractérisation de la borne supérieure, on peut trouver $z_0\in\C$ tel que $(a_nz_0^z)$ est bornée et $\vert z\vert < \vert z_0\vert\leq R$ \par Par lemme d'Abel, $\sum a_nz^n$ converge. \par Soit $z\in\C, \vert z\vert > R$, alors $(a_nz^n)$ n'est pas bornée par définition de la borne supérieure, $R$ étant un majorant de l'ensemble des $z$ tels que $(a_nz^n)$ bornée.}
+\begin{Exe}
+Pour $\sum\frac{z^n}{n!}$, on a $R=+\infty$ \par Pour $\sum z^n$ on a $R=1$ et son domaine de définition n'inclut pas le bord, donc $\mathcal{D}(0,1)$ \par Pour $\sum\limits_{n\geq 1}\frac{z^n}{n^2}$, on a $R=1$ aussi, parce que l'ordre de grandeur de $n^2$ est négligeable face à une exponentielle. Le domaine de convergence inclut le bord du disque, et est donc $\mathcal{D}_f(0,1)$  \par $\sum\limits_{n\geq 1}\frac{z^n}{n}$ a un rayon $R=1$. La série converge pour $z=-1$ et diverge pour $z=1$, les deux appartenant au bord du disque.
+\end{Exe}
+
+\section{Calculs de rayon de convergence}
+\Prop{}{Le rayon de $\sum a_nz^n$ est le rayon de $\sum \vert a_n z^n$}
+\begin{Rem}
+Les déterminations de rayon d'une série entière ne font intervenir que des critères de séries numériques positives.
+\end{Rem}
+\Prop{Relations de comparaison}{Soient $\sum a_nz^n$ et $\sum b_nz^n$ des séries entières de rayons $R_a$ et $R_b$ :\begin{itemize}
+\item Si $a_n = o(b_n)$ alors $R_a\leq R_b$
+\item Si $a_n = \mathcal{O}(b_n)$ alors $R_a\leq R_b$
+\item Si $a_n\sim b_n$ alors $R_a=R_b$
+\end{itemize}}
+\Pre{Soit $z\in\mathcal{D}(0,R_b)$, on a donc que $\sum \vert b_nz^n\vert$ converge, or $\vert a_nz^n\vert=\mathcal{O}(\vert b_nz^n\vert)$ \par Donc par critère de domination positive, $\sum\vert a_nz^n\vert$ converge \par Donc $z\in\mathcal{D}_f(0,R_a)$ \par Donc $\mathcal{D}(O,R_b)\subset \mathcal{D}_f(0,R_a)$ \par Donc $R_a\geq R_b$
+\par On a donc prouvé la propriété pour les $\mathcal{O}$, et elle en découle pour les $o$. Comme un équivalent est aussi un $\mathcal{O}$ symétrique, on a l'égalité.}
+\Thr{Critère de D'Alembert}{Si $(a_n)$ ne s'annule pas à partir d'un certain rang : \par si $\left\vert\frac{a_{n+1}}{a_n}\right\vert\to l$ avec $l\in\bar{\R}$, alors $R_a = \frac{1}{l}$
+\par On prend la convention de $\frac{1}{+\infty}=0$ et que $\frac{1}{0}=+\infty$}
+\Pre{On suppose que $\left\vert\frac{a_{n+1}}{a_n}\right\vert$ tend vers $l\in\bar{\R}$ \par Soit $z\in\C^*$, alors $\left\vert\frac{a_{n+1}z^{n+1}}{a_nz^n}\right\vert\to lz$ \par Par critère de D'Alembert appliqué aux séries numériques, si $\vert lz\vert <1$ alors $\sum a_nz^n$ ocnverge et si $\vert lz\vert>1$ alors $\sum a_nz^n$ diverge. \par Donc $R_a = \frac{1}{l}$.}
+\begin{Rem}
+Il faut faire attention aux séries lacunaires pour utiliser d'Alembert.
+\end{Rem}
+\begin{Exe}
+Déterminer le rayon de $\sum\frac{(-1)^n(e^n+n)}{3^n+n^2}z^{2n}$ \par La suite associée à la série entière est équivalente à $\left(\frac{e}{3}\right)^n$, qu'on note $u_n(z)$ \par Soit $z\in\C^*$ :\par $\frac{\left\vert (\frac{e}{3})^{n+1}Z^{2n+2}\right\vert}{\left\vert(\frac{e}{3})^nz^{2n}\right\vert} = \left\vert\frac{e}{3}z^2\right\vert \to \frac{e}{3}z^2$ \par Donc $R=\sqrt{\frac{3}{e}}$ \par Donc si $\vert z\vert<\sqrt{\frac{3}{e}}$, $\sum\vert u_n(z)\vert$ converge et diverge sinon.
+\end{Exe}
+\begin{Exe}
+Pour la série entière associée à la suite $a_n = \left\{\begin{array}{rcl} a_{n^2} & = & n! \\ a_p & = & 0 \text{ si p n'est pas un carré}\end{array}\right.$
+\end{Exe}
+\begin{Exe}
+Pour la série entière $\sum\sin(n)z^n$
+\end{Exe}
+
+\section{Opérations sur les séries entières}
+\Prop{Combinaisons linéaires}{Si $\sum a_nz^n$ et $\sum b_nz^n$ deux séries entières de rayons respectifs $R_a$ et $R_b$, alors : \par $\sum(a_n+b_n)z^n$ converge de rayon $R$ avec $R=\min(R_a,R_b)$ \par Si $R_a\neq R_b$, on peut affirmer que $R=\min(R_a,R_b)$ \par De plus, pour $z\in\mathcal{D}(0,R)$, on a $\sum\limits_{n=0}^{+\infty} (a_n+b_n)z^n = \sum\limits_{n=0}^{+\infty}a_nz^n + \sum\limits_{n=0}^{+\infty}b_nz^n$}
+\Pre{Avec les notations de l'énoncé :\par Supposons que $R_a=R_b$ : \par Alors  \par Supposons que $R_a\neq R_b$, supposons sans perte de généralité que $R_a<R_b$ : \par Si $z\in\mathcal{D}(0,R_a)$, alors $\sum (a_n+b_n)z^n$ est bien définie, sinon non.
+}
+\Thr{Produit de Cauchy}{Pour $\sum a_nz^n$ et $\sum b_nz^n$ deux séries entières de rayons respectifs $R_a$ et $R_b$ \par On pose pour $n\in\N$, $c_n = \sum\limits_{k=0}^na_kb_{n-k}$ \par La série entière $\sum c_nz^n$ est de rayon de convergence $R\geq\min(R_a,R_b)$ et $\forall z\in\C$ tel que $\vert z\vert < \min(R_a,R_b), \sum\limits_{n=0}^{+\infty}c_nz^n = \sum\limits_{n=0}^{+\infty}a_nz^n\sum\limits_{n=0}^{+\infty}b_nz^n$}
+\Pre{Par application du produit de Cauchy à deux séries absolument convergentes sur un domaine.}
+
+
+
+
+
+
+
+
+\end{document}

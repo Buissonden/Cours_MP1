@@ -1,0 +1,769 @@
+\documentclass[a4paper,12pt]{book}
+\usepackage{ae}
+\usepackage{aeguill}
+\usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[left=1cm, right= 1cm, top=2cm, bottom = 2cm]{geometry}
+\usepackage{array,multirow}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{amsfonts}
+\usepackage{stmaryrd}
+\usepackage{tcolorbox}
+\usepackage{lmodern}
+
+
+
+\newcommand{\Def}[2]{\begin{tcolorbox}[sharp corners, colback=white,colframe=red!90!black!75, title=Définition : #1]#2\end{tcolorbox}}
+\newcommand{\Thr}[2]{\begin{tcolorbox}[sharp corners, colback=white,colframe=red!90!black!75, title=Théorème : #1]#2\end{tcolorbox}}
+\newcommand{\Prop}[2]{\begin{tcolorbox}[sharp corners, colback=white,colframe=red!90!black!75, title=Proposition : #1]#2\end{tcolorbox}}
+\newcommand{\Pre}[1]{\begin{tcolorbox}[sharp corners, colback=white,colframe=green!60!green!30!black!75, title=Preuve]#1\end{tcolorbox}}
+
+\newcommand{\Meth}[2]{\begin{tcolorbox}[colback=white,colframe=green!60!green!30!black!75, title=Méthode :  #1]#2\end{tcolorbox}}
+\newtheorem{Exe}{Exemple}[section]
+\newtheorem{Exes}{Exemples}[section]
+\newtheorem{Rem}{Remarque}[section]
+\newtheorem{Rems}{Remarques}[section]
+
+\def\R{\mathbb{R}}
+\def\D{\mathbb{D}}
+\def\C{\mathbb{C}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\K{\mathbb{K}}
+
+\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\Roman{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\Roman{section}.\arabic{subsection}.\Alph{subsubsection}}
+
+\begin{document}
+\tableofcontents
+
+\chapter{Mécanique}
+\section{M1 :  Référentiels non-galiléens}
+\subsection{Application 1.2}
+\begin{enumerate}
+\item Le référentiel de Copernic $\mathcal{R}_C$ est défini par rapport au centre de masse du système solaire, $\mathcal{R}_T$ par rapport au centre de masse de la Terre.
+\item Non.
+\item o
+\item Copernic.
+\end{enumerate}
+
+\subsection{1.3}
+$\vec{A} = a(t)\vec{u}_{x'} + b(t)\vec{u}_{y'} + c(t)\vec{u}_{z'}$
+\\ $\left.\dfrac{d\vec{A}}{dt}\right)_{\mathcal{R}'} = \overset{\circ}{a}(t)u_x' + \overset{\circ}{b(t)}u_{y'} + \overset{\circ}{c(t)}u_{z'}$
+\\ $\left.\dfrac{d\vec{A}}{dt}\right)_{\mathcal{R}} = \overset{\circ}{a}(t)u_x + \overset{\circ}{b(t)}u_y + \overset{\circ}{c(t)}u_z + \left.\overset{\circ}{a}\dfrac{du_x'}{dt}\right)_{\mathcal{R}} + \left.\overset{\circ}{b}\dfrac{du_y'}{dt}\right)_{\mathcal{R}} + \left.\overset{\circ}{c}\dfrac{du_z'}{dt}\right)_{\mathcal{R}}$ (cette dernière partie vaut 0 si $\mathcal{R}'$ en translation par rapport à $\mathcal{R}$)
+\\ $\vec{u}_{x'} = cos\theta \vec{u}_x + sin\theta \vec{u}_y$ et $\vec{u}_{y'} = -sin\theta u_x + cos\theta u_y$
+\\ $\Rightarrow \left.\dfrac{d\vec{u}_{x'}}{dt}\right)_{\mathcal{R}} = -\overset{\circ}{\theta} sin\theta \vec{u}_x + \overset{\circ}{\theta} cos\theta \vec{u}_y = \overset{\circ}{\theta} \vec{u}_{y'} = \overset{\circ}{\theta} \vec{u}_z\wedge \vec{u}_{x'} = \vec{\omega}(\mathcal{R}'/\mathcal{R})\wedge \vec{u}_{x'}$
+\\$ -\overset{\circ}{\theta} \vec{u}_{x'}= -\overset{\circ}{\theta} (-\vec{u}_z\wedge \vec{u}_{y'}) = \vec{\omega}\wedge \vec{u}_{y'}$
+\\ Si $R'$ en rotation par rapport à $R$ : $a\vec{\omega}\wedge \vec{u}_{x'} + b\vec{\omega}\wedge \vec{u}_{y'} + \vec{0} = \vec{\omega}\wedge\left[a\vec{u}_{x'}+b\vec{u}_{y'} + c\vec{u}_{z'}\right]$, cette dernière parenthèse correspondant à $\vec{A}$
+
+\subsection{1.4}
+$\vec{v}_{\mathcal{R}'}(M) = \left.\dfrac{d\vec{OM}}{dt}\right)_{\mathcal{R}'}$
+\\ $\vec{v}_{\mathcal{R}}(M) = \left.\dfrac{d\vec{OM}}{dt}\right)_{\mathcal{R}} = \left.\dfrac{d\vec{OO'}}{dt}\right)_\mathcal{R} + \left.\dfrac{d\vec{O'M}}{dt}\right)_{\mathcal{R}} = \vec{v}_e + \vec{v}_{\mathcal{R}'}(M) = \vec{v}_r(O') + \vec{v}_r+ \vec{0}$
+\\ (e signifie d'entraînement, r signifie relative)
+\\ $\vec{a}_{\mathcal{R}'}(M) = \left.\dfrac{d^2\vec{O'M}}{dt}\right)_{\mathcal{R}'} = \left.\dfrac{d}{dt}[\vec{v}_{\mathcal{R}'}(M)]\right)_\mathcal{R}$
+\\ $\vec{a}_{\mathcal{R}}(M) = \dfrac{d}{dt} \left.[\vec{v}_\mathcal{R}(O') + \vec{v}_{\mathcal{R}'}(M)]\right)_\mathbb{R} = \vec{a}_\mathcal{R}(O') + \dfrac{d}{dt}(\vec{v}_{\mathbb{R}'}(M)) +\vec{0}  = \vec{a}_e + \vec{a}_r$
+\\ $\vec{a}_a$ est l'accélération absolue 
+
+\subsection{Application 4}
+On définit $\mathcal{R}_T$ comme le référentiel terrestre et le référentiel lié $\mathcal{R}_A$ comme celui de l'ascenseur
+\begin{enumerate}
+\item Son accélération est $\vec{g}$ dans le référentiel galiléen $\mathcal{R}$ : en appliquant le PFD au livre en chute libre on écrit que $m\vec{a}_{\mathcal{R}_T} =mg$ d'où $a_{mathcal{R}_T}=g$.
+\item $\vec{a}_{acc} = \vec{a}_e = \vec{a}_{\mathcal{R}_T}(O')$ d'où $\vec{a}_{\mathcal{R}_a}(M) = \vec{a}_r = \vec{a}_a - \vec{a}_e = \vec{a}_{\mathcal{R_T}}(M) - \vec{a}_{\mathcal{R}_T}(O') = -g\vec{u}_z - a_{acc}\vec{u}_z = -(g+a_{acc})\vec{u}_z$ Pendant la phase d'accélération et $-gu$ à vitesse constante.
+\item $\vec{v}_{\mathcal{R}_T}(M) = \vec{v}_{\mathcal{R}_a}(M) + \vec{v}_{\mathcal{R}_T} (O')$ et $\overset{\circ}{z}u_z = \overset{\circ}{z'}\vec{u}_z + v_{mon}\vec{u}_z$ avec $\overset{\circ}{z'} = \overset{\circ}{z} - v_{mon}$ donc $|\overset{\circ}{z'}|>|\overset{\circ}{z}|$
+\item Si $\vec{a}_{\mathcal{R}_T}(O') = \vec{a}_e = g$ alors $\vec{a}_{\mathcal{R}_a}(M) = \vec{a}_{\mathcal{R}_T}(M) - \vec{a}_{\mathcal{R}_T}(O') = \vec{g} - \vec{g} = \vec{0}$ et le livre semble flotter.
+\end{enumerate}
+
+
+\subsection{1.5.1}
+$\vec{v}_{\mathcal{R}'}(M) = \left.\dfrac{d\vec{O'M}}{dt}\right)_{\mathcal{R}'}$
+\\ $\vec{v}_\mathcal{R}(M) = \left.\dfrac{d\vec{OM}}{dt}\right)_R = \left.\dfrac{d\vec{O'M}}{dt}\right)_{\mathcal{R}'} + \vec{\omega}(R'/R)\wedge \vec{OM} = \vec{v}_{R'}(M) + \vec{v}_e$ où $\vec{\omega} \vec{u}_z\wedge r\vec{u}_r = r\omega \vec{u}_\theta = v_e$
+
+\subsection{1.5.2}
+$\vec{a}_{\mathcal{R}'} = \left.\dfrac{d^2\vec{O'M}}{dt}\right)_{\mathcal{R}'} = \left.\dfrac{d\vec{v}_{\mathcal{R}'}(M)}{dt}\right)_{\mathcal{R}'}$
+\\ $\vec{a}_\mathcal{R}(M) = \left.\dfrac{d}{dt}(v_\mathcal{R}(M))\right)_\mathcal{R} = \left.\dfrac{d}{dt}\left[\_{\vec{R}'}(M) + \vec{\omega}\wedge \vec{OM}\right]\right)_\mathcal{R} + \vec{\omega}\wedge \left[\vec{v}_{\mathcal{R}'}(M) + \vec{\omega}\wedge \vec{OM}\right] = \left.\dfrac{d\vec{v}_{R'}(M)}{dt}\right)_{R'} + \vec{\omega} \wedge \left.\dfrac{d\vec{OM}}{dt}\right)_{\mathcal{R}'} + \vec{\omega}\wedge \vec{v}_{\mathcal{R}'}(M) + \vec{\omega}\wedge (\vec{\omega}\wedge \vec{OM}) = \left.\dfrac{d\vec{v}_{\mathcal{R}'}(M)}{dt}\right)_{\mathcal{R}'} + \vec{\omega} \wedge \vec{v}_{\mathcal{R}'}(M) + \vec{\omega}\wedge \vec{v}_{\mathcal{R}'}(M) + \vec{\omega}\wedge (\vec{\omega}\wedge \vec{OM})$
+\\ $\Rightarrow \vec{a}_R(M) = \vec{a}_{R'}(M) + 2\vec{\omega}\wedge \vec{v}_{R'}(M) + \vec{\omega}\wedge(\omega\wedge \vec{OM}) = \vec{a}_r + \vec{a}_c +\vec{\omega}\wedge (r\omega\vec{u}_\theta) =\vec{a}_r + \vec{a}_c - r\omega^2\vec{u}_r = \vec{a}_r+\vec{a}_c+\vec{a}_e$ où $\vec{a}_c$ est l'accélération de Coriolis. On écrit souvent $\vec{a}_e = - \omega^2\vec{HM}$ avec $\vec{HM}$ le projeté orthogonal de M sur l'axe de rotation.
+
+\subsection{Application 5}
+\begin{enumerate}
+\item $\vec{v}_{\mathcal{R}_T}(M) = \vec{v}_{R'}(M) + \vec{v}_e = \vec{v}_r + \vec{v}_e = \vec{v}_0\vec{u}_{x'} + \omega \vec{u}_{z}\wedge\vec{OM} = v_0\vec{u}_{x'} + \omega v_0t\vec{u}_{y'}$
+\end{enumerate}
+
+\subsection{2.1}
+$\sum \vec{F}_{ext} = m\vec{a}_{\mathcal{R}_G}(M) = m\vec{a}_{\mathcal{R}'}(M) + m\vec{a}_e + m\vec{a}_c$
+\\ $m\vec{a}_{\mathcal{R}'} = \sum \vec{F}_{ext} - m\vec{a}_e - m\vec{a}_c = \sum \vec{F}_{ext} + \vec{f}_{ie} + \vec{f}_{ic}$
+ 
+\subsection{Application 6}
+\begin{enumerate}
+\item Non, il est en rotation, pas en translation rectiligne uniforme autour de $\mathcal{R}_T$ supposé galiléen.
+\item $\vec{v}_\mathcal{R}(M) = \dot{x}\vec{u}_x, \vec{a}_\mathcal{R}(M) = \ddot{x}\vec{u}_x$ 1 seul degré de liberté de mouvement, translation selon $(Ox)$
+\item BdF : Poids $\vec{P}$ et réaction du support $\vec{R}_N$ qui ne travaillent pas ; force d'inertie d'entraînement $\vec{f}_{ie} = +m\omega^2\vec{OM} = m\omega^2x\vec{u}_x$ et la force d'inertie de Coriolis $\vec{f}_{ic} = -2m\vec{\omega}\wedge\vec{v}_r = -2m\omega\dot{x}\vec{u}_r$ qui ne travaille pas.
+\item $m\vec{a}_\mathcal{R} = \vec{P} +\vec{R}_N +\vec{f}_{ie} +\vec{f}_{ic}$ et en projetant sur $\vec{u}_x$ : $m\ddot{x} = m\omega^2 x \Rightarrow \ddot{x} -\omega^2 x=0$. De solutions $x(t) = Ae^{\omega t} + Be^{-\omega t}$ ; en réintroduisant les CI : $x(0) = d = A+B,\dot{x}(0) = 0= \omega(A+B)$ d'où $A=B=\dfrac{d}{2}$. D'où $x(t) = d\mathrm{ch}(\omega t)$
+\item Partie énergétique : Les travaux élémentaires du poids, de la réaction normale et de la force d'inertie de Coriolis sont nuls, puisque les forces sont perpendiculaires au mouvement. Alors pour la force d'inertie d'entraînement : $\delta W_{ie} = m\omega^2 x\vec{u}_{x}\cdot dx\vec{u}_x = m\omega^2xdx$
+\item L'énergie potentielle de la force inertielle d'entraînement sera : $\dfrac{E_p^{ie}}{dx} = -m\omega^2x \Rightarrow E_p^{ie} = \dfrac{1}{2}m\omega^2x^2$. Donc l'énergie mécanique est $E_m^{tot} = \dfrac{1}{2}m\dot{x}^2 -m\omega^2x^2 = cste$ dans $\mathcal{R}$ non-galiléen.
+\item On a donc $0 = \dfrac{d}{dt}\left[\dfrac{1}{2}m\dot{x}^2 -\dfrac{1}{2}m\omega^2x^2\right] = m\dot{x}\ddot{x} - m\omega^2\dot{x}x = \ddot{x} - \omega^2x$
+\end{enumerate}
+
+\subsection{3.1}
+Le mouvement de la Terre est constitué de deux parties : elle a sa rotation propre d'une durée de 24 heures et il y a sa translation quasi-circulaire autour du Soleil, qui se manifeste sur des temps bien plus longs. L'aspect rotation propre entraîne deux conséquences selon la force d'inertie d'entraînement et la force d'inertie de Coriolis. Donc le poids est en fait la résulante de la force de gravitation et de la force d'inertie d'entraînement : $\vec{P} = -G\dfrac{mM_T}{r_T^2}u_{OM} + m\omega_p^2\vec{HM}$. Pour un dynamomètre, on aura un équilibre dans $\mathcal{R}_T$ si $\vec{F}_el + \vec{f}_{grav} +\vec{f}_{ie}=\vec{0}$. Donc $\vec{g} = \vec{g}_0 + \omega_p^2\vec{HM}$.
+\\ Comparons les ordres de grandeur : $\dfrac{\Vert \vec{f}_{grav}\Vert}{\Vert\vec{f}_{ie}\Vert}\sim\dfrac{g_0}{\omega_p2R_T} = \dfrac{10}{\left(\dfrac{2\pi}{8,6.10^4}\right)6,4.10^6}\sim 3.10^2$ : il y a environ un facteur 300 entre le poids et la force d'inertie d'entraînement.
+\\ En équateur, l'inertie d'entraînement est maximale, et elle est minimale aux pôles.
+
+\subsection{Application 7}
+On a dans ce cas que $\vec{f}_{ic} = -2m\vec{\omega}_p\wedge\vec{v}_r$. Alors $\dfrac{\Vert\vec{P}\Vert}{\Vert\vec{f}_{ic}\Vert}\sim \dfrac{g}{2\omega_p\Vert\vec{v}_r\Vert}\sim 3.10^2$ 
+\\ La force de Coriolis est responsable du sens des vents dans des ouragans.
+
+\subsection{4.1}
+$\mathcal{P}(\vec{f}_{ic}) = \vec{f}_{ic}\cdot\vec{v} = \left(-2m\vec{\omega}\wedge\vec{v}_r\right)\cdot\vec{v}_r=\vec{0}$ donc la force d'inertie de Coriolis ne travaille pas.
+
+\subsection{4.3}
+$\delta W_{ie} = \vec{f}_{ie}\cdot d\vec{OM} = m\omega^2\vec{HM}\cdot d\vec{OM} = m\omega^2r\vec{u}_r\cdot(dr\vec{u}_r +...) = m\omega^2rdr$.
+\\ On peut écrire $\delta W_{ie} = -dE_p^{ie} \Leftrightarrow \dfrac{dE_p^{ie}}{dr} = -m\omega^2r \Leftrightarrow E_p^{ie} =-\dfrac{1}{2}m\omega^2r^2$ 
+
+
+\section{M2 : Frottements}
+\subsection{Application 1}
+\begin{enumerate}
+\item Système : palet. Référentiel terrestre $\mathcal{R}_T$ supposé galiléen. Bilan des forces : Poids $\vec{P} = m\vec{g}$ ; réaction normale $\vec{N}$ ; réaction tangentielle $\vec{T}$.
+\par Mouvement plan selon $Ox$. On en tire les équations : $\left\{\begin{array}{rcl} \vec{P} + \vec{T} +\vec{N} & = & \vec{0} \\ \vec{T} &<& f_s\Vert\vec{N}\Vert \end{array}\right.$
+\par On projette : $\left\{\begin{array}{rl} \vec{u}_x : & mg\sin\alpha - T = 0\\ \vec{u}_y : & -mg\cos\alpha +N = 0\end{array}\right.$. De là on déduit que $N=mg\cos\alpha$ et $T = mg\sin\alpha$. Donc $mg\sin\alpha<f_smg\cos\alpha$, d'où $\tan\alpha<f_s$
+\item RFD sur $(\vec{u}_x, \vec{u}_y)$ : $m\ddot{x} = mg\sin\alpha - Y, 0 = -mg\cos\alpha + N$ et donc $\ddot{x} = g(\sin\alpha - f_d\cos\alpha)$ comme on a que pendant le mouvement, $T=f_dN$
+\item On peut faire une mesure de l'angle limite $\alpha_{lim}$ de mise en mouvement, ce qui permet d'avoir accès à $f_s$.
+\par On peut faire la mesure du temps de parcours d'une distance $l$ avec $\alpha_{lim}<\alpha$, ce qui donne accès à $f_d$.
+\end{enumerate}
+
+\subsection{3 : puissance de la force de réaction}
+$\mathcal{P}(\vec{R}) = \vec{R}\cdot\vec{v} = (\vec{T} + \vec{N})\cdot\vec{v} = \left\{\begin{array}{lr} 0 & \text{si pas de glisssement, si la vitesse est nulle} \\ -\Vert\vec{T}\Vert\Vert\vec{v}\Vert<0 & \text{si glissement non constant}\end{array}\right.$
+\par On applique le TEC : $\Delta E_c = W_{cons} + W_{non-cons}$ et donc $\Delta E_m = W_{non-cons} <0$, ce qui implique que l'énergie mécanique décroît.
+
+\subsection{Application 2}
+On applique le TEC : $\left\{\begin{array}{l} \Delta E_c = 0 - \dfrac{1}{2}mv^2 \\ W_{tot} = W_{\vec{P}} + W_{\vec{N}} + W_{\vec{T}}\end{array}\right.$ mais les forces normales et le poids ne travaillent pas.
+\par D'où $W_{tot} = W_{\vec{T}} = \int_0^d \vec{T}\cdot d\vec{OM} = \int_0^d-Tdx = \int_0^d -(f_dmg)dx  = -f_dmgd$
+\par Donc $\Delta E_m = W_{tot}$, d'où $\dfrac{1}{2}mv_0^2 = f_dmgd$, dont on tire enfin  $d = \dfrac{v_0^2}{2gf}$.
+
+
+\chapter{EM}
+\section{EM1}
+\subsection{Application 1}
+\begin{itemize}
+\item Si on a $dQ= \rho(M)d\tau$, alors il faut intégrer sur le volume : $\iiint dQ =\iiint \rho(x,y,z)d\tau$
+\\$ = \int_{x=0}^a\int_{y=0}^a\int_{z=0}^z \rho_0e^{-z/\delta}dxdydz$
+\\ $ = a^2\int_0^z\rho_0e^{-z/\delta}dz = -\rho_0a^2\delta\left[e^{-z/\delta}-1\right]$ donc $Q(z) = \rho_0a^2\delta\left[1-e^{-z/\delta}\right]$
+\item $Q = \rho_0a^2\delta\left[1-e^{-z/\delta}\right] \simeq \rho_0a^2\delta$ comme $e^{-z/\delta}$ tend vers 0.
+\item On a $\dfrac{Q}{a^2} = \rho_0\delta$ la densité surfacique de charge (par définition pour le premier), qui a la dimensiomn d'une charge surfacique. Dans tous les problèmes avec deux dimensions et une dernière négligeable devant elles, on voudra plutôt définir la densité surfacique de charge $\sigma$ par $dQ=\sigma(M)dS$. 
+\end{itemize}
+
+\subsection{2.2}
+De tout ça, on tire une expression pour la charge totale portée par la surface : $Q = \iint_{a b}\sigma(M)dS$.
+\par De cela, on tire une expression pour la charge totale portée par un fil : $Q=\int_a\lambda(M)dl$
+
+\subsection{Application 1 bis}
+Il y a des plans de symétrie et d'antisymétrie. Elle admet un plan de symétrie si, en prenant deux points symétriques par rapport à un plan, la densité volumique de distribution sont les mêmes pour les deux points.
+\par Sur le schéma, il y a des plans de symétrie : tous les plans qui continennent l'axe $(Ox)$ sont des plans de symétries pour les distributions de charge. Il y en a donc une infinité.
+
+\subsection{Application 1 ter}
+Le plan d'antisymétrie est unique, et est perpendiculaire à l'axe x et passant par le point au milieu de la distance entre les deux charges.
+
+\subsection{Application 2}
+\begin{enumerate}
+\item Il y a des invariances par translation selon les axes $(Ox)$ et $(Oy)$.
+\item $\vec{E}(M) = \vec{E}(x,y,z) = \vec{E}(z)$
+\item On a comme plans de symétrie tout plan contenant l'axe $(Oz)$, comme $\Pi_1 \equiv (xOz)$ ou $\Pi_2 \equiv (yOz)$. On a un dernier plan, qui est le plan $(xOy)$ qui partage toute la plaque infinie.
+\item $M\in \mathrm{plan}(M, \vec{e}_x, \vec{e}_y)\equiv \Pi_1$, ce qui implique que
+\\ $\vec{E}(M) = E_x\vec{e}_x + E_z\vec{e}_z$ et comme $M\in\mathrm{plan}(M,\vec{e}_y, \vec{e}_z)\equiv \Pi_2$
+\\ alors $M = E_y\vec{e}_y + E_z\vec{e}_z$. Et donc nécessairement $\vec{E}(M) = E_z(z)\vec{e}_z$. Il est nécessaire que la fonction $E_z(z)$ soit impaire.
+\end{enumerate}
+
+
+\subsection{Application 3}
+\begin{enumerate}
+\item Dans ce cylindre infini, on a une invariance de la distribution de charges par translation selon l'axe $(Oz)$ et une invariance par rotation selon $\theta$ autour de l'axe $(Oz)$. On se place donc en coordonnées polaires.
+\item On en déduit que $\Vert\vec{E}\Vert(r,\theta,z) = \Vert\vec{E}\Vert(r)$.
+\item Une infinité : l'ensemble des plans contenant l'axe $(Oz)$ et le plan $(M, \vec{e}_r,\vec{e}_\theta)$.
+\item On a que $\vec{E}(M) = E_r\vec{e}_r$ et que $\vec{E}(M)\in\Pi_1\cap\Pi_2$ (plans de symétrie). Donc $\vec{E}(M) = E_r(r)\vec{e}_r$.
+\end{enumerate}
+
+\subsection{4.2}
+$\iint \vec{E}.d\vec{S} = \int_\theta\int_\varphi \vec{E}(p)R^2\sin\theta d\theta d\varphi \vec{e}_r$
+\\ $=\int_{\theta=0}^{\pi}\int_{\varphi=0}^{2\pi} \dfrac{Q}{4\pi\varepsilon_0R^2}\vec{e}_rR^2\sin\theta d\theta d\varphi \vec{e}_r = \dfrac{Q}{4\pi\varepsilon_0}2\pi\left[-\cos\theta\right]_0^\pi$
+\\ Donc : $\iint \vec{E}d\vec{S} = \dfrac{Q}{\varepsilon_0}$ puisque l'intégrale de $-\cos$ entre $0$ et $\pi$ vaut 2.
+
+\subsection{5.2}
+\begin{enumerate}
+\item On a une invariance de distribution par rotation d'angle $\theta$ et une invariance par rotation d'angle $\varphi$ des coordonnées sphériques. Donc $\Vert\vec{G}\Vert(M) = \Vert\vec{G}\Vert(r)$
+\item On a des symétries de plan $(M, \vec{e}_r, \vec{e}_\theta) = \Pi_1$ et $(M, \vec{e}_r, \vec{e}_\varphi) = \Pi_2$. Tous les plans passant par $M$ et contenant le vecteur $\vec{e}_r$ sont des plans de symétrie. Donc $\vec{G}(M) = G_r(M)\vec{e}_r$.
+\item Pour la surface de Gauss : On prend la sphère de rayon $r$ centrée en $O$. (On aura donc à traiter un cas où M appartient à la sphère gravitationnelle et le cas où M est en-dehors.)
+\item Calcul de $M_{int} = \left\{\begin{array}{rcl} \text{si $r<R$} & M_{int} = & \mu \frac{4}{3}\pi r^3 \\ \text{si $r\geq R$} & M_{int} = & \mu\frac{4}{3}\pi R^3 = M_{tot}\end{array}\right.$
+\par Calcul du flux : $ \iint \vec{G} d\vec{S} = \int_\theta\int_\varphi = G_r(r)\vec{e}_rdS\vec{e}_r = G_r(r)S_{sphere} = G_r(r)4\pi r^2$
+\item On applique le théorème de Gauss gravitationnel : $\iint \vec{G}d\vec{S} = -4\pi\mathcal{G}M_{int} $ et donc
+\par $G_r(r)4\pi r^2 = \left\{\begin{array}{rl} -4\pi\mathcal{G}M_{tot}\frac{r^3}{R^3} & \text{si $r<R$} \\ -4\pi\mathcal{G}M_{tot} & \text{si $r\geq R$}\end{array}\right.$
+\par D'où, finalement $\vec{G}(M) = \left\{\begin{array}{rl} -\dfrac{\mathcal{G}M_{tot}}{R^3}r\vec{e}_r & \text{si $r<R$} \\ -\dfrac{\mathcal{G}M_{tot}}{r^2}\vec{e}_r & \text{si $r\geq R$}\end{array}\right.$
+\end{enumerate}
+
+\subsection{5.3}
+\begin{enumerate}
+\item Dans ce cylindre infini, on a une invariance de la distribution de charges par translation selon l'axe $(Oz)$ et une invariance par rotation selon $\theta$ autour de l'axe $(Oz)$. On se place donc en coordonnées polaires. On en déduit que $\Vert\vec{E}\Vert(r,\theta,z) = \Vert\vec{E}\Vert(r)$.
+\item On a une infinité de plans de symétrie, ceux qui contiennent l'axe $(Oz)$.
+\item On prend comme surface de Gauss un cylindre de rayon $r$ et de hauteur $h$ quelconque passant par $M$. C'est un objet en trois parties : un bord cylindrique et deux disques.
+\item Calcul de $Q_{int} = \left\{\begin{array}{rl} \text{si $r<R$} & \rho_0h\pi r^2 \\ \text{si $r\geq R$} & \rho_0h\pi R^2 \end{array}\right.$
+\par Calcul de $\varPhi_2$ : $\iint \vec{E}d\vec{S} = \iint_{bordcylindrique}E_r(r)\vec{e}_rdS\vec{e}_r + \iint_{disquehaut} E_r(r)\vec{e}_rdS\vec{e}_z + \iint_{disquebas}E_r(r)\vec{e}_rdS\vec{e}_y$
+\par $ = \iint_{bordcylindrique} E_r(r)dS$ \par $ = E_r(r)\iint_{cylindre} = E_r(r)2\pi rh$
+\item On applique le théorème de Gauss : $\iint\vec{E}d\vec{S} = \frac{Q_{int}}{\varepsilon_0}$
+\par Donc $E_r(r) 2\pi rh = \begin{array}{rl} \dfrac{\rho_0h\pi r^2}{\varepsilon_0} & \text{si $r<R$} \\ \dfrac{\rho_0 h\pi R^2}{\varepsilon_0} & \text{si $r\geq r$} \end{array}$
+\par Donc $\vec{E}(M) = \left\{\begin{array}{rl} \dfrac{\rho_0}{2\varepsilon_0}r\vec{e}_r & \text{si $r<R$} \\ \dfrac{\rho_0R^2}{2\varepsilon_0 r}\vec{e}_r & \text{si $r\geq r$} \end{array}\right.$
+\end{enumerate}
+
+\subsection{5.4}
+\begin{enumerate}
+\item On a des invariances de translation selon les axes $(Ox)$ et $(Oy)$, donc $\vec{E}(M)=\vec{E}(z)$
+\item On a des symétries de plan selon $(M,\vec{e}_x,\vec{e}_z)=\Pi_1, (M,\vec{e}_y,\vec{e}_z)=\pi_2$ et $(xOy)$ plan de symétrie. De ça, on déduit que $\vec{E}(-z) = -\vec{E}(z)$ et donc $E_z(-z) = -E_z(z)$
+\item On prend comme surface de Gauss un parallélipidère de hauteur $2z$ et de surface $a$ selon $x$ et $b$ selon $y$. (Reformulation : on prend le parallélipipède rectangle de base $ab$ et de hauteur $h$.)
+\item Calcul de $Q_{int} = \sigma_0 ab$
+\par Calcul du flux : $\iint \vec{E}d\vec{S} = \iint_{bords} E_z\vec{e}_zdydz + \iint_{haut} E_z(z)\vec{e}_zdS\vec{e}_z+ \iint_{bas} E_z(-z)\vec{e}_zdS(-\vec{e_z})$
+\par $ = ab\left[E_z(z) - E_z(-z)\right] = 2abE_z(z)$
+\item On applique le théorème de Gauss : $\iint \vec{E}d\vec{S} = \dfrac{Q_{int}}{\varepsilon_0}$
+\par Donc $2abE_z(z) = \dfrac{\sigma_0ab}{\varepsilon_0}$
+\par Donc $E_z(z) = \dfrac{\sigma_0}{2\varepsilon_0}$ avec $z>0$ et donc :
+\par $\left\{\begin{array}{rl} \vec{E} = +\dfrac{\sigma_0}{2\varepsilon_0}\vec{e}_z & \text{si $z>0$} \\ \vec{E} = -\dfrac{\sigma_0}{2\varepsilon_0}\vec{e}_z & \text{si $z<0$} \end{array}\right.$
+\end{enumerate}
+
+\section{EM2}
+\subsection{1.1}
+$W_{A\to B}(\vec{f}_{Coulomb})=\int_A^B\vec{f}_{Coulomb}d\vec{l}=\int_A^B\frac{qQ}{1\pi\varepsilon_0r^2}\vec{e}_r(dr\vec{e}_r +...) = \int_A^B\frac{qQ}{4\pi\varepsilon_0r^2}dr= \left[-\frac{qQ}{4\pi\varepsilon_0r}\right]_A^B = [-qV(r)]_A^B = q(V_A-V_B)$
+\par Avec $V(r)=\frac{Q}{4\pi\varepsilon_0r}$ le potentiel créé par la charge $Q$ placée en $O$.
+\par $\Rightarrow \mathcal{E}_p^{elec} + qW(\vec{f}_{Coulomb}) = -\Delta\mathcal{E}_p^{elec} \Leftrightarrow \mathcal{E}_p^{elec}=qV (+cste)$
+
+\subsection{Application 1}
+On a que $V(M)=\frac{1}{4\pi\varepsilon_0}\sum\limits_{i=1}^N \frac{Q_i}{P_iM}$
+
+\subsection{1.2}
+Et comme $\int_A^B\vec{F}_Ld\vec{l}=-\Delta\mathcal{E}_P\Rightarrow\int_A^Bq\vec{E}d\vec{l}=-q\Delta V$ lors le potentiel $V$ est relié au champ électrostatique $\vec{E}$ par : \par $\int\vec{E}d\vec{l}=-\Delta V \Leftrightarrow\vec{E}d\vec{l}=E_xdx+E_ydy+E_zdz=-\frac{\partial V}{\partial x} - \frac{\partial V}{\partial y}-\frac{\partial V}{\partial z}=-dV$
+\par Donc $\vec{E}=-\vec{grad}(V)$ (Aussi important que $u=Ri$)
+
+\subsection{Application 2}
+Comme on a une invariance par rotation d'angles $\theta$ et $\varphi$ autour de $O$, on a que $\Vert\vec{E}\Vert(M)=\Vert\vec{E}\Vert(r)$
+\par Si $r\geq R$ : $\vec{E}=\frac{Q}{4\pi\varepsilon_0r^2}\vec{e}_r=\frac{\rho R^3}{3\varepsilon_0r^2}\vec{e}_r$
+\par Si $r\leq R$ : $\vec{E}=\frac{\rho(\frac{4}{3}\pi r^3)}{4\pi\varepsilon_0r^2}\vec{e}_r=\frac{\rho r}{3\varepsilon_0}\vec{e}_r$
+\par $\vec{E}(r)=-\vec{grad}(V)(r) = -\dfrac{dV}{dr}\vec{e}_r$
+\par Et donc, si $r\geq R$, $\dfrac{dV}{dr}=-\frac{Q}{4\pi\varepsilon_0r^2}\Leftrightarrow V(r)=-\int\frac{Q}{4\pi\varepsilon_0r^2}(+cste) = \frac{Q}{4\pi\varepsilon_0r}+cste$ et on considère la constante comme nulle de manière à ce que $V\to 0$
+\par Et si $r\leq R$, $\dfrac{dV}{dr}=-\frac{\rho r}{3\varepsilon_0}\Leftrightarrow V(r)=-\int\frac{\rho r}{3\varepsilon_0}dr (+C) = -\frac{\rho r^2}{6\varepsilon_0}+C$
+\par Donc $V$ est continue à la traversée de la surface de la sphère (chargée en volume), donc il est nécessaire que $V(R^-)=V(R^+)$
+\par $C-\frac{\rho R^2}{6\varepsilon_0}=\frac{\rho R^3}{3\varepsilon_0R}\Rightarrow C=\frac{\rho R^2}{2\varepsilon_0}$ 
+
+\subsection{2.1}
+Soient $M, M'$ deux points voisins d'une surface équipotentielle. On a que : \par $\left\{\begin{array}{ccl} V(M') & = & V(M) \\ V(M')-V(M) & = & dV \end{array}\right.$
+\par Et $dV=\vec{grad} Vd\vec{l} = -\vec{E}\cdot\vec{MM'}$
+\par Mais $V(M')-V(M)=0$ donc $\vec{E}$ est perpendiculaire à la surface.
+
+\subsection{2.2}
+Soient $M,M'$ deux points voisins d'une même ligne de champ. \par Alors $V(M')-V(M)=dV=\vec{grad}V\cdot\vec{MM'}=-\vec{E}\cdot\vec{MM}$
+\par Donc si $V(M')>V(M)$, alors $\vec{E}\cdot\vec{MM'}<0$ \par ce qui équivaut à $\vec{E}$ de sens opposé à $\vec{MM'}$ (et inversement)
+
+\subsection{Application 3}
+\begin{enumerate}
+\item Voir schéma, les équipotentielles sont soit le plan entre les deux charges, soient des patatoïdes qui sont toujours perpendiculaires au ligne de champ. Plus une surface est petite et centrée sur une des charges, plus la valeur absolue de sa charge sera grande. 
+\item Baragouinage
+\item Mensonge
+\end{enumerate}
+
+\subsection{2.3}
+$\iint_{\text{tube du champ et 2 sections}} \vec{E}d\vec{S} = \iint_{\text{section S1}}\vec{E}_1d\vec{S}_2 +\iint_{\text{section S2}}\vec{E}_2d\vec{S}_2 + \iint_{tube} \vec{E}d\vec{S}$
+\par Et ici $\vec{E}d\vec{S}=\vec{0}$
+\par Donc $\iint_{sections} \vec{E}d\vec{S} = -E_1S_1 + E_2S_2$ or $\iint \vec{E}d\vec{S}=0$ s'il n'y a pas de charge intérieure. Donc $E_1S_1= E_2S_2$ 
+
+\subsection{Application 2 bis}
+Les surfaces sont les sphères de même centre que la sphère chargée, plus leur rayon est grand, moins leur potentiel est élevé.
+
+\subsection{Application 4}
+\begin{enumerate}
+\item On a des invariances par translation selon $z$ et par rotation d'angle $\theta$, donc $\Vert\vec{E}\Vert(M)=E_r$ et donc que $V(M)=V(r)$, et donc $\vec{E} =-\vec{grad}V =-\frac{dV}{dr}\vec{e}_r$
+\par On écrit le théorème de Gauss : $\iint \vec{E}d\vec{S}=2\pi rhE_r(r)$
+\par On a que $\vec{E}= \frac{\rho r}{2\varepsilon_0}\vec{e}_r$ et si $r\leq R$ et $\vec{E}=\dfrac{\rho R^2}{2\varepsilon_0 r}\vec{e}_r$ si $r\geq R$.
+\par Si $r\leq R$, alors : $V =-\dfrac{\rho r^2}{4\varepsilon_0}+D$
+\par Si $r\geq R$, alors : $V=-\dfrac{\rho R^2}{2\varepsilon_0}\ln(r)+C$
+\par Avec, comme le champ est continu : $V(R^-)=V(R^+)\Leftrightarrow -\frac{\rho R^2}{2\varepsilon_0}ln(R) + C = -\frac{\rho R^2}{4\varepsilon_0}+D$
+\par Donc $C = -\frac{\rho R^2}{4\varepsilon_0}+\frac{\rho R^2}{2\varepsilon_0}ln(R)+D$ avec $D=V(0)$
+\par Et donc, finalement : $V(r) = -\frac{\rho R^2}{4\varepsilon_0}+D$ si $r\leq R$ et $V(r) = \frac{\rho R^2}{2\varepsilon_0}ln\left(\frac{R}{r}\right) -\frac{\rho R^2}{4\varepsilon_0}+D$ si $r\geq R$
+\item NON. Les lignes de champ sont radiales et les équipotentielles sont des sphères de même centre que la sphère.
+\end{enumerate}
+
+\subsection{3.2}
+$\vec{E}_{tot} = \vec{E}_+ + \vec{E}_-$ par théorème de superposition. 
+\par $\vec{E}_+=\left\{\begin{array}{rl} +\frac{\sigma}{2\varepsilon_0}\vec{e}_z & \text{si $z>\frac{e}{2}$} \\ -\frac{\sigma}{2\varepsilon_0}\vec{e}_z & \text{si $z<\frac{e}{2}$} \end{array}\right.$
+\par $\vec{E}_-=\left\{\begin{array}{rl} -\frac{\sigma}{2\varepsilon_0}\vec{e}_z & \text{si $z>-\frac{e}{2}$} \\ -\frac{\sigma}{2\varepsilon_0}\vec{e}_z & \text{si $z<-\frac{e}{2}$} \end{array}\right.$
+\par Donc $\vec{E}=\left\{\begin{array}{rl} \vec{0} & \text{Si $z>\frac{e}{2}$} \\ -\frac{\sigma}{\varepsilon_0} & \text{si $-\frac{e}{2}<z<\frac{e}{2}$} \\ \vec{0} & \text{Si $z>-\frac{e}{2}$} \end{array}\right.$
+
+\subsection{3.3}
+Calcul de $V$ : On a invariance par translation sur les axes $x$ et $y$. $z$ est le seul paramètre, donc $V=-\int E_zdz$
+\par Donc : $V(z)=\left\{\begin{array}{cl} V_+=cste & \text{Si $z>\frac{e}{2}$} \\ \frac{\sigma}{\varepsilon_0}z & \text{si $-\frac{e}{2}<z<\frac{e}{2}$} \\ V_-=cste & \text{Si $z>-\frac{e}{2}$} \end{array}\right.$
+\par Donc il existe une tension $U = V(z=\frac{e}{2}) - V(z=-\frac{e}{2}) = \frac{\sigma}{\varepsilon_0}e = \frac{Q}{S\varepsilon_0}e$ \par On revient à $Q=Cu=\frac{S\varepsilon_0}{e}U$
+\par Comme on n'a en fait pas de vide entre les deux armatures, on doit multiplier $C$ par $\varepsilon_r$, permittivité électronique entre les deux armatures. Mais c'est négligé.
+
+
+\subsection{3.4}
+$\mathcal{P}_{elec} = u\cdot i = u\frac{dQ}{dt}=uC\dfrac{du}{dt}=\dfrac{d}{dt}\left[\frac{1}{2}Cu^2\right]$ ou $\dfrac{d}{dt}\left[\frac{1}{2C}Q^2\right]$
+\par D'où la variation d'énergie électrique : $\Delta E_{elec}=\int_{t_1}^{t_2}\mathcal{P}_{elec}dt = \left[\frac{1}{2}Cu^2\right]_{t_1}^{t_2} =\left[\frac{1}{2C}Q^2\right]$
+\par Donc $\mathcal{E}_{elec} = \frac{1}{2C}Q^2 = \frac{1}{2\frac{\varepsilon_0S}{e}}(S\varepsilon_0E)^2 = \frac{Se}{2}\varepsilon_0E^2 \Rightarrow w_{elec}=\frac{\mathcal{E}_{elec}}{V}=\frac{1}{2}\varepsilon_0E^2$
+
+
+\section{Compléments EM2}
+\subsection{1.1}
+Appliquons le théorème de Gauss à un petit volume mésoscopique, de forme cubique et de volume $d\tau = dxdydz$ :
+\par $\iint\vec{E}d\vec{S}=\vec{E}(x+dx)d\vec{S}_1 + \vec{E}(x)d\vec{S}_2 +\vec{E}(y+dy)d\vec{S}_3 + \vec{E}(y)d\vec{S}_4 +\vec{E}(z+dz)d\vec{S}_5 + \vec{E}(x)d\vec{S}_6$ \par $ = E_x(x+dx)dydz + E_x(x)(-dydz) +E_y(y+dy)dxdz + E_y(y)(-dxdz)+E_z(z+dz)dxdy+E_z(z)dxdy$ \par $ =dydz(E_x(x+dx)+E_x(x))+dxdz(E_y(y+dy)-E_y(y))+dxdy(E_z(z+dz)-E_z(z))$ \par $=dydz\dfrac{\partial E_x}{\partial x}dx+dxdz\dfrac{\partial E_y}{\partial y}dy+dxdy\dfrac{\partial E_z}{\partial z}dz$
+\par $\Rightarrow \iint\vec{E}d\vec{S}=dxdydz\left[\dfrac{\partial E_x}{\partial x}+\dfrac{\partial E_y}{\partial y}+\dfrac{\partial E_z}{\partial z}\right]=\frac{dQ}{\varepsilon_0}=\frac{dxdydz\rho}{\varepsilon_0}$ \par $\Rightarrow \dfrac{\partial E_x}{\partial x}\dfrac{\partial E_x}{\partial x}+\dfrac{\partial E_y}{\partial y}+\dfrac{\partial E_z}{\partial z}=\frac{\rho}{\varepsilon_0}$
+\par D'où l'équation de Maxwell-Gauss : $\mathrm{div}\vec{E}=\frac{\rho}{\varepsilon_0}$
+
+\subsection{Application 1}
+\begin{enumerate}
+\item On se place en coordonnées cylindriques : dedans, on a des invariances de translation selon $z$ et de rotation selon $\theta$, avec des symétries qui font que $\vec{E}(M)=E_r(r)\vec{e}_r$, et on néglige les effets de bord car on suppose le fil infini.
+\item On place M à l'extérieur, à distance $r$. On a que $\mathrm{div}\vec{E}=\frac{\rho}{\varepsilon_0}$ par Maxwell-Gauss. \par Et donc $\frac{\rho}{\varepsilon_0}=\frac{1}{r}\dfrac{\partial (rE_r)}{\partial r}$ \par Mais comme $M$ à l'extérieur du fil, $\rho(M)=0$, et donc $\dfrac{\partial(rE_r)}{\partial r}=0$ \par Et finalement $E_r(r)=\frac{B}{r}$ en extérieur
+\item En $M$ à l'extérieur du fil : $\frac{1}{r}\dfrac{\partial (rE_r)}{\partial r}=\frac{\rho}{\varepsilon_0}$ comme la charge est uniforme. Donc : $rE_r=\int\frac{\rho}{\varepsilon_0}rdr=\frac{\rho}{2\varepsilon_0}r^2+C$ \par Et donc $E_r=\frac{\rho}{2\varepsilon_0}r+\frac{C}{r}$ \par Mais $C=0$ par symétries au centre du fil.
+\item Par continuité en $r=R$, on a que $\frac{\rho}{2\varepsilon_0}R=\frac{B}{R}$ \par Et donc $B=\frac{\rho}{2\varepsilon_0}R^2$ \par Dans une distribution linéique, avec $\lambda=\pi R^2\rho$ on aurait $\vec{E}=\frac{\lambda}{2\pi\varepsilon_0r}\vec{e}_r$
+\end{enumerate}
+
+\subsection{1.2}
+On a vu qu'en régime stationnaire, le potentiel scalaire $V$ dépendait de $E$ par la relation : $\vec{E}=-\vec{grad}(V)$
+\par En injectant cette égalité dans Maxwell-Gauss, on obtient : $d\mathrm{div}\vec{E}=\frac{\rho}{\varepsilon_0}$ \par $\Rightarrow \mathrm{div}(-\vec{grad}(V))=-\left(\dfrac{\partial}{\partial x}\dfrac{\partial V}{\partial x}+\dfrac{\partial}{\partial y}\dfrac{\partial V}{\partial y}+\dfrac{\partial}{\partial z}\dfrac{\partial V}{\partial z}\right)$
+\par $=-\left(\dfrac{\partial^2V}{\partial x^2}+\dfrac{\partial^2V}{\partial y^2}+\dfrac{\partial^2V}{\partial z^2}\right)=-\Delta V=\frac{\rho}{\varepsilon_0}$
+\par D'où l'équation de Laplace : $\Delta V = -\frac{\rho}{\varepsilon_0}$
+
+\subsection{Application 2}
+D'après les applications dans EM2, on a que $\vec{E}(M)=E_z(z)\vec{e}_z$ \par On a que $\Delta V=-\frac{\rho(z)}{\varepsilon_0}=0$ \par $\Rightarrow V(z)=Az+B$ \par On pose ensuite ces conditions limites : $\left\{\begin{array}{rcl} V_2 & = & A\frac{e}{2}+B \\ V_1 & = & -A\frac{e}{2}+B \end{array}\right.$ \par On en déduit $B=\frac{V_1+V_2}{2}$ et $A=\frac{V_2-V_1}{e}$
+
+\subsection{Application 3}
+On peut utiliser Laplace parce qu'on a une charge nulle entre les deux armatures. On a alors $\Delta V(r)$. \par Donc $\frac{1}{r}\dfrac{d}{dt}\left(r\dfrac{dV(r)}{dr}\right)$ \par $\Rightarrow r\dfrac{dV(r)}{dt} = C_1 \Rightarrow \dfrac{dV(r)}{dr}=\frac{C_1}{r}$ \par $\Rightarrow V(r)=C_1ln(r)+C_2$ 
+\par Prenons ensuite les conditions aux limites : $\left\{\begin{array}{rcccl} V_1 & = & V(R_1) & = & C_1\ln(R_1)+C_2 \\ V_2 & = & V(R_2) & = & C_1\ln(R_2)+C_2 \end{array}\right.$ \par $\Rightarrow C_1=\frac{V_2-V_1}{\ln(R_2/R_1)}$ \par $\Rightarrow C_2=$ \par D'où l'expression de $V(r)=$
+
+
+\section{EM3}
+\subsection{1.3}
+On a $n$ électrons de charge $q_0$ qui se déplacent à vitesse $v$. On a que $i=\dfrac{dQ}{dt}$, les charges qui passent à travers de la section $S$ pendant $dt$.\par  On a que $dQ=n[Svdt]q_0$ et donc $i=nSvq_0$ \par On pose alors $\vec{j}=nq_0\vec{v}$, le vecteur densité volumique de courant.
+
+\subsection{Application 1}
+On a $I=\iint\alpha r^2rdrd\theta = 2\pi\alpha \frac{R^4}{4}$ et donc $\alpha =\frac{2I}{\pi R^4}$
+
+\subsection{Application 3}
+\begin{enumerate}
+\item On a une invariance par translation selon l'axe $(Oz)$ et par rotation d'angle $\theta$ autour de l'axe $(Oz)$
+\item On se place ensuite en coordonnées cylindriques, alors la norme du champ ne dépendra que de $r$
+\item Le plan $(M,\vec{e}_r,\vec{e}_\theta)$ est un plan d'antisymétrie de $\mathcal{D}$ et que $(M,\vec{e}_r,\vec{e}_z)$ est un plan de symétrie de $\mathcal{D}$. \par Alors on a que $\vec{B}$ sera seulement selon $\vec{e}_r$ et $\vec{e}_\theta$ et aussi que $\vec{B}$ est perpendiculaire au plan de symétrie. \item Donc $\vec{B}=B_\theta(r)\vec{e}_\theta$
+\item La même expression que précédemment.
+\end{enumerate}
+
+\subsection{Application 4}
+\begin{enumerate}
+\item On a $d\Phi_1=\vec{B}(M_1)d\vec{S}_1=B(M_1)\vec{e}_\theta dS_1(-\vec{e}_\theta) = -B(M_1)DS_1=-B(r)dS$ \par Et de même $d\Phi_2=\vec{B}(M_2)d\vec{S}_2=B(M_2)\vec{e}_\theta dS_2\vec{e}_\theta =B(r)dS$
+\item Selon la surface du bord du tore, $d\vec{S}\perp\vec{B}\Rightarrow d\Phi_b=0$ \par $\Rightarrow \Phi_{tot}=-B(r)dS+B(r)dS+0=0$
+\end{enumerate}
+
+\subsection{Application 5}
+\begin{enumerate}
+\item $\vec{B}=B(r)\vec{e}_\theta$
+\item $\oint\vec{B}d\vec{l}=\int_{\theta=0}^{2\pi}B(r)\vec{e}_\theta\cdot rd\theta\vec{e}_\theta=2\pi rB(r)$ qui à priori n'est pas nulle.
+\item Alors : $\vec{B}(M)=B(r)\vec{e}_\theta=\frac{\mu_0 I}{2\pi r}\vec{e}_\theta$
+\end{enumerate}
+
+\subsection{Application 6}
+$I_{enl} = -I_1-I_2+I_3$
+\par Le courant passe dans l'autre sens, donc $I_1$ et $I_2$ sont négatifs et les autres sont positifs.
+
+\subsection{Application de cours 1}
+\begin{enumerate}
+\item On a $I=\iint\vec{j}d\vec{S}=\int_{\theta=0}^{2\pi}\int_{r=0}^R\vec{j} drrd\theta\vec{e}_z=\vec{j} = \frac{I}{\pi R^2}\vec{e}_z$ avec $\vec{j}=j\vec{e}_z$
+\item Sur les symétries et les invariances : on a des invariances par translation selon l'axe $Oz$ et par rotation d'angle $\theta$ donc la norme dépend uniquement de $r$
+\par $\Pi=(M,\vec{e}_r,\vec{e}_z)$ est un plan de symétrie de $\mathcal{D}$, donc $\vec{B}\perp\Pi$ donc $\vec{B}(M)=B(M)\vec{e}_\theta$
+\par Donc $\vec{B}=B(r)\vec{e}_r$
+\par Comme pour l'électrostat, il va falloir choisir une forme géométrique. Cette fois, c'est plus une surface de Gauss mais un contour d'Ampère, le cercle de rayon $r$ centré sur $Oz$ qui passe par $M$.
+\par On a donc la circulation : $\oint\vec{B}d\vec{l}=2\pi rB(r)$
+\par On calcule le courant enlacé : $I_{enl}=\left\{\begin{array}{rl} \int_{\theta=0}^{2\pi}\int_{0}^r\vec{j}d\vec{S}=j\pi r^2=\frac{Ir^2}{R^2} & \text{si $r\leq R$} \\ I & \text{sinon} \end{array}\right.$
+\par Donc par théorème d'Ampère : $\oint\vec{B}d\vec{l}=\mu_0I_{enl} \Rightarrow \vec{B}(M) \left\{\begin{array}{rl} \frac{\mu_0j}{2}r\vec{e}_\theta=\frac{\mu_0I}{2\pi R^2}r\vec{e}_\theta & \text{si $r\leq R$} \\ \frac{\mu_0I}{2\pi r}\vec{e}_\theta & \text{sinon} \end{array}\right.$
+\end{enumerate}
+
+\subsection{Application de cours 2}
+\begin{enumerate}
+\item Symétries de $\mathcal{D}$ : on a $(M,\vec{e}_r,\vec{e}_\theta)$ un plan de symétrie, donc $\vec{B}\perp(M,\vec{e}_r,\vec{e}_\theta)$ et donc $\vec{B}(M)=B(M)\vec{e}_z$
+\par On a une invariance par translation selon $Oz$ et une invariance par rotation selon $\theta$, le système de coordonnées adapté est cylindrique. Et donc $\Vert\vec{B}(M)\Vert=B(r)$
+\item On choisira un contour d'Ampère rectangulaire dont une partie est selon l'axe $Oz$. Ce rectangle ACDE aura deux côtés parallèles à l'axe $Oz$
+\par Sur le contour intérieur : comme on peut l'orienter selon $\vec{e}_\theta$, on le fait. Le champ est alors à priori porté par $Oz$ : \par $\oint\vec{B}d\vec{l}=\int_A^CB(0)\vec{e}_zdz\vec{e}_z+\int_C^DB\vec{e}_zdr\vec{e_r}+\int_D^CB(r)\vec{e}_e(-dz\vec{e}_z) + \int_D^AB\vec{e}_z(-dr\vec{e}_r)$ \par $=B(0)a - B(r)a =\mu_0I_{enl}=0$ \par Donc $B(0)=B(r)=B_{int}$
+\par Sur le contour extérieur : on aura la même chose, et on obtiendra aussi un champ uniforme en tout $r_1$ et $r_2$.
+\item Prenons un dernier contour qui enjambe : $\oint\vec{B}d\vec{l}=\int_A^CB_{int}\vec{e}_zdz\vec{e}_z+0+0+\int_E^AB_{ext}\vec{e}_z(-dz\vec{e}_z)$ \par$ = \left[B_{int}-B_{ext}\right]a = B_{int}a$ en faisant l'hypothèse que le champ extérieur est nul. \par $= \mu_0I_{enl}=\mu_0naI$ par théorème d'Ampère \par $\Rightarrow \vec{B}_{int} =\mu_0nI\vec{e}_z$
+\end{enumerate}
+
+\subsection{Application 7}
+Le champ dans le centre sera forcément nul.
+
+
+\section{EM4 : distributions dipôlaires}
+\subsection{1.2}
+Considérons une distribution de charges $q_i$ (placées aux points $OP_i$) portant une charge totale nulle $\sum\limits_i q_i=0$\par On appelle moment dipôlaire le vecteur $\vec{p}=\sum\limits_i q_i\vec{OP}_i = \sum\limits_{j charge<0}q_j\vec{OP}_j + \sum\limits_{kcharge>0}q_k\vec{OP}_k$
+\par Où $\sum\limits_j q_j = -q$ (charge totale négative) et $\sum\limits_k q_k=+q$ (charge totale positive)
+\par $\sum\limits_{kcharge>0}q_k\vec{OP}_k$ correspond au barycentre d'un ensemble de points $(M_i)$ affectés de coefficients $(m_i)$ : le point $G$ tel que $\sum\limits_i m_i \vec{GM}_i = \vec{0}$ \par Pour le trouver, si $\sum m_i\neq 0$ : $\sum m_i(\vec{GO}+\vec{OM}_i)=\vec{0}$ \par Ce qui permet de faire $\vec{GO}\sum m_i + \sum m_i\vec{OM}_i =\vec{0}$ \par Et donc $\vec{OG}=\frac{1}{\sum m_i}\sum m_i\vec{OM}_i$
+\par Alors : $\vec{p} = \sum_j q_j\vec{ON} + \sum_k q_k\vec{OP} = -q\vec{ON} + q\vec{OP}=q(\vec{NO}+\vec{OP})=q\vec{NP}$
+
+\subsection{1.3}
+Symétries et invariances : à cause de la séparation de charge entre N chargé $-q$ et P chargé $+q$.
+\par On a invariance par rotation d'angle $\varphi$ autour de l'axe du dipôle. Donc $V(M)=V(r,\theta)$ en coordonnées sphériques.
+\par On a comme symétries de $D$ : tout plan contenant N et P est plan de symétrie. Le plan $(M,\vec{e}_r, \vec{e}_\theta)$ est plan de symétrie donc $\vec{E}\in (O, \vec{e}_r,\vec{e}_\theta)$. Le plan médian qui passe par O est un plan d'antisymétrie, auquel le champ est toujours orthogonal.
+
+\par Expression du potentiel : par superposition, on aura :
+\par $V(r,\theta) = V_+(r,\theta)+V_-(r,\theta)=\frac{q}{4\pi\varepsilon_0PM} + \frac{-q}{4\pi\varepsilon_0NM}$
+\par On a $PM=\sqrt{PM^2}=\sqrt{\vec{PM}\cdot\vec{PM}}=\sqrt{(\vec{PO}+\vec{OM})(\vec{PO}+\vec{OM})}$ \par $= \sqrt{r^2-ar\vec{e}_z\vec{e}_r+\left(\frac{a}{2}\right)^2} = r\sqrt{1-\frac{a}{r}\cos\theta + \left(\frac{a}{2r}\right)^2}$
+\par Et on a $NM= r\sqrt{1+\frac{a}{r}\cos\theta + \left(\frac{a}{2r}\right)^2}$
+\par D'où $V(r,\theta)=\dfrac{q}{4\pi\varepsilon_0 r\sqrt{1-\frac{a}{r}\cos\theta + \left(\frac{a}{2r}\right)^2}}+\dfrac{-q}{4\pi\varepsilon_0 r\sqrt{1+\frac{a}{r}\cos\theta + \left(\frac{a}{2r}\right)^2}}$
+\par Donc $V(r,\theta)\simeq\frac{q}{4\pi\varepsilon_0r}\left[\left(1+\frac{a}{2r}\cos\theta\right)-\left(1-\frac{a}{2r}\cos\theta\right)\right]$
+\par $V(r,\theta)=\frac{q}{4\pi\varepsilon_0 r}\left[2\frac{a}{2r}\cos\theta\right]= \frac{p}{4\pi\varepsilon_0r^2}$
+\par En trichant un peu, on peut réécrire de manière intrinsèque : $V(r,\theta)=\frac{\vec{p}\cdot\vec{r}}{4\pi\varepsilon_0r^3}$
+
+\subsection{1.4}
+Expression du champ de $\vec{E}$ : $\vec{E}=-\vec{grad}(V)$
+\par $ = \left|\begin{matrix} -\dfrac{\partial V}{\partial r} \\ -\frac{1}{r}\dfrac{\partial V}{\partial \theta} \\ 0\end{matrix}\right. =\left|\begin{matrix} \dfrac{2p\cos\theta}{4\pi\varepsilon_0r^3} \\ \dfrac{p\sin\theta}{4\pi\varepsilon_0 r^3} \\ 0 \end{matrix}\right.= \frac{p}{4\pi\varepsilon_0r^3}\left|\begin{matrix}2\cos\theta \\ \sin\theta \\ 0 \end{matrix}\right.$
+
+\par Pour les équipotentielles : $V(r,\theta)= \frac{p\cos\theta}{4\pi\varepsilon_0r^2}=V_0\Rightarrow r^2 = \frac{p\cos\theta}{4\pi\varepsilon_0V_0} \Rightarrow r = \sqrt{\left|\frac{p\cos\theta}{4\pi\varepsilon_0V_0}\right|}$
+\par Pour les lignes de champ, on cherche les courbes telles que $d\vec{l}\wedge\vec{E}=\vec{0}$
+
+\subsection{2.1}
+Moment du couple : $\vec{\Gamma}=\vec{OP}\wedge\vec{F}_+ + \vec{ON}\wedge\vec{F}_- = \left(\frac{a}{2}\vec{u}\wedge q\vec{E}_0\right) + \left(-\frac{a}{2}\vec{u}(-q\vec{E}_0)\right) = qa\vec{u}\wedge\vec{E}_0 = \vec{p}\wedge\vec{E}_0$
+\par Le champ extérieur tend à faire tourner le dipôle pour l'aligner dans son sens.
+
+\subsection{2.2}
+On reprend l'exemple d'une charge $-q$ au point $N$ et la charge $q$ au point $P$. \par On rappelle : $\mathcal{E}_p=+qV(P)-qV(N)$ \par où $\left\{\begin{array}{rcl} V(P) & \simeq & V(O) + \vec{grad}(V(O))\vec{OP} \\ V(N) & \simeq & V(O) + \vec{grad}(V(O))\vec{ON}\end{array}\right.$
+\par Et donc $\mathcal{E}_p \simeq q\vec{grad}(V)\cdot(\vec{NP}) =-\vec{p}\vec{E}$ \par Et donc $\mathcal{E}_p \simeq -pE_0\cos\theta$ dans ce cas
+\par On rappelle qu'en dimension 3, les DL sont : $f(x+dx,y+dy,z+dz) = f(x,y,z) + \vec{grad}(f)d\vec{l}$
+
+\subsection{2.3}
+On a que $F_x=qE_x(P)-qE_x(N) = q\left[E(O) + \vec{grad}(E_x)\cdot\vec{OP}\right]-q\left[E(O)+\vec{grad}(E_x)\cdot\vec{ON}\right] $\par $= q\vec{grad}(E_x)\cdot(\vec{OP}-\vec{ON}) = q\vec{grad}\cdot\vec{NP} = \vec{p}(\vec{grad}(E_x))$ \par $ = (\vec{p}\cdot\vec{grad})E_x = \left[p_x\dfrac{\partial}{\partial x} + p_y\dfrac{\partial }{\partial y} + p_z\dfrac{\partial}{\partial z}\right]E_x = \vec{grad}(\vec{p}E_x\vec{e_x})$
+\par Conséquence : la force qui apparaît dans un champ non-uniforme tend à attirer le dipôle vers les zones de \underline{champ fort}.
+
+\subsection{3.2}
+Invariances de la distribution par rotation autour de l'axe autour du vecteur $\vec{m}$ donc de rotation selon l'angle $\varphi$. On se place en coordonnées sphériques.
+\par Symétries de la distribution : le plan $(xOy)=\Pi$ perpendiculaire à $\vec{m}$ contenant le dipôle. $\Pi$ est un plan de symétrie de la distribution, donc c'est un plan d'antisymétrie du champ $\vec{B}$
+\par Le plan $(M, \vec{e}_r, \vec{e}_\theta)=\Pi^*$ est un plan d'antisymétrie de la distribution, donc un plan de symétrie du champ $\vec{B}$ : on en déduit que $\vec{B}$ est dans ce plan.
+
+\subsection{Application 2}
+\begin{enumerate}
+\item Elle adopte la direction du champ magnétique terrestre : son vecteur $\vec{m}$ est aligné avec le champ magnétique terrestre $\vec{B}_{T_H}$ en sa position.\par On le justifie par l'énergie potentielle : $\mathcal{E}_p = -\vec{m}\vec{B}_{T_H} = -mB_{T_H}\cos\theta$ qui a une position d'équilibre stable en $\theta=0$ donc $\vec{m}$ est parallèle à $\vec{B}_T$ et de même sens.
+\item On mesure $\theta=45$° quand $\vec{m}$ a atteint sa nouvelle position d'équilibre, càd que $\vec{B}_{tot}$ est de même sens. \par Et donc $\vec{B}_{tot} = \vec{B}_{T_H} +\vec{B}_S = \left|\begin{matrix} B_{tot}\cos\theta \\ B_{tot}\sin\theta\end{matrix}\right. = \left|\begin{matrix}\frac{B_{tot}}{\sqrt{2}} \\ \frac{B_{tot}}{\sqrt{2}}\end{matrix}\right.$ \par Donc $B_{T_H}=B_S$
+\par On peut donc mesurer le champ de la terre avec cette expérience. 
+\item On a donc $\vec{B}_{T_H} = \mu_0\frac{N}{L}I$
+\end{enumerate}
+
+
+\section{EM5 LESGOOOOOOOOOOOOOOOOOO}
+\subsection{1.1}
+On va choisir un système fermé qui contient le système ouvert et le faire se déplacer dans l'espace et le temps.
+\par Soit $\Sigma^\star$ un système fermé entre deux sections. Soit $\Sigma^\star(t+dt)$. La largeur de la tranche de $\Sigma^\star$ \par $\Sigma^\star$ est un système fermé, donc par conservation de la charge, $q_{\Sigma^\star}(t+dt) - q_{\Sigma^\star}=0$ \par Et donc $[dq_s + q_\sigma(t+dt)]-[dq_s+q_\sigma(t)]=0$
+\par $Sdx[\rho(t+dt)-rho(t)]-j(x)Sdt+j(x+dx)Sdt=0$ \par $\dfrac{\partial \rho}{\partial t}dtdx + \dfrac{\partial j}{\partial x}dxdt = 0$ \par et Donc $\dfrac{\partial\rho}{\partial t}+\dfrac{\partial j}{\partial x}=0$
+\par Donnons un exemple de grandeur qui n'est pas conservative. L'entropie n'est pas conservative, elle est créé ! 
+
+\subsection{2}
+Ce que montrent les équations de Maxwell, c'est que si on connait $div\vec{A}$ et $\vec{rot}(\vec{A})$, alors on peut connaître $\vec{A}$ tout entier. Et c'est beau.
+
+\subsection{2.2}
+On veut retrouver $\dfrac{\partial\rho}{\partial t} + div\vec{j}=0$ avec les équations de Maxwell-Ampère et de Maxwell-Gauss. 
+\par $div(\vec{rot}(\vec{B}))=\vec{\nabla}\cdot\left(\vec{\nabla}\wedge\vec{B}\right)= \dfrac{\partial }{\partial x}\left(\dfrac{\partial B_z}{\partial y} -\dfrac{\partial B_y}{\partial z}\right) +\dfrac{\partial }{\partial y}\left(\dfrac{\partial B_x}{\partial z} -\dfrac{\partial B_z}{\partial x}\right) + \dfrac{\partial }{\partial z}\left(\dfrac{\partial B_y}{\partial x} -\dfrac{\partial B_x}{\partial y}\right)$
+\par Or la dérivation commute. Donc $div(\vec{rot}(\vec{B}))=0$ pour tout champ $\vec{B}$
+\par Donc en faisant le $div$ de l'équation de Maxwell-Ampère, on obtient : \par $div(\vec{rot}(\vec{B}))=0 =div\left(\mu_0\vec{j}+\mu_0\varepsilon_0\dfrac{\partial E}{\partial t}\right)$
+\par Or $div\vec{E} = \frac{\rho}{\varepsilon_0}$ par Maxwell-Gauss. \par Donc $0=\mu_0div\vec{j} + \mu_0\dfrac{\partial \rho}{\partial t}$
+
+\subsection{3.1}
+On a que $div\vec{E}=\frac{\rho}{\varepsilon_0}$ et donc : $\iiint div\vec{E}d\tau=\oint\int\vec{E}d\vec{S}$ avec $M$ dans le volume $V$ délimité par une surface fermée $S$ par Green-Ostrogradsky.
+\par Or $\iiint div\vec{E}d\tau=\iiint\frac{\rho(M)}{\varepsilon_0}d\tau=\oint\int\vec{E}d\vec{S}$
+\par D'où le théorème de Gauss.
+
+\subsection{3.2}
+Flux conservatif veut dire que le flux entrant dans une surface fermée est égal au flux sortant de dccette surface
+\par On a que $div\vec{B}=0$ et donc : $\iiint div\vec{B}d\tau=\oint\int\vec{B}d\vec{S}$ avec $M$ dans le volume $V$ délimité par une surface fermée $S$ par Green-Ostrogradsky. 
+\par Or $\iiint div\vec{B}d\tau=\iiint 0d\tau=\oint\int\vec{E}d\vec{S}$
+\par Le champ $\vec{B}$ ne diverge pas à partir de ses sources (différent de $\vec{E}$) 
+\par Maxwell-Flux reste valable aussi en dynamique (en régime non-stationnaire).
+
+\subsection{3.3}
+$\iint\limits_{(S)}\vec{rot}(\vec{B}).d\vec{S} = \oint\limits_{(C)}\vec{B}d\vec{l}$ avec $(C)$ le contour fermé sur lequel s'appuie $(S)$
+\par $=\iint_{(S)}\mu_0\vec{j}d\vec{S} + \iint_{(S)}\mu_0\varepsilon_0\dfrac{\partial \vec{E}}{\partial t}d\vec{S} = \mu_0I_{(S)} + \mu_0I_{depl}$ avec $I_{depl}=\iint_{S}\varepsilon_0\dfrac{\partial\vec{E}}{\partial t}d\vec{S}$
+\par On obtient le théorème d'Ampère généralisé : $\oint_{(C)}\vec{B}d\vec{l} = \mu_0I_{(S)}+\mu_0I_{depl}$
+
+\subsection{3.4}
+On intègre l'équation de Maxwell-Faraday sur une surface $(S)$ : $\iint_{(S)}\vec{rot}(\vec{E})d\vec{S} = \oint\vec{E}d\vec{l} = \iint -\dfrac{\partial\vec{B}}{\partial t}d\vec{S} = -\dfrac{\partial}{\partial t}\iint\vec{B}d\vec{S}= -\dfrac{\partial \phi_b}{\partial t}$
+\par Quand le champ $\vec{B}(t)$ varie, il apparaît une circulation non-nulle du champ $\vec{E}$ le long d'un contour fermé. (En statique, on aurait $\vec{E}=-\vec{grad}(V) \Leftrightarrow \oint\vec{E}d\vec{l}=\oint-\vec{grad}(V)d\vec{l}=-[V]_A^A=0$)
+\par On retrouve hors statique la loi de Faraday qui correspond au phénomène d'induction : $\oint \vec{E}d\vec{l}=e_{ind}=-\frac{d\phi_B}{dt}$
+
+\subsection{Application 1}
+1. On utilisera l'équation de Maxwell-Ampère : $\vec{rot}(\vec{B})=\mu_0\vec{j} + \mu_0\varepsilon_0\dfrac{\partial\vec{E}}{\partial t}$. Il n'y a pas de courant entre les armatures, donc $\vec{rot}\vec{B}=\mu_0\varepsilon_0\dfrac{\partial\vec{E}}{\partial t}$
+\par 2. On a des invariances de translation selon $r$ (tant qu'il est grandement inférieur à $R$ pour négliger l'effet de bord, on le considérera donc comme un paramètre) et rotation selon $\theta$. Donc $\Vert \vec{B}\Vert(M)=\Vert\vec{B}\Vert(r,z)$. On se placera alors en coordonnées cylindriques.
+\par Sur les symétries : le plan $(M,\vec{e}_r,\vec{e}_z)$ est un plan de symétrie de $D$ et de $\vec{E}$ donc le champ magnéfique sera selon $\vec{e}_\theta$
+\par 3. On va donc avoir $\mu_0\varepsilon_0\dfrac{\partial\vec{E}}{\partial t}= -\mu_0\varepsilon_0E_0\omega\sin(\omega t)\vec{e}_z$ qui est égal à $\vec{rot}\vec{B}\cdot\vec{e}_z=\frac{1}{r}\dfrac{\partial rB_\theta}{\partial r} - \frac{1}{r}\dfrac{\partial B_r}{\partial \theta}$
+\par Et donc $\frac{1}{r}\dfrac{d}{dr}(rB_\theta)=-\mu_0\varepsilon_0E_0\omega\sin(\omega t)$ \par $\dfrac{d}{dr}(rB_\theta)=-\mu_0\varepsilon_0E_0r\omega\sin(\omega t)$ \par en primitivant : $rB_\theta(r) = -\mu_0\varepsilon_0E_0\frac{r^2}{2}\omega\sin(\omega t)$ sans constante d'intégration car sinon le champ divergerait en $0$, ce qui est incohérent.
+\par Donc $\vec{B}=-\mu_0\varepsilon_0E_0\omega\frac{r}{2}\sin(\omega t)\vec{e}_\theta$
+
+\subsection{4.1}
+Maxwell-Gauss et Maxwell-Thomson ne changent pas en stationnaire, n'ayant pas de dépendance temporelle.
+\par Pour Maxwell-Faraday : $\vec{rot}(\vec{E})=\vec{0}$ qui donne que $E=-\vec{grad}(V)$
+\par Pour Maxwell-Ampère : $\vec{rot}(\vec{B})=\mu_0\vec{j}$ qui permet de retrouver le théorème d'Ampère
+
+\subsection{5.1}
+On peut se placer dans l'ARQS quand on peut négliger le temps de retard $\tau$ à la propagation du signal dans le circuit par rapport au temps caractéristique de variation des signaux $T_{signal}$.
+\par Avec un circuit de longueur $L$ : $\tau= \frac{L}{c}$ (enfin, $\frac{2}{3}c$ plus rigoureusement.) \par On veut donc $\frac{L}{C}\ll T_{signal}=\frac{1}{f_{signal}}\Leftrightarrow f_{signal}\ll \frac{c}{L}$ ou si on peut négliger la taille du circuit devant la longueur d'onde du signal : $L\ll \lambda_{signal}=\frac{c}{f_{signal}}$
+
+\subsection{5.2}
+On a $\epsilon_0\mu_0=\frac{1}{c^2}$
+\par On a en termes d'ordres de grandeur $\left[\mu_0\varepsilon_0\dfrac{\partial E}{\partial t}\right] \sim\frac{\vert E\vert}{c^2T}$ or $\left[\vec{rot}\vec{E}\right] \sim\frac{E}{L}$
+\par On a $\left[\vert\vec{rot}\vec{B}\right]\sim\frac{\vert B\vert}{L}$ or $\left[\vert-\dfrac{\partial\vec{B}}{\partial t}\right]\sim \frac{B}{T}$
+\par Donc $\left[\vert \vec{rot}\vec{B}\right]\sim\frac{\vert B}{L}$
+\par Le terme de déplacement est négligé dans l'ARQS, on retrouve donc dans l'ARQS et donc Maxwell-Ampère stationnaire.
+
+
+\section{EM6 : Energie du champ électromagnétique, cours intégral en ces lieux}
+Energies associées à la présence de champs $(\vec{E},\vec{B})$ dans certains systèmes :
+\par On a déjà vu l'énergie emmagasinée dans une bobine : $\mathcal{E}_{mag}=\frac{1}{2}Li^2$
+\par On a déjà vu l'énergie emmagasinée dans un condensateur : $\mathcal{E}_{elec}=\frac{1}{2}Cu^2$
+\par On veut savoir si on peut obtenir des expressions pareilles ailleurs, en faisant les liens avec les champs $\vec{E}$ et $\vec{B}$.
+
+\subsection{Bilan d'énergie électromagnétique}
+\subsubsection{Puissance cédée ou fournie par le champ à une charge (un porteur de charge)}
+Si on a une particule chargée $q_i$ avec une vitesse $\vec{v}_i$ dans un référentiel $\mathcal{R}$ donné, dans une zone de l'espace où existe un champ $(\vec{E},\vec{B})$ (pas forcément créé par la charge $q_i$).
+\par Si on veut étudier les forces s'appliquant mécaniquement sur la charge, on doit écrire la force de Lorentz et surtout sa puissance :
+\par $\mathcal{P}_{L_i}=\vec{F}_{L_i}\cdot \vec{v}_i = \left[q_i(\vec{E}+\vec{v}_i\wedge\vec{B})\right]\cdot\vec{v_i} = q_i\vec{v}_i\cdot\vec{E}$ \par Donc seul $\vec{E}$ fournit de la puissance aux charges.
+
+\subsubsection{Puissance volumique cédée par le champ aux porteurs de charges}
+Soit un volume de l'espace $d\tau$ avec des charges de type $q_i$, $q_j$ de vitesses repectives $\vec{v}_i$, $\vec{v}_j$, chaque type étant distinct. Dans un élément de volume $d\tau$, on note $n_i$ la densité volumique de porteurs de charges de type $i$
+\par Il y a un nombre $dN_i=n_id\tau$ de porteurs de charges de type $i$ dans $d\tau$ \par Donc la puissance totale cédée par le champ $\vec{E}$ à tousles porteurs de charge de $d\tau$ est : \par $d\mathcal{P}=\sum\limits_i dN_i\mathcal{P}_{L_i} = \sum\limits_i q_i\vec{v}_i\cdot\vec{E}d\tau = \vec{j}\cdot\vec{E}d\tau$ \par En effet, $\vec{j}=\sum\limits_i q_i\vec{v}_i$ est la densité volumique de courant
+\par Si on veut la puissance volumique cédée par le champ aux charges : \par $\frac{d\mathcal{P}}{d\tau}=\vec{j}\cdot\vec{E}$
+\par Quelques remarques \begin{enumerate}
+\item Seules les charges mobiles reçoivent de l'énergie du champ électromagnétique.
+\item Le signe de $\frac{d\mathcal{P}}{d\tau}$ est le signe de $\vec{j}\cdot\vec{E}$ :\begin{itemize} \item  Si $\vec{j}\cdot\vec{E}>0$ : le champ fait "bouger les charges", il leur fournit de l'énergie \item Si $\vec{j}\cdot\vec{E}<0$ : ce sont les charges qui fournissent de l'énergie au champ\end{itemize} 
+\end{enumerate}
+
+\subsubsection{Equation locale de Poynting}
+Normalement, on devrait nous la fournir, mais c'est quand même bien de la retenir par coeur parce que c'est pas totalement sûr que ça soit donné. Elle se démontre à partir des équations de Maxwell, mais la démonstration est hors-programme.
+\par Considérons une distribution de charge et de courant $(\rho,\vec{j})$ créant un champ $(\vec{E},\vec{B})$ dans  une zone de l'espace. \par $(\rho, \vec{E}, \vec{j},\vec{B})$ sont reliés par les équations de Maxwell.
+\par Si on utilise Maxwell-Ampère : $\vec{j}\cdot\vec{E} = \left[\dfrac{1}{\mu_0}\vec{rot}\vec{B}-\varepsilon_0\dfrac{\partial \vec{E}}{\partial t}\right]\cdot\vec{E} = -\varepsilon_0\dfrac{\partial E^2}{\partial t} + \frac{1}{\mu_0}\vec{rot}\vec{B}\cdot\vec{E}$
+\par $\mathrm{div}(\vec{E}\wedge\vec{B}) = \vec{B}\cdot\vec{rot}\vec{E} - \vec{E}\cdot\vec{rot}\vec{B}$ \par Et donc $\vec{j}\cdot\vec{E}=-\varepsilon_0\vec{E}\dfrac{\partial \vec{E}}{\partial t} + \frac{1}{\mu_0}\left[\vec{B}\cdot\vec{rot}\vec{E}-div(\vec{E}\wedge\vec{B})\right]$ \par $=-\frac{\partial}{\partial t}\left[\frac{\varepsilon_0}{2}\vec{E}^2 + \frac{1}{2\mu_0}\vec{B}^2\right] -div\left(\frac{\vec{E}\wedge\vec{B}}{\mu_0}\right)$
+\par D'où l'équation locale de Poynting : \par $\mathrm{div}\left(\frac{\vec{E}\wedge\vec{B}}{\mu_0}\right) + \dfrac{\partial}{\partial t}\left[\frac{\varepsilon_0}{2}\vec{E}^2+\frac{1}{2\mu_0}\vec{B}^2\right]=-\vec{j}\cdot\vec{E}$
+\par On note $\vec{\Pi} = \frac{\vec{E}\wedge\vec{B}}{\mu_0}$ le vecteur de Poynting, $u_{em} = \frac{\varepsilon_0}{2}\vec{E}^2 + \frac{1}{2\mu_0}\vec{B}^2$ la densité volumique d'énergie électromagnétique 
+\par On peut faire une analogie avec l'équation de conservation de la charge $\mathrm{div}(\vec{j}) + \dfrac{\partial\rho}{\partial t}=0$, la somme du div d'un vecteur dont le flux cause une variation de $\rho$ et d'une dérivée temporalle d'une grandeur dont on sait l'évolution temporelle locale, somme qui donne le terme source nul pour la charge.
+
+\subsection{Grandeurs énergétiques associées à un champ}
+\subsubsection{Version intégrale de l'équation de Poynting}
+En intégrant l'équation sur un volume $(V)$, de surface extérieure $(S)$, on aura :
+\par $\iiint_V div\vec{\Pi}d\tau = \oint\int_S \vec{\Pi}d\vec{S} =$ flux sortant du vecteur de Poynting (au travers de la surface $(S)$)
+\par $\iiint_V\dfrac{\partial}{\partial t}\left[\frac{\varepsilon_0}{2}E^2 + \frac{1}{2\mu_0}B^2\right]d\tau = \dfrac{\partial}{\partial t}\iiint_V\frac{\varepsilon_0}{2}E^2 + \frac{1}{2\mu_0}B^2d\tau = $ variation temporelle de l'énergie électromagnétique contenue dans le volume $(V)$, à cause de la présence de $(\vec{E},\vec{B})$
+\par $\iiint_V -\vec{j}\cdot\vec{E}d\tau = \iiint_V-\frac{d\mathcal{P}}{d\tau}d\tau = -\mathcal{P} =$ opposé de la puissance cédée par le champ aux charges présentes dans le volume $(V)$
+\par Multiplions par $dt$ : $\Phi_S(\vec{\Pi})dt + du_{em}=-\mathcal{P}dt$ \par $du_{em} = -\Phi_S(\vec{\Pi})dt-\mathcal{P}dt$ où $du_{em}$ est la variation d'énergie électromagnétique, $\varphi_S(\vec{\Pi})dt$ est la quantité d'énergie sortante par flux de $\vec{\Pi}$, donc par rayonnement et $\mathcal{P}dt$ est la quantité d'énergie fournie par le champ aux charges.
+
+\subsubsection{Densité volumique d'énergie}
+$u_{em} = \frac{\varepsilon_0}{2}E^2 + \frac{1}{2\mu_0}B^2$
+\par Faisons la vérification dimensionnelle : $\left[\frac{\varepsilon_0}{2}E^2\right] = [\varepsilon_0E][E]=\left[\frac{Q}{L^2}\right][E]$, par la force de Lorentz, $[QE]$ est une force et $[E]L^2 = \frac{[Q]}{[\varepsilon_0]}$ par le théorème de Gauss \par Donc $\left[\frac{\varepsilon_0}{2}E^2\right] = \frac{M.L.T^{-2}L}{L^3}$ et donc une énergie sur un volume.
+\par $\left[\frac{1}{2\mu_0}B^2\right]$ : d'après la force de Lorentz, on a que $[F] = [Q][B]LT^{-1}$ et on a par théorème d'Ampère que $[B]L = [\mu_0][I] = [\mu_0]\frac{[Q]}{T}$ \par Donc $\left[\frac{1}{2\mu_0}B^2\right] =\frac{[Q][B]}{TL} = \frac{[F]}{TLLT^{-1}} = \frac{[F]L}{L^3}$ qui est aussi une énergie sur un volume.
+\par Donc on a bien que $u_{em}$ est une énergie volumique liée à la présence des champs $\vec{E}$ et $\vec{B}$
+\par Energies électromagnétiques macroscopiques reliées à $u_{em}$ :\begin{itemize}
+\item énergie magnétique "emmagasinée" dans une bobine : $U_{mg} =\frac{1}{2}Li^2$ : voir l'exercice 1 du TD
+\item énergie électrique "emmagasinée" dans un condensateur : $U_[elec]=\frac{1}{2}Cu^2$
+\par Prenons un condensateur plan infini, avec des armatures de surface $S\gg e^2$. Le champ à l'intérieur est $\vec{E} = \frac{\sigma}{\varepsilon_0}\vec{e}_z = \frac{Q}{S\varepsilon_0}\vec{e}_z$ \par Lien avec la tension $U=\Delta V = E.e=\frac{Qe}{S\varepsilon_0}$ \par Donc si on écrit l'énergie électrique dans tout le folume intérieur au condensateur : $u_{em}Se = \frac{\varepsilon_0E^2Se}{2} = \frac{\varepsilon_0}{2}\left(\frac{Q}{S\varepsilon_0}\right)^2Se = \frac{\varepsilon_0}{2e}\left(\frac{Qe}{S\varepsilon_0}\right)^2S = \frac{1}{2}Cu^2$
+\end{itemize}
+Dans ces deux modèles simples, on obtient que la formule de $u_{em}$ est compatible.
+
+\subsubsection{Vecteur de Poynting et puissance rayonnée}
+Le vecteur de Poynting représente à quel point il y a un rayonnement du champ électromagnétique au travers d'une surface, donc la densité surfacique de puissance rayonnée par le champ électromagnétique : \par $\vec{\Pi} = \frac{\vec{E}\wedge\vec{B}}{\mu_0}$
+\par Donc la puissance rayonnée au travers d'une surface $(S)$ orientée s'écrit $\Phi = \iint_S\vec{\Pi}\cdot d\vec{S} = \iint_s\frac{\vec{E}\wedge\vec{B}}{\mu_0}\cdot d\vec{S}$ (en W) \par Donc la puissance rayonée est nulle si $\vec{E}$ ou $\vec{B}$ est nul.
+\par Applications : Prenons un LASER, qui a une puissance de $1mW$, sur une section avec un diamètre de $2mm$. Calculer la norme de $\vec{\Pi}$
+\par $\Vert\vec{\Pi}\Vert\simeq \frac{\mathcal{P}}{S}\simeq \frac{\mathcal{P}}{\pi\frac{D^2}{4}}\sim\frac{10^{-3}}{\pi 10^{-6}}\sim 0.3\times 10^{3}\sim 300 W.m^{-2}$
+
+\section{Bilan énergétique dans un conducteur dit ohmique}
+\subsubsection{Loi d'Ohm locale}
+Dans un milieu possédant des porteurs de charge mobile (en densité volumqiue n), le champ $\vec{E}$ appliqué met les charges en mouvement. C'est un milieu "conducteur", qui permet aux charges de se déplacer.
+\par Expérimentalement, on constate que la densité volumique de courant $\vec{j}$ est proportionnelle à $\vec{E}$ : $\vec{j} = \gamma\vec{E}$ avec $\gamma$ la conductivité du matériau \par (L'unité de $\gamma$ est : $A.m^{-2}.V^{-1}.m = A.V^{-1}.m^{-1}=\Omega^{-1}.m^{-1} = S.m^{-1}$)
+\par Lien avec la loi d'Ohm intégrale : Prenons un cylindre de longueur $l$, de section $S$. Ses extrémités sont $A$ et $B$. $\vec{E}$ et donc $\vec{j}$ sont de $A$ vers $B$ selon l'axe $x$.
+\par Pour un conducteur rectiligne (axe $Ox$, section $S$, longueur $l$) de conductivité $\gamma$ soumis à un champ appliqué $\vec{E}$ uniforme.
+\par $I = \iint_S\vec{j}d\vec{S}=jS = \gamma ES$ où $\vec{E}=-\vec{grad}(V) = E\vec{e}_x = -\dfrac{d V}{dx}$ \par Donc $E[x_b-x_a]=-[V(x)]_A^B = V_a-V_b = U$
+\par Donc $I=\gamma S\frac{U}{l}$ et donc $U=\frac{l}{\gamma S}I$ \par Donc la résistance de la portion de section $S$ de longueur $l$ est $R=\frac{1}{\gamma}\frac{l}{S}$, de plus la conductance de la portion sera $G=\gamma\frac{S}{l}$
+
+\subsubsection{Puissance transférée aux porteurs de charges}
+Densité volumique de puissance cédée par $\vec{E}$ aux charges : $\dfrac{\mathcal{P}}{dt} = \vec{j}\cdot\vec{E} = \gamma E^2>0$ \par Donc dans un matériau conducteur, les charges reçoivent de la puissance du champ
+\par Dans tout le volume du conducter $(l,S)$ : $\mathcal{P}=\gamma E^2 Sl$ \par et comme $E=\frac{U}{l}$, on a : $\mathcal{P}=\gamma\frac{U^2}{l^2}Sl = \gamma\frac{S}{l}U^2 = \frac{1}{R}U^2 = RI^2$
+\par Donc $\mathcal{P} = RI^2\equiv \frac{U^2}{R}$ qui la puissance "dissipée par effet joule", la puissance cédée par $\vec{E}$ aux charges.
+
+\subsubsection{Puissance rayonnée (au travers des parois du conducteur)}
+Pour un conducteur cylindrique d'axe de symétrie $Oz$, de section $S$ et de longueur $l$. On a un champ $\vec{E} = E\vec{e}_z$ uniforme, un vecteur $\vec{j} = \gamma E\vec{e}_z$ uniforme selon le même axe. Déterminons le champ magnétique engendré par le courant :
+\par On a des invariances par translation selon $z$ et par rotation selon $\theta$. Donc $\Vert\vec{B}\Vert = B(r)$ \par On a que $(M,\vec{e}_r,\vec{e}_\theta)$ est plan de symétrie du courant, donc $\vec{B} = B\vec{e}_\theta$
+\par Appliquons le théorème d'Ampère à un contour circulaire centré sur $Oz$ :\par $\oint \vec{B}d\vec{l} = \mu_0I_{enl} \Rightarrow \int_0^{2\pi}B(r)rd\theta = \mu_0\iint\vec{j}d\vec{S}$ \par $ \Rightarrow 2\pi rB(r) = \mu_0j\pi r^2$ \par Et donc $\vec{B}(r) = \frac{\mu_0}{2}jr\vec{e}_\theta$ \par Donc $\vec{\Pi}$ sera en surface du conducteur.
+\par $\vec{\Pi} = \frac{E\vec{e}_z\wedge\mu_0ja\vec{e}_\theta}{2\mu_0} = -\frac{Eja}{2}\vec{e}_r = -\frac{j^2a}{2\gamma}$ en se servant de $E = \frac{j}{\gamma}$. On aurait pu utiliser $I = \pi aj^2$. \par $\vec{\Pi}$ est bien selon $-\vec{e}_r$. \par Donc la puissance rayonnée au travers de toute la surface du conducteur est : \par $\Phi=\iint_{paroi} \vec{\Pi}d\vec{S} + \iint_{extremite} \vec{\Pi}d\vec{S} + \iint_{extremite}\vec{\Pi}d\vec{S}$
+\par $\Phi = \iint_{paroi}-\frac{j^2a}{2\gamma}\vec{e}_r\cdot(ad\theta dz\vec{e}_r) = -\frac{j^2a}{2\gamma}a2\pi l = -\frac{j^2\pi a^2l}{\gamma} = -\frac{I^2 l}{\pi a^2\gamma} = -RI^2 = -\mathcal{P}_{joule}$
+\par En régime stationnaire, la puissance électromagnétique entrant dans le conducteur (par rayonnement) est égale à la puissance dissipée par effet Joule.
+
+
+
+
+
+
+
+
+
+\chapter{TS}
+\section{TS1}
+\subsection{Application 1}
+\begin{enumerate}
+\item Ce signal n'admet pas de composante continue (rien dans la fréquence 0Hz); sa valeur moyenne est $0 = \left<V_0 + \sum V_kcos(k\omega t+\varphi_k)\right>$.
+\item On peut l'obtenir en regardant la période entre les différents pics. On trouve alors une fréquence de 50Hz. On a trois harmoniques autres. Ainsi : $u_e(t) = 0 + V_1\cos(2\pi ft+ \varphi_1) + V_2\cos(4\pi ft+ \varphi_2) + V_3\cos(6\pi ft+ \varphi_3) + V_5\cos(10\pi ft + \varphi_5)$, sans qu'on ait de connaissances sur les phases.
+\item Ce signal est pair, donc toutes ses phases sont nulles : $u_e(t) = 0 + V_1\cos(2\pi ft) + V_2\cos(4\pi ft) + V_3\cos(6\pi ft) + V_5\cos(10\pi ft)$
+\item On trouve $\dfrac{169}{2}$
+\end{enumerate}
+
+\subsection{Application 2}
+\begin{enumerate}
+\item On voit que la fonction en dents de scie est impaire, donc sa décomposition en série de Fourier n'a que des termes en $\sin$.
+\item Un voltmètre en mode DC (Direct Current, contre Alternative Current) donc en courant continu, mesure alors la valeur moyenne. Donc dans ce cas, il mesurera 0. En mode AC, il mesurera la valeur efficace, donc la moyenne du signal au carré.
+\item Celle dont les composantes décroissent le plus rapidement est la fonction en triangles, qui a donc le moins de discontinuités.
+\end{enumerate}
+
+\subsection{Application 3}
+\begin{enumerate}
+\item On a $H(w)=\frac{R}{R+jL\omega}=\frac{1}{1+j\omega\frac{L}{R}}$, et on pose $\omega_c=\frac{L}{R}$. On a donc une fonction de transfert de la forme : $H(\omega)=\frac{1}{1+\frac{\omega}{\omega_c}}$. On fait l'application numérique et on obtient $f_c=10kHz$
+\item On reconnaît la fonction de transfert d'un filtre passe-bas d'ordre 1. 
+\item On obtient un module de $\vert H(\omega)\vert =\frac{1}{\sqrt{1+(\frac{\omega}{\omega_c})^2}}$ et un déphasage de $\varphi = -\arg (1+j\frac{\omega}{\omega_c})=-Arctan(\frac{\omega}{\omega_c})$
+\par On les évalue dans les trois cas proposés : $\left\{\begin{array}{ccll} \vert H(\omega_1)\vert & = & \frac{1}{1+\frac{1}{100}} & \simeq 1 \\ \varphi_1 & = & -\arctan(0,1) & \simeq -0,1\end{array} \right.$ 
+\par $\left\{\begin{array}{ccll} \vert H(\omega_2)\vert & = & \frac{1}{1+\frac{1}{1}}=\frac{1}{\sqrt{2}} & \simeq 0,72 \\ \varphi_2 & = & -\arctan(1) & \simeq -\frac{\pi}{4}\end{array} \right.$
+\par $\left\{\begin{array}{ccll} \vert H(\omega_3)\vert & = & \frac{1}{1+100} & \simeq \frac{1}{10} \\ \varphi_3 & = & -\arctan(10) & \simeq -\frac{\pi}{2}\end{array} \right.$
+\item 
+\item 
+\item 
+\item 
+\item 
+\item 
+\item Temporellement, on aura un début de charge et de décharge sur chaque demi-période, on aura donc un signal quasi-triangulaire.
+\item À hautes fréquences, on aura que $H(\omega)\sim \frac{\omega_c}{\omega}$ qui est un pseudo-intégrateur (puisqu'il ne l'est qu'à hautes fréquences). Un demi-créneau va donner un signal affine. 
+\item On a dans cette autre filtre que $H(\omega)=\dfrac{1}{1-j\frac{\omega_c}{\omega}} = \dfrac{1}{1-j\frac{f_c}{f}}$. On a donc un diagramme de Bode avec un dérivateur, et donc un signal à 50 kHz serait transmis presque à 100 pourcents et les harmoniques suivants seront vraiment très bien transmis. On récupérera le même signal en entrée et en sortie. Cependant, il ne sera plus centré en $\frac{V_0}{2}$, il sera centré en 0, sans composante continue.
+\item Le condensateur à hautes fréquences se comporte comme un fil, et donc on aura bien une sortie qui est globalement l'entrée. Cela ne fonctionne pas pour la composante continue, qui est à trop basse fréquence.
+\item Si $f\ll f_c$, alors $H\sim\frac{1}{\sqrt{1+\frac{f_c}{f}}} \sim\frac{1}{\sqrt{20^2}}= \ll 1$ et on a un signal atténué de dérivateur en basses fréquences.
+\end{enumerate}
+
+\subsection{Application 4}
+\begin{enumerate}
+\item On fait un diviseur de tension dans la maille 1 : $u_s = \frac{Z_L}{2Z_L}u_1 = \dfrac{1}{2}u_1$
+\par On fait ensuite un diviseur de tension dans la maille globale (où la maille 1 a une impédance équivalente) : $u_1 = \frac{Z_{eq}}{Z_{eq}+R}u_e=\frac{1}{1+\frac{R}{Z_{eq}}}u_e$.
+\par Or $Z_{eq}=Y_c+2Y_L=jC\omega+\frac{2}{jL\omega}$
+\par Donc : $u_1 = \frac{1}{1+R(jC\omega+\dfrac{2}{jC\omega})}u_e$. On en tire : $u_s =\frac{\frac{1}{2}}{1+j\sqrt{\frac{C}{2L}}(\sqrt{2LC}\omega-\frac{1}{\sqrt{2LC}\omega})}u_e$
+\par On pose alors le facteur de qualité $Q=R\sqrt{\frac{C}{2L}}$ et la pulsation propre $\omega_0=\frac{1}{\sqrt{2LC}}$ et on a $H_0=\frac{1}{2}$
+\item À haute fréquence, on a que : $H\sim \dfrac{H_0}{jQ\frac{\omega}{\omega_0}} \sim \frac{\omega_0H_0}{jQ\omega}\sim \frac{\omega_0H_0}{Q}\times\frac{1}{j\omega}$ qui est un comportement intégrateur.
+\par À basse fréquence, on a que : $H\sim -\dfrac{H_0}{jQ\frac{\omega_0}{\omega}}\sim \frac{j\omega H_0}{Q\omega_0}\sim \frac{H_0}{Q\omega_0}\times j\omega$ qui est un comportement dérivateur.
+\par On a donc un filtre passe-bande d'ordre 2, dont le point maximal est $H_0$.
+\item La définition de la bande passante à -3dB est : $[\omega_1,\omega_2]$ telles que $\vert H(\omega_{1,2})\vert = \frac{H_0}{\sqrt{2}}$. On rappelle la formule $\Delta\omega=\dfrac{\omega_0}{Q}$ pour la longueur de la bande passante.
+\par On les trouve en résolvant $\vert H(\omega)\vert = \frac{H_0}{\sqrt{2}}$. On en tire rapidement l'équation $Q^2(\frac{\omega}{\omega_0}-\frac{\omega_0}{\omega})=1 \Leftrightarrow Q(X-\frac{1}{X})=\pm 1\Leftrightarrow X^2\pm\frac{1}{Q}X-1=0$
+\par On a ces racines : $\pm\frac{1}{2Q}\pm\frac{1}{2}\sqrt{4+\frac{1}{Q^2}}$
+\par On élimine les solutions incompatibles avec le problème et on obtient :$\left\{\begin{array}{rcl} \omega_1 & = & \frac{\omega_0}{2Q}+\frac{\omega_0}{2}\sqrt{4+\frac{1}{Q^2}} \\ \omega_2 & = & -\frac{\omega_0}{2Q}+\frac{\omega_0}{2}\sqrt{4+\frac{1}{Q^2}} \end{array}\right.$
+\par On a $\Delta f = \frac{f_0}{Q}=\frac{500}{50}=10Hz$
+\item On a que $s(t)\simeq \vert H(f_0)\vert \dfrac{2E}{\pi}\cos(2\pi f_0t)$
+\par On multiplie d'un gros facteur la première harmonique. La sortie temporelle est un cosinus (on n'a plus que la première composante). On a extrait un des pics, mais ça aurait pu le faire sur n'importe quel harmonique. 
+\end{enumerate}
+
+
+\section{TS2}
+\subsection{Application 1}
+\begin{enumerate}
+\item On a un pic unique en $f_0$.
+\item On a que $p(t)=\sum\limits_{k=0}^{+\infty}p_k\cos(2\pi kf_0t+\varphi k) = \sum\limits_{k=0}^{+\infty}a_k\cos(2\pi kf_0t) + \sum\limits_{k=1}^{+\infty} b_k\sin(2\pi kf_0t)$ Or la fonction est paire donc $p(t)= \sum\limits_{k=0}^{+\infty}a_k\cos(2\pi kf_0t)$ et on a que tous les $a_k$ sont égaux à 1 d'après l'énoncé, donc, en rappelant que la valeur moyenne vaut $\dfrac{1}{2}$, on a que $p(t)=\frac{1}{2} +\cos(2\pi f_0t) + \cos(4\pi f_0t) +...$
+\item On a que $s_{ech}(t) = s(t)p(t) = s_0\cos(2\pi f_0t)\left[\frac{1}{2}+\cos(2\pi f_0t)+...\right]$
+\\ $ = \frac{s_0}{2}\cos(2\pi f_0t) + \frac{s_0}{2}[cos(2\pi (f_e-f_0)t)+\cos(2\pi (f_e+f_0)t)] + \frac{s_0}{2}[\cos(2\pi (2f_e-f_0)t)+\cos(2\pi(2f_E+f_0)t)]+...$
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Thermodynamique chimique}
+\section{TC1}
+\subsection{Application 1}
+\begin{enumerate}
+\item $\Delta H = nC_{pm}\Delta T \simeq 7,2kJ$
+\item $\Delta T = \dfrac{\Delta H}{nC_{pm}}=\dfrac{Q_p}{nC_{pm}}\simeq 34^\circ C$
+\item $C_{pm}=\frac{7}{2}R\simeq 19J.K^{-1}.mol^{-1}$ puisque $U=\frac{3}{2}nRT$ pour un GP monoatomique, $U=\frac{5}{2}nRT$ pour un GP diatomique, or $H=U+nRT$ pour un GP, et comme on est dans le cas du diazote, $H=\frac{7}{2}nRT$
+\end{enumerate}
+
+\subsection{Application 2}
+\begin{enumerate}
+\item Si on a $\frac{1}{2}O_{2(g)} + H_{2(g)}\rightarrow H_2O_{(g)}$, et qu'on a $\Delta n_{H_2O}=\xi=1 mol$ \par Donc $\Delta H(T) = \xi\Delta_rH^0(T)=\Delta_rH^0(T)=-285kJ$
+\item $O_2+ 2H_{2(g)}\rightarrow 2H_2O_{(g)}$, alors $\Delta_rH^0_2=2\Delta_rH^0$ et $\xi_2=\dfrac{\Delta n_{H_2O}}{2}$ et donc $\xi_2 =\frac{1}{2}mol$ et enfin $\Delta H_2=\xi_2\Delta_rH^0_2=\Delta_rH^0=-285kJ$
+\end{enumerate}
+
+\subsection{Application 3}
+On part de $\frac{1}{2}O_{2(g)} + H_{2(g)}\rightarrow H_2O_{(g)}$. On a à l'état final que $\xi= 1mol$ par un tableau d'avancement. On a alors $Q=\Delta H =\xi\Delta_rH^0=-285kJ$ et donc que la transformation est exothermique.
+
+\subsection{3.2}
+En partant d'un état initial EI donné, avec un $\Delta H$ global vers l'état final EI.\par EI est constitué de réactifs, peut-être d'espèces spectatrices et de produits. Tout est à la température $T_1$.\par EF est constitué de produits, peut-être de réactifs et d'espèces spectatrices. Le tout à la température $T_2$.
+\par On décompose la transformation en deux parties : d'abord la réaction chimique vers Eint, où toutes les espèces sont dans le même état qu'en EF, mais la température n'a pas varié. On a cette enthalpie : $\Delta H_1=\xi\Delta_rh^0$.
+\par Ensuite, on a la seconde transformation, sans réaction chimique mais avec toutes les espèces présentes et avec un changement de températures :
+\par $\Delta H_2 = \left[\sum\limits_{i reactifsw restants}n_iC_{pmi}^0 +\sum\limits_{jproduits} n_jC_{pmj}^0 + \sum\limits_{k spectatrices} n_kC_{pmk}^0\right]\Delta T = C_{ptot}\Delta T$
+\par $\xi\Delta_rH^0 + C_{ptot}\Delta T=0$ dans cette réaction.
+
+\subsection{Application 4}
+\begin{enumerate}
+\item En proportions stoechiométriques, on a deux fois plus de $H_2$ que de $O_2$. On fait la même décomposition que précédemment, en deux transformations, une chimique et une thermique.
+\par À l'état intermédiaire, on n'a plus que $n=n(H_2)$ moles de $H_2O$, et c'est tout. Et donc $\Delta_rH^0(T_1)\xi$ et $\Delta_2=nC_{pm}^0(H_2O)\Delta T$. \par Mais comme le cycle est adiabatique, $n\Delta_rH^0(T_1)+nC_{pm}^0(H_2O)(T_2-T_1)=0$
+\par Et donc $T_2 =T_1+\dfrac{-\Delta_rH^0(T_1)}{C_{pm}^0(H_2O)}\simeq 7500^\circ K$
+\item On a nécessairement que $n(O_2)=\frac{0.8}{0.2}n(N_2)=\frac{1}{4}N_2$. \par Donc l'équation devient $n\Delta_rH^0(T_1) +\left(nC_{pm}(H_2O) +2nC_{pm}(N_2)\right)\Delta T =0$, d'où $T_2=2900^\circ K$ 
+\end{enumerate}
+
+Tu sais comment Aladin gazeux va à Bagdad liquide ? En thalpie d echangement d'état.
+\subsection{Application 5}
+$CO_{2(g)}$ a une enthalpie de formation non-nulle puisqu'il ne s'agit pas d'un corps simple. Pour $Cu_{g}$, on a besoin de l'enthalpie massique de sublimation, multipliée par la la masse molaire du cuivre.
+\par Pour le cuivre solide, l'enthalpie pour qu'il devienne solide à $298K$ est nulle. Pareil pour que $H_2$ devienne gazeux à cette température.
+
+\subsection{Démonstration de la Hess}
+$CH_{4(g)} + 2O_{2(g)}\leftrightarrow CO_{2(g)}+2H_2O_{(g)}$ est réagencée en $C_{(gr)}+2H_{2(g)}+2O_{2(g)}\rightarrow C_{(gr)}+2H_{2(g)} +O_{2(l)}$
+\par $(A)$ est la réaction de formation standard de de $CH_{4(g)}$ \par $(C)$ est la réaction de formation standard de de $CH_{4(g)}$ \par $(D)$ est la réaction de formation standard de de $H_2O_{(g)}$
+\par Donc $\Delta_rH^0=\Delta_rH^0(A)+\Delta_rH^0(B)+\Delta_rH^0(B)+\Delta_rH^0(C)+\Delta_rH^0(D)=-\Delta_fH^0(CH_{4(g)})+0+\Delta_fH^0(CO_{2(g)})+2\Delta_fH^0(H_2O_{(g)})$
+
+
+
+
+\subsection{4.3 Influence de la température}
+Principe : Approximation d'Ellingham : connaissant une enthalpie standard de réaction à une température $T_0$ donnée, on considèrera que l'enthalpie standard à une autre température $T$ est identique, en l'absence de changement d'état des réactifs et produits entre $T_0$ et $T$ : $\Delta_r H^0(T)\simeq\Delta_rH^0(T_0)$
+\par $\Delta_rH^0(T)=\Delta_rH^0(T_0)+\dfrac{\Delta_rH^0}{dT}\vert_{T_0}(T-T_0)$ \par avec $\dfrac{\Delta_rH^0}{dT}=\dfrac{\partial}{\partial T}\left(\dfrac{\partial H^0}{\partial\xi}\right)=\dfrac{\partial}{\partial\xi}\left(\dfrac{\partial H^0}{\partial T}\right) = \dfrac{\partial}{\partial\xi}C_p^0 = \Delta_rC_p^0 =\sum v_iC_p^0$ \par Et on néglige cette dernière partie le plus souvent. \par Attention, en présence de changement d'état d'un des réactifs ou produits $A_j : A_{j(1)\to j(2)}$
+\par $\Delta H = m\Delta_{1\to 2}h = Mn\Delta_{1\to 2}=\xi\left[M\Delta_{1\to 2}h\right] = \xi\Delta_{1\to 2}H^0$ \par $\Delta_rH^0$ par la réaction dans laquelle $A_j$ change d'état (à $T'$) : \par $\Delta_rH^0(T')=\Delta_rH^0(T)+v_jM_j\Delta_{1\to 2}h$
+
+\par Principe : Au passage d'une phase à l'autre, l'enthalpie de l'espèce j subit une discontinuité : l'enthalpie massique $h_j$ subit une discontinuité de $\Delta h_{jj1\to 2}$ (définition de l'enthalpie massique de changement d'état), l'enthalpie molaire $H^0_{im}(T)$ une discontinuité de $\Delta_{r1\to 2}H_j^0$ \par Donc pour une réaction donnée $\sum v_iA_i=0$, si une des espèces $A_i$ change d'état entre $T_0$ et $T$ on aura :
+\par $\Delta_rH^0(T)=\Delta_rH^0(T_0)+v_j\Delta_{r1\to 2}H^0(j)=\Delta_rH^0(T_0)+v_jM_j\Delta h_{j1\to 2}$
+
+\subsection{Application 6 changement d'état de l'eau}
+\begin{enumerate}
+\item $\Delta_rH^0(T=100^\circ C)=\Delta_rH^0(T=25^\circ C)+\Delta_{vap}H^0(H_2O)(+C_p^0(H_2O)_{(l)}(100-25))$ \par $=\Delta_fH^0(H2O,T=25^\circ C)+M(H_2O)\Delta_{vap}h$ \par $=-285.10^3+2260\times 18=-244.3kJ.mol^{-1}$ et $-242kJ.mol^{-1}$ en utilisant $\Delta_rC_p^0\Delta T$
+\end{enumerate}
+
+
+
+
+
+
+
+
+\end{document}

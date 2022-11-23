@@ -1098,8 +1098,8 @@ Pour $\sum\frac{z^n}{n!}$, on a $R=+\infty$ \par Pour $\sum z^n$ on a $R=1$ et s
 Les déterminations de rayon d'une série entière ne font intervenir que des critères de séries numériques positives.
 \end{Rem}
 \Prop{Relations de comparaison}{Soient $\sum a_nz^n$ et $\sum b_nz^n$ des séries entières de rayons $R_a$ et $R_b$ :\begin{itemize}
-\item Si $a_n = o(b_n)$ alors $R_a\leq R_b$
-\item Si $a_n = \mathcal{O}(b_n)$ alors $R_a\leq R_b$
+\item Si $a_n = o(b_n)$ alors $R_a\geq R_b$
+\item Si $a_n = \mathcal{O}(b_n)$ alors $R_a\geq R_b$
 \item Si $a_n\sim b_n$ alors $R_a=R_b$
 \end{itemize}}
 \Pre{Soit $z\in\mathcal{D}(0,R_b)$, on a donc que $\sum \vert b_nz^n\vert$ converge, or $\vert a_nz^n\vert=\mathcal{O}(\vert b_nz^n\vert)$ \par Donc par critère de domination positive, $\sum\vert a_nz^n\vert$ converge \par Donc $z\in\mathcal{D}_f(0,R_a)$ \par Donc $\mathcal{D}(O,R_b)\subset \mathcal{D}_f(0,R_a)$ \par Donc $R_a\geq R_b$
@@ -1183,6 +1183,110 @@ Il y a certains cas particuliers à savoir refaire facilement, même si pas à s
     \item $\arcsin(x) =\sum\limits_{n=0}^{+\infty}\frac{1}{4^n}\binom{2n}{n}\frac{x^{2n+1}}{2n+1}$
     \item $\arccos(x) =\frac{\pi}{2}-\sum\limits_{n=0}^{+\infty}\frac{1}{4^n}\binom{2n}{n}\frac{x^{2n+1}}{2n+1}$
 \end{itemize}
+
+\section{Séries entières dans une algèbre de dimension finie}
+\Def{}{Soit $E$ une $\K$-algèbre de dimension finie munie d'une norme d'algèbre $\Vert.\Vert$
+\par Soit $(a_n)\in\K^\N$, $\sum a_nz^n$ est de rayon $R>0$
+\par Alors on peut définir $\sum\limits_{n=0}^{+\infty}a_nu^n$ pour $u\in E$ si $\Vert u\Vert < R$.}
+\Pre{Soit $u\in E$ \par Pour $n\in\N$, $\Vert a_n u^n\Vert \leq \vert a_n\vert \Vert u\Vert^n$ (comme $\Vert.\Vert$ est une norme d'algèbre)
+\par Pour $u\in \mathcal{B}(0,R)$, $\sum\vert a_n\vert\Vert u\Vert^n$ converge \par Donc $\sum a_nu^n$ converge absolument donc converge car $E$ est de dimension finie.}
+\Prop{}{Et $\left\{\begin{array}{rcl} \mathcal{B}(0,R) & \to & E \\ u & \mapsto & \sum\limits_{n=0}^{+\infty} a_nu^n\end{array}\right.$ est continue}
+\Pre{Soit $R'$ tel que $0<R'<R$ \par $\forall n\in\N, \forall u\in\mathcal{B}(0,R'), \Vert a_nu^n\Vert \leq \vert a_n\vert R^n$ \par Or $\sum \vert a_n\vert R^n$ converge normalement sur $\mathcal{B}_f(0, R')$
+\par Soit $n\in\N$, $u\mapsto u^n$ est continue sur \par (car $E^n\mapsto E, (u_1,...,u_n)\mapsto u_1...u_n$ est n-linéaire en dimension finie) \par Donc d'après le théorème de continuité par convergence uniforme (valable en dimension finie), $u\mapsto \sum\limits_{n=0}^{+\infty}a_nu^n$ est continue sur $\mathcal{B}_(0,R')$ pour tout $R'<R$ donc sur $\mathcal{B}(0,R)$}
+\Prop{}{$\forall u\in E, \exists P_u\in \K[X], \sum\limits_{n=0}^{+\infty}a_n u^n = P_u(u)$}
+\Pre{Pour $u\in E$, $\K[u]$ est une sous-algèbre de dimesnion finie donc fermée, or $\sum\limits_{n=0}^{+\infty}a_nu^n = \lim\limits_{n\to+\infty}\sum\limits_{k=0}^na_ku^k$ \par Donc $\sum\limits_{n=0}^{+\infty}a_nu^n$ est la limite d'une suite de $\K[u]$ \par Donc $\sum\limits_{n=0}^{+\infty}a_nu^n\in \K[u]$}
+\begin{Rem}
+En particulier, $\left\{\begin{array}{rcl}\mathcal{M}_n(\K) & \to & \mathcal{GL}_n(\K) \\ A & \mapsto & \exp(A) = \sum\limits_{n=0}^{+\infty} \frac{1}{n!}A^n\end{array}\right.$ est continue, bien définie, de rayon $+\infty$ et est continue. 
+\end{Rem}
+\begin{Exe}
+$\left\{\begin{array}{rcl}\mathcal{B}(0,1) & \to & \mathcal{GL}_n(\K) \\ A & \mapsto & \sum\limits_{n=0}^{+\infty} \frac{1}{\sqrt{n^2+n+1}}A^n\end{array}\right.$ est définie par exemple sur $\mathcal{B}(0,1)$ pour une norme d'algèbre, et est continue
+\end{Exe}
+\begin{Exe}
+Pour $A\in \mathcal{M}_n(\K)$, on définit $\varphi_A:\left\{\begin{array}{rcl}\R & \to & \mathcal{M}_n(\K) \\ t & \mapsto & \exp(tA) = \sum\limits_{n=0}^{+\infty} \frac{1}{n!}A^n\end{array}\right.$
+\par Montrer que $\varphi_A$ est $\mathcal{C}^1$ et exprimer $\varphi'_A$ \par $\sum t\mapsto \frac{t^n}{n!}A^n$ converge simplement sur $\R$ \par Pour $n\in\N$, $t\mapsto \frac{t^n}{n!}A^n$ est $\mathcal{C}^1$ de dérivée $t\mapsto \frac{t^{n-1}}{(n-1)!}A^n$ si $n>0$ et $0$ sinon
+\par Soit $\alpha\in\R_+^*, t\in[-\alpha, \alpha]$ \par Soit $n\in\N^*$, alors : $\left\Vert\frac{t^{n-1}}{(n-1)!}A^n\right\Vert\leq\frac{\alpha^{n-1}}{(n-1)!}\Vert A\Vert^n$ \par Et $\sum\frac{\alpha^{n-1}}{(n-1)!}\Vert A\Vert^n$ converge \par Donc la série $\sum t\mapsto \frac{t^{n-1}}{(n-1)!}A^n$ converge normalement donc uniformément sur $[-\alpha, \alpha]$
+\par Donc $\varphi_A$ est $\mathcal{C}^1$ sur $]-\alpha,\alpha[$ pour $\alpha\in\R_+^*$ donc sur $\R$ \par Et $\forall t\in\R, \varphi_A'(t) = \sum\limits_{n=1}^{+\infty}\frac{t^{n-1}}{(n-1)!}A^n = A\left(\sum\limits_{n=0}^{+\infty}\frac{t^n}{n!}A^n\right) = A\exp(tA)$
+\par Application : Pour $A\in\mathcal{M}_n(\K)$, trouver des solutions de  $Y'-AY =0$ dans $\mathcal{F}(\R,\mathcal{M}_{n,1}(\K))$ \par C'est une équation différentielle linéaire d'ordre 1 à coefficients constants, qui correspond à un système :
+\par $\left\{\begin{array}{rcl} y_1'& = &a_{1,1}y_1 + a_{1,2}y_2 +...+a_{1,n}y_n \\ y_2'& = & a_{2,1}y_2+...+a_{2,n}y_2 \\ ... & &  \\ y_n' &=& a_{n,1}y_n+...+a_{n,n}y_n \end{array}\right.$ \par On a que $\varphi:t\mapsto e^{tA}Y_0$ est une solution de l'équation vérifiant $\varphi(0)=Y_0$ \par On démontrera plus tard que c'est l'unique solution.
+\end{Exe}
+
+
+\chapter{Arithmétique dans un anneau euclidien}
+\section{Généralités}
+\Def{Anneau euclidien}{$A$ est un anneau euclidien si :\begin{itemize}
+\item $A$ est un anneau commutatif intègre ($AB=0 \Rightarrow A=0\text{ ou } B=0$)
+\item $A$ est muni d'une division euclidienne : il existe $\varphi\in\mathcal{F}(A\backslash\{0\},\N)$ telleq ue $\forall b\in A\backslash\{0\}, \forall a\in A, \exists q,r\in A, a =bq+r$ et $(r=0\text{ ou }\varphi(r)<\varphi(b)$
+\end{itemize}}
+$\Z$ et $\K{X}$ sont des anneaux euclidiens
+\par Dans $\Z$, $\forall a\in \Z, \forall b\in \Z^*, \exists!(q,r)\in\Z^2, a =bq+r, 0\leq r<\vert b\vert$ \par On peut prendre $\varphi:a\mapsto \vert a\vert$
+\par Dans $\K[X]$, $\forall A\in\K[X], \forall B\in\K[X]\backslash\{0\}, \exists !(Q,R)\in\K[X]^2, A=BQ+R$ et $\deg R<\deg B$ \par On peut prendre $\varphi:P\mapsto \deg P$
+\Def{Divisibilité}{Soit $A$ un anneau euclidien (ou intègre). Soit $a,b\in A$. \par On dit que $b$ divise $a$ (noté $b|a$) ou que $a$ est un multiple de $b$ si $\exists c\in A, a = bc$}
+\begin{Exe}
+Tout élément de $A$ divise $0$
+\par Tout inversible de $A$ est un diviseur universel : si $u$ est inversible, $\forall a\in A, a = uu^{-1}a$ \par Dans $\Z$, $\{-1,1\}$ sont les diviseurs universels \par Dans $\K[X]$, tout $a\in\K^*$ est un diviseur universel
+\end{Exe}
+\Prop{Association}{Soit $A$ un anneau euclidien \par Soit $a,b\in A$, $a$ divise $b$ et $b$ divise $a$ si, et seulement si, il existe un inversible tel que $b = au$}
+\Pre{Le sens indirect est immédiat.
+\par Pour le sens direct, on suppose que $a|b$ et $b|a$ \par On a donc $c\in A$ tel que $b=ca$ \par On a donc $d\in A$ tel que $a =db$ \par Donc $b=cdb$ \par Si $b=0$ : $a=0$ et la propriété est vérifiée \par Si $b\neq 0$ : on peut simplifier par $b$, comme $A$ est intèbre : $cd=1$ dsonc $c$ et $d$ sont inversibles et inverses l'un de l'autre, ce qui conclut.}
+\begin{Rem}
+La relation divise est presque une relation d'ordre : elle est réflexive, transiftive et "presque" antisymétrique.
+\end{Rem}
+\Def{Idéal}{Soit $A$ un anneau euclidien. Soit $I\subset A$. \par On dit que $I$ est un idéal si : \begin{itemize}
+\item $I$ est un sous-groupe de $(A,+)$
+\item $\forall i\in I, \forall a\in A, ia\in I$
+\end{itemize}}
+\begin{Exe}
+Soit $a\in A$, alors $aA = \{ax, x\in A\}$ est l'ensemble des multiples de $a$ et est un idéal. C'est même le plus petit idéal qui contient $a$, l'intersection de tous les idéaux contenant $a$.
+\end{Exe}
+
+\section{Opérations sur les idéaux}
+\Prop{}{Avec $J$ un ensemble quelconque, $(I_j)_{j\in J}$ une famille d'idéaux de $A$, alors $\cap_{j\in J} I_j$ est un idéal}
+\Pre{Faisons la stabilité par somme : \par si $x,y\in\cap_{j\in J}I_j$, alors $\forall j\in J, x,y\in I_j$ et par nature d'idéal, $\forall j\in J, x+y\in I_j$ \par Donc $x+y\in \cap_{j\in J}I_j$
+\par Faisons la stabilité par produit : \par Si $x\in\cap_{j\in J}$, si $a\in A$ \par Alors $\forall j\in J, x\in I_j$, et par nature d'idéal, $\forall j\in J, ax\in I_j$ \par Donc $ax\in \cap_{j\in J}I_j$}
+\begin{Rem}
+Une union d'idéaux non-inclus dans les autres n'est pas un idéal, de même que pour des groupes.
+\par En effet, avec $I,J$ deux groupes non-inclus l'un dans l'autre, on prend $x\in I, x\notin J, y\in J, y\notin I$ \par Cependant, par propriétés d'un goupe, $x+y\in I\cup J$, supposons sans perte de généralité que $x+y\in J$ \par Et donc $(x+y)-y\in J$ \par Donc $x\in J$, d'où la contradiction
+\end{Rem}
+\Prop{}{Si $I_1$ et $I_2$ sont des idéaux, alors $I_1+I_2$ est un idéal. \par C'est le plus petit idéal contenant $I_1\cup I_2$.}
+\Pre{Montrons que $I_1+I_2$ est un idéal :
+\par Soient $x,y\in I_1+I_2$, on note $x=x_1+x_2, y=y_1+y_2$ avec $x_1,y_1\in I_1, x_2, y_2\in I_2$ \par Alors $x+y = (x_1+y_1)+(x_2+y_2)\in I_1=I_2$ \par Donc $I_1+I_2$ est stable par l'addition. \par Soit $x = x_1+x_2\in I_1+I_2$, $a\in A$. Alors $ax = ax_1 + ax_2 \in I_1+I_2$
+\par De plus, tout idéal contenant $I_1$ et $I_2$ contient $I_1+I_2$}
+\Thr{}{Si $A$ est un anneau euclidien, alors tout idéal de $A$ est principa.
+\par Cela signifie que si $I$ est un idéal de $A$, alors $\exists A\in A, I = aA$}
+\Pre{On dispose de $\varphi\in\mathcal{F}(A\backslash\{0\}, \N)$ tel que $\forall a\in a, \forall b\in A\backslash\{0\}, \exists (q,r)\in A^2, a=bq+r$ et $(r=0\text{ ou }\varphi(r)<\varphi(b))$
+\par Si $I=\{0\}$, c'est l'idéal $0A$
+\par Si $I$ est un idéal non-réduit à $0$ : \par On peut considérer $n_0=\min\{\varphi(i)\vert i\in I\backslash\{0\}\}$, qui existe puisqu'on considère une partie non-vide de $\N$ \par On note $i_0$ tel que $\varphi(i_0)=n_0$ \par Soit $i\in I$, on peut alors prendre $q,r\in A$ telq que $i =qi_0+r$ et $(r=0\text{ ou }\varphi(r)<\varphi(b))$
+\par $i-qi_0\in I$, et donc $r\in I$. $r=0$, si ce n'était pas le cas alors ça contredirait la définition de $n_0$. \par Donc $i\in i_0A$ \par Donc $I\subset i_0A$  \par $i_0A\subset I$ est immédiat puisque $i_0 \in I$}
+\begin{Rem}
+Deux générateurs d'un même idéal sont égaux à produit par un inversible près. Pour rendre le générateur unique, on fait un choix :\begin{itemize}
+\item Dans $\Z$, on prend en général le générateur positif.
+\item Dans $\K[X]$, on prend en général le générateur unitaire.
+\end{itemize}
+\end{Rem}
+\begin{Exe}
+Avec $E$ un $\K$-ev de dimension finie, $f\in\mathcal{L}(E), x\in E$ :
+\par $I_f =\{P\in\K[X],P(f)=0\}$ est un idéal de $\K[X]$ (ce qui se prouve avec les formules sur $(P+Q)(f)$ et $(PQ)(f)$) \par $\pi_f$ est le générateur unitaire de cet idéal.
+\par $I_{f,x} = \{P\in\K[X], P(f)(x)=0\}$ est un idéal de $\K[X]$ \par On note son générateur $\pi_{f,x}$ \par On a que $\pi_f\in I_{f,x}$, donc $\pi_{f,x}=\pi_f$ 
+\end{Exe}
+\Def{PGCD}{Avec $A$ un anneau euclidien, soit $a,b\in A$ \par On appelle $pgcd(a,b)$ un générateur de $aA+bA$ \par Dans $\Z$ ou $\K[X]$, on choisit un générateur spécifique, noté $a\wedge b$, et on l'appelle le pgcd. \par $aA+bA =(a\wedge b)A$}
+\Prop{}{Soit $(a,b)\in A^2$, soit $d\in A$. $d$ est un diviseur de $a$ et $b$ si, et seulement si, $d$ divise $a\wedge b$}
+\Pre{$\left\{\begin{array}{c} d \vert a \\ d \vert b\end{array}\right.\Leftrightarrow \left\{\begin{array}{c} aA \subset dA \\ bA \subset dA\end{array}\right.\Leftrightarrow aA+bA \subset dA \Leftrightarrow(a\wedge b)A\subset dA \Leftrightarrow d\vert a\wedge b$}
+\Def{}{Soit $a,b\in A$, on dit que $a$ et $b$ sont premiers en tre eux si $a\wedge b=1$}
+\Thr{Bezout}{$a,b\in A$ sont premiers entre eux si, et seulement si, $\exists (u,v)\in A^2, au+bv=1$}
+\Pre{S'il existe $(u,v)\in A^2, au+bv=1$ \par Alors $1\in aA+bA$ \par Donc $aA+bA =A$ \par Donc $a\wedge b = 1$ \par Si $a\wedge b = 1$ :\par Alors $1\in aA+bA$ \par Donc $\exists (u,v)\in A^2, au+bv=1$}
+\Thr{Bezout étendu}{$\forall a,b\in A, \forall x\in A : \exists u,v\in A, x=au+bv \Leftrightarrow (a\wedge b)\vert x$}
+\Def{}{Soit $A$ un anneau euclidien. Soit $a_1,...,a_n\in A$ \par On appelle $pgcd$ de $a_1,...,a_n$ le générateur de $a_1A + a_2A+...+a_nA$ \par On note que $(a_1\wedge a_2\wedge...\wedge a_n)A = a_1A+a_2A+...a_3A$}
+\Prop{}{$\forall a_1,...,a_n\in A, \forall d\in A, [\forall i\in \llbracket 1,n\rrbracket, d\vert a_i] \Leftrightarrow d\vert(a_1\wedge a_2\wedge...\wedge a_n)$}
+\Prop{}{$\forall a,b,c\in A, (a\wedge b)\wedge c = a\wedge (b\wedge c)$}
+\Def{}{Avec $(a_1,a_2,...a_n)\in A^n$, on dit que $(a_1,a_2,...,a_n)$ sont premiers entre eux si $(a_1\wedge a_2\wedge...\wedge a_n)=1$}
+\begin{Rem}
+Attention à ne pas confondre premiers deux-à-deux et premiers entre eux dans leur ensemble. Par exemple, $(6, 15, 35)$ sont premiers dans leur ensemble mais pas premiers deux-à-deux.
+\end{Rem}
+\Thr{Bézout généralisé}{$(a_1,a_2...,a_n)\in A^n$ sont premiers entre eux si, et seulement si, $\exists (u_1,...,u_n)\in A^n, 1=a_1u_1+a_2u_2+...+a_nu_n$}
+
+
+
+
 
 
 

@@ -19,7 +19,7 @@
 
 
 
-\newcommand{\Def}[2]{\begin{tcolorbox}[sharp corners, colback=white,colframe=red!90!black!75, title=Définition : #1]#2\end{tcolorbox}}
+\newcommand{\Def}[2]{\begin{tcolorbox}[sharp corners, colback=white,colframe=blue!90!black!75, title=Définition : #1]#2\end{tcolorbox}}
 \newcommand{\Thr}[2]{\begin{tcolorbox}[sharp corners, colback=white,colframe=red!90!black!75, title=Théorème : #1]#2\end{tcolorbox}}
 \newcommand{\Prop}[2]{\begin{tcolorbox}[sharp corners, colback=white,colframe=red!90!black!75, title=Proposition : #1]#2\end{tcolorbox}}
 \newcommand{\Pre}[1]{\begin{tcolorbox}[sharp corners, colback=white,colframe=green!60!green!30!black!75, title=Preuve]#1\end{tcolorbox}}
@@ -1127,6 +1127,34 @@ Pour la série entière $\sum\sin(n)z^n$
 \Thr{Produit de Cauchy}{Pour $\sum a_nz^n$ et $\sum b_nz^n$ deux séries entières de rayons respectifs $R_a$ et $R_b$ \par On pose pour $n\in\N$, $c_n = \sum\limits_{k=0}^na_kb_{n-k}$ \par La série entière $\sum c_nz^n$ est de rayon de convergence $R\geq\min(R_a,R_b)$ et $\forall z\in\C$ tel que $\vert z\vert < \min(R_a,R_b), \sum\limits_{n=0}^{+\infty}c_nz^n = \sum\limits_{n=0}^{+\infty}a_nz^n\sum\limits_{n=0}^{+\infty}b_nz^n$}
 \Pre{Par application du produit de Cauchy à deux séries absolument convergentes sur un domaine.}
 
+\section{Continuité de la somme d'une série entière sur $\C$}
+\Prop{}{Soit $(\sum a_nz^n$ une série entière de rayon $r>0$, alors $(\sum a_nz^n)$ converge normalement sur tout disque fermé $\mathcal{B}(0,A)$ pour $A<R$}
+\Pre{}
+
+\Prop{Continuité}{La somme d'une série entière est continue sur son disque ouvert de convergence}
+\Pre{}
+\Prop{Somme de série entière sur $\R$}{Ici, considérons la restriction à $\R$ de la somme des séries entières considérées. \par Alors le domaine de définition dans $\R$, noté $\mathcal{D}$ est l'un des intervalles : $[-R,R], ]-R,R], [-R,R[,]-R,R[$}
+\begin{Exe}
+
+\end{Exe}
+\Prop{}{Soit $(a_n)\in\C^\N$, alors les séries entières $\sum a_nz^n$ et $\sum na_nz^n$ ont même rayon.}
+\Pre{}
+\Prop{Corollaire}{Soit $(a_n)\in\C^\N$ $(\sum a_nz^n)$ est de rayon $R>0$ \par Alors $\varphi:\left\{\begin{array}{rcl}]-R,R[ & \to & \C \\ x & \mapsto & \sum\limits_{n=0}^{+\infty}a_nx^n \end{array}\right.$ est $\mathcal{C}^1$ et : \par $\varphi':\left\{\begin{array}{rcl}]-R,R[ & \to & \C \\ x & \mapsto & \sum\limits_{n=0}^{+\infty}na_nx^{n-1} \end{array}\right.$}
+\Pre{}
+\Prop{Corollaire}{La somme d'une série entière est $\mathcal{C}^\infty$ sur son intervalle ouvert de convergence \par Les dérivées s'obtiennent par dérivation terme à terme}
+\Pre{Par récurrence}
+\begin{Rem}
+    Sur la valeur de dérivée :
+\end{Rem}
+\Prop{Corollaire}{Deux séries entières dont les sommes coïncident sur un voisinage de $0$ sont identiques \par i.e. si $\exists\alpha\in\R_+^*, \forall x\in ]-\alpha, \alpha[, \sum\limits_{n=0}^{+\infty}a_nx^n = \sum\limits_{n=0}^{+\infty}$, alors $\forall n\in\N, a_n=b_n$}
+\Thr{Convergence radiale}{Soit $(a_n)\in\C^\N$, $(\sum a_nz^n)$ de rayon $R>0$ \par Si $\sum a_nR^n$ converge alors : $\sum\limits_{n=0}^{+\infty}a_nx^n\to_{x\to R}\sum\limits_{n=0}^{+\infty}a_nR^n$ pour $x\in]-R,R[$
+\par Plus précisément, si $f$ définie en $R$ en tant que somme de série entière, alors $f$ continue sur $\mathcal{D}_f$}
+\begin{Rem}
+Le théorème reste valable pour $-R$ : par considération de $\sum a_n(-1)^nR^n$ qui est de même rayon.
+\end{Rem}
+
+
+
 \section{Développements en séries entières}
 \subsection{Généralités}
 \Def{Développement en série entière}{Soit $I$ un intervalle tel que $0\in\overset{\circ}{I}$. Soit $f\in\mathcal{F}(I,\C)$. \par On dit que $f$ est développable en série entière au voisinage de $0$ (ou en $0$) si :
@@ -1268,10 +1296,12 @@ Avec $E$ un $\K$-ev de dimension finie, $f\in\mathcal{L}(E), x\in E$ :
 \par $I_f =\{P\in\K[X],P(f)=0\}$ est un idéal de $\K[X]$ (ce qui se prouve avec les formules sur $(P+Q)(f)$ et $(PQ)(f)$) \par $\pi_f$ est le générateur unitaire de cet idéal.
 \par $I_{f,x} = \{P\in\K[X], P(f)(x)=0\}$ est un idéal de $\K[X]$ \par On note son générateur $\pi_{f,x}$ \par On a que $\pi_f\in I_{f,x}$, donc $\pi_{f,x}=\pi_f$ 
 \end{Exe}
+
+\section{PGCD et PPCM}
 \Def{PGCD}{Avec $A$ un anneau euclidien, soit $a,b\in A$ \par On appelle $pgcd(a,b)$ un générateur de $aA+bA$ \par Dans $\Z$ ou $\K[X]$, on choisit un générateur spécifique, noté $a\wedge b$, et on l'appelle le pgcd. \par $aA+bA =(a\wedge b)A$}
 \Prop{}{Soit $(a,b)\in A^2$, soit $d\in A$. $d$ est un diviseur de $a$ et $b$ si, et seulement si, $d$ divise $a\wedge b$}
 \Pre{$\left\{\begin{array}{c} d \vert a \\ d \vert b\end{array}\right.\Leftrightarrow \left\{\begin{array}{c} aA \subset dA \\ bA \subset dA\end{array}\right.\Leftrightarrow aA+bA \subset dA \Leftrightarrow(a\wedge b)A\subset dA \Leftrightarrow d\vert a\wedge b$}
-\Def{}{Soit $a,b\in A$, on dit que $a$ et $b$ sont premiers en tre eux si $a\wedge b=1$}
+\Def{}{Soit $a,b\in A$, on dit que $a$ et $b$ sont premiers entre eux si $a\wedge b=1$}
 \Thr{Bezout}{$a,b\in A$ sont premiers entre eux si, et seulement si, $\exists (u,v)\in A^2, au+bv=1$}
 \Pre{S'il existe $(u,v)\in A^2, au+bv=1$ \par Alors $1\in aA+bA$ \par Donc $aA+bA =A$ \par Donc $a\wedge b = 1$ \par Si $a\wedge b = 1$ :\par Alors $1\in aA+bA$ \par Donc $\exists (u,v)\in A^2, au+bv=1$}
 \Thr{Bezout étendu}{$\forall a,b\in A, \forall x\in A : \exists u,v\in A, x=au+bv \Leftrightarrow (a\wedge b)\vert x$}
@@ -1283,6 +1313,351 @@ Avec $E$ un $\K$-ev de dimension finie, $f\in\mathcal{L}(E), x\in E$ :
 Attention à ne pas confondre premiers deux-à-deux et premiers entre eux dans leur ensemble. Par exemple, $(6, 15, 35)$ sont premiers dans leur ensemble mais pas premiers deux-à-deux.
 \end{Rem}
 \Thr{Bézout généralisé}{$(a_1,a_2...,a_n)\in A^n$ sont premiers entre eux si, et seulement si, $\exists (u_1,...,u_n)\in A^n, 1=a_1u_1+a_2u_2+...+a_nu_n$}
+\Thr{}{Tout élément de $\Z$ et de $\K[X]$ peut se décomposer en un produit unique d'éléments irréductibles (éléments qui, à un inversible près, ont un seul diviseur) et d'un inversible.}
+\Pre{Par récurrence forte sur la valeur absolue ou le degré pour l'existence, et par Lemme de Gauss pour l'unicité. Revoir le cours de sup.}
+\Def{PPCM}{Soit $A$ un anneau euclidien, soit $a,b\in A$. On appelle ppcm de $a$ et $b$ un générateur de $aA\cap bA$, noté $a\vee b$
+\par Dans $\Z$ ou $\K[X]$, on peut parler du ppcm pour l'entier positif ou polynôme unitaire ppcm. \par Et donc on a : $aA\cap bA=(a\vee b)A$}
+\Prop{}{Soit $a,b\in A$, soit $p\in A$ \par $p$ est un multiple de $a$ et de $b$ si, et seuelement si, $p$ est un multiple du ppcm.}
+\Pre{Dans le cadre de l'énoncé : \par $\left\{\begin{array}{r}a\vert p \\ b\vert p\end{array}\right.\Leftrightarrow\left\{\begin{array}{r}pA\subset aA \\ pA\subset bA\end{array}\right.\Leftrightarrow pA\subset aA\cap bA \Leftrightarrow pA\subset (a\vee b)A \Leftrightarrow a\vee b\vert p $}
+\Prop{ppcm de n éléments}{Avec $a_1,...,a_n\in A$, alors $a_1\vee a_2\vee...\vee a_nA$ est bien un générateur de $a_1A\cap a_2A\cap...\cap a_nA$}
+\Prop{}{$\forall a,b,c\in A, (a\vee b)\vee c = a\vee(b\vee c)$}
+\Prop{}{Si $a,b,d\in A$ : $\left\{\begin{array}{r}a = da' \\ b = db'\end{array}\right. \text{ et } a'\wedge b' = 1\Leftrightarrow d\equiv a\wedge b$}
+\Pre{Sens direct : on suppose que $d\vert a$ et $d\vert b$. \par $a'$ et $b'$ sont premiers entre eux, on peut donc prendre $u,v\in A$ tels que $a'u + b'v = 1$ \par Donc $da'u +db'u = au + bv = d$ \par Donc $d\in aA+bA$ \par Donc $a\wedge b\vert d$ \par Et donc $d\equiv a\wedge b$
+\par Pour l'autre implication : on peut écrire $a =da'$ et $b=db'$. Par l'absurde, si $a'$ et $b'$ ne sont pas premiers, alors $d$ ne serait pas congru au pgcd.}
+
+\section{Application à la réduction des endomorphismes}
+\Thr{Lemme des noyaux}{Soit $E$ un $\K$-ev, $f\in \mathcal{L}(E)$. \par Soit $P\in \K[X]$ tel que $P=P_1...P_n$ où $P_1,...,P_n$ sont premiers entre eux deux à deux. \par $\ker P(f) = \bigoplus\limits_{i=1}^n\ker(P_i(f))$}
+\Pre{Dans le cadre de l'énoncé : \par On pose pour $i\in\llbracket 1,n\rrbracket$ : $Q_i = \prod\limits_{1\leq j\leq n, j\neq i} P_j = \frac{P}{P_i}$ \par Montrons que $(Q_1,..., Q_n)$ sont premiers entre eux dans leur ensemble. \par Supposons par l'absurde que $Q_1,...,Q_n$ ne sont pas premiers entre eux. \par Donc $Q_1\wedge...\wedge Q_n \neq 1$ \par Donc $Q_1\wedge...\wedge Q_n$ possèdent un diviseur irréductible $Q$ \par En particulier, $Q\vert Q_1$ \par Donc $Q\vert P_2P3...P_n$
+\par Comme $Q$ est irréductible, $\exists i_0\in \llbracket 2,n\rrbracket Q\vert P_{i_0}$ \par Mais $Q\vert Q_{i_0}$, donc $Q\vert \prod\limits_{j\neq i_0}P_j$ \par Donc $Q\vert P_{j_0}$ avec $j_0\neq i_0$ \par Mais $P_{j_0}\wedge P_{i_0}$ \par D'où la contradiction.
+\par Par Bezout généralisé, on peut trouver $U_1,...,U_n\in\K[X]$ tels que $\sum\limits_{i=1}^nQ_iU_i=1$ \par On a que $\forall i\in\llbracket 1,n\rrbracket, \ker P_i(f) \subset\ker P(f)$ donc $\ker P_1(f)+\ker P_2(f)+...+\ker P_n(f)\subset \ker P(f)$ \par Analyse : soit $x\in \ker P(f)$, on suppose qu'il existe $(x_1,...,x_n)\in \ker P_1(f)\times...\times\ker P_n(f)$ tel que $x=x_1+...+x_n$ \par Soit $i\in \llbracket 1,n\rrbracket$, alors $Q_i(f)(x)=Q_i(f)(x_i)$ \par $U_i(f)\circ Q_i(f)(x) = (U_i(f)\circ Q_i(f))(x_i)$
+\par Remarque : $\left(\sum\limits_{j=1}^nU_j(f)\circ Q_j(f)\right)(x_i) = (U_i(f)\circ Q_i(f))(x_i)$ \par Or $\sum\limits_{j=1}^nU_iQ_j=1$ \par Donc $\sum\limits_{j=1}^nU_j(f)Q_j(f)=id$ \par Donc $x_i = Q_i(f)\circ U_i(f)(x_i)$ \par Donc $x_i = (U_iQ_i)(f)(x)$ \par Donc $\ker P_1(f),..., \ker P_n(f)$ sont en somme directe.
+\par Synthèse : soit $x\in \ker P(f)$ \par Alors $x = id(x) = \sum\limits_{i=1}^n(Q_iU_i)(f)(x)$ \par Et $\forall i\in\llbracket1,n\rrbracket, P_i(f)((Q_iU_i)(f)(x)) = (P_iQ_iU_i)(f)(x)=(U_iP)(f)(x)= U_i(f)\circ P(f)(x)=0$}
+\begin{Exe}
+$E$ un $\K$-ev, $f\in\mathcal{L}(E)$ telle que $f^3-id=0$ \par Si $\K=\C$ : $E =\ker(f-id)\oplus\ker(f-jid)\oplus\ker(f-j^2id)$ puisque $X^3-1=(X-1)(X-j)(X-j^2)$ \par Si $\K=R$, on peut écrire par le lemme des noyaux : $E=\ker(f-id)\oplus\ker(f^2+f-id)$
+\end{Exe}
+\Def{Espaces caractéristiques}{Soit $E$ un $\K$-ev de dimension finie, soit $f\in\mathcal{L}(E)$ telle que $\chi_f$ est scindé. \par $\chi_f = \prod\limits_{i=1}^p(x-\lambda_i)^{\alpha_i}$ avec $S_p(f)=\{\lambda_1,...,\lambda_p\}$ et $(\alpha_1,...,\alpha_p)\in\N^{*p}$ \par Alors $E=\bigoplus\limits_{1\leq i\leq p}\ker((f-\lambda_iid)^{\alpha_i})$ par lemme des noyaux.
+\par Les sev de $E$, $F_i = \ker((f-\lambda_i)^{\alpha_i})$ sont appelés sous-espaces caractéristiques de $f$.\begin{itemize}
+\item les sous-espaces caractéristiques sont stables par $f$ ;
+\item $f$ est entièrement caractérisée par $f_1,f_2,...,f_p$ les endomorphismes induis par $f$ sur $F_1,...,F_p$ ;
+\item $\forall i\in\llbracket 1,p\rrbracket, (f_i-\lambda_iid)^{\alpha_i}=0$, ou $f_i-\lambda_iid$ est nilpotent, donc $f_i$ a pour unique valeur propre $\lambda_i$ ;
+\item les $f_i$ sont trigonalisables (leur polynôme caractéristique est scindé) ;
+\item dans une base $\mathcal{B}=(\mathcal{B}_1,...,\mathcal{B}_p)$ où $\forall i\in\llbracket 1,p\rrbracket$, $\mathcal{B}_i$ est une base de diagonalisation de $f_i$, alors $Mat_\mathcal{B}(f)$ est diagonale par blocs, chaque bloc étant triangulaire de taille $\alpha_i\times \alpha_i$ ;
+\item pour $i\in\llbracket 1,p\rrbracket$, $\dim F_i = \alpha_i$.
+\end{itemize}}
+
+
+
+\chapter{Intégration}
+\section{Intégrale sur un segment (rappels)}
+\Def{}{Soient $c,d$ deux réels avec $c<d$ \par Soit $f$ une fonction définie sur $[c,d]$ et à valeurs dans $\K$. La fonction $f$ est dite continue par morceaux s'il existe une subdivision $\sigma=(x_i)_{k\in\llbracket 0,n\rrbracket}$ telle que pour tout $i\in\llbracket 0,n-1\rrbracket$, la fonction $f_{]x_i,x_{i+1}[}$ se prolonge en une fonction fontinue sur $[x_i, x_{i+1}]$ \par Une telle subdivision est dite adaptée à $f$}
+\begin{Rem}
+Une fonction continue par morceaux sur un segment est bornée
+\end{Rem}
+\Def{}{Une fonction $f$ définie sur un intervalle $I$ et à valeurs dans $\K$ est dite continue par morceaux sur l'intervalle $I$ si sa restriction à tout segment inclus dans $I$ est continue par morceaux. \par On note $\mathcal{CM}(I, \K)$ l'ensemble des fonctions continues par morceaux de $I$ dans $\K$}
+\Prop{}{Pour $f,g$ continues par morceaux sur $[a,b]$ : \begin{itemize}
+\item Linéarité : pour $\lambda\in\K$ \par \begin{center}$\int_{[a,b]}f+\lambda g=\int_{[a,b]}f + \lambda \int_{[a,b]}g$ \end{center}
+\item Positivité : pour $f$ rélle positive \par \begin{center} $\int_{[a,b]}f\geq 0$\end{center}
+\item Croissante : pour $f,g$ réelles \par \begin{center}$f\leq g\Rightarrow \int_{[a,b]}f\leq\int_{[a,b]}g$\end{center}
+\item Inégalité triangulaire : \par \begin{center} $\left\vert\int_{[a,b]}f\right\vert\leq\int_{[a,b]}\vert f\vert$\end{center}
+\item Positivité améliorée : pour $f$ continue et positive \par \begin{center} $\int_{[a,b]}f=0\Rightarrow f=0$\end{center}
+\end{itemize}}
+\Prop{Chasles}{Soit $I$ un intervalle, $f$ une fonction continue par morceaux sur $I$, $a,b,c\in I$. \par\begin{center}$\int_a^bf(t)dt=\int_a^cf(t)dt+\int_c^bf(t)dt$\end{center}}
+\Prop{}{Soit $I$ un intervalle. Soit $a\in I$ et $f$ une fonction continue par morceaux sur $I$ à valeur dans $\K$, on définit la fonction $F_a$ intégrale dépendant de la borne supérieur s'annulant en $a$ par : \par \begin{center}$F_a:\left\{\begin{array}{rcl} I & \to & \K \\ x & \mapsto & \int_a^xf(t)dt\end{array}\right.$\end{center} \begin{itemize}
+\item $F_a$ est continue sur $I$
+\item Si $f$ est continue, $F_a$ est $\mathcal{C}^1$ de dérivée $f$
+\end{itemize}}
+\begin{Rem}
+Cette proposition permet d'énoncer le théorème fondamental de l'analyse : toute fonction continue sur un intervalle possède une primitive.
+\end{Rem}
+\Prop{Intégration par parties}{Soit $[a,b]$ un segment, $f,g$ des fonctions $\mathcal{C}^1$ sur $[a,b]$ \par\begin{center} $\int_a^bf'(t)g(t)dt = [f(t)g(t)]_a^b - \int_a^bf(t)g'(t)dt$\end{center}}
+\Prop{Changement de variable}{Soit $[a,b]$ un segment, $\varphi$ $\mathcal{C}^1$ sur $[a,b]$ à valeurs réelles et $f$ une fonction continue sur $\varphi([a,b])$ \par \begin{center} $\int_a^bf(\varphi(t))\varphi'(t)dt = \int_{\varphi(a)}^{\varphi(b)} f(u)du$ \end{center}}
+On dispose du résultat suivant, conséquence du théorème de Heine :
+\Prop{Sommes de Riemann régulières}{Soit $[a,b]$ un segment et $f$ continue par morceaux sur $[a,b]$\par \begin{center}$\frac{b-a}{n}\sum\limits_{k=0}^{n-1}f\left(a+k\frac{b-a}{n}\right)\to_{n\to+\infty} \int_a^bf(t)dt$\end{center}}
+\Pre{Dans le cas continu : \par Soit $\varepsilon\in\R_+^*$ \par $f$ est continue sur $[a,b]$ donc $f$ est uniformément continue \par On peut donc fixer $\alpha>0, \forall t_1,t_2\in[a,b], \vert t_1-t_2\vert<\alpha \Rightarrow \vert f(t_1)-f(t_2)\vert<\varepsilon$ \par \par Pour $k\in\rrbracket 0, n-1\rrbracket$, on note $x_k = a+k\frac{b-a}{n}$ \par On choisit $n_0\in \N$ tel que $\frac{b-a}{n_0}<\alpha$ \par Donc $\forall n\geq n_0, \frac{b-a}{n}<\alpha$
+\par Pour $n\geq n_0$, \par $\left\vert\int_a^bf(t)dt-\frac{b-a}{n}\sum\limits_{k=0}^{n-1}f(x_k)\right\vert = \left\vert\sum\limits_{k=0}^{n-1}\int_{x_k}^{x_{k+1}}f(t)-f(k)dt\right\vert\leq \sum\limits_{k=0}^{n-1}\int_{x_k}^{x_{k+1}}\vert f(t)-f(x_k)\vert dt\leq\varepsilon(b-a)$ \par Dans le cas continu par morceaux, on se sert du fait qu'on soit sur un segment pour avoir une subdivision adaptée finie et ensuite appliquer Chasles.g}
+\begin{Exe}
+Donner un équivalent de $(S_n) = \left(\sum\limits_{k=1}^n\frac{1}{n^2+k^2}\right)$ \par $S_n = \frac{1}{n^2}\sum\limits_{k=1}^n\frac{1}{1+\frac{k^2}{n^2}}$ \par $t\mapsto \frac{1}{1+t^2}$ est continue sur $[0,1]$ \par Alors $\frac{1}{n}\sum\limits_{k=1}^n\frac{1}{1+\frac{k^2}{n^2}}\to\int_0^1\frac{dt}{1+t^2}$ \par Et donc $S_n\sim \frac{1}{n}\int_0^1\frac{dt}{1+t^2}$ \par Donc $S_n\sim \frac{\pi}{4n}$
+\end{Exe}
+\Prop{formule de Taylor avec reste intégral et majoration de Lagrange}{Soit $[a,b]$ un segment et $f$ une fonction $\mathcal{C}^{n+1}$ sur $[a,b]$ à valeurs dans $\K$. Alors : \par \begin{center}$\int_a^bf(t)dt=\sum\limits_{k=0}^nf^{(k)}(a)+R_n(f)$ \end{center} \par Où $R_n(f) =\frac{1}{n!}\int_a^b(b-t)^nf^{(n+1)}(t)dt = \frac{(b-a)^{n+1}}{n!}\int_0^1(1-u)^nf^{(n+1)}(a+u(b-a))du$ \par En majorant la deuxième forme du reste intégrale : \par \begin{center} $\vert R_n(f)\vert \leq \frac{\vert b-a\vert^{n+1}}{(n+1)!}\sup\limits_{[a,b]}\vert f^{(n+1)}\vert$\end{center}}
+
+
+\section{Intégration sur un segment d'une fonction vectorielle}
+La définition de l'intégrale sur un segment s'étend sans difficultés aux fonctions "vectorielles" continues par morceaux sur un segment, c'est à dire aux fonctions continues par morceaux sur un segment, à valer dans un $\K$-espace vectoriel de \textbf{dimension finie} $E$ \par Il suffit de fixer une base $\mathcal{B}$ \par Pour une fonction vectorielle $f$, de fonctions coordonnées $f_i$ dans $\mathcal{B}$ \par \begin{center} $\int_{[a,b]}f$\end{center} \par est le vecteur de $E$ de coordonnées dans $\mathcal{B}$ \par\begin{center}$\left(\int_{[a,b]}f_i\right)$\end{center}
+\par On prouve la majorité des propriétés équivalentes à celles dans $\K$ en le faisant coordonnées par coordonnées, et on perd toutes les propriétés liées à la relation d'ordre, sauf l'inégalité triangulaire. \par Dans cette partie, $E$ désigne un $\K$-espace vectoriel de dimension finie.
+\Prop{}{Pour $f,g$ continues par morceaux de $[a,b]$ dans $E$ :\begin{itemize}
+\item Linéarité : pour $\lambda\in\K$ \par\begin{center} $\int_{[a,b]}f+\lambda g=\int_{[a,b]}f+\lambda \int_{[a,b]}g$\end{center}
+\item Composition linéaire : si $L$ est une application linéaire de $E$ dans un $\K$-ev de dimension finie $F$ \par \begin{center}$\int_{[a,b]}L(f)=L\left(\int_{[a,b]}f\right)$\end{center}
+\item Inégalité triangulaire : pour une norme quelconque $\Vert.\Vert$ \par \begin{center}$\left\Vert\int_{[a,b]}f\right\Vert\leq\int_{[a,b]}\Vert f\Vert$\end{center}
+\end{itemize}}
+\Pre{Preuve 8 : Pour l'inégalité triangulaire \par Soit $\Vert.\Vert$ une norme sur $E$ \par Soit $f$ continue par morceaux sur $[a,b]$, $a<b$ \par Soit $n\in\N$, alors $\left\Vert\frac{b-a}{n}\sum\limits_{k=0}^{n-1}f\left(a+k\frac{a-b}{n}\right)\right\Vert\leq \frac{b-a}{n}\sum\limits_{k=0}^{n-1}\left\Vert f\left(a+k\frac{b-a}{n}\right)\right\Vert$ \par On passe à la limite, par continuité de la norme et par sommes de Riemann. \par Alors $\left\Vert \int_{[a,b]}f\right\Vert \leq \int_{[a,b]}\Vert f\Vert$}
+\Prop{Chasles}{Soit $I$ un intervalle, $f$ une fonction continue par morceaux sur $I$, $a,b,c\in I$. \par\begin{center}$\int_a^bf(t)dt=\int_a^cf(t)dt+\int_c^bf(t)dt$\end{center}}
+\Prop{}{Soit $I$ un intervalle. Soit $a\in I$ et $f$ une fonction continue par morceaux sur $I$ à valeur dans $\K$, on définit la fonction $F_a$ intégrale dépendant de la borne supérieur s'annulant en $a$ par : \par \begin{center}$F_a:\left\{\begin{array}{rcl} I & \to & \K \\ x & \mapsto & \int_a^xf(t)dt\end{array}\right.$\end{center} \begin{itemize}
+\item $F_a$ est continue sur $I$
+\item Si $f$ est continue, $F_a$ est $\mathcal{C}^1$ de dérivée $f$
+\end{itemize}}
+\begin{Rem}
+Le théorème fondamental de l'analyse reste valable pour une fonction vectorielle : toute fonction continue sur un intervalle possède une primitive.
+\end{Rem}
+\Prop{Intégration par parties}{Soit $[a,b]$ un segment, $\lambda$ une fonction à valeur dans $\K$, $\mathcal{C}^1$ sur $[a,b]$, $f$ une fonction $\mathcal{C}^1$ sur $[a,b]$ à valeurs dans $E$ \par\begin{center} $\int_a^b\lambda'(t)f(t)dt = [\lambda(t)f(t)]_a^b - \int_a^b\lambda(t)f'(t)dt$\end{center}}
+\Prop{Changement de variable}{Soit $[a,b]$ un segment, $\varphi$ une fonction $\mathcal{C}^1$ sur $[a,b]$ à valeurs réelles et $f$ une fonction continue sur $\varphi([a,b])$ à valeurs dans $E$ \par\begin{center} $\int_a^bf(\varphi(t))\varphi'(t)dt = \int_{\varphi(a)}^{\varphi(b)}f(u)du$\end{center}}
+\Prop{Sommes de Riemann régulières}{Soit $[a,b]$ un segment et $f$ continue par morceaux sur $[a,b]$\par \begin{center}$\frac{b-a}{n}\sum\limits_{k=0}^{n-1}f\left(a+k\frac{b-a}{n}\right)\to_{n\to+\infty} \int_a^bf(t)dt$\end{center}}
+\Prop{formule de Taylor avec reste intégral et majoration de Lagrange}{Soit $[a,b]$ un segment et $f$ une fonction $\mathcal{C}^{n+1}$ sur $[a,b]$ à valeurs dans $\K$. Alors : \par \begin{center}$\int_a^bf(t)dt=\sum\limits_{k=0}^nf^{(k)}(a)+R_n(f)$ \end{center} \par Où $R_n(f) =\frac{1}{n!}\int_a^b(b-t)^nf^{(n+1)}(t)dt = \frac{(b-a)^{n+1}}{n!}\int_0^1(1-u)^nf^{(n+1)}(a+u(b-a))du$ \par En majorant la deuxième forme du reste intégrale : \par \begin{center} $\Vert R_n(f)\Vert \leq \frac{\vert b-a\vert^{n+1}}{(n+1)!}\sup\limits_{[a,b]}\Vert f^{(n+1)}\Vert$\end{center}}
+\begin{Rem}
+La majoration de Lagrange à l'ordre $0$ constitue ce qu'on appelle l'inégalité des accroissements finis : Soit $[a,b]$ un segment, et $f$ une fonction $\mathcal{C}^1$ sur $[a,b]$ à valeur dans $E$ \par\begin{center}$\Vert f(b)-f(a)\Vert \leq\vert b-a\vert\sup\limits_{[a,b]}\Vert f'\Vert$\end{center}
+\end{Rem}
+
+
+\section{Intégration sur un intervalle quelconque}
+Dans tout ce chapitre, $\K$ désigne $\R$ ou $\C$ et les fonctions sont à valeurs dans $\K$
+\subsection{Intégration sur un intervalle semi-ouvert}
+\Def{}{Soit $f:[a,b[\to\K$ une fonction continue par morceaux avec $b\in\R\cup\{+\infty\}$ \par Notons $F$ la fonction : \par \begin{center} $F :\left\{\begin{array}{rcl}[a,b[ & \to & \K \\ x & \mapsto & \int_a^x f\end{array}\right.$ \end{center}
+\par On dit que $\int_a^bf$ est convergente si $F(x)$ a une limite finie quand $x$ tend vers $b$. \par Dans ce cas, on note : \par \begin{center} $\int_a^bf=\lim\limits_{x\to b}\int_a^xf$\end{center} \par Dans le cas contraire, on dit que $\int_a^bf$ est divergente. \par Etudier la nature de $\int_a^bf$, c'est étudier si l'intégrale est convergente ou divergente.}
+\begin{Exe}
+Pour $\int_1^{+\infty}\frac{dt}{t^2}$ \par $t\mapsto\frac{1}{t^2}$ est continue sur $[1,+\infty[$, donc continue par morceaux. \par Pour $x\geq 1$ : $\int_1^x \frac{dt}{t^2} = \left[\frac{-1}{t}\right]_1^x = 1-\frac{1}{x}$\par Et $1-\frac{1}{x}\to_{x\to+\infty} 1$ \par Donc $\int_1^{+\infty}\frac{dt}{t^2}$ converge et $\int_1^{+\infty}\frac{dt}{t^2}=1$
+\par Pour $\int_1^{+\infty}\frac{dt}{\sqrt{t^4+t^{3/2}+1}}$, on a aussi la convergence par des critères qu'on verra plus loin.
+\par Pour calculer $\int_0^1-ln(1-t)dt$, on commence par établir que la valeur de $-ln(1-t)$ en $1$ est infinie, et continue en $[0,1[$ \par Pour $x\in[0,1[$ :\par $\int_0^x -ln(1-t) = \int_1^{1-x}ln(u)du$ en faisant un changement de variable $u=(1-t)$ \par $ = -\int_{1-x}^1 ln(u)du = \left[tln(t)-t\right]_{1-x}^1 = ln(1)-1 -( (1-x)ln(1-x) - (1 - x))$ \par $= x+(1-x)ln(1-x) = F(x)$ \par Et donc $F(x)\to_{x\to 1}1$ \par Donc $\int_0^1-ln(1-t)dt$ converge et $\int_0^1-ln(1-t)dt=1$
+\par $\int_1^{+\infty}\frac{dt}{t}$ diverge. \par $\int_0^{+\infty}cos(t)dt$ diverge.
+\end{Exe}
+\begin{Rem}
+La notation $\int_a^bf$ désigne à la fois l'intégrale impropre qui peu têtre convergente ou divergente, et en cas de convergence la "valeur" de l'intégrale qui est un élément de $\K$. Il n'y a pas comme pour les séries deux notations différentes. \par On peut employer aussi les notation : \begin{itemize}
+\item $\int_{[a,b[}f$
+\item $\int_a^bf(t)dt$
+\end{itemize} 
+\end{Rem}
+\Def{}{Soit $f:]a,b]\to \K$ une fonction continue par morceaux avec $a\in\R\cup\{-\infty\}$ \par On dit que $\int_a^bf$ est convergente si $x\mapsto \int_x^bf$ admet une limite finie en $a$ \par Dans ce cas, on note \par\begin{center}$\int_a^bf=\lim\limits_{x\to a}\int_x^bf$\end{center} \par Dans le cas contraire, on dit que $\int_a^bf$ est divergente.}
+\Prop{}{Soit $f:[a,b[\to\K$ une fonction continue par morceaux avec $b\in\R$\par Si $f$ admet une limite finie en $b$ alors $\int_a^bf$ est convergente \par On dit que c'est une intégrale faussement impropre (ou faussement généralisée).}
+\begin{Rem}
+On peut énoncer la même propriété pour la borne inférieure de l'intégrale.
+\end{Rem}
+\Prop{}{Soit $f:[a,b[\to\K$ une fonction continue par morceaux, soit $c\in[a,b[$, alors $\int_a^bf$ et $\int_c^bf$ sont de même nature.}
+\Pre{Preuve 16 : $\forall x\in[a,b[, \int_a^xf(t)dt = \int_a^cf(t)dt + \int_c^xf(t)dt$ \par Et donc si $\int_a^x$ admet une limite quand $x$ tend vers $b$, alors comme $\int_c^xf(t)dt$ aussi.}
+\begin{Rem}
+La convergence de l'intégrale ne dépend que du comportement local en $b$ de la fonction. \par On peut énoncer la même propriété pour une intégrale impropre en $a$.
+\par Attention : L'intégrale $\int_0^{+\infty}f$ d'une fonction $f$ peut converger sans que la fonction tende vers $0$ en $+\infty$
+\end{Rem}
+
+\subsection{Intégration sur un intervalle ouvert}
+\Def{Intégrale sur un intervalle ouvert}{Soit $f\in\mathcal{CM}(]a,b[,\K)$ avec $-\infty\leq a<b\leq +\infty$
+\par On dit que $\int_a^bf$ est convergente si pour $c\in]a,b[$, $\int_a^cf$, $\int_c^bf$ sont toutes les deux convergentes. \par On note alors $\int_a^bf = \int_a^cf + \int_c^bf = \lim\limits_{x\to a^+, y\to a^-}\int_x^yf$}
+\begin{Exe}
+Etudier la convergence de $\int_{-\infty}^{+\infty}\sin(t)dt$ \par $\int_0^{+\infty}\sin(t)dt$ diverge donc $\int_{-\infty}^{+\infty}\sin(t)dt$ diverge.
+\end{Exe}
+
+\subsection{Intégration des fonctions positives}
+Notons qu'on peut énoncer le même type de proposition pour des fonctions définies sur un intervalle semi-ouvert à gauche.
+\Thr{Rappel sur les limites monotones}{Avec $a<b$ : soit $g\in\mathcal{F}(]a,b[,\R)$ \begin{itemize}
+\item S $g$ est croisssante majorée, alors $g$ a une limite en $b^-$
+\item Si $g$ est croissante non-majorée, alors $g\to_{b^-}+\infty$
+\item Si $g$ est croissante minorée, alors $g$ a une limite en $a^+$
+\item Si $g$ est croissante non-minorée, alors $g\to_{a^-}-\infty$
+\item S $g$ est décroisssante majorée, alors $g$ a une limite en $a^+$
+\item Si $g$ est décroissante non-majorée, alors $g\to_{a^+}+\infty$
+\item Si $g$ est décroissante minorée, alors $g$ a une limite en $b^-$
+\item Si $g$ est décroissante non-minorée, alors $g\to_{b^+}-\infty$
+\end{itemize}}
+\Pre{Proposition 17 : pour $f\geq 0$ \par $x\mapsto \int_a^bf$ est croissante : \par Soient $x,y\in[a,b[, x<y$ \par Alors $\int_a^yf -\int_a^x = \int_x^yf(t)dt\geq 0$ \par Donc on a la convergence si, et seulement si, $x\mapsto \int_a^x$ est majorée par théorème des limites monotones.}
+\begin{Rem}
+L'intégrale diverge si, et seulement si, $x\mapsto \int_a^xf$ tend vers $+\infty$ quand $x$ tend vers $b$
+\par Par analogie avec la définition de la sommem d'une famille de réels positifs, on peut définir la valeur de l'intégrale d'une fonction positive continue par morceaux sur $[a,b[$ dans tous les cas :\begin{itemize}
+\item $\int_a^bf=+\infty$ lorsque $\int_a^bf$ diverge
+\item $\int_a^bf\in \R$ ou $\int_a^bf<+\infty$ lorsque $\int_a^bf$ converge
+\end{itemize}
+\end{Rem}
+\Prop{}{Soit $a\in\R, b\in\R\cup\{+\infty\}$ avec $a<b$ \par Soit $f,g\in\mathcal{CM}([a,b[,\R)$ deux fonctions à valeurs positives telles que $0\leq f\leq g$:\begin{itemize}
+\item Si $\int_a^bg$ converge alors $\int_a^bf$ converge.
+\item Si $\int_a^bf$ diverge alors $\int_a^bg$ diverge. \end{itemize}}
+\Pre{Même démonstration que pour la proposition précédente}
+On peut l'appeler le critère de majoration positive, comme pour les séries.
+\Prop{Corollaire}{Soit $a\in\R, b\in\R\cup\{+\infty\}$ avec $a<b$ \par Soit $f,g\in\mathcal{CM}([a,b[,\R)$ deux fonctions à valeurs positives telles que $f=_bo(g)$ ou $f=_b\mathcal{O}(g)$ :\begin{itemize}
+\item Si $\int_a^bg$ converge alors $\int_a^bf$ converge.
+\item Si $\int_a^bf$ diverge alors $\int_a^bg$ diverge.\end{itemize}}
+\Pre{Démonstration équivalente à celle sur les séries.}
+\Prop{Corollaire}{Soit $a\in\R, b\in\R\cup\{+\infty\}$ avec $a<b$ \par Soit $f,g\in\mathcal{CM}([a,b[,\R)$ deux fonctions à valeurs positives telles que $f\sim_b g$ \par Alors les intégrales $\int_a^bf$ et $\int_a^bg$ sont de même nature}
+\Pre{Démonstration équivalente à celle sur les séries.}
+\begin{Rem}
+Attention : le résultat du commentaire s'applique également pour deux fonctions négatives et équivalentes. En revanche, si les fonctions ne sont pas de signe constant, les intégrales peut être de nature différentes.
+\end{Rem}
+
+\subsection{Intégrales de référence de Riemann}
+\Prop{}{$\int_0^{+\infty}\frac{dt}{t^\alpha}$ converge si, et seulement si, $\alpha>1$}
+\Pre{Par calcul de primitives.}
+\Prop{}{$\int_0^{+\infty}e^{-\lambda t}dt$ converge si, et seulement si, $\lambda>0$}
+*\Prop{}{$\int_0^1\frac{dt}{t^\alpha}$ converge si, et seulement si, $\alpha<1$}
+\Prop{}{$\int_0^1ln(t)dt$ converge}
+\begin{Rem}
+On a aussi que $\int_0^1\vert ln(t)\vert^\alpha$ converge, mais ce n'est pas au problème, donc on doit le retrouver à partir de $\vert ln(t)\vert^\alpha =o\left(\frac{1}{\sqrt[\alpha]{t}}\right)$ en $0$
+\end{Rem}
+\Prop{}{Si $a<b$ : \par $\int_a^b\frac{dt}{\vert t-a\vert^\alpha}$ converge si, et seulement si, $\alpha<1$}
+\Prop{}{Si $a>b$ : \par $\int_b^a\frac{dt}{\vert b-a\vert^\alpha}$ converge si, et seulement si, $\alpha<1$}
+\begin{Exe}
+Existence et calcul éventuel de $\int_1^{+\infty}\frac{dt}{(t-1)(t+2)}$ et de $\int_2^{+\infty}\frac{dt}{(t-1)(t+2)}$ \par $f:t\mapsto \frac{1}{(t-1)(t+2)}$ est continue donc continue par morceaux sur $]1,+\infty[$ \par Etude en 1 : $\frac{1}{(t-1)(t+2)}\sim\frac{1}{3(t-1)}$ \par $f$ est positive, $\int_1^2\frac{dt}{t-1}$ diverge donc $\int_1^2f(t)dt$ diverge par critère d'équivalent positif. \par donc $\int_0^{+\infty}\frac{dt}{(t-1)(t+2)}$ diverge
+\par $f(t)\sim_{+\infty}\frac{1}{t^2}$ \par $\int_2^{+\infty}\frac{dt}{t^2}$ converge, $f$ est positive et donc par critère d'équivalent positif, $\int_2^{+\infty}f(t)dt$ converge \par Pour le calcul : Faisons d'abord une décomposition en éléments simples \par $\int_2^{+\infty}f(t)dt = \int_2^{+\infty} \frac{1}{3(t-1)}-\frac{1}{3(t+2)}$ \par (L'intégrale de la somme est convergente mais l'intégrale de chaque élément simple est divergente) \par Soit $x\in[2,+\infty[$ : $\int_2^x\frac{1}{3(t-1)}-\frac{1}{3(t+2)}dt$ \par $=\left[\frac{1}{3}\ln\left(\frac{t-1}{t+2}\right)\right]_2^x = \frac{1}{3}\ln(4)-\frac{1}{3}\ln\left(\frac{x-1}{x+2}\right)$ \par Or $\ln\left(\frac{x-1}{x+2}\right)\to_{+\infty}0$ donc $\int_2^{+\infty}f(t)dt =\frac{1}{3}\ln(4)$
+\end{Exe}
+\begin{Exe}
+Convergence de :\begin{enumerate} \item $\int_0^{+\infty} t^{12}e^{-t}dt$
+\par $f\geq 0$, $f$ est continue donc continue par morceaux sur $[0,+\infty[$ \par $f=_\infty o(e^{\frac{-t}{2}})$ or $f=_\infty o(\frac{1}{t^2})$ \par $\int_1^{+\infty}\frac{dt}{t^2}$ converge donc par critère de domination positif, $\int_0^{+\infty}f(t)dt$ converge.
+\item $\int_0^{+\infty}\frac{e^{-\sqrt{t}}}{t^{2/3}}dt$
+\par $f\geq 0$, $f$ continue sur $]0,+\infty[$ \par En $0$ : $f\sim\frac{1}{t^{2/3}}$ et donc $\int_0^1f(t)dt$ converge par comparaison à du Riemann \par En $+\infty$ : $f=o\left(\frac{1}{t^2}\right)$ et on a la convergence aussi.
+\item $\int_2^{+\infty}\frac{dt}{t^\alpha\ln(t)^\beta}$
+\par $f$ est continue sur $[2,+\infty[$ positive : \par Si $\alpha>1$, alors $\frac{1}{t^\alpha(ln(t))^\beta}=o\left(\frac{1}{t^{\frac{1+\alpha}{2}}}\right)$ par croissance comparée \par $\int_1^{+\infty}\frac{dt}{t^{\frac{1+\alpha}{2}}}$ converge car $\frac{1+\alpha}{2}>1$ converge \par Donc par critère de domination positif, $\int_2^{+\infty}\frac{dt}{t^\alpha(ln(t))^\beta}$ converge \par Si $\alpha<1$, alors $\frac{1}{t^\alpha(ln(t))^\beta}\gg\frac{1}{t^{\frac{1+\alpha}{2}}}$ \par Donc $\int_2^{+\infty}\frac{dt}{t^\alpha(ln(t))^\beta}$ diverge.
+\par Si $\alpha = 1$ : \par Pour $x>2$, $\int_2^{+\infty}\frac{dt}{t(ln(t))^\beta}=\int_{ln(2)}^{ln(x)}\frac{du}{u^\beta}$ (Changement de variable avec $u = ln(t), du = \frac{dt}{t}$) \par Et donc $\int_2^{+\infty}\frac{dt}{tln(t)^\beta}$ converge si, et seulement si, $\beta>1$ \par Et donc, $\int_2^{+\infty}\frac{dt}{t^\alpha\ln(t)^\beta}$ converge si, et seulement si, $\alpha>1$ ou ($\alpha = 1$ et $\beta>1$)
+\item $\int_0^{1/2}\frac{dt}{t^\alpha\vert\ln(t)\vert^\beta}dt$ \par On a convergence si, et seulement si, $\alpha<1$ ou ($\alpha = 1$ et $\beta>1$)
+\end{enumerate}
+\end{Exe}
+
+\subsection{Intégrabilité}
+\Def{}{Soit $I$ un intervalle, $f$ continue par morceaux sur $I$ à valeurs dans $\K$ \par On dit que $\int_If$ est absolument convergente si $\int_I\vert f\vert$ converge.}
+\begin{Rem}
+On peut comme dans le cadre de la théorie de la sommabilité des familles de $\K$ utiliser la définition de la valeur de l'intégrale d'une fonction positive. Ainsi, la définition précédente peut s'écrire : \par\begin{center} $f$ est intégrable sur $I$ si $\int_I\vert f\vert<+\infty$ \end{center}
+\end{Rem}
+\Thr{}{Soit $f$ continue par morceaux sur un intervalle $I$. \par Si $\int_If$ est absolument convergente alors $\int_If$ est convergente.}
+\Pre{Même démonstration que pour les séries : \par Pour $f$ réelle, $0\leq \vert f\vert-f\leq 2\vert f$ et on intègre \par Ensuite pour les fonctions complexes, on écrit que $\vert \Re(f)\vert \leq f$ et que $\vert \Im(f)\vert\leq\vert f\vert$}
+\Prop{}{Une intégrale absolument convergente est convergente et pour $f$ intégrable sur un intervalle $I$ \par \begin{center}$\left\vert\int_If\right\vert\leq \int_I\vert f\vert$\end{center}}
+
+\subsection{Propriétés des intégrales impropres}
+\Prop{des intégrales impropres}{\begin{itemize}
+\item Linéarité : si $I$ un intervalle, $f,g$ continues par morceaux sur $I$ d'intégrales convergentes sur $I$, $\lambda\in\K$, alors : \par \begin{center}$\int_If + \lambda g$ converge et $\int_If+\lambda g = \int_I f+\lambda\int_Ig$ \end{center}
+\item Positivité : si $f$ continue par morceaux sur $I$ réelle positive, d'intégrale sur $I$ convergente, alors $\int_If\geq 0$
+\item Croissance : si $f$ et $g$ sont continues par morceaux sur $I$i réelles positives d'intégrales sur $I$ convergentes avec $f\leq g$, alors $\int_If\leq \int_Ig$
+\item Inégalité triangulaire : si $f$ continue par morceaux sur $I$ intégrable sur $I$, alors $\left\vert\int_If\right\vert \leq\int_I\vert f\vert$ 
+\item Positivité améliorée : si $I$ un intervalle, $f$ continue réelle positive sur $I$ d'intégrale sur $I$ convergente, alors $\int_If = 0 \Rightarrow \forall x\in I, f(x)=0$
+\end{itemize}}
+\Pre{Pour la positivité améliorée : cas $I = [a,b[$ \par $f\geq 0, \int_{[a,b[}f = \lim_{x\to b^-}\int_a^xf(t)dt = \sup\limits_{x\in[a,b[}\int_a^xf(t)dt$ \par (car $x\mapsto \int_a^xf(t)dt$ est croissante) \par Donc $\int_{[a,b[}f = 0 \Rightarrow \forall x\in [a,b[, 0\leq \int_a^x f(t)dt\leq 0$ \par Donc $\forall x\in[a,b[\int_a^xf(t)dt=0$ donc par stricte positivité d'une intégrale sur un segment, $f$ est nulle sur tout segment de $[a,b[$ donc nulle sur $[a,b[$}
+
+\subsection{Relation de Chasles}
+\Def{}{Soit $a,b\in\bar{\R}$, tels que $a<b$ et $f\in\mathcal{CM}(]b,a[,\K)$ telle que $\int_b^af$ converge. \par On définit $\int_a^bf(t)dt$ par $-\int_b^af(t)dt$ (comme pour une intégrale classique)}
+\Prop{Relation de Chasles}{Soit $I$ un intervalle, soit $f\in\mathcal{CM}(I,\K)$. Soit $a,b,c$ dans l'adhérence de $I$ dans $\R\cup\{+\infty\}$ \par Si $\int_If$ converge, alors $\int_a^cf, \int_c^bf$ et $\int_a^bf$ convergent et \par\begin{center}$\int_a^bf=\int_a^cf+\int_c^bf$\end{center}}
+
+\subsection{Fonction dépendantd de la borne supérieure}
+\Prop{}{Pour $f\in\mathcal{CM}(I,\K)$ telle que $\int_If$ converge \par Soit $a\in\bar{I}$ (l'adhérence est prise dans $\bar{\R}$) \par Soit $F_a:\left\{\begin{array}{rcl} I & \to & \K \\ x & \mapsto & \int_a^xf \end{array}\right.$ la fonction intégrale dépendant de la borne supérieure\begin{itemize}
+\item $F_a$ est continue sur $I$
+\item Si $f$ est continue sur $I$, $F_a$ est $\mathcal{C}^1$ de dérivée $f$
+\end{itemize}}
+
+\subsection{Intégration par parties}
+\Thr{Intégration par parties}{Avec $f,g$ $\mathcal{C}^1$ sur $]a,b[$,  si $fg$ a une limite en $a^+$ et en $b^-$ alors $\int_a^bf(t)g'(t)dt$ et $\int_a^bf'(t)g'(t)$ sont de même nature et en cas de convergence :\par \begin{center}$\int_a^bf(t)g'(t) = [f(t)g(t)]_a^b -\int_a^bf'(t)g(t)dt$ \end{center}}
+\Pre{Avec $x,y$ tels que $a<x<y<b$, alors $\int_x^yfg' = [fg]_x^y - \int_x^yf'g$}
+\begin{Exe}
+$\int_1^{+\infty}\frac{\sin(t)}{t}dt$ \par $t\mapsto \frac{\sin(t)}{t}$ est continue sur $[1,+\infty[$ \par $\frac{-\cos(t)}{t}$ tend vers $0$ en l'infini : $\forall t\in [1, +\infty[, \left\vert\frac{-\cos(t)}{t}\right\vert\leq \frac{1}{t}$, d'où la limite \par Donc $\int_1^{+\infty}\frac{\sin(t)}{t}dt$ est de même nature que $\int_1^{+\infty}\frac{\cos(t)}{t^2}$ \par Et $\forall t\in[1, +\infty[,\left\vert\frac{\cos(t)}{t^2}\right\vert<\frac{1}{t^2}$ \par Donc par théorème de conparaison positive, $\int_1^{+\infty}\frac{\cos(t)}{t}dt$ converge absolument \par Donc $\int_1^{+\infty}\frac{\sin(t)}{t}$ converge et $\int_1^{+\infty}\frac{\sin(t)}{dt} = \left[\frac{-\cos(t)}{t}\right]_1^{+\infty} - \int_1^{+\infty}\frac{\cos(t)}{t^2}dt$
+\end{Exe}
+
+\subsection{Changement de variable}
+\Thr{}{Soient $a,b,\alpha, \beta$ tels que $-\infty\leq a<b\leq +\infty, -\infty\leq\alpha<\beta\leq+\infty$ \par Soit $f\in]a,b[\to \K$ une fonction continue. \par SOit $\varphi:]\alpha,\beta[\to]a,b[$ une fonction bijective, strictement croissante et de classe $\mathcal{C}^1$
+\par Les intégrales $\int_a^bf(t)dt$ et $\int_\alpha^\beta(f\circ\varphi)(u)\varphi'(u)du$ sont de même nature, et en cas de convergence \par\begin{center}$\int_a^bf(t)dt=\int_\alpha^\beta(f\circ\varphi)(u)\varphi'(u)du$\end{center}}
+\begin{Rem}
+On remarque que $a=\lim\limits_{x\to\alpha}\varphi(x)$ et $b=\lim\limits_{x\to\beta}\varphi(x)$
+\end{Rem}
+\begin{Rem}
+On peut énoncer le même type de théorème avec $\varphi$ strictement décroissant. On a alors dans le cas convergent : \par\begin{center}$\int_a^bf(t)dt=-\int_\alpha^\beta(f\circ\varphi)(u)\varphi'(u)du$\end{center}
+\end{Rem}
+
+\subsection{Intégration des relations de comparaisons}
+\Thr{Intégration des ordres de grandeur}{Soit $a\in\R$ et $b\in\R\cup\{+\infty\}$ avec $a<b$ \par Soit $f\in\mathcal{CM}([a,b[,\K)$ \par Soit $\varphi\in\mathcal{CM}([a,b[,\R)$ une fonction positive sur $[a,b[$\begin{itemize}
+\item Si $\varphi$ est intégrable :\begin{itemize}
+    \item Si $f=_b\mathcal{O}(\varphi)$ alors $f$ est intégrable sur $[a,b[$ et $\int_x^bf=_b\mathcal{O}(\int_x^b\varphi)$
+    \item Si $f=_bo(\varphi)$ alors $f$ est intégrable sur $[a,b[$ et $\int_x^bf=_bo(\int_x^b\varphi)$
+    \item Si $f\sim_b\varphi$ alors $f$ est intégrable sur $[a,b[$ et $\int_x^bf\sim_b\int_x^b\varphi$
+\end{itemize}
+\item Si $\varphi$ n'est pas intégrable :\begin{itemize}
+    \item Si $f=_b\mathcal{O}(\varphi)$ alors $\int_a^xf=_b\mathcal{O}(\int_a^x\varphi)$
+    \item Si $f=_bo(\varphi)$ alors $\int_a^xf=_bo(\int_a^x\varphi)$
+    \item Si $f\sim_b\varphi$ alors $f$ n'est pas intégrable sur $[a,b[$ et $\int_a^xf\sim_b\int_a^x\varphi$
+\end{itemize}
+\end{itemize}}
+\Pre{Rappel sur la sommation des ordres de grandeurs : \par $u_n = o(w_n) \Leftrightarrow u_n = w_n\varepsilon_n$ avec $(\varepsilon_n)\to 0$ \par Dans le cas convergent : soit $\varepsilon>0$, prenons $n_0\in\N$ tel que $\forall n\in\N, n\geq n_0 \Rightarrow \vert\varepsilon_n\vert\leq \varepsilon_0$ \par Alors $\forall n\geq n_0, \left\vert\frac{\sum\limits_{k=n}^{+\infty}u_n}{\sum\limits_{k=n}^{+\infty}w_n}\right\vert \leq \left\vert\frac{\sum\limits_{k=n}^{+\infty}\varepsilon_nw_n}{\sum\limits_{k=n}^{+\infty}w_n}\right\vert\leq \varepsilon$
+\par $f,g$ deux fonctions continues par morceaux sur $[a,b[$ : \par Si $f=_bo(g)$, prenons $\psi$ telle que $f=\psi g$ et $\psi\to_b 0$ \par Si $\int_a^bg(t)dt$ converge alors on a : \par Soit $\varepsilon>0$, prenons $\alpha>0$ tel que $\forall x\in ]b-\alpha,b[, \vert\psi(x)\vert<0$ \par Pour un tel x : $\left\vert\frac{\int_x^bf(t)}{\int_x^bg(t)}\right\vert\leq \left\vert\frac{\int_x^b\psi(t)g(t)}{\int_x^bg(t)}\right\vert\leq \varepsilon\left\vert\frac{\int_x^bg(t)}{\int_x^bg(t)}\right\vert\leq \varepsilon$ 
+\par Dans le cas divergent :
+\par Dans le cas où $f$ et $g$ sont continues par morceaux sur $]a,b[$, on reprend la même démonstration mais en prenant $x\in ]a, a+\alpha[$}
+\begin{Rem}
+Attention : dans le cas où $\varphi$ n'est pas intégrable, on ne sait rien sur l'intégrabilité de $f$ 
+\end{Rem}
+\begin{Rem}
+On peut énoncer le même type de proposition pour des fonctions définies sur un intervalle semi-ouvert à gauche.
+\end{Rem}
+
+\section{Intégrale dépendant d'un paramètre}
+\subsection{Cas d'un paramètre entier}
+\Thr{de convergence dominée}{Soit $(f_n)$ une suite de fonctions continues par morceaux de $I$ intervalle de $\R$ dans $\K$. On suppose que :\begin{itemize}
+\item La suite $(f_n)$ converge simplement sur $I$ vers une fonction $f$ continue par morceaux
+\item Il existe une fonction $\varphi$ positive et intégrable sur $I$ telle que \par\begin{center}$\forall n\in\N, \vert f_n\vert\leq\varphi$ (hypothèse de domination)\end{center}
+\end{itemize}
+Alors les fonctions $f_n$ pour $n\in\N$ et la fonction $f$ sont intégrables sur $I$ et \par\begin{center}$\int_If_n\to\int_If$\end{center}}
+\Pre{On admet la preuve car le théorème repose sur la théorie d'intégration de Lebesque. \par On peut cependant le prouver dans le cas où $f_n$ converge uniformément vers $f$ sur tout segment de $[a,b[$ \par Pour tout $x\in[a,b[$, on a :\par $\left\vert\int_a^bf_n -\int_a^bf\right\vert\leq \int_a^x\vert f_n-f\vert + \int_x^b\vert f_n-f\vert\leq \vert x-a\vert\Vert f_n-f\Vert_\infty +\int_x^b(\varphi+\vert f\vert)$}
+\begin{Rem}
+On suppose que $f$ est continue par morceaux pour rester dans le cadre du programme où les intégrales sont définies uniquement pour de telles fonctions. Cette hypothèse n'a pas la même importance que l'hypothèse de domination qui est cruciale dans ce théorème.
+\end{Rem}
+\begin{Rem}
+Si l'intervalle $I$ est borné, une fonction constante peut parfois jouer le rôle de la fonction de domination $\varphi$
+\end{Rem}
+
+\Thr{Intégration terme à terme positif}{Soit $I$ une intervalle \par Soit $(u_n)$ une suite de fonctions réelles positives continues par morceaux et intégrables sur $I$. On suppose que $\sum u_n$ converge simplement et que $\sum\limits_{n=0}^{+\infty}u_n$ est continue par morceaux sur $I$
+Alors : \par \begin{center}$\int_I\sum\limits_{n=0}^{+\infty}u_n = \sum\limits_{n=0}^{+\infty}\int_I u_n$ \end{center}}
+\begin{Rem}
+Cette égalité a lieu dans $\bar{\R}$, c'est à dire que dans le cas d'une série de fonction de terme général positif $(u_n)$, $\sum\limits_{n=0}^{+\infty}u_n$ est intégrable sur $I$ si, et seulement si, $\sum\limits_{n=0}^{+\infty}\int_Iu_n<+\infty$
+\end{Rem}
+\Thr{Intégration terme à terme}{Soit $I$ un intervalle \par Soit $(u_n)$ une suite de fonctions à valeur dans $\K$. On suppose que :\begin{itemize}
+\item Pour tout entier $n\in\N$, $u_n$ est continue par morceaux et intégrable sur $I$
+\item La série $\sum u_n$ converge simplement et $\sum\limits_{n=0}^{+\infty}u_n$ est continue par morceaux sur $I$
+\item La série $\sum\int_I\vert u_n\vert$
+\end{itemize}
+Alors $\sum\limits_{n=0}^{+\infty}u_n$ est intégrable sur $I$ et \par \begin{center}$\int_I\sum\limits_{n=0}^{+\infty}u_n=\sum\limits_{n=0}^{+\infty}\int_Iu_n$\end{center}}
+\Pre{Ce théorème est encore une fois admis.}
+\begin{Rem}
+Là encore, on suppose que $f$ est continue par morceaux pour rester dans le cadre du programme. Cette hypothèse n'a pas la même importance que l'hypothèse de convergence de $\sum\int_I\vert u_n\vert$ qui est cruciale dans ce théorème.
+\end{Rem}
+\begin{Rem}
+Si chaque $u_n$ est continue et que l'on ne connait pas d'expression simple de $\sum\limits_{n=0}^{+\infty}u_n$, on peut parfois s'assurer que c'est une fonction continue (et donc continue par morceaux) par convergence uniforme/normale sur tout segment.
+\end{Rem}
+
+\subsection{Cas d'un paramètre réel}
+\Thr{échange des limites non-discrètes}{Soient $I$, $J$ deux intervalles de $\R$, $f$ une fonction définie sur $J\times I$ à valeurs dans $\K$. Soit $\lambda_0$ dans l'adhérence de $J$ ($\in\bar{R}$). On suppose que :\begin{itemize}
+\item pour tout $\lambda\in J$, la fonction $t\mapsto f(\lambda,t)$ est continue par morceaux sur $I$
+\item il existe une fonction $l$ continue par morceaux de $I$ dans $\K$ telle que pour tout $t\in I, \lim_{\lambda\to \lambda_0}f(\lambda,t)=l(t)$
+\item Il existe une fonction $\varphi$ continue par morceaux positive et intégrable sur $I$ telle que : \par \begin{center}$\forall (\lambda, t)\in J\times I, \vert f(\lambda, t)\vert\leq\varphi(t)$ (hypothèse de domination) \end{center}
+\end{itemize}
+Alors les fonctions $t\mapsto f(\lambda, t)$ (pour tout $\lambda\in J$) et la fonction $l$ sont intégrables sur $I$ et : \par \begin{center}$\lim_{\lambda\to\lambda_0}\int_If(\lambda, t)dt = \int_I l(t)dt$ \end{center}}
+\Pre{Pour une fonction $f$ dans les conditions de l'énoncé, dire que que $f\to_{\lambda_0}l$ équivaut à $\forall (u_n)\in J^\N, (u_n)\to \lambda_0 \Rightarrow f(u_n, t)\to l(t)$
+\par Soit $(u_n)\in J^\N$ de limite $\lambda_0$. On note  tout $n\in\N$ et $t\in I$, $f_n = f(u_n,t)$ \par $\forall n\in\N, f_n\in\mathcal{CM}(I, \K)$ \par $\forall t\in I, f_n(t)\to_{n\to+\infty} l(t)$ et il existe par hypothèse $\varphi$ intégrable sur $I$ telle que $\forall t\in I, \forall n\in\N, \vert l(t)\vert\leq \varphi(t)$ \par Donc par théorème de convergence dominée discret : \par \begin{center} $\int_I f(u_n,t)\to\int_Il(t)dt$\end{center}
+\par Donc par caractérisation séquentielle de la convergence : \par \begin{center} $\int_If(\lambda, t)\to_{\lambda\to\lambda_0}\int_Il(t)dt$\end{center}}
+\Thr{Autre formulation}{Soit $I$ et $J$ deux intervalles de $\R$, $(f_\lambda)_{\lambda\in J}$ une famille de fonctionns définie sur $J$ dans $\K$. Soit $\lambda_0$ dans l'adhérence de $J$ (dans $\bar{\R}$). On suppose que :\begin{itemize}
+\item pour tout $\lambda\in J$, la fonction $f_\lambda$ est continue par morceaux sur $I$
+\item il existe une fonction $l$ continue par morceaux de $I$ dans $\K$ telle que pour tout $t\in I$, $\lim\limits_{\lambda\to\lambda_0}f_\lambda(t)=l(t)$
+\item il existe une focntion $\varphi$ continue par morceaux, positive et intégrable sur $I$ telle que \par \begin{center}$\forall (\lambda, t)\in J\times I, \vert f_\lambdat(t)\vert\leq \varphi(t)$ (hypothèse de domination)\end{center}
+\end{itemize}
+Alors les fonctions $f_\lambda$ (pour $\lambda\in J$) et $l$ sont intégrables sur $I$ et \par \begin{center} $\lim\limits_{\lambda\to\lambda_0}\int_If_\lambda=\int_Il$\end{center}}
+
+
+\Thr{Continuité dominée }{Soit $A$ une partie d'un EVN de dimension finie, $I$ un intervalle de $\R$, $f$ une fonction définie sur $A\times I$ à valeurs dans $\R$. On suppose que :\begin{itemize}
+\item pour tout $x\in A$, la fonction $t\mapsto f(x,t)$ est continue par morceaux sur $I$
+\item pour tout $t\in I$, la fonction $x\mapsto f(x,t)$ est continue sur $A$
+\item il existe une fonction $\varphi$ continue par morceaux, positive et intégrable sur $I$ telle que \par \begin{center}$\forall (x,t)\in A\times I, \vert f(x,t)\vert\leq \varphi(t)$ (hypothèse de domination) \end{center}
+\end{itemize}
+Alors, pour tout $x\in A$, la fonction $t\mapsto f(x,t)$ est intégrable sur $I$ et la fonction \par \begin{center} $g:\left\{\begin{array}{rcl}A & \to & \K \\ x & \mapsto & \int_If(x,t)dt\end{array}\right.$\end{center} \par est continue.}
+\Prop{Extension}{Si l'hypothèse de domination est satisfaite au voisinage d'un point $a$ de $A$, on peut en conclure la continuité de $x\mapsto \int_If(x,t)dt$ en $a$ \par Si $A$ est un intervalle de $\R$, et que l'hypothèse de domination est satisfaite sur tout segment de $A$, alors \par \begin{center} $g:\left\{\begin{array}{rcl}A&\to&\K\\x&\mapsto&\int_If(x,t)dt\end{array}\right.$ est continue\end{center}}
+
+\subsection{Dérivabilité d'une intégrale à paramètres}
+\Thr{Dérivabilité}{Soit $I$ et $J$ deux intervalles de $\R$, $f$ une fonction définie sur $J\times I$ à valeurs dans $\K$. On suppose que :\begin{itemize}
+\item pour tout $x\in J$, la fonction $t\mapsto f(x,t)$ est continue par morceaux et dérivable sur $I$
+\item la fonction $f$ admet sur $J\times I$ une dérivée parielle par rapport à la première variable, $\dfrac{\partial f}{\partial x}$
+\item la fonction $\dfrac{\partial f}{\partial x}$ verifie les hypothèses du théorème 36 :\begin{itemize}
+    \item pour tout $x\in J$, la fonction $t\mapsto \dfrac{\partial f}{\partial x}(x,t)$ est continue par morceaux sur $I$
+    \item pour tout $t\in I$, la fonction $x\mapsto \dfrac{\partial f}{\partial x}(x,t)$ est continue sur $J$
+    \item il existe une fonction $\varphi$ continue par morceaux, positive et intégrable sur $I$ telle que \par \begin{center}$\forall (x,t)\in J\times I, \left\vert\dfrac{\partial f}{\partial x}(x,t)\right\vert\leq\varphi(t)$ (hypothèse de domination) \end{center}
+\end{itemize}
+\end{itemize}
+Alors pour tout $x\in J$, la fonction $t\mapsto \dfrac{\partial f}{\partial x}(x,t)$ est intégrable sur $I$, \par la fonction $g:x\mapsto \int_If(x,t)dt$ est de classe $\mathcal{C}^1$ sur $J$ et vérifie : \par\begin{center}$\forall x\in J, g'(x)=\int_I\dfrac{\partial f}{\partial x}(x,t)dt$\end{center}}
+\Prop{Extension}{Si l'hypothèse de domination de $\dfrac{\partial f}{\partial x}$ est satisfaite sur tout segment de $J$, la conclusion du théorème subsiste.}
+\begin{Rem}
+Comme toujours, l'hypothèse de domination est essentielle.
+\end{Rem}
+\Thr{Classe d'une intégrale à paramètre}{Soit $I$ et $J$ deux intervalles de $\R$, $f$ une fonction définie sur $J\times I$ à valeurs dans $\K$ et $k\in\N^*$. On suppose que :\begin{itemize}
+\item pour tout $j\in\llbracket 0,k\rrbracket$, la fonction $f$ admet sur $J\times I$ une dérivée partielle d'ordre $j$ par rapport à la première variable, $\dfrac{\partial^j f}{\partial x^j}$
+\item pour tout $j\in\llbracket 0,k-1\rrbracket$, pour tout $x\in J$, la fonction $\dfrac{\partial^j f}{\partial x^j}(x,t)$ est continue par morceaux et intégrable sur $I$
+\item pour tout $t\in I$, pour tout $j\in\llbracket 0,k\rrbracket$, $x\mapsto \dfrac{\partial^j f}{\partial x^j}(x,t)$ est continue sur $J$
+\item pour tout segment $K$ inclus dans $J$, il existe une fonction $\varphi_K$ continue par morceaux, positive et intégrable sur $I$ telle que \par \begin{center}$\forall (x,t)\in K\times I, \left\vert\dfrac{\partial^k f}{\partial x^k}(x,t)\right\vert\leq \varphi_K(t)$ (hypothèse de domination sur tout segment)\end{center}
+\end{itemize}
+Alors, pour tout $x\in J$, la fonction $t\mapsto \dfrac{\partial^kf}{\partial x^k}(x,t)$ est intégrable sur $I$, la fonction $g:x\mapsto\int_If(x,t)dt$ est de classe $\mathcal{C}^k$ sur $J$ et vérifie \par \begin{center}$\forall x\in J, g^{(k)}(x)=\int_I\dfrac{\partial^k f}{\partial x^k}(x,t)dt$\end{center}}
+
 
 
 

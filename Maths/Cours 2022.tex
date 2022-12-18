@@ -38,6 +38,8 @@
 \def\N{\mathbb{N}}
 \def\Z{\mathbb{Z}}
 \def\K{\mathbb{K}}
+\newcommand{\ind}{\perp\!\!\!\!\perp} 
+
 
 \renewcommand{\thechapter}{\Roman{chapter}}
 \renewcommand{\thesection}{\Roman{section}}
@@ -832,7 +834,8 @@ Application : si $\chi_f$ est scindé, alors $\chi_f=\prod\limits_{k=1}^n(X-\lam
 \par Ce qui correspond à $(X-\lambda)^\alpha|\chi_f$ et $(X-\lambda)^{\alpha+1}$ ne divise pas $\chi_f$ \par Ce qui correspond à $\chi_f = (X-\lambda)^\alpha Q$ pour $Q\in\K[X], Q(\lambda)\neq 0$}
 \Thr{}{Soit $E$ un $\K$-ev de dimension finie. Soit $f\in\mathcal{L}(E)$. Soit $\lambda$ une valeur propre de $f$ d'ordre $\alpha$ \par Alors $\dim E_\lambda(f)\leq\alpha$}
 \Pre{Dans le cadre de l'énoncé, on note $p=\dim E_\lambda(f)$. \par On peut prendre $(e_1,..., e_p)$ une base de $E_\lambda(f)$ \par On complète cette famille libre de $e$ par $e_{p+1}, ..., e_n$ en une base $B$ de $E$. \par Alors $Mat_B(A) = \begin{pmatrix} \lambda I_p & C\\ 0 & D\end{pmatrix}$ avec $C\in\mathcal{M}_{p,n-p}(\K)$ et $D\in\mathcal{M}_{n-p, n-p}(\K)$ \par Donc $\chi_f  = \det\begin{pmatrix}(X-\lambda)I_p & -C \\ 0 & XI-D \end{pmatrix} = (X-\lambda)^p\det(XI-D)$ \par Donc $(X-\lambda)^p$ divise $\chi_f$ \par Donc $p\leq\alpha$}
-\Prop{Corollaire}{Si $E$ de dimension finie, $f\in\mathcal{L}(E)$, alors $f$ est diagonalisable si, et seulement si : $\left\{\begin{array}{l} \chi_f\text{ est scindé} \\ \text{Pour tout }\lambda\in S_p(f)\text{, la dimension de }E_\lambda(f)\text{ est égale à l'ordre de }\lambda\end{array}\right.$}
+\Prop{Corollaire}{Si $E$ de dimension finie, $f\in\mathcal{L}(E)$, alors $f$ est diagonalisable si, et seulement si :
+\par $\left\{\begin{array}{l} \chi_f\text{ est scindé} \\ \text{Pour tout }\lambda\in S_p(f)\text{, la dimension de }E_\lambda(f)\text{ est égale à l'ordre de }\lambda\end{array}\right.$}
 \Pre{On note $\alpha_\lambda$ l'ordre de $\lambda$ pour $\lambda\in S_p(f)$ \par Par contraposée : si $\chi_f$ est non-scindé. \par On a alors $\sum\limits_{\lambda\in S_p(f)}\alpha_\lambda$ \par On sait que $\dim\bigoplus_{\lambda\in S_p(f)}E_\lambda(f)=\sum\limits_{\lambda\in S_p(f)}\dim E_\lambda(f)$ \par Donc $\dim\bigoplus_{\lambda\in S_p(f)}E_\lambda(f)\leq \sum\limits_{\lambda\in S_p(f)}\alpha_\lambda<n$ \par Donc $\bigoplus E_\lambda(f)\neq E$ \par $f$ n'est pas diagonalisable.
 \par On suppose maintenant $\chi_f$ scindé. \par Pour $\lambda\in S_p(f)$, on note $n_\lambda$ la dimension de $E_\lambda(f)$ \par $f$ est diagonalisable si, et suelement si $\bigoplus\limits_{\lambda\in S_p(f)}E_\lambda(f)=E$ \par $\Leftrightarrow \sum\limits_{\lambda\in S_p(f)}n_i=n$ \par $\Leftrightarrow \sum\limits_{\lambda\in S_p(f)}(\alpha_\lambda-n\lambda)=0$ \par $\forall\lambda\in S_p(f),\alpha_\lambda=n_\lambda$}
 \begin{Exe}
@@ -842,7 +845,10 @@ Avec $A=\begin{pmatrix} 4&1&1\\1&4&1\\1&1&4\end{pmatrix}$ \par On a immédiateme
 \section{Trigonalisation}
 \Def{Trigonalisation}{Soit $E$ un $\K$-ev de dimension finie, on dit que $f\in\mathcal{L}(E)$ esat trigonalisable si il existe une base $B$ telle que $Mat_B(f)$ est triangulaire.}
 \begin{Rem}
-Si $Mat_B(f)\in T_n^+(\K)$ : $f(e_1)\in Vect(e_1), f(e_2)\in Vect(e_1,e_2),..., f(e_n)\in Vect(e_1,...,e_n)$ et donc $\forall i\in\llbracket 1,n\rrbracket, f(F_i)\subset F_i$. \par Posons $B'(e_n,...,e_1)$. Alors : $f(e_n)\in Vect(e_n,...,e_1), f(e_{n-1})\in Vect(e_{n-1},..., e_1),..., f(e_1)\in Vect(e_1)$ \par Et alors $Mat_{B'}(f)\in T_n^+(\K)$ \par Donc quand une matrice est trigonalisable, elle l'est de manière inférieure et supérieure.
+Si $Mat_B(f)\in T_n^+(\K)$ : $f(e_1)\in Vect(e_1), f(e_2)\in Vect(e_1,e_2),..., f(e_n)\in Vect(e_1,...,e_n)$ et donc $\forall i\in\llbracket 1,n\rrbracket, f(F_i)\subset F_i$.
+\par Posons $B'(e_n,...,e_1)$. Alors : $f(e_n)\in Vect(e_n,...,e_1), f(e_{n-1})\in Vect(e_{n-1},..., e_1),..., f(e_1)\in Vect(e_1)$
+\par Et alors $Mat_{B'}(f)\in T_n^+(\K)$
+\par Donc quand une matrice est trigonalisable, elle l'est de manière inférieure et supérieure.
 \par Une matrice est dite trigonalisable si son endomorphisme canoniquement associé est trigonalisable. ie elle est semblable à une matrice triangulaire.
 \end{Rem}
 \Thr{}{Un endomorphisme d'un $\K$-ev $E$ de dimension finie est trigonalisable si, et seulement si, son polynôme caractéristique est scindé.}
@@ -850,7 +856,14 @@ Si $Mat_B(f)\in T_n^+(\K)$ : $f(e_1)\in Vect(e_1), f(e_2)\in Vect(e_1,e_2),..., 
 \par Réciproquement, raisonnons par récurrence sur la dimension de l'espace. \par Montrons que $\forall n\in\N^*, H_n :$ pour tout $\K$-ev $E$ de dimension $n$, pour tout endomorphisme $f$ de $E$ de polynôme caractéristique scindé, $f$ est trigonalisable.
 \par $H_1 :$ En dimension 1, les endomorphismes sont uniquement $x\mapsto \lambda x$, on a donc une matrice à un seul coefficient $\lambda$.
 \par Soit $n\in\N$, on suppose $H_n$. Soit $E$ un $\K$-ev de dimension $(n+1)$. \par Soit $f\in\mathcal{L}(E)$ tel que $\chi_f$ est scindé. \par Donc $\chi_f$ a au moins une racine dans $\K$, notée $\lambda$. Donc $\lambda\in S_p(f)$. \par On considère $e_1\in E$ un vecteur propre (non nul) associé à $\lambda$ et on complète $e_1$ par $(e_2,..., e_{n+1})$ en une base $B$ de $E$. \par Alors $Mat_B(f) =\begin{pmatrix} \lambda & L \\ 0 & A \end{pmatrix}$ avec $A\in\mathcal{M}_n(\K), L\in\mathcal{M}_{1,n}(\K)$
-\par On note $F=Vect(e_2,...,e_{n+1})$. \par On note $p$ la projection sur $F$ parallèlement à $Vect(e_1)$. On appelle $g$ l'application $g:\left\{\begin{array}{rcl} F & \to & F \\ x & \mapsto & p\circ f(x) \end{array}\right.$. \par Et alors $A=Mat_{(e_2,...,e_{n+1})}(g)$ \par On a que $\dim F =n$ et donc $g\in\mathcal{L}(F)$ \par On a que $\chi_f = (X-\lambda)\chi_A = (X-\lambda)\chi_g$ or $\chi_f$ est scindé, donc $\chi_g$ est scindé. \par Donc par $H_n$, on peut trouver une base $B'_f$ de $F$ dans laquelle $Mat_{B'_f}(g)=T\in T_n^+(\K)$ \par Donc $B'=(e_1,e'_2,..., e'_n)$ est une base de $E$ \par Donc $Mat_{B'}(f)=\begin{pmatrix} \lambda & L' \\ 0 & T\end{pmatrix}$ qui est triangulaire supérieure. \par Ce qui conclut la récurrence.}
+\par On note $F=Vect(e_2,...,e_{n+1})$. On note $p$ la projection sur $F$ parallèlement à $Vect(e_1)$.
+\par On appelle $g$ l'application $g:\left\{\begin{array}{rcl} F & \to & F \\ x & \mapsto & p\circ f(x) \end{array}\right.$.
+\par Et alors $A=Mat_{(e_2,...,e_{n+1})}(g)$ \par On a que $\dim F =n$ et donc $g\in\mathcal{L}(F)$
+\par On a que $\chi_f = (X-\lambda)\chi_A = (X-\lambda)\chi_g$ or $\chi_f$ est scindé, donc $\chi_g$ est scindé.
+\par Donc par $H_n$, on peut trouver une base $B'_f$ de $F$ dans laquelle $Mat_{B'_f}(g)=T\in T_n^+(\K)$
+\par Donc $B'=(e_1,e'_2,..., e'_n)$ est une base de $E$
+\par Donc $Mat_{B'}(f)=\begin{pmatrix} \lambda & L' \\ 0 & T\end{pmatrix}$ qui est triangulaire supérieure.
+\par Ce qui conclut la récurrence.}
 \begin{Exe}
 Soit $E$ un $\C$-ev de dimension $n$ et $f\in\mathcal{L}(E)$ \par Notons $\chi_f = \prod\limits_{i=1}^n (X-\lambda_i)$ \par Déterminer $\chi_{f^p}$ pour $p\in\mathcal{N}$ et $\chi_{f^p}$ pour $p\in\Z$ si $f\in\mathcal{GL}_n(\C)$ \par Comme $\chi_f\in\C[X]$, il est scindé : on fixe $B$ une base de $E$ dans laquelle $Mat_B(f)$ est triangulaire supérieure de coefficients diagonaux $\alpha_1,...,\alpha_2$ \par Comme un produit de matrices triangulaires supérieures est triangulaire supérieur avec les coefficients diagonaux qui sont les produits des éléments des deux diagonales, et donc $Mat_B(f^2)$ est une matrice triangulaire supérieure avec comme coefficients diagonaux les $\lambda_1^2,...,\lambda_n^2$
 \par Donc $\chi_{f^2} = \prod\limits_{i=1}^n(X-\lambda_i^2)$ \par Par récurrence immédiate, on a $\chi_{f^p} = \prod\limits_{i=1}^n (X-\lambda_i^p)$ \par Si $f\in\mathcal{GL}_n(\K)$, alors tous ses coefficients diagonaux dans $B$ sont non-nuls et son inverse a comme coefficients diagonaux les $\frac{1}{\lambda_1},...,\frac{1}{\lambda_n}$. On peut alors étendre $\chi_{f^p}(X-\lambda_i^p)$ pour $n\in\Z$
@@ -1015,7 +1028,11 @@ Notons $\exp:\left\{\begin{array}{rcl} \mathcal{M}_n(\K) & \to & \mathcal{M}_n(\
 \Pre{Sous les hypothèses du théorème : si on admet que $(l_n)$ est convergente, on a une démonstration identique à celle de la continuité. \par Pour $x\in A$, on a : $\Vert g(x)-\lim l_n\Vert\leq \Vert g(x)-f_n(x)\Vert + \Vert f_n(x)-l_n\Vert + \Vert l_n-\lim l_n\Vert$ \par Ces trois termes sont plus petit qu'un $\varepsilon$ donné pour $n$ suffisamment grand pour le premier et troisième terme et pour $\Vert x-a\Vert<\alpha$ pour le deuxième terme.}
 \Thr{échange de limites de séries}{Avec $(u_n)\in\mathcal{F}(A,F)^\N$ et $a\in\bar{A}$ \par Si $\forall n\in\N, u_n(x)\to_{x\to a}v_n$ et que $(\sum u_n)$ converge uniformément, alors $\left(\sum\limits_{n=0}^{+\infty}u_n\right)$ a une limite ene $a$ et $\lim\limits_{x\to a}\sum\limits_{n=0}^{+\infty}u_n(x)=\sum\limits_{n=0}^{+\infty}u_n(x)=\sum\limits_{n=0}^{+\infty}v_n$}
 \begin{Exe}
-Reprenons $f:\left\{\begin{array}{rcl} \R_+ & \to & \R \\ x & \mapsto & \sum\limits_{n=1}^{+\infty}\frac{1}{n\sqrt{n+x}}\end{array}\right.$ \par On rappelle que $f$ converge normalement sur $\R_+$ puisque $\forall n\in\N*, \forall x\in\R_+, \vert u_n(x)\vert\leq \frac{1}{n^{3/2}}$, terme général d'une série convergente. \par Pour déterminer la limite de $f$ en l'infini, on note que $\forall n\in\N, u_n(x)\to_{x\to+\infty}0$ \par $\sum u_n$ converge normalement donc uniformément sur $\R_+$, donc $\lim\limits_{x\to+\infty} f_x$ existe et $f(x)\to \sum\limits_{n=0}^{+\infty}\lim\limits_{x\to+\infty} u_n(x) = 0$
+Reprenons $f:\left\{\begin{array}{rcl} \R_+ & \to & \R \\ x & \mapsto & \sum\limits_{n=1}^{+\infty}\frac{1}{n\sqrt{n+x}}\end{array}\right.$
+\par On rappelle que $f$ converge normalement sur $\R_+$ puisque $\forall n\in\N*, \forall x\in\R_+, \vert u_n(x)\vert\leq \frac{1}{n^{3/2}}$, terme général d'une série convergente.
+\par Pour déterminer la limite de $f$ en l'infini, on note que $\forall n\in\N, u_n(x)\to_{x\to+\infty}0$
+\par $\sum u_n$ converge normalement donc uniformément sur $\R_+$, donc $\lim\limits_{x\to+\infty} f_x$ existe
+\par et alors $f(x)\to \sum\limits_{n=0}^{+\infty}\lim\limits_{x\to+\infty} u_n(x) = 0$
 \end{Exe}
 \begin{Exe}
 Soit $\zeta:x\mapsto \sum\limits_{n=1}^{+\infty}\frac{1}{n^x}$ sur $\R$. Donner son domaine de définition, sa continuité et sa limite en $+\infty$. \par Soit $x\in\R$, alors $\sum\frac{1}{n^x}$ converge si, et seulement si, $x>1$ \par Donc le domaine de définition de $\zeta$ est $D=]1,+\infty[$ \par Soit $a\in D, n\in\N^*, x\in[a, +\infty[$, on a $0<\frac{1}{x}\leq\frac{1}{n^a}$ \par $\sum\frac{1}{n^a}$ converge et donc $\sum\left(x\mapsto\frac{1}{n^x}\right)$ converge normalement sur $[a,+\infty[$
@@ -1127,7 +1144,7 @@ Pour la série entière $\sum\sin(n)z^n$
 \Thr{Produit de Cauchy}{Pour $\sum a_nz^n$ et $\sum b_nz^n$ deux séries entières de rayons respectifs $R_a$ et $R_b$ \par On pose pour $n\in\N$, $c_n = \sum\limits_{k=0}^na_kb_{n-k}$ \par La série entière $\sum c_nz^n$ est de rayon de convergence $R\geq\min(R_a,R_b)$ et $\forall z\in\C$ tel que $\vert z\vert < \min(R_a,R_b), \sum\limits_{n=0}^{+\infty}c_nz^n = \sum\limits_{n=0}^{+\infty}a_nz^n\sum\limits_{n=0}^{+\infty}b_nz^n$}
 \Pre{Par application du produit de Cauchy à deux séries absolument convergentes sur un domaine.}
 
-\section{Continuité de la somme d'une série entière sur $\C$}
+\section{Continuité de la somme d'une série entière sur les complexes}
 \Prop{}{Soit $(\sum a_nz^n$ une série entière de rayon $r>0$, alors $(\sum a_nz^n)$ converge normalement sur tout disque fermé $\mathcal{B}(0,A)$ pour $A<R$}
 \Pre{}
 
@@ -1171,7 +1188,7 @@ Le théorème reste valable pour $-R$ : par considération de $\sum a_n(-1)^nR^n
 \Thr{Taylor-Lagrange}{En posant $t = a+(b-a)u$, on transforme l'expression du reste en $\int_0^1\frac{(b-a)^{n+1}(1-u)^n}{n!}f^{(n+1)}(a+(b-a)u)du$ \par On a donc : $R_n(b) = \frac{(b-a)^{n+1}}{n!}\int_0^1(1-u)^nf^{(n+1)}(a+(b-a)u)du$ \par De là on déduit la majoration de Lagrange, en posant $M_{n+1} = \sup\limits_{[a,b]}\vert f^{(n+1)}\vert$
 \par $\vert R_n(b)\vert \leq \frac{\vert b-a\vert^{n+1}}{n!}\int_0^1\vert 1-u\vert^n\vert f^{(n+1)}(a+(b-a)u)\vert du \leq \frac{\vert b-a\vert^{n+1}}{n!}M_{n+1}\int_0^1(1-u)^ndu\leq \frac{\vert b-a\vert^{n+1}}{(n+1)!}M_{n+1}$}
 
-\subsection{Développements en série entière découlant de l'exponentielle sur $\R$}
+\subsection{Développements en série entière découlant de l'exponentielle sur les réels}
 $\forall x\in\R, \exp(x) = \sum\limits_{n=0}^{+\infty}\frac{x^n}{n!}$ \par \Pre{Pour $x\in\R$, on a que $\exp(x) = \sum\limits_{k=0}^{n}\frac{x^k}{k!}+R_n(x)$ par Taylor-Reste-Intégral. \par Alors $\vert R_n(x)\vert\leq \frac{\vert x\vert^{n+1}}{n!}e^{\vert x\vert}$ \par Or $\left(\frac{\vert x\vert^{n+1}}{n!}e^{\vert x\vert}\right)\to 0$ \par Et donc $R_n(x)\to 0$}
 Et donc, pour tout $x\in\R$, on a les développemetns suivants :\begin{itemize}
 \item $\cosh(x) = \frac{1}{2}(e^x +e^{-x}) = \sum\limits_{n=0}^{+\infty}\frac{x^{2n}}{(2n)!}$
@@ -1190,7 +1207,7 @@ Cette année est aussi au programme le développement d'Arctan :
 \par $\forall x\in]-1,1[, \arctan'(x)=\frac{1}{1+x^2} =\sum\limits_{n=0}^{+\infty}(-1)^n x^{2n}$
 \par Et donc : $\arctan(x) =\sum\limits_{n=0}^{+\infty}(-1)^n\frac{x^{2n+1}}{2n+1}$
 
-\subsection{Développement de $(1+x)^\alpha$}
+\subsection{Développement de l'autre là}
 En notant $f_\alpha :x\mapsto (1+x)^\alpha$, on a :
 \par \begin{center} $f_\alpha(x)=1+\sum\limits_{n=0}^{+\infty}\frac{\alpha(\alpha-1)...(\alpha-k+1)}{k!}x^k$ \end{center}
 \par "Je vais pas me taper le citron à sortir de $]-1,1[$
@@ -1455,6 +1472,7 @@ Notons qu'on peut énoncer le même type de proposition pour des fonctions défi
 \item Si $g$ est décroissante minorée, alors $g$ a une limite en $b^-$
 \item Si $g$ est décroissante non-minorée, alors $g\to_{b^+}-\infty$
 \end{itemize}}
+\Prop{}{Soit $a\in \R$, $b\in\R\cup\{+\infty\}$ avec $a<b$. Soit $f\in\mathcal{CM}([a,b[, \R)$ \par Si $f$ est positive, l'intégrale $\int_a^bf$ converge si, et seulement si, $x\mapsto\int_a^xf$ est majorée.}
 \Pre{Proposition 17 : pour $f\geq 0$ \par $x\mapsto \int_a^bf$ est croissante : \par Soient $x,y\in[a,b[, x<y$ \par Alors $\int_a^yf -\int_a^x = \int_x^yf(t)dt\geq 0$ \par Donc on a la convergence si, et seulement si, $x\mapsto \int_a^x$ est majorée par théorème des limites monotones.}
 \begin{Rem}
 L'intégrale diverge si, et seulement si, $x\mapsto \int_a^xf$ tend vers $+\infty$ quand $x$ tend vers $b$
@@ -1482,7 +1500,7 @@ Attention : le résultat du commentaire s'applique également pour deux fonction
 \Prop{}{$\int_0^{+\infty}\frac{dt}{t^\alpha}$ converge si, et seulement si, $\alpha>1$}
 \Pre{Par calcul de primitives.}
 \Prop{}{$\int_0^{+\infty}e^{-\lambda t}dt$ converge si, et seulement si, $\lambda>0$}
-*\Prop{}{$\int_0^1\frac{dt}{t^\alpha}$ converge si, et seulement si, $\alpha<1$}
+\Prop{}{$\int_0^1\frac{dt}{t^\alpha}$ converge si, et seulement si, $\alpha<1$}
 \Prop{}{$\int_0^1ln(t)dt$ converge}
 \begin{Rem}
 On a aussi que $\int_0^1\vert ln(t)\vert^\alpha$ converge, mais ce n'est pas au problème, donc on doit le retrouver à partir de $\vert ln(t)\vert^\alpha =o\left(\frac{1}{\sqrt[\alpha]{t}}\right)$ en $0$
@@ -1598,7 +1616,7 @@ Cette égalité a lieu dans $\bar{\R}$, c'est à dire que dans le cas d'une sér
 \Thr{Intégration terme à terme}{Soit $I$ un intervalle \par Soit $(u_n)$ une suite de fonctions à valeur dans $\K$. On suppose que :\begin{itemize}
 \item Pour tout entier $n\in\N$, $u_n$ est continue par morceaux et intégrable sur $I$
 \item La série $\sum u_n$ converge simplement et $\sum\limits_{n=0}^{+\infty}u_n$ est continue par morceaux sur $I$
-\item La série $\sum\int_I\vert u_n\vert$
+\item La série $\sum\int_I\vert u_n\vert$ converge
 \end{itemize}
 Alors $\sum\limits_{n=0}^{+\infty}u_n$ est intégrable sur $I$ et \par \begin{center}$\int_I\sum\limits_{n=0}^{+\infty}u_n=\sum\limits_{n=0}^{+\infty}\int_Iu_n$\end{center}}
 \Pre{Ce théorème est encore une fois admis.}
@@ -1622,7 +1640,7 @@ Alors les fonctions $t\mapsto f(\lambda, t)$ (pour tout $\lambda\in J$) et la fo
 \Thr{Autre formulation}{Soit $I$ et $J$ deux intervalles de $\R$, $(f_\lambda)_{\lambda\in J}$ une famille de fonctionns définie sur $J$ dans $\K$. Soit $\lambda_0$ dans l'adhérence de $J$ (dans $\bar{\R}$). On suppose que :\begin{itemize}
 \item pour tout $\lambda\in J$, la fonction $f_\lambda$ est continue par morceaux sur $I$
 \item il existe une fonction $l$ continue par morceaux de $I$ dans $\K$ telle que pour tout $t\in I$, $\lim\limits_{\lambda\to\lambda_0}f_\lambda(t)=l(t)$
-\item il existe une focntion $\varphi$ continue par morceaux, positive et intégrable sur $I$ telle que \par \begin{center}$\forall (\lambda, t)\in J\times I, \vert f_\lambda(t)\vert\leq \varphi(t)$ (hypothèse de domination)\end{center}
+\item il existe une fonction $\varphi$ continue par morceaux, positive et intégrable sur $I$ telle que \par \begin{center}$\forall (\lambda, t)\in J\times I, \vert f_\lambda(t)\vert\leq \varphi(t)$ (hypothèse de domination)\end{center}
 \end{itemize}
 Alors les fonctions $f_\lambda$ (pour $\lambda\in J$) et $l$ sont intégrables sur $I$ et \par \begin{center} $\lim\limits_{\lambda\to\lambda_0}\int_If_\lambda=\int_Il$\end{center}}
 
@@ -1659,12 +1677,638 @@ Comme toujours, l'hypothèse de domination est essentielle.
 Alors, pour tout $x\in J$, la fonction $t\mapsto \dfrac{\partial^kf}{\partial x^k}(x,t)$ est intégrable sur $I$, la fonction $g:x\mapsto\int_If(x,t)dt$ est de classe $\mathcal{C}^k$ sur $J$ et vérifie \par \begin{center}$\forall x\in J, g^{(k)}(x)=\int_I\dfrac{\partial^k f}{\partial x^k}(x,t)dt$\end{center}}
 
 
+\chapter{Probabilités}
+\section{Espace probabilisé}
+\subsection{Univers, tribu}
+\Def{}{Une expérience aléatoire est une expérience renouvelable, et qui renouvelée dans des conditions identiques ne donne pas le même résultat à chaque renouvellement.}
+\Def{}{On appelle univers l'ensemble des issues possibles d'une expérience aléatoire donnée. On le note en général $\Omega$}
+En première année, le programme ne traite que les expériences aléatoires associées à un univers fini, on peut poser \par\begin{center}$\Omega=\{\omega_1,...,\omega_n\}$\end{center}
+\par Un événement est une partie de $\Omega$, c'est-à-dire un ensemble d'issues de l'expérience. L'ensemble des événements est donc $\mathcal{P}(\Omega)$
+\par Pour tout $\omega\in\Omega$, le singleton $\{\omega\}$ est appelé événement élémentaire. On peut décrire tout événement comme réunion finie d'événements élémentaires.
+\par On considère maintenant une expérience aléatoire ayant un nombre infini d'issues, donc avec un univers $\Omega$ infini.
+\par Contrairement au cours de première année, tout sous-ensemble de $\Omega$ ne définit par forcément un événement.
+\par On se limite alors aux parties d'un sous-ensemble $\mathcal{A}$ de $\mathcal{P}(\Omega)$.
+\par Pour pouvoir définir une probabilité, on demande à $\mathcal{A}$ d'être une tribu, au sens de la définition suivante :
+\Def{}{Soit $\Omega$ l'univers d'une expérience aléatoire.\par On appelle tribu sur $\Omega$ une partie de $\mathcal{A}$ vérifiant les trois hypothèses suivantes :\begin{enumerate}
+\item $\Omega\in \mathcal{A}$
+\item $\forall A\in \mathcal{A},\overline{A}\in \mathcal{A}$ (stabilité par passage au complémentaire)
+\item Pour toute suite $(A_n)_{n\in\N}$ d'éléments de $\mathcal{A}$, $\bigcup_{n=0}^{+\infty}A_n\in\mathcal{A}$ (stabilité par réunion dénombrable)
+\end{enumerate}
+Le couple $(\Omega, \mathcal{A})$ est dit espace probabilisable.
+\par $\mathcal{A}$ est l'ensemble des événements (on rappelle qu'un événement est une partie de $\Omega$)}
+\begin{Rem}
+$\mathcal{C}_\Omega\left(\bigcap_{n\in\N}A_n\right) = \bigcap_{n\in\N}\mathcal{C}_\Omega A_n$
+\par Donc les intersections infinies sont possibles dans une tribu.
+\end{Rem}
+\begin{Rem}
+La définition d'une tribu et la proposition s'énoncent en termes probabilistes :\begin{itemize}
+\item $\Omega$ et $\emptyset$ sont des événements, ce sont les événements certains et impossibles.
+\item L'événement contraire d'un événement est un événement.
+\item Une réunion finie d'ou dénombrable d'événements est un événement.
+\item Une intersection finie ou dénombrable d'événements est un événement.
+\end{itemize}
+\end{Rem}
+\begin{Rem}
+Soit $A$ et $B$ deux événements et $(A_n)_{n\in\N}$ une suite d'événements. Comme en sup, on peut traduire les opérations élémentaires sur les ensembles en termes probabilistes et vice-versa :
+\par Insérer le tableau.
+\end{Rem}
+\Def{}{Soit $(A_n)_{n\in\N}$ une suite d'événements.\begin{itemize}
+\item La suite $(A_n)$ est dite croissante lorsque \par\begin{center}$\forall n\in\N, A_n\subset A_{n+1}$\end{center} \par ie : pour tout $n\in\N$, la réalisation de $A_n$ implique celle de $A_{n+1}$
+\item La suite $(A_n)$ est dite décroissante lorsque \par\begin{center}$\forall n\in\N, A_{n+1}\subset A_{n}$\end{center} \par ie : pour tout $n\in\N$, la réalisation de $A_{n+1}$ implique celle de $A_{n}$
+\item La suite $(A_n)$ est une suite d'événement deux à deux incompatibles (disjoints) lorsque : \par\begin{center}$\forall i,j\in\N, i\neq j\Rightarrow A_i\cap A_j=\emptyset$\end{center} \par ie : il est impossible que deux événements d'indices différents de la suite soient réalisés simultanément
+\end{itemize}}
+
+\subsection{Probabilités}
+\Def{}{On appelle probabilité sur l'espace probabilisable $(\Omega,\mathcal{A})$ toute application $P$ définie sur $\mathcal{A}$ vérifiant :\begin{enumerate}
+\item $\forall A\in\mathcal{A}, P(A)\in [0,1]$
+\item $P(\Omega)=1$
+\item Pour tout famille dénombrable $(A_i)_{i\in I}$ d'événements deux-à-deux incompatibles : \par\begin{center}$P\left(\bigcup_{i\in I}A_i\right)=\sum\limits_{i\in I}P(A_i)$ ($\sigma$-additivité)\end{center}
+\end{enumerate}}
+Dans le cas d'un univers fini, la définition précédente est compatible avec celle donnée en sup, on étend les propriétés suivantes au cas d'un univers infini :
+\Prop{}{Soit $(\Omega,\mathcal{A})$ un espace probabilisé, et soit $A$ et $B$ deux événements. On a :\begin{itemize}
+\item $P(\overline{A})=1-P(A)$
+\item $P(\emptyset)=0$ (cas particulier du résultat précédent)
+\item $P(A\backslash B)=P(A)-P(A\cap B)$
+\item $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ (formule de Poincaré)
+\item P est croissante : Si $A\subset B$ alors $P(A)\leq P(B)$
+\end{itemize}}
+\Pre{Toutes ces démonstrations fonctionnent exactement de la même manière sur des univers finis.
+\par $P(\Omega)=P(A\cup\bar{A})=P(A)+P(\bar{A})=1$
+\par D'où $P(\bar{A})=1-P(A)$
+\par Donc, comme $\bar{\Omega}=\emptyset$, on a $P(\emptyset)=0$
+\par $A\cup B=(A\backslash B)\cup(A\cap B)\cup (B\backslash A)$, donc $P(A\cup B) = P(A)+P(B)-P(A\cap B)$
+\par Si $A\subset B$, comme $B=A\cup(B\backslash A)$ alors $P(B) = P(A)+P(B\backslash A)\geq P(A)$}
+\begin{Rem}\begin{enumerate}
+\item Une probabilité est positive. Toutes le sommes qui interviennent s'inscrivent dans le cadre des familles sommables positives. Elles peuvent donc se calculer en identifiant une bijection entre l'ensemble sur lequel on somme et $\N$ ou par théorème de sommation par paquets positifs.
+\item Pour $n\in\N$, en appliquant la $\sigma$-additivité à la suite $(A_n)_{n\in\N}$ dont tous les termes sont vides à partir du rang $n+1$, on retrouve la $\sigma$-additivité finie de sup :
+\par Pour une famille $(A_1,...,A_n)$ d'événements deux à deux incompatibles : $P\left(\bigcup_{k=1}^nA_k\right) =\sum\limits_{k=1}^nP(A_k)$
+\item Dans le cas d'une suite d'événements deux à deux incompatibles $(A_i)_{i\in I}$, on a :
+\par \begin{center} $\forall i\in I, P(A_i)\geq 0$ et $\bigcup_{i\in I}A_i\subset\Omega$ donc $\sum\limits_{i\in I}P(A_i)\leq P(\Omega)\leq 1$\end{center}
+\par Ce qui assure la sommabilité de la famille $(P(A_i))_{i\in I}$ dans la définition d'une probabilité donnée ci-dessus.
+\end{enumerate}\end{Rem}
+\Thr{}{Soit $(\Omega, \mathcal{A},P)$ un espace probabilisé.\begin{enumerate}
+\item Pour toute suite croissante $(A_n)_{n\in\N}$ d'événements de $\mathcal{A}$ : \par\begin{center}$P\left(\bigcup_{n=0}^{+\infty}A_n\right)=\lim\limits_{n\to+\infty}P(A_n)$ (Continuité croissante)\end{center}
+\item Pour toute suite décroissante $(A_n)_{n\in\N}$ d'événements de $\mathcal{A}$ : \par\begin{center}$P\left(\bigcap_{n=0}^{+\infty}A_n\right)=\lim\limits_{n\to+\infty}P(A_n)$(Continuité décroissante)\end{center}
+\item Pour toute suite $(A_n)_{n\in\N}$ d'événements de $\mathcal{A}$ :\par\begin{center}$P\left(\bigcup_{n=0}^{+\infty}A_n\right)\leq\sum\limits_{n=0}^{+\infty}P(A_n)$\end{center}
+\end{enumerate}}
+\Pre{Pour la continuité croissante : Si $(A_n)$ croissante, alors pour tout $n\in\N, A_n\subset A_{n+1}$
+\par Pour un $n\in\N$ fixé, on a $P\left(\bigcup_{k=0}^nA_k\right)=P(A_n)$
+\par Posons $C_0=A_0$. Pour $n\in\N^*$, posons $C_n=A_n\backslash A_{n-1}$
+\par Pour tout $i,j\in\N$, on a : $i\neq j\Rightarrow C_i\cap C_j=\emptyset$
+\par On va montrer que $\bigcup_{n\in\N}C_n =\bigcup_{n\in\N}A_n$
+\par $\forall n\in\N, C_n\subset A_n$ et donc $\bigcup_{n\in\N}C_n\subset \bigcup_{n\in\N}A_n$
+\par Réciproquement, soit $x\in\bigcup_{n\in\N}A_n$, on a alors $\{n\in\N\vert x\in A_n\}\neq\emptyset$
+\par On prend $n_0 = \min\{n\in\N\vert x\in A_n\}$
+\par Si $n_0=0$ alors $x\in A_0$ donc $x\in C_0$
+\par Sinon, $x\in A_{n_0}$ et $x\notin A_{n_0-1}$ donc $x\in C_{n_0}$
+\par Donc $\bigcup_{n\in\N}A_n\subset \bigcup_{n\in\N}C_n$
+\par $P\left(\bigcup_{n\in\N}C_n\right) =\sum\limits_{n=0}^{+\infty}P(C_n) = P(C_0)+\sum\limits_{n=1}^{+\infty}P(A_n)-P(A_{n-1})=\lim\limits_{n\to+\infty}P(A_n)$
+\par D'où le résultat.
+\par Pour la continuité décroissante : On peut passer au complémentaire de la suite, et on fait sa réunion en se servant du théorème croissant.
+\par $P\left(\overline{\bigcap_{n=0}^{+\infty}A_n}\right)= P\left(\bigcup_{n=0}^{+\infty}\overline{A_n}\right) =1-\lim\limits_{n\to+\infty}P(A_n) = 1-P\left(\bigcap_{n=0}^{+\infty}A_n\right)$
+\par D'où le résultat.
+\par Pour la sous-additivité : $(A_n)$ une suite quelconque d'éléments de la tribu $\mathcal{A}$
+\par On pose $C_n=\bigcup_{k=0}^n$ suite croissante
+\par Donc $P\left(\bigcup_{n\in\N}C_n\right) =\lim\limits_{n\to+\infty}P(C_n)$
+\par Pour $n\in\N$, $P(C_n)=P(A_0)+\sum\limits_{k=0}^nP(C_k\backslash C_{k-1})\leq \sum\limits_{k=0}^nP(A_k)$
+\par Donc par passage à la limite monotone : $\lim\limits_{n\to+\infty}P(C_n)\leq \sum\limits_{n\in\N}P(A_n)$}
+\begin{Rem}
+Pour appliquer les théorèmes précédents à une suite $(A_n)_{n\in\N}$ non nécessairement monotone, on peut considérer :\begin{enumerate}
+\item La suite $\left(\bigcup_{k=0}^nA_k\right)_{n\in\N}$ qui est croissante.
+\item La suite $\left(\bigcap_{k=0}^nA_k\right)_{n\in\N}$ qui est décroissante.
+\end{enumerate}
+On obtient alors :\begin{enumerate}
+\item $P\left(\bigcup_{n=0}^{+\infty}A_n\right)=\lim\limits_{n\to+\infty}P\left(\bigcup_{k=0}^nA_k\right)$
+\item $P\left(\bigcap_{n=0}^{+\infty}A_k\right) = \lim\limits_{n\to+\infty}P\left(\bigcap_{k=0}^nA_k\right)$
+\end{enumerate}
+\end{Rem}
+\Def{}{Soit $(\Omega,\mathcal{A}, P)$ un espace probabilisé et $A$ un événement.\begin{itemize}
+\item Si $A\neq\emptyset$ et $P(A)=0$, on dit que l'événement $A$ est négligeable ou quasi-impossible.
+\item Si $A\neq\Omega$ et $P(A)=1$, on dit que l'événement $A$ est presque sûr ou quasi-certain.
+\end{itemize}}
+
+\subsection{Univers finis, équiprobabilité, dénombrement}
+\Prop{}{On suppose qu'il existe $p\in\R_+^*$ tel que \par\begin{center}$\forall \omega\in \Omega, P(\{\omega\})=p$\end{center}
+\par Alors :\begin{itemize}
+\item $\Omega$ est un ensemble fini et \par\begin{center}$p=\frac{1}{\mathrm{Card}(\Omega)}$\end{center}
+\item Pour tout événement $A$, \par\begin{center}$P(A)=\frac{\mathrm{Card}(A)}{\mathrm{Card}(\Omega)}$\end{center}
+\end{itemize}}
+\begin{Rem}
+Cette formule est plus connue sous la forme : \par\begin{center}$P(A)=\frac{\text{nombre de cas favorables}}{\text{nombre de cas possibles}}$\end{center}
+\par On dit qu'on est en situation d'équiprobabilité.
+\par Il s'agit d'une des rares situatiosn où une description de $\Omega$ est importante puisqu'il faudra en dénombrer les éléments.
+\end{Rem}
+On se fixe un ensemble $E$ de cardinal $n\in\N^*$.
+\par On veut compter des objets fabriqués à partir d'éléments de $E$, par exemple des prélèvements dans une urne. Il faut modéliser ces objets par des objets mathématiques adéquats. Les deux objets mathématiques rencontrés principalement en dénombrement sont les parties (ou coumbinaisons) et les listes (ou uplets, suites finies, familles).
+\subsubsection{Compter des parties}
+Une partie de cardinal $k\in\N$ de $E$ est une $k$-combinaison. On peut voir une $k$-combinaison comme un prélèvement simultané de $k$ éléments de $E$ ; donc sans tenir compte ni d'ordre de tirage, ni de répétition.
+\Prop{Nombre de parties}{Soit $E$ un ensemble à $n$ éléments\begin{enumerate}
+\item Le nombre de $k$-combinaisons de $E$ est \par\begin{center} $\binom{n}{k}=\frac{1}{k!}n(n-1)...(n-k+1)=\left\{\begin{array}{rl} \frac{n!}{k!(n-k)!} & \text{si $k\leq n$} \\ 0 & \text{sinon}\end{array}\right.$\end{center}
+\item Le nombre de parties de $E$ est \par\begin{center}$\sum\limits_{k=0}^n\binom{n}{k}=2^n$\end{center}
+\end{enumerate}}
+\subsubsection{Compter des listes}
+Soit $k\in\N^*$. L'ensemble des $k$-listes d'éléments de $E$ est le produit cartésien $E^k$. On distingue deux cas particuliers de listes :\begin{itemize}
+\item Une $k$-liste sans répétition (ou $k$-arrangement) est un élément $(x_1,...,x_k)\in E^k$ où $x_i\neq x_j$ si $i\neq j$. On rencontre des $k$-listes sans répétition quand par exeple on modélise des tirages successifs sans remise.
+\item Une permutation de $E$ est une $n$-liste sans répétition de l'ensemble $E$ (de cardinal $n$)
+\par On peut voir aussi une permutation de $E$ comme une bijection de $\llbracket 1,n\rrbracket$ dans $E$ ou une façon de réordonner les éléments de $E$.
+\end{itemize}
+\Prop{Nombre de listes}{Soit $E$ un ensemble à $n$ éléments.\begin{enumerate}
+\item Soient $E_1,..., E_k$ $k$ ensembles de cardinaux respectifs $n_1,...,n_k\in\N^*$\par\begin{center}$\mathrm{Card}(E_1\times E_2\times...\times E_k)=n_1n_2...n_k$\end{center}
+\item Le nombre de $k$-listes sans répétitions d'éléments de $E$ est $A_n^k = n(n-1)...(n-k+1)$
+\item Le nombre de permutations d'éléments de $E$ est $n!$
+\end{enumerate}}
+
+\subsection{Probabilité conditionnelle, indépendance}
+Les définitions et les théorèmes concernant les probabilités conditionnelles dans un univers infini sont identiques à celles d'un univers fini étudiés en sup.
+\Def{}{Soit $(\Omega, \mathcal{A},P)$ un espace probabilisé et $A$ un événement.
+\par On peut définir la probabilité conditionnelle de $A$ sachant $B$ notée $P(A/B)$ ou $P_B(A)$ :\begin{itemize}
+\item Si $B$ un événement de probabilité non-nulle : \par\begin{center}$P(A/B)=P_B(A)=\frac{P(A\cap B)}{P(B)}$\end{center}
+\item Si $P(B)=0$ \par\begin{center} $P_B(A)=0$\end{center}
+\end{itemize}}
+\Prop{}{Soit $(\Omega, \mathcal{A},P)$ un espace probabilisé. Soit $B$ un événement de probabilité non-nulle.
+\par $P_B$ est une probabilité sur $(\Omega, \mathcal{A})$ appelée probabilité conditionnelle sachant $B$.}
+\Pre{$P_B$ est définie sur $\mathcal{A}$ et vérifie :
+\par Soit $A\in\mathcal{A}$, on a $A\cap B\subset B$ et $P$ croissante donc $0\leq P(A\cap B)\leq P(B)$
+\par Ce qui donne $P_B(A)=\frac{P(A\cap B)}{P(B)}\in[0,1]$
+\par On a $P_B(\Omega) =\frac{P(\Omega\cap B)}{P(B)}=\frac{P(B)}{P(B)}=1$
+\par Soient $A_1, A_2$ deux événements incompatibles :
+\par $P_B(A_1\cup A_2)=\frac{P((A_1\cup A_2)\cap B)}{P(B)}=\frac{P((A_1\cap B)\cup (A_2\cap B))}{P(B)}$
+\par Or $(A_1\cap B)\cap(A_2\cap B) = (A_1\cap A_2)\cap B=\emptyset\cap B=\emptyset$
+\par Donc par additivité de $P$ :
+\par $P_B(A_1\cup A_2)=\frac{P(A_1\cap B)+P(A_2\cap B)}{P(B)} = \frac{P(A_1\cap B)}{P(B)}+\frac{P(A_2\cap B)}{P(B)}=P_B(A_1)+P_B(A_2)$
+\par La $\sigma$-additivité se déduit de cette propriété par récurrence.
+\par Et donc on a bien que $P_B$ est une probabilité sur $(\Omega, \mathcal{A})$}
+\begin{Rem}
+Considérer la probabilité d'un événement sachant $B$, c'est considérer que $B$ est réalisé, c'est à dire limiter l'univers à $B$.
+\end{Rem}
+\Prop{}{Soient $A$ et $B$ deux événements d'un espace probabilisé $(\Omega, \mathcal{A}, P)$. Alors si $P(A)\neq 0$ et $P(B)\neq 0$ :
+\par \begin{center} $P(A\cap B)=P(A)P_A(B)=P(B)P_B(A)$\end{center}}
+\Thr{Formule des probabilités composées}{Soit $(A_n)_{n\in\N}$ une famille d'événements telle que pour tout entier $n$, $P\left(\bigcap_{i=1}^{n-1}A_i\right)\neq 0$. Alors, pour tout entier $n$ :
+\par\begin{center} $P\left(\bigcap_{i=1}^nA_i\right)=P(A_1)P_{A_1}(A_2)...P_{A_1\cap A_2\cap...\cap A_{n-1}}(A_n)$\end{center}
+\par\begin{center} $P\left(\bigcap_{n\in\N}A_n\right) = \lim\limits_{n\to+\infty}P(A_1)P_{A_1}(A_2)...P_{A_1\cap...\cap A_{n-1}}(A_n)$\end{center}}
+\Pre{Si $P(A_1\cap...\cap A_{n-1})=0$, alors la formule dit que $0=0$, ce qui est vrai.
+\par Supposons que $P(A_1\cap...\cap A_{n-1})\neq 0$
+\par Remarquons que $A_1\cap A_2\cap...\cap A_{n-1}\subset A_1\cap A_2\cap...\cap A_{n-2}\subset...\subset A_1$
+\par Donc par croissance de $P$, les événements qui conditionnent sont tous de probabilités non-nulles et on peut appliquer la formule usuelle d'une probabilité conditionnelle.
+\par Procédons par récurrence sur $n$.
+\par Si $n=1$: la formule s'écrit $P(A_1)=P(A_1)$, ce qui est vrai.
+\par Si la formule est vraie pour $n$ événements : \par Soient $A_1,...,A_{n+1}$ $n+1$ événements. En appliquant l'hypothèse de récurrence aux $n$ événements $A_1\cap A_2, A_3,...,A_{n+1}$, on obtient :
+\par $P(A_1\cap A_2\cap...\cap A_n\cap A_{n+1}) = P(A_1\cap A_2)P_{A_1\cap A_2}(A_3)....P_{A_1\cap A_2\cap...\cap A_n}(A_{n+1})$
+\par Mais $P(A_1\cap A_2)=P(A_1)P_{A_1}(A_2)$
+\par D'où la récurrence.}
+Les définitions de l'indépendance et de l'indépendance mutuelle sont identiques à celles du cas d'un univers fini étudiées en sup, on y ajoute simplement le cas d'une famille infinie d'événements.
+\Def{}{Soit $(\Omega,\mathcal{A},P)$ un espace probabilisé. Soient $A$ et $B$ deux événements. On dit que $A$ et $B$ sont indépendants lorsque :
+\par \begin{center}$P(A\cap B)=P(A)P(B)$\end{center}}
+\begin{Rem}\begin{itemize}
+\item Si $P(A)=0$ ou $P(B)=0$, $A$ et $B$ sont indépendants.
+\item Il s'agit de ne pas confondre les notions d'événements indépendants et incompatibles. Si $A$ et $B$ sont de probabilités non-nulles et disjoints, alors ils ne sont pas indépendants, puisque $P(A)P(B)$ est non-nul alors que $P(A\cap B)$ l'est (intuitivement, $A$ et $\overline{A}$ ne sont pas indépendants.)
+\item Si $P(B)\neq 0$, $A$ et $B$ sont indépendants si, et seulement si, $P_B(A)=P(A)$ \par ie : la réalisation de $A$ est indépendante de la réalisation de $B$
+\item La notion formelle d'indépendance recouvre donc la notion intuitive, et dans de nombreux exercices, l'indépendance des événements proposés ira de soi, elle fera a priori parite des hypothèses (même si certains énoncés l'oublient, il faut alors le préciser). Par exemple, lorsque l'on lance une pièce de monnaie équilibrée $5$ fois de suite, l'indépendance des événements "il y a deux fois pile exactement parmi les trois premiers lancers" et "il y a une fois face exactement parmi les deux derniers lancers" est parfaitement intuitive, on peut la vérifier facilement par le calcul
+\item La notion d'indépendance formelle est plus large que la notion intuitive. Dans certains cas, l'indépendance formelle peut sembler paradoxale, seule la vérification de $P(A)P(B)=P(A\cap B)$ peut prouver l'indépendance des événements $A$ et $B$.
+\end{itemize}
+\end{Rem}
+\Def{}{Soit $(\Omega, \mathcal{A}, P)$ un espace probabilsié. Soit $(A_i)_{i\in I}$ une famille au plus dénombrable d'événements\begin{itemize}
+\item Les événements $(A_i)_{i\in I}$ sont indépendants deux à deux si :\par\begin{center}$\forall i,j\in I, i\neq j\Rightarrow P(A_i\cap A_j)=P(A_i)P(A_j)$\end{center}
+\item Les événements $(A_i)_{i\in I}$ soont indépendants ou mutuellement indépendants si pour toute famille finie $J\subset I$ on a :\par\begin{center}$P\left(\bigcap_{i\in J}A_i\right)=\prod\limits_{i\in J}P(A_i)$\end{center}
+\end{itemize}}
+\begin{Rem}\begin{itemize}
+\item La notion de mutuelle indépendance est plus forte que la notion d'indépendance deux à deux. Des événements mutuellement indépendants sont deux à deux indépendants, mais la réciproque est fausse.
+\item Si $A$ et $B$ sont indépendants alors $A$ et $\overline{B}$ le sont aussi.
+\item Généralisation : Si $(A_i)_{i\in I}$ est une famille d'événements mutuellement indépendants alors les événements de toute famille $(B_i)_{i\in I}$ telle que pour tout $i\in I$, $B_i\in\{A_i, \overline{A_i}\}$ sont mutuellement indépendants.
+\end{itemize}
+\end{Rem}
+\Pre{Si $A,B$ indépendants :
+\par $A=A\cap(B\cup\overline{B})=(A\cap B)\cup (A\cap\overline{B})$, et l'union est disjointe
+\par $P(A\cap\overline{B})=P(A)-P(A\cap B)$
+\par $P(A)-P(A)P(B)=P(A)(1-P(B))=P(A)P(\overline{B})$
+\par $I$ dénombrable, $(A_i)_{i\in I}$ famille d'événements mutuellement indépendants
+\par Alors la famille $(B_i)_{i\in I}$ qui vaut $A_i$ ou $\overline{A_i}$ est faites d'événements mutuellement indépendants. Le résultat se prouve par récurrence sur le nombre de complémentaires.}
+
+\subsubsection{Système complet d'événements, quasi-complet d'événements}
+La formule des probabilités composées permet de gérer les enchaînements de phénomènes aléatoires. On s'intéresse maintenant à la modélisation d'un phénomène aléatoire qui peut être la conséquence de plusieurs causes.
+\par La notion de système complet d'événements et la formule des probabilités totales ont été vues en sup dans le cas d'un nombre fini d'événements. Généralisons à des systèmes complets d'événements infinis.
+\Def{}{Un système complet d'événements est une famille $(A_i)_{i\in I}$ au plus dénombrable d'événements tels que :\begin{itemize}
+\item les événements sont deux à deux incompatibles ($\forall i,j\in I, i\neq j\Rightarrow A_i\cap A_j=\emptyset$)
+\item leur union est l'univers tout entier ($\bigcup_{i\in I}A_i=\Omega$)
+\end{itemize}}
+\begin{Rem}
+Autrement dit, $(A_i)_{i\in I}$ est un système complet d'événement si, et seulement si, à chaque réalisation de l'expérience aléatoire, un et un seul des événements $A_i$ est réalisé.
+\par De cette définition, il sort qu'un événement et son contraire forment un système complet.
+\end{Rem}
+\Thr{}{Soit $(\Omega, A, P)$ un espace probabilisé. Pour tout système complet d'événements $(A_i)_{i\in I}$, on a :
+\par \begin{center}$\sum\limits_{i\in I}P(A_i)=1$\end{center}}
+\Def{}{Un système quasi-complet d'événements est uen famille $(A_i)_{i\in I}$ au plus dénombrable d'événements tels que :\begin{itemize}
+\item les événements sont incompatibles deux à deux ($\forall i,j\in I, i\neq j\Rightarrow A_i\cap A_j=\emptyset$)
+\item leur union est presque sûre : $P\left(\bigcup_{i\in I}A_i\right)=1$
+\end{itemize}}
+
+\subsubsection{Formule des probabilités totales} Cette formule permet de gérer les disjonctions de cas (les causes $(A_i)$) qui aboutissent à la réalisation d'un événement (la conséquence $B$)
+\Thr{Formule des probabilités totales}{Soit $(\Omega, \mathcal{A}, P)$ un espace probabilisé. Soit $(A_i)_{i\in I}$ un système complet ou quasi-complet d'événements.
+\par Pour tout événement $B$ :
+\par\begin{center}$P(B)=\sum\limits_{i\in I}P(A_i\cap B)=\sum\limits_{i\in I}P(A_i)P_{A_i}(B)$\end{center}}
+\Pre{La preuve est contenue dans l'énoncé ou presque
+\par Pour $B\in\mathcal{A}$, on a :
+\par $B=B\cap\Omega=B\cap\left(\bigcup_{i\in I}A_i\right)=\bigcup_{i\in I}B\cap A_i$
+\par Et donc $P(B)=\sum\limits_{i\in I}P(B\cap A_i)$
+\par Pour la dernière égalité, on rappelle juste la convention que si $P(A_i)=0$, alors $P_{A_i}(B)=0$}
+\begin{Rem}
+La formule reste valable pour un système complet d'événements fini, le cas le plus fréquent d'utilisation étant $(A, \overline{A})$
+\end{Rem}
+
+\subsubsection{Formule de Bayes} Sachant que la conséquence $B$ est réalisée, on veut maintenant connaître la probabilité d'une des causes.
+\Thr{Formule d'inversion de Bayes}{Soit $(A_i)_{i\in I}$ un système complet ou quasi-complet d'événements d'un espace probabilisé $(\Omega, \mathcal{A},P)$. Soit $B$ un événement de probabilité non-nulle, soit $i_0\in I$.
+\par Alors \par\begin{center}$P_B(A_{i_0})=\frac{P(B\cap A_{i_0})}{P(B)}=\frac{P(A_{i_0})P_{A_{i_0}}(B)}{\sum\limits_{i\in I}P(A_i)P_{A_i}(B)}$\end{center}}
+\Pre{Pour un événement $B$ quelconque de probabilité non-nulle, et la formule fonctionne immédiatement en utilisant les propriétés vues plus tôt sur les probabilités conditionnelles : $P(A\cap B)=P(A)P_A(B)=P(B)P_B(A)$ et la formule des probabilités totales au dénominateur.}
+
+\section{Variables aléatoires discrètes}
+\subsection{Définition d'une variable aléatoire discrète}
+Deux exemples de sup : on lance simultanément deux dés discernables et on choisit comme univers $\llbracket 1,6\rrbracket^2$, que l'on munit de la propbabilité uniforme. Notons $X$ la somme des valeurs des dés et $Y$ le maximum des deux valeurs.\begin{itemize}
+\item $X$ peut prendre toutes les valeurs entières entre $2$ et $12$, $Y$ entre $1$ et $6$.
+\item On peut voir $X$ et $Y$ comme des fonctions de $\Omega$ dans $\R$ : \par\begin{center}$X:(\omega_1,\omega_2)\mapsto \omega_1+\omega_2$ et $Y:(\omega_1,\omega_2)\mapsto \max(\omega_1,\omega_2)$\end{center}
+\par On peut alors écrire $X(\Omega) = \llbracket 2,12\rrbracket$ et $Y(\Omega)=\llbracket 1,6\rrbracket$
+\item Notons $A$ l'événement "la somme des 2 dés vaut $5$" : $A=\{(1,4), (2,3), (3,2), (4,1)\}$ et donc \par\begin{center}$P(A)=P(X=5)=\frac{4}{36}=\frac{1}{9}$\end{center}\par Dans l'égalité précédente, on a noté $(X=5)$ l'événement $A$. Il convient de voir $(X=5)$ comme une abbréviation pratique de $X^{-1}(\{5\})$.
+\item Notons $B$ l'événement "la somme des 2 dés est inférieure à $4$ : $B=\{(1,1), (2,1), (3,1), (2,2), (1,3)\}$ et donc \par\begin{center}$P(B)=P(X\leq 4)=\frac{6}{36}=\frac{1}{6}$\end{center} \par Dans l'égalité précédente, on a noté $(X\leq 4)$ l'événement $B$. Il convient de voir $(X\leq 4)$ comme une abbréviation pratique de $X^{-1}(]-\infty, 4[)$
+\end{itemize}
+\Def{}{Soit $E$ un ensemble et $(\Omega, \mathcal{A})$ un espace probabilisable.
+\par Une application $X:\to E$ est une variable aléatoire discrète si :\begin{itemize}
+\item L'ensemble $X(\Omega)$ des valeurs prises par $X$ est au plus dénombrable.
+\item Pour tout $x\in X(\Omega)$, l'ensemble $X^{-1}(\{x\})$, noté $(X=x)$ ou $[X=x]$, est un événement (un élément de $\mathcal{A}$)
+\end{itemize}
+Lorsque $E=\R$, la variable $X$ est dite réelle.}
+Si $U$ est une partie de $E$, on note :
+\par\begin{center}$(X\in U)=\{\omega\in\Omega\vert X(\omega)\in U\}=X^{-1}(U)$\end{center}
+\par On note aussi $[X\in U]$ ou $\{X\in U\}$
+\Thr{}{Si $X$ est une variable aléatoire discrète sur l'espace probabilisable $(\Omega, \mathcal{A})$, alors la suite $((X=x))_{x\in X(\Omega)}$ est un système complet d'événements de $\Omega$}
+
+\subsection{Loi d'une variable aléatoire discrète}
+\Def{}{Soit $X$ une variable aléatoire discrète sur un espace probabilisé, à valeurs dans un ensemble $E$
+\par La loi $P_X$ de $X$ est la donnée de :\begin{itemize}
+\item l'ensemble des valeurs prises par $X$ appelé univers image : $X(\Omega)$
+\item les probabilités élémentaires : $p_x = P(X=x)$ pour tout $x\in X(\Omega)$
+\end{itemize}}
+\begin{Rem}
+On note $X\sim Y$ lorsque les variables $X$ et $Y$ suivent la même loi ($P_X=P_Y$)
+\end{Rem}
+\Thr{}{Si $X$ une variable aléatoire discrète à valeurs dans un ensemble $E$, \begin{itemize}
+\item la famille $(P(X=x))_{x\in E}$ est sommable de somme $1$ : \par\begin{center}$\sum\limits_{x\in E}P(X=x)=1$\end{center}
+\item par $\sigma$-additivité, pour toute partie $U$ de $X(\Omega)$, \par\begin{center}$P(X\in U)=P\left(\bigcup_{x\in U}(X=x)\right)=\sum\limits_{x\in U}P(X=x)$ \end{center}
+\item $(X(\Omega), \mathcal{P}(X(\Omega)), P_X)$ est un espace probabilisé.
+\end{itemize}
+Réciproquement, si $(p_x)_{x\in E}$ est une famille sommable de réels positifs de somme $1$ alors il existe une variable aléatoir discrète $X$ telle que pour tout $x\in E$, $P(X=x)=p_x$}
+
+\Prop{}{Soient $X$ une variable aléatoire discrète à valeurs dans un ensemble $E$ et $f$ une fonction de $E$ dans un ensemble $F$ définie sur $X(\Omega)$
+\par La fonction $Y=f\circ X :\left\{\begin{array}{rcl}\Omega & \to & F \\ \omega & \mapsto & f(X(\omega))\end{array}\right.$}
+
+\Prop{}{Soit $X$ une variable aléatoire discrète et $Y = f(X)$ où $f:X(\Omega)\to F$
+\par On a :\par\begin{center}$\forall y\in Y(\Omega), P(Y=y) = \sum\limits_{x\in X(\Omega), f(x)=y}P(X=x)$\end{center}}
+
+\subsection{Indépendance et variables aléatoires discrètes}
+\Def{}{$X$ et $Y$ sont deux variables aléatoires discrètes indépendantes lorsque pour toutes parties $A$ et $B$ de $X(\Omega)$ et $Y(\Omega)$ respectivement :
+\par\begin{center}$P((X\in A)\cap (Y\in B))=P(X\in A)P(Y\in B)$\end{center}
+\par On note $X\ind Y$}
+\Thr{}{Deux variables aléatoires discrètes $X$ et $Y$ sont dites indépendantes si, et seulement si,
+\par\begin{center}$\forall (x,y)\in X(\Omega)\times Y(\Omega), P((X=x)\cap (Y=y))=P(X=x)P(Y=y)$\end{center}
+\par ie : $\forall (x,y)\in X(\Omega)\times Y(\Omega)$, les événements $(X=x)$ et $(Y=y)$ sont indépendants.}
+\Pre{Ce théorème est admis.}
+\Def{}{Les variables aléatoires discrètes $X_1,X_2,...,X_n$ sont mutuellement indépendantes lorsque pour toutes parties $A_1,A_2,...,A_n$ de $X_1(\Omega),X_2(\Omega),...,X_n(\Omega)$ :
+\par\begin{center}$P\left(\bigcap_{i=1}^n(X_i\in A_i)\right)=\prod\limits_{i=1}^nP(X_i\in A)$ \end{center}}
+\Thr{}{Les variables aléatoires discrètes $X_1,X_2,...,X_n$ sont (mutuellement) indépendantes si, et seulement si, pour tout $n$-uplet $(x_1,x_2,...,x_n)$ de $X_1(\Omega)\times X_2(\Omega)\times...\times X_n(\Omega)$ :
+\par\begin{center}$P\left(\bigcap_{i=1}^n(X_i=x_i)\right)=\prod\limits_{i=1}^nP(X_i=x_i)$\end{center}}
+\Pre{Ce théorème est aussi admis.}
+\Def{}{Une suite de variables aléatoires discrètes $(X_n)_{n\in\N}$ est une suite de variables aléatoires discrètes (mutuellement) indépendantes lorsque pour toute partie finie $I = \{i_1,...,i_n\}$ de $\N$, les variables $X_{i_1}, X_{i_2},..., X_{i_n}$ sont (mutuellement) indépendantes.}
+\Prop{}{Soient $X$ et $Y$ deux variables aléatoires discrètes définies sur $\Omega$ à valeurs dans $E$.
+\par Soient $f$ et $g$ deux applications de $E$ dans $F$ définies respectivement sur $X(\Omega)$ et $Y(\Omega)$
+\par Si $X$ et $Y$ sont indépendantes alors $f(X)$ et $g(Y)$ le sont aussi.}
+\Prop{}{Soient $X_1,..., X_n$ $n$ variables aléatoires discrètes définies sur $\Omega$ à valeurs dans $E$.
+\par Soient $f_1,...,f_n$ $n$ applications de $E$ dans $F$.
+\par Si $X_1,...,X_n$ sont (mutuellement) indépendantes alors $f_1(X_1),..., f_n(X_n)$ le sont aussi.}
+\Prop{Lemme des coalitions}{Soient $X_1,X_2,...,X_n$ $n$ variables aléatoires discrètes définies sur $\Omega$ à valeurs dans $E$.
+\par Soient $f$ et $g$ deux applications respectivement de $E^m$ dans $F$ et de $E^{n-m}$ dans $F$.
+\par Si $X_1,X_2,..., X_n$ sont (mutuellement) indépendantes alors $f(X_1,..., X_m)$ et $g(X_{m+1}, X_n)$ le sont aussi.
+\par Ce théorème s'étend à plus de deux coalitions.}
+
+\subsection{Espérance d'une variable aléatoire discrète réelle ou complexe}
+Rappel de sup : dans le cas où $\Omega$ est fini et $\mathcal{A}=\mathcal{P}(\Omega)$, la moyenne des valeurs prises par $X$ sur $\Omega$ est :
+\par\begin{center}$m=\frac{\sum\limits_{\omega\in\Omega}X(\omega)}{\mathrm{Card}(\Omega)}$\end{center}
+\begin{itemize}
+\item Si $P$ est la propabilité uniforme sur $\Omega$, $\forall\omega\in\Omega, P(\{\omega\})=\frac{1}{\mathrm{Card}(\Omega)}$ et $m = \sum\limits_{\omega\in\Omega}X(\omega)P(\{\omega\})$
+\item Si $P$ est une probabilité quelconque, $\sum\limits_{\omega\in\Omega}X(\omega)P(\{\omega\})$ est la moyenne des valeurs de $X(\omega)$ pondérée par la probabilité de $\omega$. Cette moyenne est appelée espérance de $X$, notée $E(X)$
+\end{itemize}
+En regroupant les valeurs de $\omega$ pour lesquelles $X$ prend une valeur fixée, on obtient une autre expression de $E(X)$ :
+\par $E(X) =\sum\limits_{\omega\in\Omega}X(\omega)P(\{\omega\}) = \sum\limits_{x\in X(\Omega)} x\sum\limits_{\omega\in X^{-1}(\{x\})}P(\{\omega\}) = \sum\limits_{x\in X(\Omega)}xP(X^{-1}(X))=\sum\limits_{x\in X(\Omega)}xP(X=x)$
+C'est cette dernière expression qui est utilisée pour définir l'espérance dans le cas général.
+\Def{}{Soit $X$ une variable aléatoire discrète à valeurs dans $[0, +\infty]$.
+\par\begin{center}$E(X)=\sum\limits_{x\in X(\Omega)}xP(X=x)$\end{center}
+\par Avec la convention $xP(X=x)=0$ lorsque $X=+\infty$ et $P(X=+\infty)=0$}
+\Def{}{Soit $X$ un evariable aléatoire discrète à valeurs réelles ou complexes.
+\par On dit que $X$ admet une espérance (ou est d'espérance finie) lorsque la famillle $(xP(X=x))_{x\in X(\Omega)}$ est sommable. Dans ce cas :
+\par\begin{center} $E(X)=\sum\limits_{x\in X(\Omega)}xP(X=x)$\end{center}
+\par $X$ est dite centrée lorsque $E(X)=0$}
+\begin{Rem}
+La définition de l'espérance s'étend sans difficulté aux variables aléatoires à valeurs dans un espace vectoriel de dimension finie, en passant par les variables aléatoires coordonnées. L'expression
+\par \begin{center} $E(X)=\sum\limits_{x\in X(\Omega)}P(X=x)x$\end{center}
+\par reste valable (où $x$ est un vecteur, $P(X=x)$ un scalaire)
+\end{Rem}
+\Prop{}{Soit $X$ une variable aléatoire discrète à valeurs dans $\N\cup\{+\infty\}$. On a :
+\par\begin{center}$E(X)=\sum\limits_{n\in\N}P(X\geq n)$\end{center}}
+Calculer l'espérance d'une variable aléatoire réelle à partir de sa définition nécessite donc de connaître sa loi, ce qui peut être délicat lorsque la variable est le la forme $f(X)$
+Le théorème suivant permet de calculer l'espérance de $f(X)$ à partir de la loi de $X$ :
+\Thr{Transfert}{Soit $X$ une variable aléatoire discrète à valeurs réelles ou complexes et $f:X(\Omega)\to\C$
+\par La variable aléatoire réelle $f(X)$ est d'espérance finie si, et seulement si, la famille $(f(x)P(X=x))_{x\in X(\Omega)}$ est sommable.
+\par Dans ce cas :
+\par\begin{center}$E(f(X))=\sum\limits_{x\in X(\Omega)}f(x)P(X=x)$\end{center}}
+\begin{Rem}
+On admet aussi que la formule de transfert s'applique aux couples, au $n$-uplets de variables aléatoires.
+\par Par exemple pour deux variables aléatoires discrètes $X$ et $Y$ à valeurs réelles ou complexes et la fonction $f:(x,y)\mapsto xy$ :\begin{itemize}
+\item $XY$ est d'expérance finie si, et seulement si, la famille $(f(x,y)P((X,Y)=(x,y)))_{(x,y)\in X(\Omega)\times Y(\Omega)}$ est sommable.
+\item Dans le cas sommable : \par\begin{center}$E(XY)=\sum\limits_{(x,y)\in X(\Omega)\times Y(\Omega)}f(x,y)P((X,Y)=(x,y))=\sum\limits_{(x,y)\in X(\Omega)\times Y(\Omega)}xyP(X=x, Y=y)$\end{center}
+\end{itemize}
+\end{Rem}
+\Thr{Propriétés de l'espérance}{Soient $X,Y$ deux variables aléatoires discrètes à valeurs réelles ou complexes et d'espérance finie.\begin{itemize}
+\item $\forall \lambda, \mu\in C, \lambda X+\mu Y$ est d'espérance finie et \par\begin{center}$E(\lambda X+\mu Y)=\lambda E(X)+\mu E(Y)$ (linéarité)\end{center} \par On peut généraliser cette propriété avec $n$ variables aléatoires réelles discrètes d'espérance finie, qu'elles soient indépendantes ou non.
+\par Dans la suite, $X$ et $Y$ sont à valeurs réelles.
+\item Si $X\geq 0$ alors $E(X)\geq 0$ (Positivité)
+\item Si $X\geq 0$ et $E(X)=0$ alors $(X=0)$ est presque sûr (stricte positivité)
+\item Si $X\leq Y$ alors $E(X)\leq E(Y)$ (croissance)
+\end{itemize}}
+\begin{Rem}
+Dans le cadre du théorème précédent : \begin{itemize}
+\item On a en particulier que $\forall \lambda,\mu \in\C,\lambda X+\mu$ admet une espérance et $E(\lambda X + \mu)=\lambda E(X)+\mu$
+\item Pour $X$ réelle et $a,b\in \R$, si $a\leq X\leq b$ alors $a\leq E(X)\leq b$
+\end{itemize}
+\end{Rem}
+\Thr{Critère de majoration positif}{SOit $X$ une variable aléatoire discrète à valeurs réelles ou complexes. Soit $Y$ une variable aléatoire discrète à valeurs réelles.
+\par Si on a :\begin{itemize}
+\item $Y$ est d'espérance finie
+\item $\vert X\vert\leq Y$
+\end{itemize}
+Alors $X$ est d'espérance finie.}
+\Thr{Espérace d'un produit de variables indépendantes}{Soit $X,Y$ deux variables aléatoires discrètes à valeurs réelles ou complexes.
+\par Si on a :\begin{itemize}
+\item $X$ et $Y$ d'espérance finie
+\item $X$ et $Y$ indépendantes
+\end{itemize}
+Alors $XY$ est d'espérance finie et \par\begin{center}$E(XY)=E(X)E(Y)$\end{center}}
+\Thr{Espérace d'un produit de n variables indépendantes}{Soit $X_1,...,X_n$ des variables aléatoires discrètes à valeurs réelles ou complexes.
+\par Si on a :\begin{itemize}
+\item $X_1,..., X_n$ d'espérance finie
+\item $X_1,..., X_n$ (mutuellement) indépendantes
+\end{itemize}
+Alors la variable $X_1...X_n$ est d'espérance finie et \par\begin{center}$E\left(\prod\limits_{i=1}^nX_i\right)=\prod\limits_{i=1}^nE(X_i)$\end{center}}
+\begin{Rem}
+La réciproque de cette proposition est fausse, l'égalité $E(XY)=E(X)E(Y)$ ne suffit pas à garantir l'indépendance des variables $X$ et $Y$.
+\par Par exemple, $X$ la variable aléatoire de loi uniforme sur $\{-1,0,1\}$ et $Y=X^2$
+\par On peut vérifier que $E(XY)=E(X)E(Y)$ mais $P((X,Y)=(0,0))=\frac{1}{3}$ tandis que $P(X=0)P(Y=0) = \frac{1}{9}$
+\end{Rem}
+
+\subsection{Variance d'une variable aléatoire discrète réelle, écart type}
+\Prop{}{Soit $X$ une variable aléatoire discrète à valeurs réelles.
+\par Si $X^2$ est d'espérance finie alors, pour tout polynôme $f$ de degré au plus 2, la variable aléatoire $f(X)$ est d'espérance finie.
+\par Par exemple, $X$, $X(X-1)$ sont d'espérance finie.}
+\Pre{On suppose que $X^2$ est d'espérance finie.
+\par Par linéarité, la variable $Y=\frac{1}{2}(X^2-1)$ est aussi d'espérance finie.
+\par De plus, on a $\vert X\vert\leq Y$, donc par critère de majoration positif, $X$ est d'espérance finie.
+\par ON pose $f:x\mapsto a_0+a_1x+a_2x^2$ où $a_0,a_1,a_2\in\R$
+\par D'après ce qui précède, $X^2$, $X$ et la variable constante égale à $1$ sont d'espérance finie, donc par linéarité $f(X)=(a_0+a_1X+a_2X^2)$ est d'espérance finie.}
+\Def{Variance et ecart-type}{Soit $X$ une variable aléatoire discrète à valeurs réelles.
+\par Si $X^2$ est d'espérance finie, on définit la variance de $X$ par \par\begin{center}$V(X)=E((X-E(X))^2)$\end{center}
+\par et son écart-type par \par\begin{center}$\sigma(X)=\sqrt{V(X)}$\end{center}}
+\begin{Rem}
+La définition de la variance a un sens, car si $X^2$ est d'espérance finie, $m=E(X)$ existe et $(X-m)^2= X^2-2mX + m^2$ qui est un polynôme du second degré en $X$ d'espérance finie.
+\par La définition de l'écart-type a aussi un sens, car par positivité de l'espérance, la variance est un réel positif.
+\end{Rem}
+\Prop{de la variance}{Soit $X$ une variable aléatoire discrète à valeurs réeles.
+\par On suppose que $X^2$ est d'espérance finie.\begin{enumerate}
+\item Köning-Huygens : formule pratique pour la variance :\par\begin{center}$V(X)=E(X^2)-E(X)^2$\end{center}
+\item Soient $a,b\in\R$ \par\begin{center}$V(aX+B)=a^2V(X)$\end{center} \par En particulier, la variance est invariante par translation
+\item $V(X)$ est nulle si, et seulement si, $P(X=E(X))=1$ \par ie : $X$ est presque sûrement constante.
+\end{enumerate}}
+\Pre{Pour le premier point :
+\par On a $V(X)=E((X-E(X))^2)=E(X^2-2E(X)X+E(X)^2)= E(X^2)-2E(X)E(X)+E(X)^2 = E(X^2)-E(X)^2$
+\par Pour le deuxième point :
+\par On a $V(aX+b) = E((aX+b-E(aX+b))^2)=E((aX+b-aE(X)-b)^2)=E(a^2(X-E(X))^2)=a^2V(X)$}
+\Pre{Pour le troisième point : si $V(X)=0$
+\par On pose $m=E(X)$, d'après le théorème de transfert : $V(X)=E((X-E(X))^2)=E((X-m)^2)=\sum\limits_{n=0}^{+\infty}(x_n-m)^2P(X=x_n)$
+\par Donc $\forall n\in\N, 0\leq (x_n-m)^2P(X=x_n)\leq\sum\limits_{n=0}^{+\infty}(x_n-m)^2P(X=x_n)=0$
+\par Et donc $\forall n\in\N, (x_n-m)^2P(X=x_n)=0$
+\par Or il existe $n_0$ tel que $P(X=x_{n_0})\neq 0$ (sinon la somme des probabilités ne vaudrait pas $1$)
+\par Donc pour un tel $n_0$, $x_{n_0}=m$, car sinon $(x_{n_0}-m)^2P(X=x_{n_0})\neq 0$
+\par Comme les $x_n$ sont deux à deux distincts : $\forall n\in\N\backslash\{n_0\}, x_n\neq m$
+\par D'où $\forall n\in\N\backslash\{n_0\}, P(X=x_n)=0$
+\par Comme $((X=x_n))_{n\in\N}$ est un système complet d'événements : $P(X=x_{n_0})=1-\sum\limits_{n\in\N, n\neq n_0}P(X=x_n)=1$
+\par D'où $P(X=x_{n_0})=P(X=m)=P(X=E(X))=1$
+\par Réciproquement, on suppose que $P(X=E(X))=1$
+\par Comme $P(X=E(X))\neq 0$, $E(X)\in X(\Omega)$, et il existe alors $n_0\in\N$ tel que $x_{n_0}=E(X)$
+\par On a que pour $n\in\N\backslash\{n_0\}, (X=x_n)\subset\overline{(X=x_{n_0})}$, et par croissance de $P$ : \par $0\leq P(X=x_n)\leq P(\overline{(X=x_{n_0})})=1-P(X=x_{n_0})=1-1=0$
+\par Donc $\forall n\in\N\backslash\{n_0\}, P(X=x_n)=0$
+\par On en déduit par théorème de transfert : \par $V(X)=E((X-E(X))^2) = \sum\limits_{n=0}^{+\infty}(x_n-E(X))^2P(X=x_n)=0$}
+\Def{}{Soit $X$ une variable aléatoire discrète à valeurs réelles telle que $X^2$ est d'espérance finie et telle que $\sigma(X)>0$
+\par La variable $\frac{X}{\sigma(X)}$ a un écart-type égal à $1$. Elle est appelée réduite de $X$.
+\par La viariable $\frac{X-E(X)}{\sigma(X)}$ a une espérance nulle et un écart-type égal à $1$. Elle est appelée variable centrée réduite associée à $X$.}
+
+\subsection{Covariance, coefficent de corrélation linéaire}
+Dans ce paragraphe, $X$ et $Y$ sont deux variables aléatoires discrètes à valeurs réelles.
+\Prop{Inégalité de Cauchy-Schwarz}{Si $X^2$ et $Y^2$ sont d'espérance finie, alors $XY$ l'est aussi et \par\begin{center}$E(XY)^2\leq E(X^2)E(Y^2)$\end{center}
+\par Avec égalité si, et seulement si, $P(X=0)=1$ ou il existe $\lambda\in\R$ tel que $P(Y=\lambda X)=1$}
+\Prop{}{Si les variables aléatoires $X^2$ et $Y^2$ sont d'espérance finie alors, pour toute fonction $f:\R^2\to \R$ polynomiale de degré au plus $2$, la variable aléatoire $f(X,Y)$ est d'espérance finie.}
+\Def{}{Si les variables aléatoires $X^2$ et $Y^2$ sont d'espérance finie alors on peut définir la covariance de $X$ et $Y$ par :\par\begin{center}$\mathrm{cov}(X,Y)=E((X-E(X))(Y-E(Y)))$\end{center}}
+\begin{Rem}
+La définition de la covariance a un sens, car si $X^2$ et $Y^2$ sont d'espérance finie, $m=E(X)$ et $m'=E(Y)$ existent et $(X-m)(Y-m')=XY-m'X-mY+mm'$ qui est un polynôme du second degré en $X$ et $Y$, et donc d'espérance finie.
+\par La covariance est l'espérance du produit des variables centrées.
+\end{Rem}
+\Prop{de la covariance}{Si les variables aléatoires $X^2$ et $Y^2$ sont d'espérance finie alors :\begin{itemize}
+\item \begin{center}$\mathrm{cov}(X,X)=V(X)$\end{center}
+\item Köning-Huygens : formule pratique pour la covariance :\par\begin{center}$\mathrm{cov}(X,Y)=E(XY)-E(X)E(Y)$\end{center}
+\item Si $X$ et $Y$ sont indépendantes alors \par\begin{center}$\mathrm{cov}(X,Y)=0$\end{center}
+\item La covariance est une forme linéaire positive, symétrique et bilinéaire (c'est "presque" un produit scalaire)
+\end{itemize}}
+\Prop{Variance d'une somme}{Si les variables aléatoires $X^2$ et $Y^2$ sont d'espérance finie alors $(X+Y)^2$ aussi avec
+\par\begin{center}$V(X+Y)=V(X)+2\mathrm{cov}(X,Y)+V(Y)$\end{center}
+\par Si de plus les variables $X$ et $Y$ sont indépendantes :
+\par\begin{center}$V(X+Y)=V(X)+V(Y)$\end{center}}
+\Prop{Variance d'une somme}{Si $X_1,...,X_n$ sont $n$ variables telles que $X_1^2,..., X_n^2$ sont d'espérance finie alors $(X_1+...+X_n)^2$ l'est aussi avec :
+\par\begin{center}$V\left(\sum\limits_{k=1}^nX_k\right)=\sum\limits_{k=1}^nV(X_k)+2\sum\limits_{1\leq i<j\leq n}\mathrm{cov}(X_i, X_j)$\end{center}
+\par Si de plus les variables $X_1,...,X_n$ sont indépendantes deux à deux alors :
+\par\begin{center}$V\left(\sum\limits_{k=1}^nX_k\right)=\sum\limits_{k=1}^nV(X_k)$\end{center}}
 
 
+\section{Lois usuelles}
+\subsection{Lois usuelles finies}
+Dans toute la suite on considère $n\in\N^*, p\in[0,1]$ et $q=1-p$
+\Def{}{Une variable aléatoire discrète $X$ suit une loi de Bernoulli de paramètre $p$ si
+\par\begin{center}$X(\Omega)=\{0,1\}$ et $P(X=1)=p$\end{center}
+\par On note $X\sim\mathcal{B}(p)$}
+\Prop{}{Si $X\sim\mathcal{B}(p)$ alors
+\par\begin{center}$E(X)=P$ et $V(X)=pq$\end{center}
+En particulier, le paramètre d'une loi de Bernouilli est son espérance.}
+\Pre{On a $E(X) = 0 \times P(X=0) + 1\times P(X=1) = p$
+\par Mais si $X(\Omega)\subset\{0,1\}$ alors $X^2=X$. Donc :
+\par $V(X)=E(X^2)-E(X)^2= p - p^2 = p(1-p)=pq$}
+
+\Def{}{Une variable aléatoire discrète $X$ suite une loi uniforme sur l'ensemble fini non-vide $K\subset \R$ si
+\par\begin{center}$X(\Omega)=K$ et $\forall k\in K, P(X=k) = \frac{1}{\mathrm{Card}(K)}$\end{center}
+On note $X\sim \mathcal{U}(K)$}
+\Prop{}{Si $X\sim\mathcal{U}(\llbracket 1,n\rrbracket)$ alors
+\par\begin{center}$E(X)=\frac{n+1}{2}$ et $V(X) = \frac{n^2-1}{12}$\end{center}}
+
+\Def{}{Une variable aléatoire discrète $X$ suit une loi binomiale des paramètres $n$ et $p$ si $X(\Omega)=\llbracket 0,n\rrbracket$ et
+\par\begin{center}$\forall k\in \llbracket 0,n\rrbracket, P(X=k)=\binom{n}{k}p^kq^{n-k}$\end{center}
+\par $X\sim \mathcal{B}(n,p)$}
+\Prop{Modèle loi binomiale}{Si $X$ est le nombre de succès lors de la répétition de $n$ épreuves de Bernouilli indépendantes de même paramètre $p$ alors $X$ suit la loi $\mathcal{B}(n,p)$
+\par Formellement :
+\par On pose pour $k\in\llbracket 1,n\rrbracket$ $X_k$ la variable aléatoire discrète qui vaut $1$ si la $k$-ième épreuve est un euscès et $0$ sinon. Si :\begin{itemize}
+\item pour tout $k\in\llbracket 1,n\rrbracket, X_k\sim\mathcal{B}(p)$
+\item $X_1,X_2,..., X_n$ sont mutuellement indépendantes
+\item $X=X_1+X_2+...+X_n$
+\end{itemize}
+Alors \par\begin{center}$X\sim \mathcal{B}(n,p)$\end{center}
+\par En outre \par\begin{center}$E(X)=np$ et $V(x)=npq$\end{center}}
+\Pre{$X$ est une somme de $n$ termes qui valent $0$ ou $1$, donc $X(\Omega)\subset \llbracket 0,n\rrbracket$
+\par Soit $k\in\llbracket 0,n\rrbracket$
+\par On a l'union d'événements disjoints deux à deux : $(X=k) =\bigcup_{I\subset \llbracket 1,n\rrbracket, \mathrm{Card}(I)=k} \bigcap_{i\in I}(X_i=1)\cap \bigcap_{i\in\overline{I}}(X_i=0)$
+\par Donc, par additivité : $P(X=k) = \sum\limits_{I\subset \llbracket 1,n\rrbracket, \mathrm{Card}(I)=k}P\left(\bigcap_{i\in I}(X_i=1)\cap \bigcap_{i\in\overline{I}}(X_i=0)\right)$
+\par Donc $P(X=k)=p^kq^{n-k} \sum\limits_{I\subset \llbracket 1,n\rrbracket, \mathrm{Card}(I)=k}1 = \binom{n}{k}p^kq^{n-k}$
+\par Par linéarité de l'espérance on a donc $E(X) = E(X_1)+E(X_2)+...+E(X_n) = np$
+\par Par indépendance mutuelle donc deux à deux des $X_i$ : $V(X) = V(X_1)+V(X_2)+...+V(X_n)=npq$}
+
+\subsection{Lois usuelles infinies}
+\Def{}{On suppose que $p\in]0,1[$
+\par Une variable aléatoire discrète $X$ suit une loi géométrique de paramètre $p$ si $X(\Omega)=\N^*$ et
+\par\begin{center}$\forall n\in\N^*, P(X=n)=pq^{n-1}$\end{center}
+\par On note $X\sim\mathcal{G}(p)$}
+\Prop{}{Si $X$ suite une loi géométrique de paramètre $p$ alors pour tout $k\in\N^*$
+\par\begin{center}$P(X>k)=(1-p)^k$\end{center}}
+\Prop{Espérance et variance d'une loi géométrique}{Si la variable aléatoire discrète $X$ suite une loi $\mathcal{G}(p)$ alors $X$ possède une espérance et une variance qui valent
+\par\begin{center}$E(X)=\frac{1}{p}$ et $V(X)=\frac{q}{p^2}$\end{center}}
+\Prop{Modèle loi géométrique}{Si $X$ est le rand u premier succès dans une suite illimitée d'épreuves de Bernouilli indépendantes de même paramètre $p$ alors $X$ suit la loi $\mathcal{G}(p)$
+\par Formellement :
+\par On pose pour tout $k\in\N^*$ $X_k$ la variable aléatoire discrète qui vaut $1$ si la $k$-ième épreuve est un succés et $0$ sinon.
+\par Si :\begin{itemize}
+\item pour tout $k\in\N^*n, X_k\sim\mathcal{B}(p)$
+\item la suite $(X_n)$ est une suite de variables mutuellement indépendantes
+\item $X = \min\{n\in\N^*, X_n=1\}$
+\end{itemize}
+Alors $X\sim\mathcal{G}(p)$}
+\begin{Exe}
+L'exemple le plus classique est le teps d'attente d'un premier pile lors des lancers successifs d'une pièce qui donne pile avec probabilité $p$.
+\end{Exe}
+
+\Def{Loi de Poisson}{Une variable aléatoire discrète $X$ suit une loi de Poisson de paramètre $\lambda\in\R_+^*$ si $X(\Omega)=\N$ et
+\par\begin{center}$\forall n\in\N, P(X=n)=e^{-\lambda}\frac{\lambda^n}{n!}$\end{center}
+\par On note $X\sim \mathcal{P}(\lambda)$}
+\Prop{Espérance et variance d'une loi de Poisson}{Si la variable aléatoire discrète $X$ suit une loi $\mathcal{P}(\lambda)$ alors $X$ possède une espérance et une variance et
+\par\begin{center}$E(X)=V(X)=\lambda$\end{center}}
 
 
+\section{Fonctions génératrices}
+Soit $X$ une variable aléatoire discrète à valeurs dans $\N$
+\Def{}{On note $R_X$ le rayon de convergence de la série entière $\sum P(X=n)t^n$
+\par La fonction génératrice d'une variable aléatoire $X$ à valeurs dans $\N$ est définie pour tout $t\in]-R_X,R_X[$ par
+\par\begin{center}$G_X(t)=E(t^X)=\sum\limits_{n=0}^{+\infty}P(X=n)t^n$\end{center}}
+\Prop{}{La série $\sum P(X=n)t^n$ converge pour $t=1$ dnc le rayon de convergence $R_X$ de la série entière $\sum P(X=n)t^n$ est au moins égal à $1$}
+\Prop{}{La série entière $P(X=n)t^n$ converge normalement sur $[-1,1]$ donc $G_X$ est continue sur $[-1,1]$}
+\Thr{}{Soit $X$ une variable aléatoire à valeurs dans $\N$.\begin{enumerate}
+\item La loi de $X$ est entièrement caractérisée par la connaissance de sa fonction génératrice $G_X$
+\par ie : $G_X:t\mapsto \sum\limits_{n=0}^{+\infty}a_nt^n$ est la fonction génératrice de $X$ si, et seulement si, $\forall n\in \N, P(X=n)=a_n$
+\item $G_X(1)=1$
+\item $X$ admet une espérance si, et seulement si, $G_X$ est dérivable en $1$, avec dans ce cas \par\begin{center}$E(x) =G_X'(1)$\end{center}
+\item $X$ admet une variance si, et suelement si, $G_X$ est deux fois dérivable en $1$, avec dans ce cas :\par\begin{center}$E(X(X-1))=G_X''(1)$\end{center}
+\par et donc \par\begin{center}$V(X)=G_X''(1)+G_X'(1)-(G_X'(1))^2$\end{center}
+\end{enumerate}}
+\begin{Rem}
+$G_X=G_Y$ si, et seulement si, $X$ et $Y$ ont même loi.
+\end{Rem}
+\Thr{}{Si $X$ et $Y$ sont deux variables aléatoires indépendantes à valeurs dans $\N$ alors :\par\begin{center}$G_{X+Y}=G_XG_Y$\end{center}
+\par Soit $n\in\N, n\geq 2$. Si $X_1,...,X_n$ sont des variables aléatoire réelles mutuellement indépendantes alors : \par\begin{center}$G_{X_1+...+X_n}=G_{X_1}...G_{X_n}$\end{center}}
+
+
+\section{Couples de variables aléatoires réelles}
+\subsection{Loi conjointe, lois marginales}
+\Def{}{Soient $X$ et $Y$ deux variables aléatoires discrètes réelles sur un même espace probabilisé $(\Omega, \mathcal{A},P)$.\begin{enumerate}
+\item On appelle couple des variables $X$ et $Y$, et on note $Z=(X,Y)$ l'application \par\begin{center}$Z:\left\{\begin{array}{rcl}\Omega & \to & X(\Omega)\times Y(\Omega) \\ \omega & \mapsto & (X(\omega), Y(\omega)) \end{array}\right.$\end{center}
+\item La loi du couple $Z=(X,Y)$ est appelée loi conjointe, elle est définir par :\begin{itemize}
+    \item $Z(\Omega)=X(\Omega)\times Y(\Omega)$
+    \item Les probabilités élémentaires $P(X=x, Y=y)=P((X=x)\cap(Y=y))$ pour tous $(x,y)\in X(\Omega)\times Y(\Omega)$
+\end{itemize} On a bien sûr \par\begin{center}$\forall (x,y)\in X(\Omega)\times Y(\Omega), P(X=x,Y=y)\geq 0$ et $\sum\limits_{(x,y)\in X(\Omega)\times Y(\omega)}P(X=x,Y=y)=1$\end{center}
+\item Les lois de $X$ et $Y$ sont appelées lois marginales du couple $Z=(X,Y)$
+\par Si la loi conjointe du couple $Z=(X,Y)$ est connue, alors les lois marginales de $X$ et $Y$ le sont aussi :\begin{itemize}
+    \item On détermine la loi de $X$ en appliquant la formule des probabilités totales avec le système complet d'événements $([Y=y])_{y\in Y(\Omega)}$ :
+    \par\begin{center}$\forall x\in X(\Omega), P(X=x)=\sum\limits_{y\in Y(\Omega)}P(X=x, Y=y)$\end{center}
+    \item On détermine la loi de $Y$ en appliquant la formule des probabilités totales avec le système complet d'événements $([X=x])_{x\in X(\Omega)}$ :
+    \par\begin{center}$\forall y\in Y(\Omega), P(Y=y)=\sum\limits_{x\in X(\Omega)}P(X=x, Y=y)$\end{center}
+\end{itemize} La réciproque est évidemment fausse, la connaissance des lois marginales de $X$ et $Y$ ne permet pas de déterminer la loi conjointe du couple $Z=(X,Y)$
+\end{enumerate}}
+\begin{Rem}
+Dans le cas de variables aléatoires finies on peut noter : \par\begin{center}$X(\Omega)=\{x_1,x_2,...,x_r\}$ et $Y(\Omega)=\{y_1,y_2,...,y_s\}$\end{center}
+\par Et notons pour alléger, si $i\in\llbracket 1,r\rrbracket$ et $j\in\llbracket 1,s\rrbracket$ :\par\begin{center} $p_i=P(X=x_i)$, $q_j=P(Y=y_j)$ et $p_{i,j}=P(X=x_i, Y=y_i)$\end{center}
+\par On peut alors se représenter la loi du couple $(X,Y)$ et leurs lois marginales dans un tableau à double-entrée.
+\end{Rem}
+\begin{Rem}
+On rappelle que $X$ et $Y$ sont indépendantes si, et seulement si,
+\par\begin{center}$\forall (x,y)\in X(\Omega)\times Y(\Omega), P(X=x, Y=y)=P(X=x)P(Y=y)$\end{center}
+\par Donc $X$ et $Y$ sont indépendantes si, et seulement si, tous les coefficients du tableau de la loi du couple sont le produit des probabilités de $X$ et $Y$ situées en marge du tableau.
+\end{Rem}
+
+\subsection{Lois conditionnelles d'un couple}
+\Def{}{Soit $X$ une variable aléatoire réelle discrète sur $(\Omega,\mathcal{A}, P)$ et $A$ un événement de probabilité non-nulle. La loi conditionnelle de $X$ sachant $A$ est la donnée de :\begin{itemize}
+\item $X(\Omega)$
+\item $\forall x\in X(\Omega), P_A(X=x)$
+\end{itemize}
+Elle est notée $X_{/A}$}
+\Def{}{Soit $Z=(X,Y)$ un couple de variables aléatoires réelles discrètes sur $(\Omega, \mathcal{A}, P)$
+\par La loi de $Z$ est donnée par :\begin{enumerate}
+\item Les lois de $X$ conditionnées par $Y$ sont les lois de $X$ conditionnées par les événements $[Y=y]$ pour tout $y\in Y(\Omega)$
+\par Plus précisement, pour $y\in Y(\Omega)$ fixé tel que $P(Y=y)\neq 0$, la loi de $X$ sachant $[Y=y]$ est définie par :\begin{itemize}
+    \item La donnée de $X(\Omega)$
+    \item Les nombres $P_{Y=y}(X=x)=\frac{P(X=x,Y=y)}{P(Y=y)}$ pour tout $x\in X(\Omega)$
+\end{itemize}
+\item Les lois de $Y$ conditionnées par $X$ sont les lois de $Y$ conditionnées par les événements $[X=x]$ pour tout $x\in X(\Omega)$
+\par Plus précisement, pour $x\in X(\Omega)$ fixé tel que $P(X=x)\neq 0$, la loi de $Y$ sachant $[X=x]$ est définie par :\begin{itemize}
+    \item La donnée de $Y(\Omega)$
+    \item Les nombres $P_{X=x}(Y=y)=\frac{P(X=x,Y=y)}{P(X=x)}$ pour tout $x\in X(\Omega)$
+\end{itemize}
+\end{enumerate}}
+\begin{Rem}
+Souvent, lorsque l'on étudie un couple de variables aléatoires réelles :\begin{enumerate}
+\item On détermine la loi de $X$
+\item Puis pour tout $x\in X(\Omega)$, on détermine la loi de $Y$ conditionnée par l'événement $X=x$
+\item On déduit la loi conjointe du couple $Z=(X,Y)$ en utilisant que pour tout $x\in X(\Omega)$ et $y\in Y(\Omega)$ \par\begin{center}$P(X=x, Y=y)=P(X=x)P_{X=x}(Y=y)$\end{center}
+\item Et enfin on détermine la loi de $Y$
+\end{enumerate}
+\end{Rem}
+
+\section{Résultats probabilistes asymptotiques}
+\subsection{Inégalités de Markov et Bienaymé-Tchebychev}
+\Thr{Inégalité de Markov}{Soit $X$ une variable aléatoire réelle discrète positive d'espérance finie, on a:
+\par\begin{center}$\forall a>0, P(X\geq a)\leq \frac{E(X)}{a}$\end{center}}
+
+\Thr{Inégalité de Bieinaymé-Tchebychev}{Soit $X$ une variable aléatoire rélle discrète telle que $X^2$ est d'espérance finie, on a :
+\par\begin{center}$\forall \varepsilon>0, P(\vert X-E(X)\vert\geq \varepsilon)\leq \frac{V(X)}{\varepsilon^2}$\end{center}
+\par En passant à l'événement contraire :
+\par\begin{center}$\forall\varepsilon>0, P(\vert X-E(X)\vert<\varepsilon)\geq 1 - \frac{V(X)}{\varepsilon^2}$\end{center}}
+
+\subsection{Loi faible des grands nombres}
+\Thr{Loi faible des grands nombres}{Soit $(X_n)_{n\in\N^*}$ une suite de variables indépendantes de même loi, de variance finie.
+\par En notant $S_n=\sum\limits_{k=1}^nX_k, m=E(X_1)$ et $\sigma =\sigma(X_1)$, on a :\begin{enumerate}
+\item \begin{center}$\forall \varepsilon>0, P\left(\left\vert\frac{S_n}{n}-m\right\vert\geq\varepsilon\right)\leq\frac{\sigma^2}{n\varepsilon^2}$\end{center} \par Cette inégalité doit êtr edémontrée à chaque utilisation d'après le programme
+\item \begin{center}$\forall \varepsilon>0, P\left(\left\vert\frac{S_n}{n}-m\right\vert\geq\varepsilon\right)\to_{n\to+\infty} 0$\end{center}
+\end{enumerate}}
+\begin{Rem}
+La loi faible des grands nombres est utilisée lorsque l'on cherche à comparer la probabilité $p$ d'un événement $A$ et la fréquence d'apparition de cet événement quand l'on répète un grand nombre de fois l'expérience aléatoire associée à $A$
+\par On suppose les expériences indépendantes.
+\par Pour $k\in\N^*$, à la $k$-ième réalisation de l'expérience, on note $X_k$ la variable aléatoire réelle indicatrice de l'événement $A$. ($(X_k=1)$ si $A$ est réalisé lors de cette expérience, $(X_k=0)$ sinon)
+\par Pour tout $k\in\N^*$, $X_k$ suit la loi de Bernouilli $\mathcal{B}(p)$, d'espérance $m=p$, d'écart-type $\sigma =\sqrt{p(1-p)}$
+\par Pour tout $n\in\N^*$, $S_n=\sum\limits_{k=1}^nX_k$ est le nombre de fois où l'événement $A$ a été observé pendant les $n$ preières expériences et la fréquence d'apparition de $A$ lors ce ces $n$ expériences est :
+\par\begin{center}$F_n = \frac{S_n}{n}$\end{center}
+\par On a : \par\begin{center}$\forall \varepsilon>0, P(\vert F_n-p\vert\leq \varepsilon)=P\left(\left\vert\frac{S_n}{n}-m\right\vert\geq \varepsilon\right)\leq \frac{\sigma^2}{n\varepsilon^2}=\frac{p(1-p)}{n\varepsilon^2}$\end{center}
+\par Et : \par\begin{center}$\forall \varepsilon>0, P(\vert F_n-p\vert\geq\varepsilon)\to_{n\to+\infty}0$\end{center}
+\par D'où : \par\begin{center}$\forall \varepsilon>0, P(\vert F_n-p\vert <\varepsilon)\to_{n\to+\infty}1$\end{center}
+\par L'événement "$F_n$ tend vers $p$ est quasi-certain.
+\par Lorsque la valeur de $p$ ,'est pas connue, on majore souvent $\frac{p(1-p)}{n\varepsilon^2}$ par $\frac{1}{4n\varepsilon^2}$ en utilisant :
+\par\begin{center}$\boxed{\forall p\in [0,1], 0\leq p(1-p)\leq \frac{1}{4}}$
+\end{center}
+\end{Rem}
 
 
 
 \end{document}
-]

@@ -1939,6 +1939,7 @@ Si $U$ est une partie de $E$, on note :
 \par\begin{center}$(X\in U)=\{\omega\in\Omega\vert X(\omega)\in U\}=X^{-1}(U)$\end{center}
 \par On note aussi $[X\in U]$ ou $\{X\in U\}$
 \Thr{}{Si $X$ est une variable aléatoire discrète sur l'espace probabilisable $(\Omega, \mathcal{A})$, alors la suite $((X=x))_{x\in X(\Omega)}$ est un système complet d'événements de $\Omega$}
+\Pre{Pour $U\in X(\Omega)$, $X\in U = \bigcup_{x\in U}(X=x)$. \par D'où le théorème.}
 
 \subsection{Loi d'une variable aléatoire discrète}
 \Def{}{Soit $X$ une variable aléatoire discrète sur un espace probabilisé, à valeurs dans un ensemble $E$
@@ -1955,6 +1956,15 @@ On note $X\sim Y$ lorsque les variables $X$ et $Y$ suivent la même loi ($P_X=P_
 \item $(X(\Omega), \mathcal{P}(X(\Omega)), P_X)$ est un espace probabilisé.
 \end{itemize}
 Réciproquement, si $(p_x)_{x\in E}$ est une famille sommable de réels positifs de somme $1$ alors il existe une variable aléatoir discrète $X$ telle que pour tout $x\in E$, $P(X=x)=p_x$}
+\Pre{$\Omega = \bigcup_{x\in X(\Omega)}(X=x)$ dénombrable, et alors $P(\Omega)=1=\sum\limits_{x\in X(\Omega)}P(X=x)$
+\par Si $(U_n)_{n\in\N}\in \mathcal{P}(X(\Omega))^\N$ disjoints deux à deux :
+\par $$ P_X(\bigcup_{n\in\N}U_n)=P(X^{-1}(\bigcup_{n\in\N}U_n)) $$
+\par $$ = P(\bigcup_{n\in\N}(X^{-1}(U_n))) $$
+\par $$ = \sum\limits_{n\in\N} P(X^{-1}(U_n))$$
+\par $$ = \sum\limits_{n\in\N} P_X(U_n)$$
+\par Pour vérifier que $(X(\Omega), \mathcal{P}(X(\Omega)), P_X)$ est un espace probabilisé, on se sert du fait que $X(\Omega)$ est dénombrable.
+}
+
 
 \Prop{}{Soient $X$ une variable aléatoire discrète à valeurs dans un ensemble $E$ et $f$ une fonction de $E$ dans un ensemble $F$ définie sur $X(\Omega)$
 \par La fonction $Y=f\circ X :\left\{\begin{array}{rcl}\Omega & \to & F \\ \omega & \mapsto & f(X(\omega))\end{array}\right.$}
@@ -1969,7 +1979,15 @@ Réciproquement, si $(p_x)_{x\in E}$ est une famille sommable de réels positifs
 \Thr{}{Deux variables aléatoires discrètes $X$ et $Y$ sont dites indépendantes si, et seulement si,
 \par\begin{center}$\forall (x,y)\in X(\Omega)\times Y(\Omega), P((X=x)\cap (Y=y))=P(X=x)P(Y=y)$\end{center}
 \par ie : $\forall (x,y)\in X(\Omega)\times Y(\Omega)$, les événements $(X=x)$ et $(Y=y)$ sont indépendants.}
-\Pre{Ce théorème est admis.}
+\Pre{Ce théorème est admis.
+\par Démontrons-le quand même.
+\par L'indépendance implique la propriété.
+\par Supposons maintenant : $\forall x\in X(\Omega), \forall y\in Y(\Omega), P(X=x\cap Y=y)=P(X=x)P(Y=y)$
+\par Soit $A\subset\mathcal{P}(X(\Omega))$ et $B\subset \mathcal{P}(Y(\Omega))$
+\par Alors $P(X\in A\cap Y\in B) = P\left((\bigcup_{a\in A}(X=a))\cap (\bigcup_{b\in B}(Y=b))\right)$
+\par $ = P\left(\bigcup_{a\in A, b\in B}(X=a)\cap(Y=b) \right) = \sum\limits_{a\in A, b\in B}P((X=a)\cap (Y=b)) = \sum\limits_{a\in A, b\in B}P(X=a)P(Y=b)$
+\par $ = \left(\sum\limits_{a\in A}P(X=a)\right)\left(\sum\limits_{b\in B}P(Y=b)\right)$
+\par $ =P(X\in A)P(Y\in B)$}
 \Def{}{Les variables aléatoires discrètes $X_1,X_2,...,X_n$ sont mutuellement indépendantes lorsque pour toutes parties $A_1,A_2,...,A_n$ de $X_1(\Omega),X_2(\Omega),...,X_n(\Omega)$ :
 \par\begin{center}$P\left(\bigcap_{i=1}^n(X_i\in A_i)\right)=\prod\limits_{i=1}^nP(X_i\in A)$ \end{center}}
 \Thr{}{Les variables aléatoires discrètes $X_1,X_2,...,X_n$ sont (mutuellement) indépendantes si, et seulement si, pour tout $n$-uplet $(x_1,x_2,...,x_n)$ de $X_1(\Omega)\times X_2(\Omega)\times...\times X_n(\Omega)$ :

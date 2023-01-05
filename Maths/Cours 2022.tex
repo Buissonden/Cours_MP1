@@ -1992,7 +1992,8 @@ Réciproquement, si $(p_x)_{x\in E}$ est une famille sommable de réels positifs
 \par\begin{center}$P\left(\bigcap_{i=1}^n(X_i\in A_i)\right)=\prod\limits_{i=1}^nP(X_i\in A)$ \end{center}}
 \Thr{}{Les variables aléatoires discrètes $X_1,X_2,...,X_n$ sont (mutuellement) indépendantes si, et seulement si, pour tout $n$-uplet $(x_1,x_2,...,x_n)$ de $X_1(\Omega)\times X_2(\Omega)\times...\times X_n(\Omega)$ :
 \par\begin{center}$P\left(\bigcap_{i=1}^n(X_i=x_i)\right)=\prod\limits_{i=1}^nP(X_i=x_i)$\end{center}}
-\Pre{Ce théorème est aussi admis.}
+\Pre{Ce théorème est aussi admis.
+\par Si on ne l'admettait pas, on devrait faire une récurrence avec la propriété vérifiée précédemment.}
 \Def{}{Une suite de variables aléatoires discrètes $(X_n)_{n\in\N}$ est une suite de variables aléatoires discrètes (mutuellement) indépendantes lorsque pour toute partie finie $I = \{i_1,...,i_n\}$ de $\N$, les variables $X_{i_1}, X_{i_2},..., X_{i_n}$ sont (mutuellement) indépendantes.}
 \Prop{}{Soient $X$ et $Y$ deux variables aléatoires discrètes définies sur $\Omega$ à valeurs dans $E$.
 \par Soient $f$ et $g$ deux applications de $E$ dans $F$ définies respectivement sur $X(\Omega)$ et $Y(\Omega)$
@@ -2000,10 +2001,13 @@ Réciproquement, si $(p_x)_{x\in E}$ est une famille sommable de réels positifs
 \Prop{}{Soient $X_1,..., X_n$ $n$ variables aléatoires discrètes définies sur $\Omega$ à valeurs dans $E$.
 \par Soient $f_1,...,f_n$ $n$ applications de $E$ dans $F$.
 \par Si $X_1,...,X_n$ sont (mutuellement) indépendantes alors $f_1(X_1),..., f_n(X_n)$ le sont aussi.}
+\Pre{On admet le premier résultat. Le second en découle par récurrence.}
 \Prop{Lemme des coalitions}{Soient $X_1,X_2,...,X_n$ $n$ variables aléatoires discrètes définies sur $\Omega$ à valeurs dans $E$.
 \par Soient $f$ et $g$ deux applications respectivement de $E^m$ dans $F$ et de $E^{n-m}$ dans $F$.
 \par Si $X_1,X_2,..., X_n$ sont (mutuellement) indépendantes alors $f(X_1,..., X_m)$ et $g(X_{m+1}, X_n)$ le sont aussi.
 \par Ce théorème s'étend à plus de deux coalitions.}
+\Pre{Admis}
+
 
 \subsection{Espérance d'une variable aléatoire discrète réelle ou complexe}
 Rappel de sup : dans le cas où $\Omega$ est fini et $\mathcal{A}=\mathcal{P}(\Omega)$, la moyenne des valeurs prises par $X$ sur $\Omega$ est :
@@ -2028,7 +2032,13 @@ La définition de l'espérance s'étend sans difficulté aux variables aléatoir
 \par reste valable (où $x$ est un vecteur, $P(X=x)$ un scalaire)
 \end{Rem}
 \Prop{}{Soit $X$ une variable aléatoire discrète à valeurs dans $\N\cup\{+\infty\}$. On a :
-\par\begin{center}$E(X)=\sum\limits_{n\in\N}P(X\geq n)$\end{center}}
+\par $$E(X)=\sum\limits_{n\in\N}P(X\geq n)$$}
+\Pre{$$E(X)= \sum\limits_{n\in\N}nP(X=n)$$
+\par $$ =\sum\limits_{n\in\N}\sum\limits_{k=0}^{n-1}P(X=n)$$
+\par $$ =\sum\limits_{0\leq k<n, (k,n)\in\N^2}P(X=n)$$
+\par $$=\sum\limits_{k\in\N}\sum\limits_{n<k}P(X=n)$$
+\par $$=\sum\limits_{k\in\N}P(X>k)$$
+\par $$=\sum\limits_{k\in\N^*}P(X\geq k)$$}
 Calculer l'espérance d'une variable aléatoire réelle à partir de sa définition nécessite donc de connaître sa loi, ce qui peut être délicat lorsque la variable est le la forme $f(X)$
 Le théorème suivant permet de calculer l'espérance de $f(X)$ à partir de la loi de $X$ :
 \Thr{Transfert}{Soit $X$ une variable aléatoire discrète à valeurs réelles ou complexes et $f:X(\Omega)\to\C$
@@ -2049,6 +2059,17 @@ On admet aussi que la formule de transfert s'applique aux couples, au $n$-uplets
 \item Si $X\geq 0$ et $E(X)=0$ alors $(X=0)$ est presque sûr (stricte positivité)
 \item Si $X\leq Y$ alors $E(X)\leq E(Y)$ (croissance)
 \end{itemize}}
+\Pre{Linéarité de l'espérance : Si $X$ et $Y$ admettent une espérance :
+\par $X+Y$ a une espérance si, et seulement si, $\sum\limits_{(x,y)\in X(\Omega)\times Y(\Omega)}\vert x+y\vert P(X=x, Y=y)<+\infty$
+\par $\sum\limits_{(x,y)\in X(\Omega)\times Y(\Omega)} \vert x+y\vert P(X=x, Y=y) \leq \sum\limits_{(x,y)\in X(\Omega)\times Y(\Omega)}(\vert x\vert + \vert y\vert)P(X=x, Y=y)$
+\par $$\leq \sum\limits_{(x,y)\in X(\Omega)\times Y(\Omega)}\vert x\vert P(X=x) + \sum\limits_{(x,y)\in X(\Omega)\times Y(\Omega)}\vert y\vert P(Y=y)$$
+\par $$\leq \sum\limits_{x\in X(\Omega)}\vert x\vert\sum\limits_{x\in X(\Omega)}P(X=x, Y=y) + \sum\limits_{y\in Y(\Omega)}P(X=x, Y=y)$$
+\par Or $(X=x) = \bigcup_{y\in Y(\Omega)} (X=x)\cap (Y=y)$ et réciproquement.
+\par D'où la majoration du terme précédent :
+\par $$\leq \sum_{x\in X(\Omega)}\vert x\vert P(X=x)+\sum\limits_{y\in Y(\Omega)}\vert y\vert P(Y=y) < + \infty$$
+\par Avec la sommabilité, en se débarrassant de la valeur absolue du début, on remplace les inégalités larges par des égalités, et on a que $E(X+Y)=E(X)+E(Y)$.
+\par Se fait de même pour la multiplication par un scalaire.}
+
 \begin{Rem}
 Dans le cadre du théorème précédent : \begin{itemize}
 \item On a en particulier que $\forall \lambda,\mu \in\C,\lambda X+\mu$ admet une espérance et $E(\lambda X + \mu)=\lambda E(X)+\mu$

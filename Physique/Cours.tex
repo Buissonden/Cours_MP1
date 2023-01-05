@@ -7,6 +7,7 @@
 \usepackage[french]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\graphicspath{ {./schemas/} }
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage[left=1cm, right= 1cm, top=2cm, bottom = 2cm]{geometry}
@@ -42,10 +43,11 @@
 \renewcommand{\thesection}{\Roman{section}}
 \renewcommand{\thesubsection}{\Roman{section}.\arabic{subsection}}
 \renewcommand{\thesubsubsection}{\Roman{section}.\arabic{subsection}.\Alph{subsubsection}}
+\newcommand{\grad}{\overrightarrow{grad}}
+
 
 \begin{document}
 \tableofcontents
-
 \chapter{Mécanique}
 \section{M1 :  Référentiels non-galiléens}
 \subsection{Application 1.2}
@@ -692,12 +694,192 @@ Pour un conducteur cylindrique d'axe de symétrie $Oz$, de section $S$ et de lon
 
 
 
+\chapter{Thermodynamique}
+\section{Th2}
+\subsection{2.3 équation de la diffusion thermique}
+En 1D : l'équation locale de conservation de l'énergie donne :  \par $\dfrac{\partial j_Q(x)}{x} + \mu c\dfrac{\partial T}{\partial t}=0$ \par On injecte $j_Q=-\lambda\vec{grad}(T)$ : \par $-\lambda\dfrac{\partial^2 T}{\partial x^2}+\mu c\dfrac{\partial T}{\partial t}=0$ \par D'où l'équa diff finale : $\dfrac{\partial^2 T}{\partial x^2} - \frac{\mu c}{\lambda}\dfrac{\partial T}{\partial t}=0$
+\par En 3D : $div\vec{j}_Q +\mu c\dfrac{\partial T}{\partial t}$ \par $div(-\lambda\vec{grad}T)+\mu c\dfrac{\partial T}{\partial t} = 0$ \par $\Delta T - \frac{\mu c}{\lambda}\dfrac{\partial T}{\partial t}=0$
+\par On note $D_{th}=\frac{\lambda}{\mu c}$ la diffusivité thermique. Sa dimension : $\frac{\Theta}{L^2}=\frac{1}{[D_{th}]}\frac{\Theta}{T}$ \par Donc $[D_{th}]=\frac{L^2}{\Theta} = L^2.K^{-1}$
 
 
 
+\subsection{2.5 Généralisation : présence d'un terme source}
+Bilan d'enthalpie à la tranche $\{x, x+dx\}$ pendant $dt$ : \par En 1D : $[\phi(x)-\phi(x+dx)]dt + p_sdtSdx = dH = \mu c_pSdxdt$ \par $-\dfrac{\partial j_Q}{\partial x}Sdxdt+p_sdtSdx = \mu c_pSdxdT$ comme $\phi = j_QS$ \par $\lambda\dfrac{\partial^2 T}{\partial x^2}+p_s = \mu c_p\dfrac{\partial T}{\partial t}$
+
+\subsection{3.2 Conduction thermique en géométrie unidimensionnelle}
+Méthode 1 : utilisation de l'équation de la chaleur stationnaire : On fait l'hypothèse que tout est parfaitement calorifugé entre $0$ et $L$, $S_e$ est connecté à une source de chaleur illimitée à la température $T_1$ et $S_s$ est connecté à une source de température $T_2$. On fait l'hypothèse de $T_1>T_2$
+\par On écrit $\Delta T - \frac{1}{D_{th}}\dfrac{\partial T}{\partial t}=0$. En régime stationnaire, on aura $\Delta T = 0$. \par Comme on est à 1 dimension, $\Delta T = \dfrac{d^2 T}{dx^2}$ (d droit parce qu'aucune dépendance temporelle) \par Donc : $T(x) =  Ax + B$, et on utilise les conditions limites pour déterminer $A$ et $B$ \par $T_1 = A.0 + B$ et $T_2 = AL+B$ \par D'où $B=T_1$ et $A = \frac{T_2-T_1}{L}$ \par D'où $T(x) = T_1 + \frac{T_2-T_1}{L}x$ entre $S_e$ et $S_s$, après ça on a les constantes des sources.
+
+\par Méthode 2 : bilan énergétique en régime stationnaire (méthode plus générale)
+\par En régime stationnaire, le flux entrant est égal au flux sortant, donc en un point donné de la barre, l'enthalpie ne varie pas. \par $\phi(x) = \phi(x+dx)$ car $\phi(x)-\phi(x+dx)=dH = 0$ \par Donc $j_Q(x)S = j_Q(x)S$ \par D'où $\dfrac{dj_Q}{dx}=0$ \par Donc $-\lambda\dfrac{d^2T}{dx^2}=0$ et on retrouve $T(x)=Ax+B$, et on résout de la même manière sur la fin.
+
+\subsection{3.2 Résistance thermique}
+$\phi$ dans la barre : \par $\phi = j_QS = -\lambda\frac{dT}{dx}S = -\lambda S\frac{T_2-T_1}{L} =\lambda S\frac{T_1-T_2}{L}=\frac{\lambda S}{L}\Delta S$ \par ATTENTION, là c'est la différence et pas le Laplacien scalaire. \par On définit donc $R_{th}= \frac{\Delta T}{\phi_Q}$. Ici, on a donc $R_{th}=\frac{L}{\lambda S}$
+
+\subsection{3.3}
+Résistances thermiques bout-à-bout : \par Ecrivons la conservation du flux thermique dans les tiges : \par $\phi_1=\phi_2 \Leftrightarrow \frac{T_0-T1}{R_{th1}} = \frac{T_1-T_2}{R_{th2}}$ \par Donc : $T_0-T_1  =\phi R_{th1}$ et $T_1-T_2 = \phi R_{th2}$ \par Et donc $T_0-T_2 = \phi(R_{th1}+R_{th2})$
+
+\par Résistances thermiques en parallèle : \par Ecrivons la conservation du flux thermique dans les tiges : \par $\phi_1+\phi_2=\phi \Leftrightarrow \frac{T_0-T_2}{R_{th1}}+\frac{T_0-T_2}{R_{th2}}=\frac{T_0-T_2}{R_{theq}}$ \par Donc $\frac{1}{R_{theq}} = \frac{1}{R_{th1}}+\frac{1}{R_{th2}}$
+
+\subsection{4.1}
+En régime stationnaire, le flux thermique solide$\to$fluide se conserve : \par $\Phi_{s\to l}=\iint\vec{j}_Qd\vec{S} = \vec{j}_Q\vec{S} = -\lambda\vec{grad}(T)\cdot\vec{S}$ \par $ = -\lambda\left\vert\frac{T_f-T_s}{e}\right\vert\vec{u}_x\cdot S\vec{u}_x =\lambda S\frac{T_s-T_f}{e}$ \par $e$ est l'épaisseur de la couche limite et $S$ la surface de la couche limité considérée. \par $\frac{\lambda S}{e}=\frac{1}{R_{th}}$
+
+\subsection{4.3}
+On peut considérer que le problème est à une dimension.
+1. Bilan thermique entre $x$ et $x+dx$ : par conservation du flux : \par $\Phi(x) - \Phi(x+dx)-\Phi_{cc}=0$ \par $\Phi(x) = -\lambda\frac{dT}{dx}S$ donc : \par $\Phi(x)-\Phi(x+dx) = \dfrac{d\Phi}{dx}dx=-\lambda\frac{d^2T}{dx^2}dx$ \par Et avec $R$ le rayon du cylindre, on reprend la première équation et : \par $\lambda\dfrac{d^2T}{dx^2}dx\pi R^3 - h2\pi Rdx(T-T_a)=0$ \par D'où : $\dfrac{d^2 T}{dx^2} - \frac{2h}{\lambda R}T(x) = -\frac{2h}{\lambda R}T_a$
+\par 2. Conditions limites : On a $T(x=0)=0$ et $T(x=L)=T_a$ (on suppose que la tige est très longue) \par Posons $D=\sqrt{\frac{\lambda R}{2h}}$ la longueur caractéristique dans ce problème. On réécrit donc : $\dfrac{d^2 T}{dx^2} -\frac{1}{D^2}T(x)=-\frac{1}{D^2}T_a$ \par Les solutions générales sont $T:x\mapsto Ae^{-x/D}+Be^{x/D}$ \par Donc la solution complète est : $T:x\mapsto Ae^{-x/D}+Be^{x/D}+T_a$ \par Avec les conditions limites, on obtient que $B=0$ (sinon la température serait infinie à l'infini et ne serait pas $T_a$), et $T(x=0)=T_0=A+T_a$, donc $A=T_0-T_a$ \par Donc $T(x)=T_a+(T_0-T_a)e^{-x/D}$
+\par 3. Au bout de quelques $D$, on est arrivés à $T_a$. \par $D=\left(\frac{\lambda R}{2h}\right)^{1/2}\simeq \left(\frac{100\times 6.10^{-3}}{2.10}\right)\simeq\sqrt{3.10^{-2}}\simeq 17cm$ ($\lambda=100$ pour les métaux, $R=6mm$ par choix, $h$ est de l'ordre de $10$ ou $20$) \par Donc $D\ll L=1m$
+
+\subsection{5.1}
+1. Bilan d'énergie interne dans le sol $\{z,z+dz\}$ (de section $S$) : \par $dt[\Phi_Q(z)-\Phi_Q(z+dz)]=\mu cSdzdT$ \par $dtS[j_{Q_z}(z)-j_{Q_z}(z+dz)]=dtSdz\dfrac{\partial j_{Q_z}}{\partial z} = \mu cSdzdT$ \par Avec $\vec{j}_Q = -\lambda\vec{grad}(T)=-\lambda\dfrac{\partial T}{\partial z}\vec{u}_z$\par D'où $\lambda\dfrac{\partial^2T}{\partial z^2}=\mu c\dfrac{\partial T}{\partial t}$
+\par 2. On cherche $T(z,t)= T_0+f(z)\cos(\omega t)$, complexifiée en $T=T_0+f(z)e^{i\omega t}$ \par On a donc $\lambda f''(z)e^{i\omega t}=\mu ci\omega f(z)e^{i\omega t}$ \par $\lambda f''(z)-\mu c i\omega f(z) = 0$
+\par 3. Notons $\tau = \frac{\mu c\omega}{\lambda}$, alors $X^2-i\tau=0$ a pour solutions $\pm\sqrt{i\tau}=e^{i\pi/4}\sqrt{\tau}$
+\par En posant $\delta = \sqrt{\frac{2\lambda}{\mu c\omega}}$, on a $f''(z)-i\frac{2}{\delta^2}f(z)=0$ \par Dimensionnellement, $\delta$ est donc une longueur. C'est la longueur caractéristique d'évolution de la température. On a $X^2-\frac{2i}{\delta^2}=0$, et donc $r_{1,2}=\pm\frac{\sqrt{2}}{\delta}\left(\frac{1+i}{\sqrt{2}}\right)$ \par Donc $f(z) = Ae^{\frac{(1+i)z}{\delta}}+Be^{-\frac{(1+i)z}{\delta}}$ \par $T$ tens vers $0$ en $z\to+\infty$ donc $A=0$ \par On a donc $T(z,t)=T_0+Be^{-\frac{z}{\delta}\frac{-iz}{\delta}i\omega t}$ \par D'où $T=T_0+Be^{-z/\delta}\cos(\omega t-\frac{z}{\delta})$ \par Pour respecter la forme de l'énoncé, on aura donc $\theta = B$
+\par On a donc que $\delta$ est la distance sur laquelle l'onde de température s'atténue et que $\delta =\frac{\lambda_{th}}{2\pi}$, où $\lambda_{th}$ est a longueur d'onde de température dans le sol.
+\par 4. On a $\omega = \frac{2\pi}{T}$ où $T$ est la durée d'une journée, donc $\omega \simeq 7,23.10^{-5}$ \par Alors $\delta  \simeq 13,5 cm$, l'onde est significaitvement atténuée au bout de $3\delta<50 cm$ \par À $50cm$ sous terre, l'amplitude est d'environ $0,04\theta\simeq 0,4$°C, donc la température est entre $2.6$ et $3.4$ degrés celsius.
 
 
+\section{TH3 : Thermodynamique statistique (1) - Facteur de Boltzman}
+\subsection{Statique des fluides}
+\subsubsection{Rappel : différentes échelles de description de la matière}
+On distingue 3 échelles pour étudier la matière :\begin{itemize}
+\item échelle macroscopique : distances/tailles $>1$mm, à cette échelle la matière sera continue et les systèmes considérés seront constitués de $N$ particules avec $N\sim \mathcal{N}_A=10^{23}$. Il est impossible d'étudier les comportements individuels des particules à cette échelle (on observe des moyennes).
+\item échelle microscopique : tailles entre $10^{-10}$ à $10^{-9}$, on s'intéresse à des particules individuelles, de nombre $N$ de $1$ à $100$ environ. On observe des comportements désordonnés, la matière est discontinue.
+\item échelle mésoscopique : tailles autour de $1 pm$, et on a $N$ entre $10^6$ et $10^9$. On peut définir des moyennes locales : $\langle v^2\rangle$ ou $\langle \vec{F}_p\rangle$
+\end{itemize}
+La thermo classique se fait à l'échelle macroscopique, et la thermodynamique statistique se fait à l'échelle mésoscopique.
 
+\subsubsection{Fluide au repos (dans le champ de pesanteur)}
+\includegraphics{Th3_I-2-1}
+On étudie une particule de fluide de volume $dV$ (volume mésoscopique) dans un fluide au repos : $\langle \vec{v}\rangle_M=\vec{0}$ $\forall t$ (par rapport à un référentiel $\mathcal{R}_T$).
+\par On sera toujours en régime stationnaire : aucune grandeur ne dépend de $t$
+\par Bilan des forces :\begin{itemize}
+\item forces volumiques : ce sont des forces $d\vec{F}$ à longue portée qui s'exercent sur tout l'élément de volume. Par exemple : le poids d'expression $d\vec{P}=\mu(M)dV\vec{g}$, la force de Lorentz... \par On peut écrire la force volumique $\vec{f}_V$ associée : $\vec{f_V}=\dfrac{d\vec{F}}{dV}$ \par Par exemple, la force volumique associée au poids est $\dfrac{d\vec{P}}{dV}=\mu\vec{g}$
+\item forces surfaciques : ce sont des forces à courte portée, qui s'exerceent donc sur les parois/frontières du volume $dV$ donc sur des surfaces $dS$. Par exemple : la force de pression, la force dde trainée, la force d'Archimède...
+\par La force $d\vec{F}_s$ sur un élément de surface $dS$ s'écrit $d\vec{F}_s =\vec{f}_SdS$, ou $\vec{f}_S=\dfrac{d\vec{F}_S}{dS}$
+\end{itemize}
+\includegraphics{Th3_I-2-2}
+
+\subsubsection{Relation fondmaentale de la statique des fluides (RFSF)}
+Système : volume $dV=dxdydz$ de masse $dm =\mu(M)dV=\mu(x,y,z)dxdydz$ (la masse volumique peut varier) situé en $\{x+dx, y+dy, z+dz\}$
+\par Bilan des forces dans $\mathcal{R}_T$ galiléen :\begin{itemize}
+\item poids : $d\vec{P}=\mu(x,y,z)dxdydz$
+\item résultante des forces de pression sur toutes les faces : $d\vec{F}_{pr} = \sum\limits_{\text{faces i}}d\vec{F}_{pr,i}$\par$ = [+ P(x,y,z)-P(x+dx,y,z)]dydz\vec{u}_x+[P(x,y,z)-P(x,y+dy,z)]dxdz\vec{u}_y+[P(x,y,z)-P(x,y,z+dz)]dxdy\vec{u}_z$ \par $=-\left[\frac{\partial P}{\partial x}dxdydz\vec{u}_x+\frac{\partial P}{\partial y}dydxdz\vec{u}_y+\frac{\partial P}{\partial z}dzdxdy\vec{u}_z\right]$ \par $= -\overrightarrow{grad}(P)dV$
+\end{itemize}
+\includegraphics{Th3_I-3}
+RFD : à l'équilibre de la particule de fluide : $d\vec{P}+d\vec{F}_{pr}=dm\vec{a}(M)=\vec{0}$ \par $[\mu\vec{g}-\overrightarrow{grad}(P)dV]=\vec{0}$ \par D'où $\overrightarrow[grad](P)=\mu\vec{g}$\par Enfin, $\frac{dP}{dz}=-\mu g$, qui est la RELATION FONDAMENTALE DE LA STATIQUE DES FLUIDES.
+
+\subsubsection{Champ de pression dans un fluide incompressible (liquide)}
+Fluide incompressible $\Rightarrow$ masse volumique uniforme dans tout le fluide (c'est le cas dans les liquides : $\mu(T,P)=\mu(T)$) (on supposera $T=cste$ uniforme)
+\par $\frac{dP}{dz}=-\mu g \Rightarrow P(z)=P(z_0)-\mu g(z-z_0)$
+\par On a $\mu_{eau}\simeq 10^3 kg.m^{-3}$. Calculons la pression dans l'eau, à $H = -10m$ sous l'eau : \par $P(z=-H) = P(z=0)+ \mu g(H) \simeq 10^5 + 10^5 = 2P_{atm}$
+\par Calculons la pression dans la fosse des îles Marianne ($H=10 km$) :
+\par $$ P(H)\sim 10^3P_{atm} $$
+\par Application :
+\par \includegraphics{Th3_I-4}
+\par $$ P(B) = P(A) + \mu g H = 10^5 + 10^4 > P_{atm} $$
+\par Pour $H=1m$
+\par Comme $P(B)>P_{atm}$, on à que le fluide dans le siphon "pousse", ce qui fait un écoulement tant que le niveau du récipient du haut est supérieur à celui du récipient du bas.
+
+\subsubsection{Champ de pression dans un fluide compressible : modèle d'atmosphère isotherme}
+Dans l'air, fluide compressible : $PV=nRT \Leftrightarrow PM = \frac{nM}{V}RT=\mu RT \Leftrightarrow \mu \frac{PM}{RT}$ (hypothèse gaz parfait)
+\par On fait l'hypothèse $T=T_0$ uniforme
+\par On utilise la Relation Fondamentale de la Statique des Fluides :
+\par $$ \frac{dP}{dz} =-\mu(z) g=-P(z)\frac{M}{RT}g$$
+\par $$ \Leftrightarrow \frac{dP}{P}=-\frac{Mg}{RT}dz$$
+\par Notons $H=\frac{RT}{Mg}$ la hauteur caractéristique de variation de P.
+\par On intègre : $ln\left(\frac{P}{P_0}\right)=\frac{-z}{H}$
+\par $$\Rightarrow P(z) = P_0e^{-z/H}=P_0e^{-\frac{Mgz}{RT}}$$
+\par AN : $H=\frac{8,314\times 290}{9.8\times  29.10^{-3}}\simeq 8,6.10^3m$
+\par Donc à $8,6km$ au-dessus de l'océan, on a $0,37$ pourcents de la pression au niveau de la mort.
+\par $P(3H) \simeq 0,05 P_{atm}$, donc l'épaisseur de l'atmosphère est d'environ $3H$, entre $25$ et $30$ km.
+\par Application : comparons la vaiation de pression pour $H=4m$ entre le haut et le bas :\begin{itemize}
+    \item D'une pièce remplie d'air : $\Delta P = P_0(e^{-\frac{z}{H}}-1)\simeq 4.10^{-4} bar$
+    \par Il y a environ 0,4 pourcents de variation entre le haut et le bas. 
+    \item D'une piscine remplie d'eau : $\Delta P = \mu gH = 3,8.10^4 Pa$
+    \par Il y a environ 38 pourcents de variation entre le haut et le bas
+\end{itemize}
+
+\subsection{Loi de Boltzmann}
+\subsubsection{Interprétation de la loi de variation de pression en atmosphère isotherme}
+On réécrit la loi $P(z)$ en faisant apparaître les caractéristiques des molécules à l'échelle microscopique :\begin{itemize}
+\item $M=\mathcal{N}_A\times m$ où $m$ est la masse d'une molécule
+\par $\frac{Mgz}{RT}=\frac{\mathcal{N_A}}{RT}mgz$
+\item $\frac{R}{\mathcal{N}_A}=k_B$ la constante de Boltzmann. On a $k_B=1,38.10^{-23} J.K^{-1}$
+\par $\frac{Mgz}{RT} = \frac{mgz}{k_BT}$
+\end{itemize}
+$$ P(z) = P_0e^{-\frac{mgz}{k_BT}} = P_0e^{-\frac{\mathcal{E}_p^{pes}(z)}{k_BT}}$$
+\par avec $\mathcal{E}_p^{pes}(z)=mgz$ l'énergie potentielle de pesanteur d'une molécule de masse $m$ à l'altitude $z$
+\par On peut exprimer $N^*(z)$ le nombre de molécules par unité de volume :
+\par $$ N^* = \frac{n(z)\mathcal{N}_A}{V} = \frac{P(z)}{RT}\mathcal{N}_A = \frac{P(z)}{k_BT}$$
+\par On aura : $N^*(z)=\frac{P_0}{k_BT}e^{-\frac{\mathcal{E}_p^{pes}(z)}{k_BT}}$
+\par La probabilité $p(z)$ de trouver une molécule à l'altitude $z$ est $p(z)\propto N^*(z)\propto e^{-\frac{\mathcal{E}_p^{pes}(z)}{k_BT}}$
+\par $$\left\{\begin{array}{lr} \int_0^{+\infty}p(z) & = 1 \\ \int_0^z N^*(x)dx & = \frac{N_{tot}}{S}\end{array}\right.$$
+\par On appelle $e^{-\frac{\mathcal{E}_p^{pes}(z)}{k_BT}}$ le facteur de Boltzmann. $k_BT$ représente l'énergie d'agitation thermique. Si la température croît, ce facteur de Boltsmann aussi : l'agitation thermique tend à homogénéiser la répartition particulaire en fonction de $z$.
+\par À l'inverse, si $T$ décroit, le système se retrouve piégé dans la configuration d'énergie potentielle minimale.
+\par\includegraphics{Th3_II-2-1}
+
+
+\subsubsection{Loi de Boltzmann}
+\underline{Propriété générale :} \textbf{Dans un système macroscopique en équilibreà la température $T_0$, la probabilité de trouver une particule en dans un état d'énergie $\mathcal{E}$ est proportionnelle au facteur de Boltzmann :}
+\par $$\exp\left(-\frac{\mathcal{E}}{k_BT}\right)$$\begin{itemize}
+\item Les états de plus faible énergie sont préféralement occupés.
+\item Plus la température est élevée, le moins cette sélectivité est importante.
+\end{itemize}
+Pour deux niveaux d'énergie distincts $\mathcal{E}_{min}$ et $\mathcal{E}_{max}$, le rapport des probabilités d'occupation $\frac{p(\mathcal{E}_{max})}{p(\mathcal{E}_{min})}=e^{-\frac{\mathcal{E}_{max}-\mathcal{E}_{min}}{k_BT}}= e^{-\frac{\Delta\mathcal{E}}{k_BT}}$ 
+\par c'est à dire :\begin{itemize}
+\item à $T$ "élevée" $\Leftrightarrow$ $k_BT\gg \Delta\mathcal{E}$ $\Rightarrow$ $\frac{p(\mathcal{E}_{max})}{p(\mathcal{E}_{min})}\to 1$
+\par Les états sont occupés de manière équiprobable
+\item à $T$ "faible" $\Leftrightarrow$ $k_BT\ll \Delta\mathcal{E}$ $\Rightarrow$ $\frac{p(\mathcal{E}_{max})}{p(\mathcal{E}_{min})}\to 0$
+\par L'état d'énergie élevée est beaucoup moins peuplé
+\end{itemize}
+\includegraphics{Th3_II-2-2}
+\par Application à l'atome d'hydrogène :
+\par \includegraphics{Th3_II_Application}
+\par
+\par \begin{enumerate}
+\item À $300^\circ K$, calculer les rapports des probabilités d'occupation des deux premiers niveaux.
+\item À quelle température a-t-on $\frac{p(E_2)}{P(E_1)}=0,1$ (donc 10 pourcents des atomes qui seraient au niveau 2) ?
+\item À quelle température peut-on ioniser une fraction notable des atomes d'hydrogène ?
+\item Que peut-on dire, à cette température, de la molécule de $H_2$, sachant que l'énergie nécessaire pour rompre la liaison $H-H$ est $D_{H-H}=432kJ.mol^{-1}$ ?
+\end{enumerate}
+\par 1. On a $\frac{p(E_2)}{p(E_1)} = \exp\left(-\frac{E_1(\frac{1}{4}-1)}{k_B T}\right)\simeq e^{-392}\simeq 0$
+\par Alors, tous les atomes ont leurs électrons au niveau fondamental $E_1$ à température ambiante.
+\par 2. $$\frac{p(E_2)}{p(E_1)} = \exp\left(-\frac{E_1(\frac{1}{4}-1)}{k_BT}\right) = 0,1$$
+\par $$\Leftrightarrow \frac{3E_1}{k_BT}=-\ln(10)$$
+\par $$\Leftrightarrow T = -\frac{3E_1}{4k_Bln(10)}$$
+\par D'où $T\simeq 5.10^{4\circ} K$
+\par 3. On cherche $T$ tel que $\frac{p(0)}{p(E_1)}=0,1$
+\par $$\Leftrightarrow \exp\left(\frac{E_1}{k_BT}\right) = -\ln(10) $$
+\par $$\Leftrightarrow T = -\frac{E_1}{k_B\ln(10)}$$
+\par D'où $T\simeq 7.10^{4\circ}K$
+\par 4. Pour casser une molécule de $H_2$, il faut fournir $\Delta\mathcal{E} = \frac{D_{H-H}}{\mathcal{N}_A} \simeq 7.10^{19}J\simeq 4,5 eV$
+\par À cette température, on fournit $k_BT\simeq 5 eV$ d'énergie.
+\par La liaison $H-H$ est donc cassée.
+
+
+\subsubsection{Equation locale de la statique des fluides}
+\includegraphics{Th3_II-2-3-e}
+\par CF 1.3 : Equilibre d'une particule de dluide dans le champ de pesanteur.
+\par $$ d\vec{F}_p +d\vec{P}=\vec{0}$$
+\par $$-\overrightarrow{grad}(P)dV + \mu \vec{g}dV=\vec{0}$$
+\par $$\overrightarrow{grad}(P) = \mu \vec{g}$$
+\par En présence d'autres forces volumiques de résultante $d\vec{F}_{vol} = \vec{f}_{vol}dV$, on aura à l'équilibre :
+\par $$ \overrightarrow{grad}(P) = \vec{f}_{vol}$$
+\par Exemple : surface libre d'un fluide (en rotation par rapport à un référentiel galiléen)
+\par \includegraphics{Th3_II-2-3-e}
+\par
+\par On note $\omega$ la vitesse angulaire de rotation $(/^tOz)$
+\par On attend l'établissement d'un régime stationnaire, c'est à dire l'immobilité de la surface libre dans le référentiel tournant.
+\par Dans le référentiel tournant, non-galiléen.
+\par Bilan des forces : (sur une particule de fluide)\begin{itemize}
+\item poids : $d\vec{P} = \mu\vec{g}dV$
+\item résultante des forces de pression : $d\vec{F}_p = -\overrightarrow{grad}(P)dV$
+\item force d'inertie d'entraînement : $d\vec{f}_{ie} = -dm\vec{a}_e = \mu dV\omega^2\vec{HM} = \mu dV\omega^2 r\vec{u}_r$
+\end{itemize}
+RFD/SF:
+\par $$ dm\vec{a}_e = 0 = \left[\mu\vec{g}-\grad(P)+\mu\omega^2r\vec{u}_r\right]dV$$
+\par $$\grad(P) = \mu \left[\vec{g}+\omega^2r\vec{u}_r\right]$$
 
 
 \chapter{Thermodynamique chimique}

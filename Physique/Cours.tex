@@ -760,14 +760,17 @@ On étudie une particule de fluide de volume $dV$ (volume mésoscopique) dans un
 \end{itemize}
 \includegraphics{Th3_I-2-2}
 
-\subsubsection{Relation fondmaentale de la statique des fluides (RFSF)}
+\subsubsection{Relation fondamentale de la statique des fluides (RFSF)}
 Système : volume $dV=dxdydz$ de masse $dm =\mu(M)dV=\mu(x,y,z)dxdydz$ (la masse volumique peut varier) situé en $\{x+dx, y+dy, z+dz\}$
 \par Bilan des forces dans $\mathcal{R}_T$ galiléen :\begin{itemize}
-\item poids : $d\vec{P}=\mu(x,y,z)dxdydz$
+\item poids : $d\vec{P}=\mu(x,y,z)dxdydz\vec{g}$
 \item résultante des forces de pression sur toutes les faces : $d\vec{F}_{pr} = \sum\limits_{\text{faces i}}d\vec{F}_{pr,i}$\par$ = [+ P(x,y,z)-P(x+dx,y,z)]dydz\vec{u}_x+[P(x,y,z)-P(x,y+dy,z)]dxdz\vec{u}_y+[P(x,y,z)-P(x,y,z+dz)]dxdy\vec{u}_z$ \par $=-\left[\frac{\partial P}{\partial x}dxdydz\vec{u}_x+\frac{\partial P}{\partial y}dydxdz\vec{u}_y+\frac{\partial P}{\partial z}dzdxdy\vec{u}_z\right]$ \par $= -\overrightarrow{grad}(P)dV$
 \end{itemize}
 \includegraphics{Th3_I-3}
-RFD : à l'équilibre de la particule de fluide : $d\vec{P}+d\vec{F}_{pr}=dm\vec{a}(M)=\vec{0}$ \par $[\mu\vec{g}-\overrightarrow{grad}(P)dV]=\vec{0}$ \par D'où $\overrightarrow[grad](P)=\mu\vec{g}$\par Enfin, $\frac{dP}{dz}=-\mu g$, qui est la RELATION FONDAMENTALE DE LA STATIQUE DES FLUIDES.
+RFD : à l'équilibre de la particule de fluide : $d\vec{P}+d\vec{F}_{pr}=dm\vec{a}(M)=\vec{0}$
+\par $[\mu\vec{g}-\overrightarrow{grad}(P)]dV=\vec{0}$
+\par D'où $\grad(P)=\mu\vec{g}$
+\par Enfin, $\frac{dP}{dz}=-\mu g$, qui est la RELATION FONDAMENTALE DE LA STATIQUE DES FLUIDES.
 
 \subsubsection{Champ de pression dans un fluide incompressible (liquide)}
 Fluide incompressible $\Rightarrow$ masse volumique uniforme dans tout le fluide (c'est le cas dans les liquides : $\mu(T,P)=\mu(T)$) (on supposera $T=cste$ uniforme)
@@ -779,10 +782,10 @@ Fluide incompressible $\Rightarrow$ masse volumique uniforme dans tout le fluide
 \par \includegraphics{Th3_I-4}
 \par $$ P(B) = P(A) + \mu g H = 10^5 + 10^4 > P_{atm} $$
 \par Pour $H=1m$
-\par Comme $P(B)>P_{atm}$, on à que le fluide dans le siphon "pousse", ce qui fait un écoulement tant que le niveau du récipient du haut est supérieur à celui du récipient du bas.
+\par Comme $P(B)>P_{atm}$, le fluide dans le siphon "pousse", ce qui provoque un écoulement tant que le niveau du récipient du haut est supérieur à celui du récipient du bas.
 
 \subsubsection{Champ de pression dans un fluide compressible : modèle d'atmosphère isotherme}
-Dans l'air, fluide compressible : $PV=nRT \Leftrightarrow PM = \frac{nM}{V}RT=\mu RT \Leftrightarrow \mu \frac{PM}{RT}$ (hypothèse gaz parfait)
+Dans l'air, fluide compressible : $PV=nRT \Leftrightarrow PM = \frac{nM}{V}RT=\mu RT \Leftrightarrow \mu =\frac{PM}{RT}$ (hypothèse gaz parfait)
 \par On fait l'hypothèse $T=T_0$ uniforme
 \par On utilise la Relation Fondamentale de la Statique des Fluides :
 \par $$ \frac{dP}{dz} =-\mu(z) g=-P(z)\frac{M}{RT}g$$
@@ -791,7 +794,7 @@ Dans l'air, fluide compressible : $PV=nRT \Leftrightarrow PM = \frac{nM}{V}RT=\m
 \par On intègre : $ln\left(\frac{P}{P_0}\right)=\frac{-z}{H}$
 \par $$\Rightarrow P(z) = P_0e^{-z/H}=P_0e^{-\frac{Mgz}{RT}}$$
 \par AN : $H=\frac{8,314\times 290}{9.8\times  29.10^{-3}}\simeq 8,6.10^3m$
-\par Donc à $8,6km$ au-dessus de l'océan, on a $0,37$ pourcents de la pression au niveau de la mort.
+\par Donc à $8,6km$ au-dessus de l'océan, on a $0,37$ pourcents de la pression au niveau de la mer.
 \par $P(3H) \simeq 0,05 P_{atm}$, donc l'épaisseur de l'atmosphère est d'environ $3H$, entre $25$ et $30$ km.
 \par Application : comparons la vaiation de pression pour $H=4m$ entre le haut et le bas :\begin{itemize}
     \item D'une pièce remplie d'air : $\Delta P = P_0(e^{-\frac{z}{H}}-1)\simeq 4.10^{-4} bar$
@@ -821,12 +824,13 @@ $$ P(z) = P_0e^{-\frac{mgz}{k_BT}} = P_0e^{-\frac{\mathcal{E}_p^{pes}(z)}{k_BT}}
 
 
 \subsubsection{Loi de Boltzmann}
-\underline{Propriété générale :} \textbf{Dans un système macroscopique en équilibreà la température $T_0$, la probabilité de trouver une particule en dans un état d'énergie $\mathcal{E}$ est proportionnelle au facteur de Boltzmann :}
+\underline{Propriété générale :} \textbf{Dans un système macroscopique en équilibre à la température $T_0$, la probabilité de trouver une particule en dans un état d'énergie $\mathcal{E}$ est proportionnelle au facteur de Boltzmann :}
 \par $$\exp\left(-\frac{\mathcal{E}}{k_BT}\right)$$\begin{itemize}
 \item Les états de plus faible énergie sont préféralement occupés.
 \item Plus la température est élevée, le moins cette sélectivité est importante.
 \end{itemize}
-Pour deux niveaux d'énergie distincts $\mathcal{E}_{min}$ et $\mathcal{E}_{max}$, le rapport des probabilités d'occupation $\frac{p(\mathcal{E}_{max})}{p(\mathcal{E}_{min})}=e^{-\frac{\mathcal{E}_{max}-\mathcal{E}_{min}}{k_BT}}= e^{-\frac{\Delta\mathcal{E}}{k_BT}}$ 
+Pour deux niveaux d'énergie distincts $\mathcal{E}_{min}$ et $\mathcal{E}_{max}$, le rapport des probabilités d'occupation est 
+\par $$\frac{p(\mathcal{E}_{max})}{p(\mathcal{E}_{min})}=e^{-\frac{\mathcal{E}_{max}-\mathcal{E}_{min}}{k_BT}}= e^{-\frac{\Delta\mathcal{E}}{k_BT}}$$
 \par c'est à dire :\begin{itemize}
 \item à $T$ "élevée" $\Leftrightarrow$ $k_BT\gg \Delta\mathcal{E}$ $\Rightarrow$ $\frac{p(\mathcal{E}_{max})}{p(\mathcal{E}_{min})}\to 1$
 \par Les états sont occupés de manière équiprobable
@@ -859,7 +863,7 @@ Pour deux niveaux d'énergie distincts $\mathcal{E}_{min}$ et $\mathcal{E}_{max}
 
 
 \subsubsection{Equation locale de la statique des fluides}
-\includegraphics{Th3_II-2-3-e}
+\includegraphics{Th3_II-2-3}
 \par CF 1.3 : Equilibre d'une particule de dluide dans le champ de pesanteur.
 \par $$ d\vec{F}_p +d\vec{P}=\vec{0}$$
 \par $$-\overrightarrow{grad}(P)dV + \mu \vec{g}dV=\vec{0}$$
@@ -880,6 +884,24 @@ Pour deux niveaux d'énergie distincts $\mathcal{E}_{min}$ et $\mathcal{E}_{max}
 RFD/SF:
 \par $$ dm\vec{a}_e = 0 = \left[\mu\vec{g}-\grad(P)+\mu\omega^2r\vec{u}_r\right]dV$$
 \par $$\grad(P) = \mu \left[\vec{g}+\omega^2r\vec{u}_r\right]$$
+\par En cylindrique, on aura : $\grad(P) = \left\vert\begin{array}{c} \frac{\partial P}{\partial r} \\ 0 \\ \dfrac{\partial P}{\partial z}\end{array}\right.$
+\par $$\Rightarrow \left\{\begin{array}{rcl} \dfrac{\partial P}{\partial r} & = & \mu\omega^2 r \\ \dfrac{\partial P}{\partial z} &=& -\mu g\end{array}\right.$$
+\par $$ P(r,z) = -\mu gz + C(r)$$
+\par $$\frac{d C(r)}{dr}=\mu\omega^2r \Rightarrow C(r) = \frac{1}{2}\mu\omega^2r^2 + B$$
+\par $$P(r,z) = \frac{1}{2}\mu \omega^2r^2 - \mu g z + P_1$$
+\par En notant $P_1$ la constante de pression en $z=0$ et $r=0$
+\par Equation de la surface libre (surface en contact avec l'atmosphère) :
+\par $P = P_0$ en tout point de la surface, et on a donc une équation qui relie $r$ et $z$ :
+\par $$\frac{1}{2}\mu\omega^2 - \mu g z + P_1 = P_0$$
+\par $$\Rightarrow z = \frac{P_1-P_0}{\mu g}+\frac{\omega^2}{2g}r^2$$
+\par On a donc bien la surface parabolique prédite.
+
+
+
+
+
+
+
 
 
 \chapter{Thermodynamique chimique}

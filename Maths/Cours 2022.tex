@@ -2068,7 +2068,13 @@ On admet aussi que la formule de transfert s'applique aux couples, au $n$-uplets
 \par D'où la majoration du terme précédent :
 \par $$\leq \sum_{x\in X(\Omega)}\vert x\vert P(X=x)+\sum\limits_{y\in Y(\Omega)}\vert y\vert P(Y=y) < + \infty$$
 \par Avec la sommabilité, en se débarrassant de la valeur absolue du début, on remplace les inégalités larges par des égalités, et on a que $E(X+Y)=E(X)+E(Y)$.
-\par Se fait de même pour la multiplication par un scalaire.}
+\par Se fait de même pour la multiplication par un scalaire.
+\par Pour la stricte positivité :
+\par $E(X)=0\Rightarrow (X=0)$ presque sûrement
+\par $E(X) = \sum\limits_{x\in X(\Omega)}xP(X=x) = 0$
+\par Comme $xP(X=x)\geq 0$, alors $\forall x\in X(\Omega), x=0$ ou $P(X=x)=0$
+\par Donc $P(X\neq 0) = \sum\limits_{x\in X(\Omega), \neq 0}xP(X=x)=0$
+}
 
 \begin{Rem}
 Dans le cadre du théorème précédent : \begin{itemize}
@@ -2076,24 +2082,39 @@ Dans le cadre du théorème précédent : \begin{itemize}
 \item Pour $X$ réelle et $a,b\in \R$, si $a\leq X\leq b$ alors $a\leq E(X)\leq b$
 \end{itemize}
 \end{Rem}
-\Thr{Critère de majoration positif}{SOit $X$ une variable aléatoire discrète à valeurs réelles ou complexes. Soit $Y$ une variable aléatoire discrète à valeurs réelles.
+\Thr{Critère de majoration positif}{Soit $X$ une variable aléatoire discrète à valeurs réelles ou complexes. Soit $Y$ une variable aléatoire discrète à valeurs réelles.
 \par Si on a :\begin{itemize}
 \item $Y$ est d'espérance finie
 \item $\vert X\vert\leq Y$
 \end{itemize}
 Alors $X$ est d'espérance finie.}
-\Thr{Espérace d'un produit de variables indépendantes}{Soit $X,Y$ deux variables aléatoires discrètes à valeurs réelles ou complexes.
+\Thr{Espérance d'un produit de variables indépendantes}{Soit $X,Y$ deux variables aléatoires discrètes à valeurs réelles ou complexes.
 \par Si on a :\begin{itemize}
 \item $X$ et $Y$ d'espérance finie
+\par ($X$ et $Y$ admettent une espérance serait plus adapté)
 \item $X$ et $Y$ indépendantes
 \end{itemize}
-Alors $XY$ est d'espérance finie et \par\begin{center}$E(XY)=E(X)E(Y)$\end{center}}
-\Thr{Espérace d'un produit de n variables indépendantes}{Soit $X_1,...,X_n$ des variables aléatoires discrètes à valeurs réelles ou complexes.
+Alors $XY$ est d'espérance finie et
+\par $$E(XY)=E(X)E(Y)$$}
+\Pre{$E(\vert XY\vert) = \sum\limits_{(x,y)\in X(\Omega)\times Y(\Omega)}\vert xy\vert P(X=x, Y=y)$
+\par $ = \sum\limits_{x,y}\vert xy\vert P(x=x)P(Y=y) = \sum\limits_{x\in X(\Omega)}\vert x\vert P(X=x) \sum\limits_{y\in Y(\Omega)}\vert y\vert P(Y=y)$
+\par $=E(\vert X\vert)E(\vert Y\vert)<+\infty$ par hypothèse
+\par On a donc que $(xyP(X=x)P(Y=y))_{(x,y)\in X(\Omega)\times Y(\Omega)}$ est sommable donc par sommation par paquets :
+\par $E(XY)=\sum\limits_{x\in X(\Omega)}xP(X=x)\sum\limits_{y\in Y(\Omega)}yP(Y=y) = E(X)E(Y)$}
+
+\Thr{Espérance d'un produit de n variables indépendantes}{Soit $X_1,...,X_n$ des variables aléatoires discrètes à valeurs réelles ou complexes.
 \par Si on a :\begin{itemize}
 \item $X_1,..., X_n$ d'espérance finie
 \item $X_1,..., X_n$ (mutuellement) indépendantes
 \end{itemize}
 Alors la variable $X_1...X_n$ est d'espérance finie et \par\begin{center}$E\left(\prod\limits_{i=1}^nX_i\right)=\prod\limits_{i=1}^nE(X_i)$\end{center}}
+Pre{$H_n$ : $\forall X_1,..., X_n$ variables aléatoires complexes mutuellement indépendantes et posssédant une espérance, alors $X_1...X_n$ possède une espérance et $E(X_1...X_n)=E(X_1)...E(X_n)$
+\par On a vu $H_2$ dans la preuve précédente
+\par On suppose $H_n$, prenons $X_1,..., X_{n+1}$ complexes mutuellement indépendantes
+\par Par $H_n$, $(X_2...X_{n+1})$ admet une espérance et $E(X_2...X_{n+1})=E(X_2)...E(X_{n+1})$
+\par Par lemme des coalitions, $X_1$ et $X_2...X_{n+1}$ sont indépendantes
+\par Par $H_2$, $X_1(X_2...X_{n+1})$ admet une espérance et :
+\par $$E(X_1(X_2...X_{n+1}))=E(X_1)E(X_2...X_{n+1}) = \prod\limits_{i=1}^nE(X_i)$$}
 \begin{Rem}
 La réciproque de cette proposition est fausse, l'égalité $E(XY)=E(X)E(Y)$ ne suffit pas à garantir l'indépendance des variables $X$ et $Y$.
 \par Par exemple, $X$ la variable aléatoire de loi uniforme sur $\{-1,0,1\}$ et $Y=X^2$
@@ -2101,13 +2122,20 @@ La réciproque de cette proposition est fausse, l'égalité $E(XY)=E(X)E(Y)$ ne 
 \end{Rem}
 
 \subsection{Variance d'une variable aléatoire discrète réelle, écart type}
+\Def{}{$X$ une variable aléatoire complexe, on dit que $X$ admet un moment d'ordre $k$ pour $k\in\N^*$ si $E(X^k)$ existe}
+\Thr{}{Si $X$ admet un moment d'ordre $k+1$ alors $X$ admet un moment d'ordre $k$.}
+\Pre{On suppose que $X$ admet un moment d'ordre $k+1$ (ie $E(X^{k+1}) < +\infty$)
+\par Alors $E(\vert X^k\vert) = \sum\limits_{x\in X(\Omega)}\vert x\vert^kP(X=x)$
+\par $$ E(\vert x\vert^k)\leq \sum\limits_{x\in X(\Omega), \vert x\vert \geq 1} \vert x\vert^kP(X=x) +\sum\limits_{x\in X(\Omega), \vert x\vert<1} \vert x\vert^kP(X=x)$$
+\par $$ \leq E(\vert X\vert^{k+1})+1$$}
+
 \Prop{}{Soit $X$ une variable aléatoire discrète à valeurs réelles.
 \par Si $X^2$ est d'espérance finie alors, pour tout polynôme $f$ de degré au plus 2, la variable aléatoire $f(X)$ est d'espérance finie.
 \par Par exemple, $X$, $X(X-1)$ sont d'espérance finie.}
 \Pre{On suppose que $X^2$ est d'espérance finie.
 \par Par linéarité, la variable $Y=\frac{1}{2}(X^2-1)$ est aussi d'espérance finie.
 \par De plus, on a $\vert X\vert\leq Y$, donc par critère de majoration positif, $X$ est d'espérance finie.
-\par ON pose $f:x\mapsto a_0+a_1x+a_2x^2$ où $a_0,a_1,a_2\in\R$
+\par On pose $f:x\mapsto a_0+a_1x+a_2x^2$ où $a_0,a_1,a_2\in\R$
 \par D'après ce qui précède, $X^2$, $X$ et la variable constante égale à $1$ sont d'espérance finie, donc par linéarité $f(X)=(a_0+a_1X+a_2X^2)$ est d'espérance finie.}
 \Def{Variance et ecart-type}{Soit $X$ une variable aléatoire discrète à valeurs réelles.
 \par Si $X^2$ est d'espérance finie, on définit la variance de $X$ par \par\begin{center}$V(X)=E((X-E(X))^2)$\end{center}
@@ -2151,10 +2179,36 @@ Dans ce paragraphe, $X$ et $Y$ sont deux variables aléatoires discrètes à val
 \par Avec égalité si, et seulement si, $P(X=0)=1$ ou il existe $\lambda\in\R$ tel que $P(Y=\lambda X)=1$}
 \Prop{}{Si les variables aléatoires $X^2$ et $Y^2$ sont d'espérance finie alors, pour toute fonction $f:\R^2\to \R$ polynomiale de degré au plus $2$, la variable aléatoire $f(X,Y)$ est d'espérance finie.}
 \Def{}{Si les variables aléatoires $X^2$ et $Y^2$ sont d'espérance finie alors on peut définir la covariance de $X$ et $Y$ par :\par\begin{center}$\mathrm{cov}(X,Y)=E((X-E(X))(Y-E(Y)))$\end{center}}
+\Pre{Il suffit de démontrer que $\sum\vert xy\vert P(X=x, Y=y)$ est d'espérance finie.
+\par $\forall x\in X(\Omega), \forall y\in Y(\Omega), \vert xy\vert \leq\frac{1}{2}\left(\vert x\vert^2 + \vert y\vert^2\right)$
+\par Donc $E(\vert XY\vert)<+\infty$ donc $E(XY)$ admet une espérance
+\par De plus $X$ admet une variance donc une espérance. De même pour $Y$.
+\par Donc $(X-E(X))(Y-E(Y))$ admet une espérance et :
+\par $$ E((X-E(X))(Y-E(Y)))=E(XY)-E(X)E(Y)-E(X)E(Y)+ E(X)E(Y)$$
+\par $$ \mathrm{cov}(X,Y)=E(XY) - E(X)E(Y)$$}
 \begin{Rem}
 La définition de la covariance a un sens, car si $X^2$ et $Y^2$ sont d'espérance finie, $m=E(X)$ et $m'=E(Y)$ existent et $(X-m)(Y-m')=XY-m'X-mY+mm'$ qui est un polynôme du second degré en $X$ et $Y$, et donc d'espérance finie.
 \par La covariance est l'espérance du produit des variables centrées.
 \end{Rem}
+
+\begin{Rem}
+La covariance est une forme bilinéaire symétrique positive pour l'espace vectoriel des variables aléatoires réelles.
+\par On dispose donc de l'inégalité de Cauchy-Schwarz.
+\par Si $E$ est un $\R$-ev et $\varphi$ une forme bilinéaire symétrique sur $E$, alors :
+\par $$\forall x,y\in E, \vert \varphi(x,y)\vert\leq \sqrt{\varphi(x,x)}\sqrt{\varphi(y,y)}$$
+\par On fixe $(x,y)\in E$ et on considère : $P:\left\{\begin{array}{rcl} \R & \to & \R \\ t & \mapsto & \varphi(x+ty, x+ty)\end{array}\right.$
+\par Par bilinéarité : $P(t) = \varphi(x,x) + 2t\varphi(x,y)+t^2\varphi(y,y)$
+\par $P$ est une fonction polynomiale positive.
+\par Si $\varphi(y,y)> 0$ : $P$ est polynomiale de degré 2, positive si son discriminant est négatif.
+\par Or $P$ est positive par positivité de $\varphi$
+\par Donc $\varphi(x,y)^2 - \varphi(x,x)\varphi(y,y)\leq 0$
+\par Si $\varphi(y,y)=0$ : $P$ est affine. Comme $\varphi$ est positive, alors $P$ aussi. Donc $P$ est constante (affine et positive, elle vaut $\varphi(x,x)$ qui est alors positive et $\varphi(x,y)=0$).
+\par Donc $\varphi(x,y)\leq \sqrt{\varphi(x,x)}\sqrt{\varphi(y,y)}$
+\end{Rem}
+\Def{}{Si $X$ et $Y$ possèdent des variances non-nulles, on peut définir la corrélation de $X$ et $Y$ :
+\par $$\mathrm{corr}(X,Y) = \frac{\mathrm{cov}(X,Y)}{\sigma(X)\sigma(Y)}$$
+\par D'après Cauchy-Schwarz, on a : $-1\leq\mathrm{corr}(X,Y)\leq 1$}
+
 \Prop{de la covariance}{Si les variables aléatoires $X^2$ et $Y^2$ sont d'espérance finie alors :\begin{itemize}
 \item \begin{center}$\mathrm{cov}(X,X)=V(X)$\end{center}
 \item Köning-Huygens : formule pratique pour la covariance :\par\begin{center}$\mathrm{cov}(X,Y)=E(XY)-E(X)E(Y)$\end{center}
@@ -2167,9 +2221,20 @@ La définition de la covariance a un sens, car si $X^2$ et $Y^2$ sont d'espéran
 \par\begin{center}$V(X+Y)=V(X)+V(Y)$\end{center}}
 \Prop{Variance d'une somme}{Si $X_1,...,X_n$ sont $n$ variables telles que $X_1^2,..., X_n^2$ sont d'espérance finie alors $(X_1+...+X_n)^2$ l'est aussi avec :
 \par\begin{center}$V\left(\sum\limits_{k=1}^nX_k\right)=\sum\limits_{k=1}^nV(X_k)+2\sum\limits_{1\leq i<j\leq n}\mathrm{cov}(X_i, X_j)$\end{center}
-\par Si de plus les variables $X_1,...,X_n$ sont indépendantes deux à deux alors :
+\par Si de plus les variables $X_1,...,X_n$ sont indépendantes \textbf{deux à deux} alors :
 \par\begin{center}$V\left(\sum\limits_{k=1}^nX_k\right)=\sum\limits_{k=1}^nV(X_k)$\end{center}}
-
+\Pre{$V(\sum\limits_{i=1}^n X_i) = \mathrm{cov}(\sum\limits_{i=1}^n X_i, \sum\limits_{j=1}^nX_j)$
+\par $ = \sum\limits_{i=1}^n\mathrm{cov}(X_i, \sum\limits_{j=1}^nX_j) = \sum\limits_{i\leq n,j\leq n} \mathrm{cov}(X_i, X_j)$
+\par $ = \sum\limits_{i=1}^nV(X_i) +2\sum\limits_{1\leq i<j\leq n}\mathrm{cov}(X_i, X_j)$}
+La loi binomiale $\mathcal{B}(n,p)$ est lme nombre de succès pour une expérience aléatoire de probabilité de succès $p$ répétée $n$ fois, où les expériences sont indépendantes.
+\par Si on appelle $X_i$ la variable aléatoire indicatrice du succès à la $i$-ème tentative, si $X\leadsto \mathcal{B}(n,p)$ alors $X=\sum\limits_{i=1}^n X_i$
+\par Les $X_i$ sont indépendantes, $X_i\leadsto \mathcal{B}(1,p)$, $E(X_i) = p$, $E(X_i^2)=1$ et $V(X_i) = p - p^2 = p(1-p)$
+\par $E(X) = np$ et $V(X)=np(1-p)$
+\par La loi hypergéométrique $\mathcal{H}(N, n, p)$ : elle modélise le tirage sans remise de $n$ boules dans une urne contenant $N$ boules, donc $Np$ noires.
+\par $X$ est le nombre de boules noires tirées. L'univers de $X$ est $\llbracket 0, n\rrbracket$.
+\par Pour $k\in X(\Omega)$ : $P(X=k) = \frac{\binom{Np}{k}\binom{N(1-p)}{n-k}}{\binom{N}{n}}$
+\par Notons $X_i$ la variable indicatrice du succès au rang $i$, $X_i\leadsto \mathcal{B}(1,p)$
+\par On a $X=\sum\limits_{i=1}^n X_i$, et donc $E(X) = np$
 
 \section{Lois usuelles}
 \subsection{Lois usuelles finies}

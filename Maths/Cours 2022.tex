@@ -52,7 +52,7 @@
 \tableofcontents
 \chapter{Rappels séries numériques}
 \section{Généralités}
-\Def{Convergence série}{Avec $u_n\in\K^\N$ on dit que la série $(\sum u_n)$ converge si la suite $(\sum\limits_{k=1}^n u_k)_{n\in\N}$ converge. En cas de convergence, on définit la somme de la série $\sum_{n = 0}^{\infty} u_n = \lim\limits_{n\to+\infty} \sum u_n$ seulement si la série est convergente. $(S_n) = \left(\sum\limits_[k=0]^n\right)$ est la suite des sommes partielles de la série. En cas de convergence, $(R_n) =\left(\sum_{k = n+1}^{\infty} u_n\right)$ est la suite des restes (d'ordre $n$) de la série. $R_n$ tend vers 0 par définition.}
+\Def{Convergence série}{Avec $u_n\in\K^\N$ on dit que la série $(\sum u_n)$ converge si la suite $(\sum\limits_{k=1}^n u_k)_{n\in\N}$ converge. En cas de convergence, on définit la somme de la série $\sum_{n = 0}^{\infty} u_n = \lim\limits_{n\to+\infty} \sum u_n$ seulement si la série est convergente. $(S_n) = \left(\sum\limits_{k=0}^nu_n\right)$ est la suite des sommes partielles de la série. En cas de convergence, $(R_n) =\left(\sum\limits_{k = n+1}^{\infty} u_n\right)$ est la suite des restes (d'ordre $n$) de la série. $R_n$ tend vers 0 par définition.}
 \Thr{de divergence grossière}{$(u_n)\in\K^\N$, si $(\sum u_n)$ converge, alors $(u_n)\to0$.}
 \Pre{$\forall n\in\N, u_n = S_n-S_{n-1}$ donc quand $(u_n)$ tend vers une limite $l$, alors $u_n$ tend vers 0.}
 \Thr{Séries géométriques}{On prend $a\in\C$, la série $(\sum a^n)$ converge si, et seulement si, $\vert a\vert<1$ et alors : $\sum_{n = 0}^{\infty} a^n = \dfrac{1}{1-a}$}
@@ -2235,6 +2235,12 @@ La loi binomiale $\mathcal{B}(n,p)$ est lme nombre de succès pour une expérien
 \par Pour $k\in X(\Omega)$ : $P(X=k) = \frac{\binom{Np}{k}\binom{N(1-p)}{n-k}}{\binom{N}{n}}$
 \par Notons $X_i$ la variable indicatrice du succès au rang $i$, $X_i\leadsto \mathcal{B}(1,p)$
 \par On a $X=\sum\limits_{i=1}^n X_i$, et donc $E(X) = np$
+\par Pour $i,j$, on a que : $P(X_i=1, X_j=1) = \frac{Np(Np-1)\binom{n-2}{n-2}(n-2)!}{\binom{N}{n}n!} = \frac{p(Np-1)}{N-1}$
+\par D'où $\mathrm{cov}(X_i, X_j) = E(X_iX_j) - E(X_i)E(X_j) = \frac{p(Np-1)}{N-1} - p^2 = \frac{p(p-1)}{N-1}$
+\par $V(X) = np(1-p) + n(n-1)\frac{p(p-1)}{N-1} = np(1-p)\left(1-\frac{n-1}{N-1}\right)$
+
+
+
 
 \section{Lois usuelles}
 \subsection{Lois usuelles finies}
@@ -2254,6 +2260,10 @@ En particulier, le paramètre d'une loi de Bernouilli est son espérance.}
 On note $X\sim \mathcal{U}(K)$}
 \Prop{}{Si $X\sim\mathcal{U}(\llbracket 1,n\rrbracket)$ alors
 \par\begin{center}$E(X)=\frac{n+1}{2}$ et $V(X) = \frac{n^2-1}{12}$\end{center}}
+\Pre{Pour l'espérance : $E(X) = \sum\limits_{i=1}^n n\frac{1}{n} = \frac{1}{n}\sum\limits_{i=1}^ni = \frac{1}{n}\frac{n(n+1)}{2} = \frac{n+1}{2}$
+\par $E(X^2) = \sum\limits_{i=1}^ni^2\frac{1}{n} = \frac{1}{n} \frac{n(n+1)(2n+1)}{6} = \frac{(n+1)(2n+1)}{6}$
+\par D'où $V(X) = \frac{(n+1)(2n+1)}{6}-\left(\frac{n+1}{2}\right)^2 = \frac{4n^2 + 2n + 4n + 2 - 3n^2 - 6n - 3}{12} = \frac{n^2-1}{12}$}
+
 
 \Def{}{Une variable aléatoire discrète $X$ suit une loi binomiale des paramètres $n$ et $p$ si $X(\Omega)=\llbracket 0,n\rrbracket$ et
 \par\begin{center}$\forall k\in \llbracket 0,n\rrbracket, P(X=k)=\binom{n}{k}p^kq^{n-k}$\end{center}
@@ -2284,6 +2294,8 @@ Alors \par\begin{center}$X\sim \mathcal{B}(n,p)$\end{center}
 \par\begin{center}$P(X>k)=(1-p)^k$\end{center}}
 \Prop{Espérance et variance d'une loi géométrique}{Si la variable aléatoire discrète $X$ suite une loi $\mathcal{G}(p)$ alors $X$ possède une espérance et une variance qui valent
 \par\begin{center}$E(X)=\frac{1}{p}$ et $V(X)=\frac{q}{p^2}$\end{center}}
+\Pre{Espérance : $p\sum\limits_{i=0}^{+\infty} npq^{n-1} = \left(\frac{p}{1-q}\right)'=\frac{1}{p}$
+\par Variance : $ V(X) = E(X^2 - X)+E(X) (E(X))^2 = \frac{2(1-p)}{p^2}+\frac{1}{p} -\frac{1}{p^2} = \frac{1-p}{p^2} = \frac{q}{p^2}$}
 \Prop{Modèle loi géométrique}{Si $X$ est le rand u premier succès dans une suite illimitée d'épreuves de Bernouilli indépendantes de même paramètre $p$ alors $X$ suit la loi $\mathcal{G}(p)$
 \par Formellement :
 \par On pose pour tout $k\in\N^*$ $X_k$ la variable aléatoire discrète qui vaut $1$ si la $k$-ième épreuve est un succés et $0$ sinon.
@@ -2302,6 +2314,10 @@ L'exemple le plus classique est le teps d'attente d'un premier pile lors des lan
 \par On note $X\sim \mathcal{P}(\lambda)$}
 \Prop{Espérance et variance d'une loi de Poisson}{Si la variable aléatoire discrète $X$ suit une loi $\mathcal{P}(\lambda)$ alors $X$ possède une espérance et une variance et
 \par\begin{center}$E(X)=V(X)=\lambda$\end{center}}
+\Pre{$E(X) =\sum\limits_{n\in\N}ne^{-\lambda}\frac{\lambda^n}{n!} =e^{-\lambda}\sum\limits_{n\in\N^*}\frac{\lambda^{n}}{(n-1)!} = \lambda e^{-\lambda}\sum\limits_{k\in\N}\frac{\lambda^n}{n!}=\lambda$
+\par $E(X^2-X) = \sum\limits_{n\in\N}n(n-1)e^{-\lambda}\frac{\lambda^n}{n!}=e^{-\lambda}\sum\limits_{k\geq 2}\frac{\lambda^{k}}{(k-2)!}=\lambda^2$
+\par Donc $V(X) =  E(X^2 - X) + E(X) - E(X)^2 = \lambda^2 + \lambda - \lambda^2 =\lambda$}
+
 
 
 \section{Fonctions génératrices}

@@ -217,7 +217,7 @@ L'hypothèse du continu est indécidable, et dit que tout ensemble inclus dans $
 \Pre{$E$ ensemble, $A,B$ deux parties de $E$. Alors $A\cup B = \{x\in E\vert (x\in A)\vee (x\in B)\}$. Alors $(A_i)_{i\in I}\in\mathcal{P}(E)^I$, et donc $\cup_{i\in I}A_i = \{x\in E\vert \exists i\in I, x\in A_i\}$. }
 
 \section{Familles sommables de réels positifs}
-\Def{Somme de familles réelles positives}{Soit I un ensemble, soit $(u_i)_{i\in I}\in \R_+^I$. On définit la somme des $(u_i)_{i\in I}$ comme : $\sum\limits_{i\in I} u_i = \sup\left(\sum\limits_{j\in J, J\subset I\text{ fini}} u_j\right)$ si ces sommes sont majorées et $+\infty$ sinon.}
+\Def{Somme de familles réelles positives}{Soit I un ensemble, soit $(u_i)_{i\in I}\in \R_+^I$. On définit la somme des $(u_i)_{i\in I}$ comme : $\sum\limits_{i\in I} u_i = \sup\left(\sum\limits_{j\in J} u_j\right)_{J\subset I\text{ fini}}$ si ces sommes sont majorées et $+\infty$ sinon.}
 \Def{Familles sommables de réels positifs}{Soit $(u_i)_{i\in I}\in\R_+^I$, on dit que $(u_i)_{i\in I}$ est sommable si $\sum\limits_{i\in I} u_i\in \R_+$}
 \Prop{Sommabilité et dénombrabilité}{Si $I$ est non-dénombrable et $(u_i)_{i\in I}\in \R_+^I$, alors $(u_i)_{i\in I}$ n'est pas sommable.}
 \Pre{Ici, $I$ est non-dénombrable. Pour $n\in\N^*$, on note $A_n=\left\{i\in I\vert u_i>\dfrac{1}{n}\right\}$. Alors $\cup_{n\in\N^*} A_n = I$.
@@ -242,9 +242,9 @@ $\sum\limits_{n\in\N^*} \dfrac{1}{n^2} = \sum\limits_{n\in\N^*}\dfrac{1}{(2n)^2}
 
 \section{Familles de complexes.}
 \Def{Sommabilité complexe}{Soit $(u_i)_{i\in I}\in\C^I$. On dit que la famille est sommable si $(|u_i|)_{i\in I}$ est sommable, donc que $\sum\limits_{i\in I}|u_i|<+\infty$}
-\Prop{Somme d'une famille sommable.}{Soit $I$ dénombrable et $(u_i)_{i\in I}$ sommable. Alors : pour toute bijection $\varphi:\left\{\begin{array}{rcl} \N&\to&I \\ n&\mapsto&\varphi(n)\end{array}\right.$ pn a que $\sum\limits_{n}u_{\varphi(n)}$ est une série absolument convergente et $\sum\limits_{n=0}^{+\infty}u_{\varphi(n)}$ ne dépend pas de $\varphi$.
+\Prop{Somme d'une famille sommable.}{Soit $I$ dénombrable et $(u_i)_{i\in I}$ sommable. Alors : pour toute bijection $\varphi:\left\{\begin{array}{rcl} \N&\to&I \\ n&\mapsto&\varphi(n)\end{array}\right.$ on a que $\sum\limits_{n}u_{\varphi(n)}$ est une série absolument convergente et $\sum\limits_{n=0}^{+\infty}u_{\varphi(n)}$ ne dépend pas de $\varphi$.
 \par On appelle somme de $(u_i)_{i\in I}$ : $\sum\limits_{i\in I} =\sum\limits_{n=0}^\infty u_{\varphi(n)}$ où $\varphi$ est une bijection donnée. La somme d'une famille non-sommable n'est pas définie.}
-\Pre{$(u_i)$ sommable. $\varphi$ bijection de $\N$ dans $I$. $\sum \vert u_i\vert = \sum \vert u_{\varphi(n)}\vert = \sum\limits_{n=0}^\infty\vert u_{\varphi(n)}$. $\sum u_{\varphi(n)}$ est absolument convergente. De plus, $\forall N\in\N, \sum\limits_{k=0}^N u_{\varphi(k)} = \sum\limits_{k=0}^N\mathcal{Re}(u_{\varphi(k)})_+ - \mathcal{Re}(u_{\varphi(k)})_- + i(\mathcal{Im}(u_{\varphi(k)})_+ - \mathcal{Im}(u_{\varphi(k)})$.
+\Pre{$(u_i)$ sommable. $\varphi$ bijection de $\N$ dans $I$. $\sum \vert u_i\vert = \sum \vert u_{\varphi(n)}\vert = \sum\limits_{n=0}^\infty\vert u_{\varphi(n)}\vert$. $\sum u_{\varphi(n)}$ est absolument convergente. De plus, $\forall N\in\N, \sum\limits_{k=0}^N u_{\varphi(k)} = \sum\limits_{k=0}^N\mathcal{R}(u_{\varphi(k)})_+ - \mathcal{R}(u_{\varphi(k)})_- + i(\mathcal{I}(u_{\varphi(k)})_+ - \mathcal{I}(u_{\varphi(k)}))$.
 \par Tous ces restes sont majorés par $\vert u_{\varphi(k)}\vert$ donc sommables. Donc $\sum\limits_{k=0}u_{\varphi(k)}\to \sum\limits_{n\in\N} \mathcal{Re}(u_{\varphi(n)})_+ + \sum\limits_{n\in\N} \mathcal{Re}(u_{\varphi(n)})_-+...$}
 \Thr{Sommation par paquets}{$I$ dénombrable, dont les $J_j$ sont une partition. Avec $(u_i)_{i\in I}\in\C^I$ sommable. Alors $\sum\limits_{i\in I}u_i = \sum\limits_{j\in J}\sum\limits_{k\in J_j} u_k$}
 
@@ -310,7 +310,7 @@ Si $E$ est de dimension finie, on choisit une base $B = (e_1,..., e_p)$. On pour
 \item $\forall x,y\in E, d(x,y) = 0 \Rightarrow x=y$ ;
 \item $\forall x,y,z\in E, d(x,z)\leq d(x,y) + d(y,z)$.\end{itemize}}
 \Prop{Deuxième forme de l'inégalité triangulaire}{Soit $E$ un EVN, $\forall x,y\in E, \vert\Vert x\Vert-\Vert y\Vert\vert\leq\Vert x\pm y\Vert \leq \Vert x\Vert + \Vert y\Vert$}
-\Pre{L'inégalité de droit est déjà une des propriétés des normes. Pour l'inégalité de gauche, elle est équivalente à $\begin{array}{rcl} \Vert x\Vert -\Vert y\Vert & \leq & \Vert x-y\Vert \\ -\Vert x-y\Vert & \Vert x\Vert - \Vert y\Vert \end{array}$.
+\Pre{L'inégalité de droite est déjà une des propriétés des normes. Pour l'inégalité de gauche, elle est équivalente à $\begin{array}{rcl} \Vert x\Vert -\Vert y\Vert & \leq & \Vert x-y\Vert \\ -\Vert x-y\Vert &\leq & \Vert x\Vert - \Vert y\Vert \end{array}$.
 \par On la prouve en utilisant $x = x-y+y$ et puis $\Vert x\Vert \leq \Vert x-y\Vert +\Vert y\Vert$}
 \Def{Boule ouverte}{Avec $E$ un EVN, soit $x\in E, r\in\R_+$, on appelle la boule ouverte de centre $x$ et de rayon $r$ : $\mathcal{B}(x,r)=\{y\in E, \Vert x-y\Vert<r\}$}
 \Def{Boule fermée}{Avec $E$ un EVN, soit $x\in E, r\in\R_+$, on appelle la boule fermée de centre $x$ et de rayon $r$ : $\mathcal{B}_f(x,r)=\{y\in E, \Vert x-y\Vert\leq r\}$}
@@ -516,7 +516,7 @@ $A=\{(x,y)\in\R^2\vert x^2+y<0\text{ et }x+3y>0\}$ est un ouvert comme son compl
 \end{Exe}
 \Def{Densité}{Soit $A\subset E$. On dit que $A$ est dense dans $E$ si $\bar{A}=E$
 \par i.e. $\forall x\in E,\exists (a_n)\in A^\N, (a_n)\to x$
-\par i.e. Tout élément de $E$ est limite d'une suite d'éléments de $E$}
+\par i.e. Tout élément de $E$ est limite d'une suite d'éléments de $A$}
 \begin{Exe}
 $\Q$ est dense dans $\R$, $\Q^2$ est dense dans $\R^2$, $\Q\times (\R\backslash\Q)$ est dense dans $\R^2$...
 \end{Exe}
@@ -591,7 +591,7 @@ Une boule fermée en dimension finie est compacte. En dimension infinie, il est 
 $f\to_{+\infty} l$ donne que $\forall\varepsilon\in\R_+^*,\exists M\in\R_+^*,\forall x\in A, \Vert x\Vert\geq M\Rightarrow \Vert f(x)-l\Vert<\varepsilon$
 \end{Exe}
 \Prop{Caractérisation séquentielle de la limite}{Avec $f\in\mathcal{F}(A,F)$ avec $A\subset E$ et $E,F$ deux EVN. Avec $x_0\in\bar{A}$ et $l\in F$, alors :
-\par \begin{center}$f\rightarrow_{x_0}l\Leftrightarrow \forall (u_n)\in A^\N, (u_n)\to x_0, (f(x_0))\to l$ \end{center}}
+\par \begin{center}$f\rightarrow_{x_0}l\Leftrightarrow \forall (u_n)\in A^\N, (u_n)\to x_0, (f(u_n))\to l$ \end{center}}
 \Pre{On suppose que $f$ tend vers $l$ en $x_0$ : \par Soit $(u_n)\in A^\N$ tel que $(u_n)\to x_0$ \par Soit $\varepsilon\in\R_+^*$ \par $f\to_{x_0} l$, on peut trouver $\alpha\in\R_+^*, \forall x\in A\cap\mathcal{B}(x_0,\alpha), \Vert f(x)-\alpha\Vert<\varepsilon$ \par Or $(u_n)\to x_0$ donc on peut trouver $n_0\in\N,\forall n\in\N, n\geq n_0\Rightarrow \Vert u_n-x_0\Vert<\alpha$ \par Donc pour $n\geq n_0$ : $\Vert f(u_n)-l\Vert<\varepsilon$
 On suppose que $\forall (u_n)\in A^\N, (u_n)\to x_0, (f(x_0))\to l$ : on prouve la contraposée : \par $f$ ne tend pas vers $l$ en $x_0$ donc on peut construire une suite $(u_n)$ tendant vers $x_0$ telle que $(f(u_n))$ ne tend pas vers $l$. \par On peut donc prendre un $\varepsilon\in\R_+^*$ tel que $\forall\alpha\in\R_+^*,\exists x\in A\cap\mathcal{B}(x_0,\alpha)\text{ et }\Vert f(x)-l\Vert>\varepsilon$ \par Pour $n\in\N^*$, on peut donc choisir $u_n\in A\cap\mathcal{B}(x_0,\frac{1}{n})$ et $\Vert f(u_n)-l\Vert>\varepsilon$ \par On a donc construit $(u_n)\in A^\N$ tel que $\forall n\in\N, \Vert u_n-x_0\Vert<\varepsilon\frac{1}{n}$ et $\Vert f(u_n)-l\Vert>\varepsilon$}
 \begin{Exe}
@@ -608,7 +608,7 @@ $f:\left\{\begin{array}{rcl} \R^2\backslash\{(0,0)\} & \to & \R \\ (x,y) & \maps
 \subsection{Opérations sur les limites}
 \Prop{Limite d'une fonction à valeurs dans un produit cartésien}{Soit $f:A\to F_1\times F_2\times...\times F_p$ avec $(F_i)$ famille d'EVN et $A\subset E$ une partie d'un EVN. On a alors $f:x\mapsto (f_1(x),f_2(x),... f_p(x))$ et on peut caractérister $f$ par ses fonctions composantes $f_i:A\to F_i$
 \par Soit $x_0\in\bar{A}$ et $l=(l_1,...,l_p)\in F_1\times...\times F_p$, alors $f\to_{x_0} l$ si, et seulement si, $\forall i\in\{1,...,p\}, f_i\to_{x_0} l_i$.
-\par En particulier, si $F$ est un EVN de dimension finie ramené à une base $B=(u_1, u_2,...,u_p)$, $F$ est isomorphe à $\K^p$ par la bijection $\sum\limits_{i=1}^px_iu_i\mapsto (x_1,...,x_p)$. Si $f\in\mathcal{F}(A,F) : x\mapsto f(x)=\sum\limits_{i=1}^pf_i(x)u_i$, on appelle les $f_i$ les applications coordonénes et $f$ a une limite si, et seulement si, les applications coordonnées ont des limites.}
+\par En particulier, si $F$ est un EVN de dimension finie ramené à une base $B=(u_1, u_2,...,u_p)$, $F$ est isomorphe à $\K^p$ par la bijection $\sum\limits_{i=1}^px_iu_i\mapsto (x_1,...,x_p)$. Si $f\in\mathcal{F}(A,F) : x\mapsto f(x)=\sum\limits_{i=1}^pf_i(x)u_i$, on appelle les $f_i$ les applications coordonnées et $f$ a une limite si, et seulement si, les applications coordonnées ont des limites.}
 \Prop{Opérations sur les fonctions convergentes}{\begin{itemize}
 \item Avec $f,g\in\mathcal{F}(A,E)$, on a que $f$ converge et $g$ converge $\Rightarrow f+g$ converge et $\lim(f+g) = \lim f+\lim g$
 \item Avec $\lambda\in\mathcal{F}(A,\K), f\in\mathcal{F}(A,F)$, $\lambda$ converge et $f$ converge $\Rightarrow \lambda f$ converge et $\lim(\lambda f) =(\lim\lambda)(\lim f)$
@@ -632,7 +632,7 @@ Toutes les notions vues sur les limites de fonctions s'étendent sur les fonctio
 \end{Rem}
 \Prop{}{Si $E$ est de dimension finie associé à une vase $B=(e_1,...,e_p)$, alors :
 \par \begin{center} $P_j:\left\{\begin{array}{rcl} E & \to & \K \\ x=\sum\limits_{i=1}^px_ie_i & \mapsto & x_j \end{array}\right.$\end{center}
-\par Alors : $\forall x,y\in E, x=\sum x_ie_i, y=\sum y_ie_i, \vert p_j(x) - p_j(y)\vert\leq\Vert x-y\Vert_\infty$ et l'application projection est une application continue en tous points. (1-lipschitzienne donc absolument continue)}
+\par Alors : $\forall x,y\in E, x=\sum x_ie_i, y=\sum y_ie_i, \vert p_j(x) - p_j(y)\vert\leq\Vert x-y\Vert_\infty$ et l'application projection est une application continue en tous points. (1-lipschitzienne donc uniformément continue)}
 \begin{Exe}
 $f:\left\{\begin{array}{rcl} \R^2 & \to & \R^3 \\ (x,y) & \mapsto & \left(\frac{\arctan(xy^2sin(x+y))}{\sqrt{x^2+y^2+1}}, \frac{\log(1+x^2y^4)}{\cosh(x+3y)},x+y\right) \end{array}\right.$
 \par Cette fonction est continue car toutes ses coordonnées sont continues, en tant que produits, sommes et compositions de fonctions continues. En effet, $x$ et $y$, en tant que projecteurs, sont nécessairement continus.
@@ -658,7 +658,7 @@ $A=\{(x,y)\in\R^2\vert\sin(x)+2y<0\text{ et }x+3y>0\text{ et }\arctan(\frac{x}{x
 On recherche la partie de $\mathcal{C}(\R,\R)$ telles que : $\forall x,y\in\R, f(x+y)=f(x)+f(y)$. \par On prouve d'abord que $f(0)=0$ et que $\forall x\in\R,\forall n\in\N, f(x)=nf(x)$, puis on l'étend à $\Z$ et enfin à $\Q$. Et ensuite on se sert du théorème pour conclure
 \end{Exe}
 \Def{Uniforme continuité}{Soit $f\in\mathcal{F}(A,F)$ où $A\subset E$ avec $E,F$ deux EVN. On dit que $f$ est uniformément continue si :
-\par\begin{center} $\forall\varepsilon\in\R_+^*,\exists\eta\in\R_+^*,\forall x,y\in A,\Vert x-y\Vert<\eta\Rightarrow\Vert f(x)-f(y)<\varepsilon$\end{center}}
+\par\begin{center} $\forall\varepsilon\in\R_+^*,\exists\eta\in\R_+^*,\forall x,y\in A,\Vert x-y\Vert<\eta\Rightarrow\Vert f(x)-f(y)<\varepsilon\Vert$\end{center}}
 \begin{Rem}
 La continuité uniforme implique la continuité. \par On peut trouver un contre-exemple à la réciproque, comme $f:\left\{\begin{array}{rcl} \R & \to & \R \\ x & \mapsto & e^x\end{array}\right.$ \par La négation de la continuité uniforme, c'est que : $\exists\varepsilon\in\R_+^*,\forall\eta\in\R_+^*,\exists x,y\in A, (\Vert x-y\Vert<\eta)\text{ et }(\Vert f(x)-f(y)\Vert\geq\varepsilon)$
 \par C'est peu exploitable, donc on fait une caractérisation séquentielle de la non-continuité uniforme : $\exists\varepsilon\in\R_+^*,\exists(x_n),(y_n)\in A^\N, (\Vert x_n-y_n\Vert)\to 0\text{ et }\Vert f(x_n)-f(y_n)\geq\varepsilon$ \par On note P1 la négation et P2 la caractérisation séquentielle. Prouvons leur équivalence. \par Supposons P1, et prenons $\varepsilon\in\R_+^*$ vérifiant la propriété. 
@@ -730,7 +730,7 @@ $\mathcal{M}_{n,1}(\K)$ muni de la norme $\Vert.\Vert_\infty$, déterminons la n
 \par Faisons de même pour $\Vert.\Vert_1$ : soit $X\in\mathcal{M}_{n,1}(\K)$ \par $\Vert AX\Vert_1 = \sum\limits_{i=1}^n\vert\sum\limits_{j=1}^nA_{i,j}X_j\vert\leq \sum\limits_{i=1}^n\sum\limits_{j=1}^n\vert A_{i,j}X_j\vert\leq \sum\limits_{j=1}^n\vert X_j\vert \sum\limits_{i=1}^n\sum \vert A_{i,j}\vert \leq \left(\max\limits_{1\leq i\leq n} \sum\limits_{i=1}^n\vert A_{i,j}\vert\right)\sum\limits_{k=1}^n X_k$ \par Donc $\vert\Vert A\Vert\vert\leq\left(\max\limits_{1\leq i\leq n} \sum\limits_{i=1}^n\vert A_{i,j}\vert\right)\sum\limits_{k=1}^n X_k$
 \par Pour la majoration atteinte, on prend le $j_0\in\llbracket 1,n\rrbracket$ tel que $\sum\limits_{i=1}^n\vert A_{i,j_0}\vert =\max\limits_{j}\sum\limits_{i=1}^n\vert A_{i,j}\vert$ \par Soit $X=(0_1,...,0, 1, 0,...,0)$ avec le $1$ en position $j_0$ \par $\Vert AX\Vert_1 = \sum\limits_{i=1}^n\vert A_{i,j_0}\vert$ donc $\vert\Vert A\Vert\vert =\max\limits_{1\leq j\leq n}\sum\limits_{i=1}^n\vert A_{i,j}\vert$ 
 \end{Exe}
-\Thr{Sous-multiplicativité}{Soit $E,F,G$ des EVN, soit $f\in\mathcal{L}_C(E,F)$ et $g\in\mathcal{L}_C(F,G)$, alors $\Vert g\circ f\Vert\leq \Vert g\Vert \Vert f\Vert$}
+\Thr{Sous-multiplicativité}{Soit $E,F,G$ des EVN, soit $f\in\mathcal{L}_C(E,F)$ et $g\in\mathcal{L}_C(F,G)$, alors $\vert\Vert g\circ f\Vert\vert\leq \vert\Vert g\Vert\vert\vert \Vert f\Vert\vert$}
 \Pre{Soit $x\in E$, tel que $\Vert x\Vert=1$ \par Alors $\Vert g\circ f(x)\Vert = \Vert g(f(x))\Vert \leq \Vert g\Vert \Vert f(x)\Vert$ par définition de $\Vert.\Vert$ dans $\mathcal{L}_C(E,F)$ \par Et $\Vert g\Vert \Vert f(x)\Vert\leq\Vert g\Vert \Vert f\Vert \Vert x\Vert\leq \Vert g\Vert \Vert f\Vert$ \par Donc $\sup\limits_{\Vert x\Vert =1}\Vert g\circ f(x)\Vert\leq \Vert g\Vert \Vert f\Vert$}
 \Prop{Corollaire}{$\mathcal{L}_C(E)$ est munie naturellement d'une norme d'algèbre.}
 
@@ -768,7 +768,7 @@ $\mathcal{GL}_n(\R)$ n'est pas connexe par arcs : $\det(\mathcal{GL}_n(\R))=\R^*
 \section{Théorème d'équivalence des normes}
 \Thr{L'équivalence des normes}{Toutes les normes sont équivalentes en dimension finie}
 \Pre{Soit $E$ un $\K$-ev de dimension finie, avec $B=(e_1,...,e_p)$ une base de $E$. \par Soit $\Vert.\Vert_\infty\left\{\begin{array}{rcl} E&\to&\K \\ x=\sum\limits_{i=1}^px_ie_i & \mapsto & \max\limits_{1\leq i\leq p}\vert x_i\vert \end{array}\right.$
-\par Soit $N$ un e norme sur $E$ \par Pour $x\in E$, en notant $x=\sum\limits_{i=1}^px_ie_i$ : \par $N(x)\leq\sum\limits_{i=1}^p\vert x_i\vert N(e_i)\leq\Vert x\Vert_\infty\sum\limits_{i=1}^p N(e_i)$ \par Or, par la seconde inégalité triangulaire : \par $\forall x,y\in E, \vert N(x)-N(y)\vert\leq N(x-y)\leq K\Vert x-y\Vert_\infty$, où $K$ est une constante. \par Si on considère $(E,\Vert.\Vert_\infty)$, on a donc que $N$ est lipschitzienne, et donc continue.
+\par Soit $N$ une norme sur $E$ \par Pour $x\in E$, en notant $x=\sum\limits_{i=1}^px_ie_i$ : \par $N(x)\leq\sum\limits_{i=1}^p\vert x_i\vert N(e_i)\leq\Vert x\Vert_\infty\sum\limits_{i=1}^p N(e_i)$ \par Or, par la seconde inégalité triangulaire : \par $\forall x,y\in E, \vert N(x)-N(y)\vert\leq N(x-y)\leq K\Vert x-y\Vert_\infty$, où $K$ est une constante. \par Si on considère $(E,\Vert.\Vert_\infty)$, on a donc que $N$ est lipschitzienne, et donc continue.
 \par On a que $\mathcal{S}_\infty(0,1)=\{x\in E\vert \Vert x\Vert_\infty=1\}$ est compact. \par Donc $N$ étant continue, elle atteint ses bornes supérieures et inférieures sur $\mathcal{S}_\infty(0,1)$. \par Donc $m=\inf\limits_{x\in\mathcal{S}(0,1)}N(x)>0$ \par Et donc $\forall x\in E,x\neq 0\Rightarrow N\left(\frac{1}{\Vert x\Vert_\infty}x\right)\leq m\Rightarrow N(x)\geq m\Vert x\Vert_\infty$
 \par D'où l'équivalence entre $N$ quelconque et $\Vert.\Vert_\infty$. Par transitivité de la relation d'équivalence des normes, on a donc que toutes les normes en dimension finie sont équivalentes.}
 
@@ -799,7 +799,7 @@ Attention, deux matrices semblables n'ont pas les mêmes espaces propres. Ils so
 \Prop{Corollaire}{Si $\dim E$ est finie : $f\in\mathcal{L}(E), n=\dim E$ :\begin{itemize}
 \item $S_p(f)$ est fini et $card S_p(f)\leq n$ ($\lambda \in S_p(f)\Rightarrow \dim E_\lambda(f)\geq 1$) ;
 \item $f$ est diagonalisable (ie il existe une base de $E$ dans laquelle $Mat_B(f)$ est diagonale) si, et seulement si, $\sum\limits_{\lambda\in S_p(f)}\dim E_\lambda(f)=\dim E$
-\item Si $f$ admet $n$ valeurs propres distinctes, alors $f$ est diagonalisables.
+\item Si $f$ admet $n$ valeurs propres distinctes, alors $f$ est diagonalisable.
 \end{itemize}}
 \Pre{Si $\sum\limits_{\lambda\in S_p(f)}\dim E_\lambda(f)=\dim E$ : \par $S_p(f)=\{\lambda_1,...,\lambda_p\}$, on prend $B_1,...,B_p$ bases respectivement de $E_{\lambda_1}(f),...,E_{\lambda_p}(f)$ \par On considère $B=(B_1,...,B_p)$ \par $B$ est une famille libre (la somme des espaces propres est directe) et $\dim E_{\lambda_1}(f)+...\dim E_{\lambda_p}(f) =\dim E$ vecteurs de $E$ \par Donc $B$ est une base. Et alors la matrice de $f$ dans cette base est diagonale de coefficients les éléments du spectre selon leurs dimensions.
 \par On suppose qu'il existe $B=(e_1,...,e_n)$ telle qu'il existe $(\lambda_1,...,\lambda_n)\in\K^n$ telle que la matrice de $f$ dans $B$ soit diagonale de coefficients les $\lambda_i$. \par On a donc $\forall i\in\llbracket 1,n\rrbracket, e_i\in E_{\lambda_i}(f)$ \par Donc $E\subset E_{\lambda_1}(f)+...+E_{\lambda_n}(f)\subset\bigoplus\limits_{\lambda\in S_p(f)}E_\lambda(f)$ \par Donc $\dim E\leq \sum\limits_{\lambda\in S_p(f)}\dim E_{\lambda}(f)$, l'égalité étant assurée par le fait que les espaces propres sont des sev de $E$.}
@@ -835,7 +835,7 @@ Application : si $\chi_f$ est scindé, alors $\chi_f=\prod\limits_{k=1}^n(X-\lam
 \Thr{}{Soit $E$ un $\K$-ev de dimension finie. Soit $f\in\mathcal{L}(E)$. Soit $\lambda$ une valeur propre de $f$ d'ordre $\alpha$ \par Alors $\dim E_\lambda(f)\leq\alpha$}
 \Pre{Dans le cadre de l'énoncé, on note $p=\dim E_\lambda(f)$. \par On peut prendre $(e_1,..., e_p)$ une base de $E_\lambda(f)$ \par On complète cette famille libre de $e$ par $e_{p+1}, ..., e_n$ en une base $B$ de $E$. \par Alors $Mat_B(A) = \begin{pmatrix} \lambda I_p & C\\ 0 & D\end{pmatrix}$ avec $C\in\mathcal{M}_{p,n-p}(\K)$ et $D\in\mathcal{M}_{n-p, n-p}(\K)$ \par Donc $\chi_f  = \det\begin{pmatrix}(X-\lambda)I_p & -C \\ 0 & XI-D \end{pmatrix} = (X-\lambda)^p\det(XI-D)$ \par Donc $(X-\lambda)^p$ divise $\chi_f$ \par Donc $p\leq\alpha$}
 \Prop{Corollaire}{Si $E$ de dimension finie, $f\in\mathcal{L}(E)$, alors $f$ est diagonalisable si, et seulement si :
-\par $\left\{\begin{array}{l} \chi_f\text{ est scindé} \\ \text{Pour tout }\lambda\in S_p(f)\text{, la dimension de }E_\lambda(f)\text{ est égale à l'ordre de }\lambda\end{array}\right.$}
+\par $\left\{\begin{array}{l} \chi_f\text{ est scindé} \\ \forall\lambda\in S_p(f), \mathrm{dim}E_\lambda(f)=\alpha_\lambda\end{array}\right.$}
 \Pre{On note $\alpha_\lambda$ l'ordre de $\lambda$ pour $\lambda\in S_p(f)$ \par Par contraposée : si $\chi_f$ est non-scindé. \par On a alors $\sum\limits_{\lambda\in S_p(f)}\alpha_\lambda$ \par On sait que $\dim\bigoplus_{\lambda\in S_p(f)}E_\lambda(f)=\sum\limits_{\lambda\in S_p(f)}\dim E_\lambda(f)$ \par Donc $\dim\bigoplus_{\lambda\in S_p(f)}E_\lambda(f)\leq \sum\limits_{\lambda\in S_p(f)}\alpha_\lambda<n$ \par Donc $\bigoplus E_\lambda(f)\neq E$ \par $f$ n'est pas diagonalisable.
 \par On suppose maintenant $\chi_f$ scindé. \par Pour $\lambda\in S_p(f)$, on note $n_\lambda$ la dimension de $E_\lambda(f)$ \par $f$ est diagonalisable si, et suelement si $\bigoplus\limits_{\lambda\in S_p(f)}E_\lambda(f)=E$ \par $\Leftrightarrow \sum\limits_{\lambda\in S_p(f)}n_i=n$ \par $\Leftrightarrow \sum\limits_{\lambda\in S_p(f)}(\alpha_\lambda-n\lambda)=0$ \par $\forall\lambda\in S_p(f),\alpha_\lambda=n_\lambda$}
 \begin{Exe}
@@ -928,6 +928,8 @@ On étend toutes ces notions aux racines de $\mathcal{M}_n(\K)$ par passage à l
 \par Avec $\K=\R$, avec $B$ une base de $E$. On considère $M=Mat_B(f)\in\mathcal{M}_n(\R)$ \par On a que $\pi_f=\pi_M$ et $\chi_f=\chi_M$ \par $M\in\mathcal{M}_n(\R)$ et $\mathcal{M}_n(\R)\subset \mathcal{M}_n(\C)$ \par Donc $\pi_{M,\C}\vert \chi_{M,\C}$ \par $\chi_M = \det(XI-M)$ ne dépend pas du corps considéré. Donc $\chi_{M,\C}=\chi_{M,\R}$ \par $\pi_{M,\C}\vert\pi_{M,\R}$ \par Rappelons que pour $P\in \C[X]$ : $P(M)=0\Rightarrow \bar{P}(\bar{M})$ \par Mais si $M\in\mathcal{M}_n(\R)$, alors $\bar{P}(M)=0$ aussi. \par $\bar{\pi}_{M,C}$ est annulateur de $M$ et de même degré que $\pi_{M,\C}$, donc $\pi_{M,\C}=\bar{\pi}_{M,\C}$ \par Donc $\pi_{M,\C}\in\R[X]$ \par Donc $\pi_{M,\R}\vert\pi_{M,\C}$
 }
 
+
+
 \chapter{Suites et sérties de fonctions}
 \section{Suites de fonctions}
 \Def{Convergence simple}{Soit $E,F$, 2 $\K$-ev de dimension finie. Soit $A\subset E$. Soit $(f_n)\in\mathcal{F}(A,F)^\N$.
@@ -962,7 +964,7 @@ Etudier la convergence simple et uniforme de $f_n:\left\{\begin{array}{rcl} \R_+
 \section{Séries de fonctions}
 Dans la suite du chapitre, on aura $E,F$ deux $\K$-ev de dimension finie, et $A\subset E$
 \Def{Convergences}{Soit $(u_n)\in\mathcal{F}(A,F)^\N$, on dit que la série de fonction $(\sum u_n)$ converge simplement si la suite des sommes partielles $\left(\sum\limits_{k=0}^n u_k\right)$ converge simplement.
-\par On dit que $(\sum u_n)$ converge uniformémemnt si la suite des sommes partielles $\left(\sum\limits_{k=0}^nu_k\right)$ converge uniformémement.}
+\par On dit que $(\sum u_n)$ converge uniformément si la suite des sommes partielles $\left(\sum\limits_{k=0}^nu_k\right)$ converge uniformément.}
 \begin{Rem}
 Si $(\sum u_n)$ converge simplement sur $A$, on peut définir la fonction "somme" de $\sum u_n$ sur A : c'est l'application $\begin{array}{rcl} A & \to & F \\ t & \mapsto & \sum\limits_{n=0}^{+\infty}u_n(t)\end{array}$
 \end{Rem}
@@ -1026,7 +1028,7 @@ Notons $\exp:\left\{\begin{array}{rcl} \mathcal{M}_n(\K) & \to & \mathcal{M}_n(\
 \Thr{Extension de limite uniforme}{Soit $(f_n)\in\mathcal{F}(A,F)^\N$, soit $a\in\bar{A}$. \par Si $\forall n\in\N, f_n(x)\to_{x\to a}l_n\text{ et }f_n\text{ converge uniformement vers }g$ \par Alors $(l_n)$ est convergente et $g(x)\to_{x\to a}\lim\limits_{n\to+\infty}l_n$
 \par ie : $g$ a une limite finie en $a$ et $\lim\limits_{x\to a} \lim\limits_{n\to+\infty}l_n = \lim\limits_{n\to+\infty}\lim\limits_{x\to a} f_n$ \par Ce théorème s'étend lorsque $E=\R$ et que $a=\pm\infty$}
 \Pre{Sous les hypothèses du théorème : si on admet que $(l_n)$ est convergente, on a une démonstration identique à celle de la continuité. \par Pour $x\in A$, on a : $\Vert g(x)-\lim l_n\Vert\leq \Vert g(x)-f_n(x)\Vert + \Vert f_n(x)-l_n\Vert + \Vert l_n-\lim l_n\Vert$ \par Ces trois termes sont plus petit qu'un $\varepsilon$ donné pour $n$ suffisamment grand pour le premier et troisième terme et pour $\Vert x-a\Vert<\alpha$ pour le deuxième terme.}
-\Thr{échange de limites de séries}{Avec $(u_n)\in\mathcal{F}(A,F)^\N$ et $a\in\bar{A}$ \par Si $\forall n\in\N, u_n(x)\to_{x\to a}v_n$ et que $(\sum u_n)$ converge uniformément, alors $\left(\sum\limits_{n=0}^{+\infty}u_n\right)$ a une limite ene $a$ et $\lim\limits_{x\to a}\sum\limits_{n=0}^{+\infty}u_n(x)=\sum\limits_{n=0}^{+\infty}u_n(x)=\sum\limits_{n=0}^{+\infty}v_n$}
+\Thr{échange de limites de séries}{Avec $(u_n)\in\mathcal{F}(A,F)^\N$ et $a\in\bar{A}$ \par Si $\forall n\in\N, u_n(x)\to_{x\to a}v_n$ et que $(\sum u_n)$ converge uniformément, alors $\left(\sum\limits_{n=0}^{+\infty}u_n\right)$ a une limite en $a$ et $\lim\limits_{x\to a}\sum\limits_{n=0}^{+\infty}u_n(x)=\sum\limits_{n=0}^{+\infty}v_n$}
 \begin{Exe}
 Reprenons $f:\left\{\begin{array}{rcl} \R_+ & \to & \R \\ x & \mapsto & \sum\limits_{n=1}^{+\infty}\frac{1}{n\sqrt{n+x}}\end{array}\right.$
 \par On rappelle que $f$ converge normalement sur $\R_+$ puisque $\forall n\in\N*, \forall x\in\R_+, \vert u_n(x)\vert\leq \frac{1}{n^{3/2}}$, terme général d'une série convergente.
@@ -1050,7 +1052,7 @@ $\int_0^1n^2t^n(1-t)dt = n^2(\frac{1}{n+1}-\frac{1}{n+1}) = \frac{n^2}{(n+1)(n+2
 \begin{Rem}
 Pour une série de fonctions, le théorème devient : si $(u_n)\in\mathcal{C}_0([a,b],F)^\N$ et si $\sum u_n$ converge uniformément sur $[a,b]$ alors $\int_a^b\sum\limits_{n=0}^{+\infty}u_n(t)dt = \sum\limits_{n=0}^{+\infty}\int_a^bu_n(t)dt$
 \end{Rem}
-\Thr{}{Soit $(f_n)$ une suite de fonctions continues d'un intervalle $I$ de $\R$ à valeurs dans $F$ convergeant uniformément vers $g$ sur tout segment de $I$ \par Soit $a\in I$, on a alors : $F_n:\begin{array}{rcl}I & \to & F \\ x & \mapsto & \int_a^bf_n(t)dt\end{array}$ et $G:F_n:\begin{array}{rcl}I & \to & F \\ x & \mapsto & \int_a^bg(t)dt\end{array}$ \par Alors $F_n$ converge uniformément vers $G$ sur tout segment de $I$.}
+\Thr{}{Soit $(f_n)$ une suite de fonctions continues d'un intervalle $I$ de $\R$ à valeurs dans $F$ convergeant uniformément vers $g$ sur tout segment de $I$ \par Soit $a\in I$, on a alors : $F_n:\begin{array}{rcl}I & \to & F \\ x & \mapsto & \int_a^bf_n(t)dt\end{array}$ et $G:\begin{array}{rcl}I & \to & F \\ x & \mapsto & \int_a^bg(t)dt\end{array}$ \par Alors $F_n$ converge uniformément vers $G$ sur tout segment de $I$.}
 \Pre{La définition de $G$ est correcte car $f_n$ converge uniformément sur vers $g$ sur tout segment de $I$ donc $g$ est continue
 \par À $x$ fixé, comme $f_n$ converge uniformément vers $g$ sur le segment $[a,x]$, d'après le théorème précédent $\int\limits_{[a,x]}f_n\to \int\limits_{[a,x]}g$ donc $F_n$ converge simplement vers $G$ sur $I$
 \par Soit $S$ un segment inclu dans $I$, soit $b$ un point de $S$, alors $\forall x\in S, \Vert F_n(x)-G(x)\Vert =\left\Vert\int_b^x f_n(t) - g(t) dt\right\Vert$ \par $\leq \int_b^x\Vert f_n(t)-g(t)\Vert dt\leq \vert x-b\vert \sup\limits_{t\in[b,x]}\Vert f_(t)-g(t)\Vert\leq diam(S)\sup\limits_{S}\Vert f_n-g\Vert$ \par Qui tend vers 0 quand $n$ tend vers l'infini \par Ce qui conclut}
@@ -1058,7 +1060,7 @@ Pour une série de fonctions, le théorème devient : si $(u_n)\in\mathcal{C}_0(
 \par Ce qui correspond à $g_0'=g_1 \Rightarrow (\lim f_n)=\lim (f_n')$}
 \Pre{Pour $n\in\N$, $(f_n)$ est $\mathcal{C}^1$, donc $(f_n')$ est continue. \par Donc par théorème de continuité uniforme, $g_1$ est continue. \par D'autre part, si on fixe $a\in I, \forall x\in I, f_n(x)=f_n(a)+\int_a^xf_n'(t)dt$ \par Donc par théorème d'intégration uniforme, $g_0=\lim\limits_{n\to+\infty}f_n=g_0(a)+\int_a^xg_1(t)dt$ \par Et donc $g_0$ est $\mathcal{C}^1$ et $g_0'=g_1$ \par La suite $(f_n)$ converge uniformément sur tout segment vers $g_0$.}
 \Thr{Théorème de dérivation des suites à l'ordre k}{Avec $I$ un intervalle, si :\begin{itemize}\item $(f_n)\in\mathcal{C}^k(I,F)^\N$ \item $\forall j\in\llbracket0,k-1\rrbracket, (f_n^{(j)})$ converge simplement vers $g_j$ \item $(f_n^{(k)})$ converge uniformément vers $g_k$ sur tout segment de $I$\end{itemize} alors $g_0$ est $\mathcal{C}^l$ tel que $\forall j\in\llbracket0,k\rrbracket, g_0^{(j)}=g_j$ et $(f_n^{(j)})$ converge uniformément sur tout segment de $I$.}
-\Thr{Théorème de dérivation terme à terme à l'ordre k}{Avec $I$ un intervalle, si :\begin{itemize}\item $(u_n)\in\mathcal{C}^1(I,F)^\N$ \item $(\sum u_n)$ converge simplement \item $(\sum u_n)$ converge uniformément vers sur tout segment de $I$\end{itemize} alors $\sum\limits_{n=0}^{+\infty}u_n$ est $\mathcal{C}^k$ tel que $\forall j\in\llbracket0,k\rrbracket, \left(\sum\limits_{n=0}^{+\infty}u_n\right)^{(j)}=\sum\limits_{n=0}^{+\infty}u_n^{(j)}$ et la somme converge uniformément sur tout segment de $I$.}
+\Thr{Théorème de dérivation terme à terme à l'ordre k}{Avec $I$ un intervalle, si :\begin{itemize}\item $(u_n)\in\mathcal{C}^1(I,F)^\N$ \item $(\sum u_n)$ converge simplement \item $(\sum u_n)$ converge uniformément sur tout segment de $I$\end{itemize} alors $\sum\limits_{n=0}^{+\infty}u_n$ est $\mathcal{C}^1$ tel que $\forall j\in\llbracket0,k\rrbracket, \left(\sum\limits_{n=0}^{+\infty}u_n\right)'=\sum\limits_{n=0}^{+\infty}u_n'$ et la somme converge uniformément sur tout segment de $I$.}
 \begin{Exe}
 $f:\left\{\begin{array}{rcl}\R_+^* & \to & \R \\ x & \mapsto & \sum\limits_{n=0}^{+\infty}e^{-n^2x}\end{array}\right.$ en notant $u_n=e^{n^2x}$ \par Pour $n\in\N$, $u_n$ est $\mathcal{C}^\infty$, $u_n':x\mapsto -n^2e^{n^2x}$ et $u_n'':x\mapsto n^4e^{n^2x}$ \par Soit $x\in\R_+^*$, alors $\vert u_n(x)\vert=o(\frac{1}{n^2}), \vert u_n'(x)\vert=o(\frac{1}{n^2})$ \par $\sum u_n$ et $\sum u_n'$ convergent simplement sur $\R_+^*$ \par Soit $a\in\R_+^*$, soit $n\in\N$, soit $x\in[a,+\infty[$ \par $\vert n^4e^{-n^2x}\vert\leq n^4e^{-an^2}$ \par Or $\sum n^4e^{-an^2}$ est convergente
 \par Donc la série $\sum x\mapsto n^4e^{-n^2x}$ converge normalement donc uniformément sur $[a,+\infty[$ pour tout $a$ \par Donc par théorème de dérivation terme à terme d'ordre 2, $f$ est $\mathcal{C}^2$ et $f':x\mapsto \sum\limits_{n=0}^{+\infty}-n^2e^{-n^2x}$ et $f'':x\mapsto \sum\limits_{n=0}^{+\infty}n^4e^{-n^2x}$
@@ -1090,6 +1092,7 @@ Ce résultat s'étend sans difficulté aux fonctions continues par morceaux. Il 
 \end{Rem}
 
 
+
 \chapter{Séries entières}
 \section{Généralités}
 \Def{}{Soit $(a_n)\in\C^\N$. On appelle série entière associée à $(a_n)$ (de variable complexe) la série de fonctions $\left(\sum (z\mapsto a_nz^n)\right)$ qu'on notera en général $\left(\sum a_nz^n\right)$
@@ -1110,7 +1113,7 @@ Pour $\sum\frac{z^n}{n!}$, on a $R=+\infty$ \par Pour $\sum z^n$ on a $R=1$ et s
 \end{Exe}
 
 \section{Calculs de rayon de convergence}
-\Prop{}{Le rayon de $\sum a_nz^n$ est le rayon de $\sum \vert a_n z^n$}
+\Prop{}{Le rayon de $\sum a_nz^n$ est le rayon de $\sum \vert a_n z^n\vert$}
 \begin{Rem}
 Les déterminations de rayon d'une série entière ne font intervenir que des critères de séries numériques positives.
 \end{Rem}
@@ -1138,9 +1141,8 @@ Pour la série entière $\sum\sin(n)z^n$
 \end{Exe}
 
 \section{Opérations sur les séries entières}
-\Prop{Combinaisons linéaires}{Si $\sum a_nz^n$ et $\sum b_nz^n$ deux séries entières de rayons respectifs $R_a$ et $R_b$, alors : \par $\sum(a_n+b_n)z^n$ converge de rayon $R$ avec $R=\min(R_a,R_b)$ \par Si $R_a\neq R_b$, on peut affirmer que $R=\min(R_a,R_b)$ \par De plus, pour $z\in\mathcal{D}(0,R)$, on a $\sum\limits_{n=0}^{+\infty} (a_n+b_n)z^n = \sum\limits_{n=0}^{+\infty}a_nz^n + \sum\limits_{n=0}^{+\infty}b_nz^n$}
-\Pre{Avec les notations de l'énoncé :\par Supposons que $R_a=R_b$ : \par Alors  \par Supposons que $R_a\neq R_b$, supposons sans perte de généralité que $R_a<R_b$ : \par Si $z\in\mathcal{D}(0,R_a)$, alors $\sum (a_n+b_n)z^n$ est bien définie, sinon non.
-}
+\Prop{Combinaisons linéaires}{Si $\sum a_nz^n$ et $\sum b_nz^n$ deux séries entières de rayons respectifs $R_a$ et $R_b$, alors : \par $\sum(a_n+b_n)z^n$ converge de rayon $R$ avec $R\geq\min(R_a,R_b)$ \par Si $R_a\neq R_b$, on peut affirmer que $R=\min(R_a,R_b)$ \par De plus, pour $z\in\mathcal{D}(0,R)$, on a $\sum\limits_{n=0}^{+\infty} (a_n+b_n)z^n = \sum\limits_{n=0}^{+\infty}a_nz^n + \sum\limits_{n=0}^{+\infty}b_nz^n$}
+\Pre{Avec les notations de l'énoncé :\par Supposons que $R_a=R_b$ : \par Alors  \par Supposons que $R_a\neq R_b$, supposons sans perte de généralité que $R_a<R_b$ : \par Si $z\in\mathcal{D}(0,R_a)$, alors $\sum (a_n+b_n)z^n$ est bien définie, sinon non.}
 \Thr{Produit de Cauchy}{Pour $\sum a_nz^n$ et $\sum b_nz^n$ deux séries entières de rayons respectifs $R_a$ et $R_b$ \par On pose pour $n\in\N$, $c_n = \sum\limits_{k=0}^na_kb_{n-k}$ \par La série entière $\sum c_nz^n$ est de rayon de convergence $R\geq\min(R_a,R_b)$ et $\forall z\in\C$ tel que $\vert z\vert < \min(R_a,R_b), \sum\limits_{n=0}^{+\infty}c_nz^n = \sum\limits_{n=0}^{+\infty}a_nz^n\sum\limits_{n=0}^{+\infty}b_nz^n$}
 \Pre{Par application du produit de Cauchy à deux séries absolument convergentes sur un domaine.}
 
@@ -1210,7 +1212,7 @@ Cette année est aussi au programme le développement d'Arctan :
 \subsection{Développement de l'autre là}
 En notant $f_\alpha :x\mapsto (1+x)^\alpha$, on a :
 \par \begin{center} $f_\alpha(x)=1+\sum\limits_{n=0}^{+\infty}\frac{\alpha(\alpha-1)...(\alpha-k+1)}{k!}x^k$ \end{center}
-\par "Je vais pas me taper le citron à sortir de $]-1,1[$
+\par "Je vais pas me taper le citron à sortir de $]-1,1[$" - Chakroun, 2022
 \Pre{$f_\alpha$ est $\mathcal{C}^\infty$ sur $]-1,1[$. De plus, $\forall x\in]-1,1[, f_\alpha'(x) = \alpha(1+x)^{\alpha-1}$
 \par Donc $f_\alpha$ est solution de l'équation différentielle $(1+x)y'=\alpha y : (E)$ \par C'est une équation différentielle linéaire d'ordre 1 résoluble, il y a donc unicité de la solution de cette équation vérifiant une condition initiale. \par Et donc $f_\alpha$ est l'unique solution de cette équation vérifiant $f_\alpha(0)=1$
 \par Déterminons la suite de al décomposition en série entière de $f_\alpha$ par analyse-synthèse. \par Analyse : Soit $(a_n)\in\R^\N$, et on suppose que $\sum a_nx^n$ est une série entière de rayon $R>0$. On pose pour $x\in]-R,R[$, on pose $f(x)=\sum\limits_{n=0}^{+\infty}a_nx^n$
@@ -1260,7 +1262,7 @@ Pour $A\in \mathcal{M}_n(\K)$, on définit $\varphi_A:\left\{\begin{array}{rcl}\
 \section{Généralités}
 \Def{Anneau euclidien}{$A$ est un anneau euclidien si :\begin{itemize}
 \item $A$ est un anneau commutatif intègre ($AB=0 \Rightarrow A=0\text{ ou } B=0$)
-\item $A$ est muni d'une division euclidienne : il existe $\varphi\in\mathcal{F}(A\backslash\{0\},\N)$ telleq ue $\forall b\in A\backslash\{0\}, \forall a\in A, \exists q,r\in A, a =bq+r$ et $(r=0\text{ ou }\varphi(r)<\varphi(b)$
+\item $A$ est muni d'une division euclidienne : il existe $\varphi\in\mathcal{F}(A\backslash\{0\},\N)$ telle que $\forall b\in A\backslash\{0\}, \forall a\in A, \exists q,r\in A, a =bq+r$ et $(r=0\text{ ou }\varphi(r)<\varphi(b)$
 \end{itemize}}
 $\Z$ et $\K{X}$ sont des anneaux euclidiens
 \par Dans $\Z$, $\forall a\in \Z, \forall b\in \Z^*, \exists!(q,r)\in\Z^2, a =bq+r, 0\leq r<\vert b\vert$ \par On peut prendre $\varphi:a\mapsto \vert a\vert$
@@ -1272,7 +1274,7 @@ Tout élément de $A$ divise $0$
 \end{Exe}
 \Prop{Association}{Soit $A$ un anneau euclidien \par Soit $a,b\in A$, $a$ divise $b$ et $b$ divise $a$ si, et seulement si, il existe un inversible tel que $b = au$}
 \Pre{Le sens indirect est immédiat.
-\par Pour le sens direct, on suppose que $a|b$ et $b|a$ \par On a donc $c\in A$ tel que $b=ca$ \par On a donc $d\in A$ tel que $a =db$ \par Donc $b=cdb$ \par Si $b=0$ : $a=0$ et la propriété est vérifiée \par Si $b\neq 0$ : on peut simplifier par $b$, comme $A$ est intèbre : $cd=1$ dsonc $c$ et $d$ sont inversibles et inverses l'un de l'autre, ce qui conclut.}
+\par Pour le sens direct, on suppose que $a|b$ et $b|a$ \par On a donc $c\in A$ tel que $b=ca$ \par On a donc $d\in A$ tel que $a =db$ \par Donc $b=cdb$ \par Si $b=0$ : $a=0$ et la propriété est vérifiée \par Si $b\neq 0$ : on peut simplifier par $b$, comme $A$ est intègre : $cd=1$ dsonc $c$ et $d$ sont inversibles et inverses l'un de l'autre, ce qui conclut.}
 \begin{Rem}
 La relation divise est presque une relation d'ordre : elle est réflexive, transiftive et "presque" antisymétrique.
 \end{Rem}
@@ -1296,8 +1298,8 @@ Une union d'idéaux non-inclus dans les autres n'est pas un idéal, de même que
 \Pre{Montrons que $I_1+I_2$ est un idéal :
 \par Soient $x,y\in I_1+I_2$, on note $x=x_1+x_2, y=y_1+y_2$ avec $x_1,y_1\in I_1, x_2, y_2\in I_2$ \par Alors $x+y = (x_1+y_1)+(x_2+y_2)\in I_1=I_2$ \par Donc $I_1+I_2$ est stable par l'addition. \par Soit $x = x_1+x_2\in I_1+I_2$, $a\in A$. Alors $ax = ax_1 + ax_2 \in I_1+I_2$
 \par De plus, tout idéal contenant $I_1$ et $I_2$ contient $I_1+I_2$}
-\Thr{}{Si $A$ est un anneau euclidien, alors tout idéal de $A$ est principa.
-\par Cela signifie que si $I$ est un idéal de $A$, alors $\exists A\in A, I = aA$}
+\Thr{}{Si $A$ est un anneau euclidien, alors tout idéal de $A$ est principal.
+\par Cela signifie que si $I$ est un idéal de $A$, alors $\exists a\in A, I = aA$}
 \Pre{On dispose de $\varphi\in\mathcal{F}(A\backslash\{0\}, \N)$ tel que $\forall a\in a, \forall b\in A\backslash\{0\}, \exists (q,r)\in A^2, a=bq+r$ et $(r=0\text{ ou }\varphi(r)<\varphi(b))$
 \par Si $I=\{0\}$, c'est l'idéal $0A$
 \par Si $I$ est un idéal non-réduit à $0$ : \par On peut considérer $n_0=\min\{\varphi(i)\vert i\in I\backslash\{0\}\}$, qui existe puisqu'on considère une partie non-vide de $\N$ \par On note $i_0$ tel que $\varphi(i_0)=n_0$ \par Soit $i\in I$, on peut alors prendre $q,r\in A$ telq que $i =qi_0+r$ et $(r=0\text{ ou }\varphi(r)<\varphi(b))$
@@ -1497,16 +1499,16 @@ Attention : le résultat du commentaire s'applique également pour deux fonction
 \end{Rem}
 
 \subsection{Intégrales de référence de Riemann}
-\Prop{}{$\int_0^{+\infty}\frac{dt}{t^\alpha}$ converge si, et seulement si, $\alpha>1$}
+\Prop{}{$\int_1^{+\infty}\frac{dt}{t^\alpha}$ converge si, et seulement si, $\alpha>1$}
 \Pre{Par calcul de primitives.}
 \Prop{}{$\int_0^{+\infty}e^{-\lambda t}dt$ converge si, et seulement si, $\lambda>0$}
 \Prop{}{$\int_0^1\frac{dt}{t^\alpha}$ converge si, et seulement si, $\alpha<1$}
 \Prop{}{$\int_0^1ln(t)dt$ converge}
 \begin{Rem}
-On a aussi que $\int_0^1\vert ln(t)\vert^\alpha$ converge, mais ce n'est pas au problème, donc on doit le retrouver à partir de $\vert ln(t)\vert^\alpha =o\left(\frac{1}{\sqrt[\alpha]{t}}\right)$ en $0$
+On a aussi que $\int_0^1\vert ln(t)\vert^\alpha$ converge, mais ce n'est pas au programme, donc on doit le retrouver à partir de $\vert ln(t)\vert^\alpha =o\left(\frac{1}{\sqrt[\alpha]{t}}\right)$ en $0$
 \end{Rem}
 \Prop{}{Si $a<b$ : \par $\int_a^b\frac{dt}{\vert t-a\vert^\alpha}$ converge si, et seulement si, $\alpha<1$}
-\Prop{}{Si $a>b$ : \par $\int_b^a\frac{dt}{\vert b-a\vert^\alpha}$ converge si, et seulement si, $\alpha<1$}
+\Prop{}{Si $a>b$ : \par $\int_b^a\frac{dt}{\vert b-t\vert^\alpha}$ converge si, et seulement si, $\alpha<1$}
 \begin{Exe}
 Existence et calcul éventuel de $\int_1^{+\infty}\frac{dt}{(t-1)(t+2)}$ et de $\int_2^{+\infty}\frac{dt}{(t-1)(t+2)}$ \par $f:t\mapsto \frac{1}{(t-1)(t+2)}$ est continue donc continue par morceaux sur $]1,+\infty[$ \par Etude en 1 : $\frac{1}{(t-1)(t+2)}\sim\frac{1}{3(t-1)}$ \par $f$ est positive, $\int_1^2\frac{dt}{t-1}$ diverge donc $\int_1^2f(t)dt$ diverge par critère d'équivalent positif. \par donc $\int_0^{+\infty}\frac{dt}{(t-1)(t+2)}$ diverge
 \par $f(t)\sim_{+\infty}\frac{1}{t^2}$ \par $\int_2^{+\infty}\frac{dt}{t^2}$ converge, $f$ est positive et donc par critère d'équivalent positif, $\int_2^{+\infty}f(t)dt$ converge \par Pour le calcul : Faisons d'abord une décomposition en éléments simples \par $\int_2^{+\infty}f(t)dt = \int_2^{+\infty} \frac{1}{3(t-1)}-\frac{1}{3(t+2)}$ \par (L'intégrale de la somme est convergente mais l'intégrale de chaque élément simple est divergente) \par Soit $x\in[2,+\infty[$ : $\int_2^x\frac{1}{3(t-1)}-\frac{1}{3(t+2)}dt$ \par $=\left[\frac{1}{3}\ln\left(\frac{t-1}{t+2}\right)\right]_2^x = \frac{1}{3}\ln(4)-\frac{1}{3}\ln\left(\frac{x-1}{x+2}\right)$ \par Or $\ln\left(\frac{x-1}{x+2}\right)\to_{+\infty}0$ donc $\int_2^{+\infty}f(t)dt =\frac{1}{3}\ln(4)$
@@ -1533,7 +1535,7 @@ On peut comme dans le cadre de la théorie de la sommabilité des familles de $\
 \Prop{}{Une intégrale absolument convergente est convergente et pour $f$ intégrable sur un intervalle $I$ \par \begin{center}$\left\vert\int_If\right\vert\leq \int_I\vert f\vert$\end{center}}
 
 \subsection{Propriétés des intégrales impropres}
-\Prop{des intégrales impropres}{\begin{itemize}
+\Prop{Propriétés des intégrales impropres}{\begin{itemize}
 \item Linéarité : si $I$ un intervalle, $f,g$ continues par morceaux sur $I$ d'intégrales convergentes sur $I$, $\lambda\in\K$, alors : \par \begin{center}$\int_If + \lambda g$ converge et $\int_If+\lambda g = \int_I f+\lambda\int_Ig$ \end{center}
 \item Positivité : si $f$ continue par morceaux sur $I$ réelle positive, d'intégrale sur $I$ convergente, alors $\int_If\geq 0$
 \item Croissance : si $f$ et $g$ sont continues par morceaux sur $I$i réelles positives d'intégrales sur $I$ convergentes avec $f\leq g$, alors $\int_If\leq \int_Ig$
@@ -1600,7 +1602,7 @@ On peut énoncer le même type de proposition pour des fonctions définies sur u
 \item Il existe une fonction $\varphi$ positive et intégrable sur $I$ telle que \par\begin{center}$\forall n\in\N, \vert f_n\vert\leq\varphi$ (hypothèse de domination)\end{center}
 \end{itemize}
 Alors les fonctions $f_n$ pour $n\in\N$ et la fonction $f$ sont intégrables sur $I$ et \par\begin{center}$\int_If_n\to\int_If$\end{center}}
-\Pre{On admet la preuve car le théorème repose sur la théorie d'intégration de Lebesque. \par On peut cependant le prouver dans le cas où $f_n$ converge uniformément vers $f$ sur tout segment de $[a,b[$ \par Pour tout $x\in[a,b[$, on a :\par $\left\vert\int_a^bf_n -\int_a^bf\right\vert\leq \int_a^x\vert f_n-f\vert + \int_x^b\vert f_n-f\vert\leq \vert x-a\vert\Vert f_n-f\Vert_\infty +\int_x^b(\varphi+\vert f\vert)$}
+\Pre{On admet la preuve car le théorème repose sur la théorie d'intégration de Lebesgue. \par On peut cependant le prouver dans le cas où $f_n$ converge uniformément vers $f$ sur tout segment de $[a,b[$ \par Pour tout $x\in[a,b[$, on a :\par $\left\vert\int_a^bf_n -\int_a^bf\right\vert\leq \int_a^x\vert f_n-f\vert + \int_x^b\vert f_n-f\vert\leq \vert x-a\vert\Vert f_n-f\Vert_\infty +\int_x^b(\varphi+\vert f\vert)$}
 \begin{Rem}
 On suppose que $f$ est continue par morceaux pour rester dans le cadre du programme où les intégrales sont définies uniquement pour de telles fonctions. Cette hypothèse n'a pas la même importance que l'hypothèse de domination qui est cruciale dans ce théorème.
 \end{Rem}
@@ -2325,8 +2327,22 @@ Soit $X$ une variable aléatoire discrète à valeurs dans $\N$
 \Def{}{On note $R_X$ le rayon de convergence de la série entière $\sum P(X=n)t^n$
 \par La fonction génératrice d'une variable aléatoire $X$ à valeurs dans $\N$ est définie pour tout $t\in]-R_X,R_X[$ par
 \par\begin{center}$G_X(t)=E(t^X)=\sum\limits_{n=0}^{+\infty}P(X=n)t^n$\end{center}}
-\Prop{}{La série $\sum P(X=n)t^n$ converge pour $t=1$ dnc le rayon de convergence $R_X$ de la série entière $\sum P(X=n)t^n$ est au moins égal à $1$}
+\begin{Exe}
+Fonction génératrice de $X\leadsto\mathcal{U}(\llbracket 1,n\rrbracket)$ :
+\par $$ G_X:t\mapsto \frac{1}{n}\sum\limits_{k=1}^nt^k = \frac{1}{n}t\frac{1-t^n}{1-t}$$
+\par Fonction génératrice de $X\leadsto \mathcal{B}(n,p)$ :
+\par $$G_X:t\mapsto \sum\limits_{k=1}^n\binom{n}{k}p^k(1-p)^{n-k}t^k = (pt+1-p)^n$$
+\par Fonction génératrice de $X\leadsto\mathcal{P}(\lambda)$ :
+\par $$G_X:t\mapsto \sum\limits_{k=0}^{+\infty}e^{-\lambda}\frac{\lambda^nt^n}{n!} = e^{-\lambda + \lambda t}$$
+\par Fonction génératrice de $X\leadsto \mathcal{G}(p)$ :
+\par $$G_X:t\mapsto \sum\limits_{n=1}^{+\infty}(1-p)^{n-1}pt^n = \frac{pt}{(1-(1-p)t)}$$
+\end{Exe}
+
+\Prop{}{La série $\sum P(X=n)t^n$ converge pour $t=1$ donc le rayon de convergence $R_X$ de la série entière $\sum P(X=n)t^n$ est au moins égal à $1$}
+\Pre{On a par définition que $\sum\limits_{k\in\N}P(X=k)=1$, donc le rayon est au moins $1$.}
 \Prop{}{La série entière $P(X=n)t^n$ converge normalement sur $[-1,1]$ donc $G_X$ est continue sur $[-1,1]$}
+\Pre{La convergence normale est assurée par la majoration de $\vert P(X=n)t^n\vert$ par $P(X=n)$ sur $[-1,1]$
+\par La continuité découle de celle de $t\mapsto t^n$}
 \Thr{}{Soit $X$ une variable aléatoire à valeurs dans $\N$.\begin{enumerate}
 \item La loi de $X$ est entièrement caractérisée par la connaissance de sa fonction génératrice $G_X$
 \par ie : $G_X:t\mapsto \sum\limits_{n=0}^{+\infty}a_nt^n$ est la fonction génératrice de $X$ si, et seulement si, $\forall n\in \N, P(X=n)=a_n$
@@ -2335,11 +2351,42 @@ Soit $X$ une variable aléatoire discrète à valeurs dans $\N$
 \item $X$ admet une variance si, et suelement si, $G_X$ est deux fois dérivable en $1$, avec dans ce cas :\par\begin{center}$E(X(X-1))=G_X''(1)$\end{center}
 \par et donc \par\begin{center}$V(X)=G_X''(1)+G_X'(1)-(G_X'(1))^2$\end{center}
 \end{enumerate}}
+\Pre{La première propriété découle de l'unicité d'un DSE.
+\par La deuxième propriété découle de la définition d'une probabilité.
+\par Pour la troisième propriété :
+\par Dans les hypothèses de l'énoncé, on suppose $E(X)<+\infty$ (ce qu'on peut écrire puisque $X$ est positive)
+\par Alors la série $\sum nP(X=n)$ converge, et : $\forall t\in [-1,1], \vert nP(X=n)t^n\vert\leq nP(X=n)$
+\par Donc :\begin{itemize}
+\item $\forall n\in\N, t\mapsto P(X=n)t^n$ est $\mathcal{C}^1$
+\item $\sum t\mapsto P(X=n)t^n$ converge simplement sur $[-1,1]$
+\item $\sum t\mapsto nP(X=n)t^{n-1}$ converge normalement donc uniformément sur $[-1,1]$
+\end{itemize}
+\par Donc par théorème de dérivation des séries de fonctions, $G_X$ est dérivable sur $[-1,1]$ de dérivée $t\mapsto \sum\limits_{n=1}^{+\infty}nP(X=n)t^{n-1}$
+\par Donc $G_X'(1)=E(X)$
+\par Réciproquement : Procédons par contraposée, en supposant $E(X)=+\infty$ (possible comme $X$ positive)
+\par $\forall t\in[0,1[, G_X'(t)=\sum\limits_{n=1}^{+\infty}nP(X=n)t^{n-1}$
+\par $G_X'$ est croissante sur $[0,1[$, donc $G_X'$ a une limite finie ou infinie en $1^-$
+\par Et comme $nP(X=n)t^{n-1}$ positive sur $[0,1[$ :
+\par $$\forall N\in\N, G_X'(t)\geq \sum\limits_{n=1}^Nn(P(X=n))t^{n-1}$$
+\par Passage à la limite quand $t\to 1^-$ :
+\par $$\lim\limits_{t\to 1^-}G_X'(t) \geq \sum\limits_{n=1}^{+\infty}nP(X=n)$$
+\par Or $\left(\sum\limits_{k=0}^N kP(X=k)\right)$ est la suite des soimmes partielles d'une série divergente de terme général positif.
+\par Donc $\sum\limits_{n=1}^NnP(X=n)\to_{N\to+\infty}+\infty$
+\par Donc $G_X'\to_{t\to 1^-}+\infty$
+\par Donc $G_X$ est positive en $1$ et $G_X'\to_{t\to 1^-}+\infty$, et donc par théorème de prolongement $\mathcal{C}^1$, $G_X$ n'est pas dérivable en $1$.
+\par La dernière propriété se prouve de même que la troisième, mais avec la dérivée seconde, en distancent que $V(X) = E(X^2-X) + E(X) - (E(X))^2 = G_X''(1)+G_X'(1)-G_X'(1)^1$.}
 \begin{Rem}
 $G_X=G_Y$ si, et seulement si, $X$ et $Y$ ont même loi.
 \end{Rem}
-\Thr{}{Si $X$ et $Y$ sont deux variables aléatoires indépendantes à valeurs dans $\N$ alors :\par\begin{center}$G_{X+Y}=G_XG_Y$\end{center}
+\Thr{}{Si $X$ et $Y$ sont deux variables aléatoires indépendantes à valeurs dans $\N$ alors :\par\begin{center}$\forall t\in[-1,1], G_{X+Y}=G_XG_Y$\end{center}
 \par Soit $n\in\N, n\geq 2$. Si $X_1,...,X_n$ sont des variables aléatoire réelles mutuellement indépendantes alors : \par\begin{center}$G_{X_1+...+X_n}=G_{X_1}...G_{X_n}$\end{center}}
+\Pre{Soit $t\in[-1,1]$:
+\par $G_{X+Y}(t)=\sum\limits_{n\in\N}P(X+Y=n)t^n =\sum\limits_{n\in\N}\sum\limits_{i+j=n}P(X=i,Y=j)t^n$
+\par $= \sum\limits_{n\in\N}\sum\limits_{i+j=n}P(X=i)P(Y=j)t^n$ par indépendance
+\par $=\left(\sum\limits_{i\in\N}P(X=i)t^i\right) \left(\sum\limits_{j\in\N}P(Y=j)t^j\right)$ par produit de Cauchy de deux séries absolument convergentes
+\par $=G_X(t)G_Y(t)$
+\par Pour l'extension du théorème, on se contente de faire une récurrence en se servant de la propriété avec deux variables.}
+
 
 
 \section{Couples de variables aléatoires réelles}
@@ -2397,22 +2444,39 @@ Souvent, lorsque l'on étudie un couple de variables aléatoires réelles :\begi
 \end{enumerate}
 \end{Rem}
 
+
+
 \section{Résultats probabilistes asymptotiques}
 \subsection{Inégalités de Markov et Bienaymé-Tchebychev}
 \Thr{Inégalité de Markov}{Soit $X$ une variable aléatoire réelle discrète positive d'espérance finie, on a:
 \par\begin{center}$\forall a>0, P(X\geq a)\leq \frac{E(X)}{a}$\end{center}}
+\Pre{Avec $a\in\R_+$ fixé :
+\par $E(X) = \sum\limits_{x\in X(\Omega)}xP(X=x) \geq \sum\limits_{x\in X(\Omega),x\geq a}xP(X=x)$ (comme $X$ est positive)
+\par $\geq a\sum\limits_{x\in X(\Omega), x\geq a} P(X=x)\geq aP(X\geq A)$
+\par D'où l'inégalité $P(X\geq a)\leq \frac{E(X)}{a}$}
+
 
 \Thr{Inégalité de Bieinaymé-Tchebychev}{Soit $X$ une variable aléatoire rélle discrète telle que $X^2$ est d'espérance finie, on a :
 \par\begin{center}$\forall \varepsilon>0, P(\vert X-E(X)\vert\geq \varepsilon)\leq \frac{V(X)}{\varepsilon^2}$\end{center}
 \par En passant à l'événement contraire :
 \par\begin{center}$\forall\varepsilon>0, P(\vert X-E(X)\vert<\varepsilon)\geq 1 - \frac{V(X)}{\varepsilon^2}$\end{center}}
+\Pre{Pour $\varepsilon>0$:
+\par $E((X-E(X))^2) = \sum\limits_{x\in X(\Omega)}(x-E(X))^2P(X=x)$
+\par $\geq \varepsilon^2\sum\limits_{x\in X(\Omega), \vert X-E(X)\vert\geq\varepsilon} P(X=x)$
+\par $\geq\varepsilon^2P(\vert X - E(X)\vert\geq\varepsilon)$
+\par D'où l'inégaité.}
+
 
 \subsection{Loi faible des grands nombres}
-\Thr{Loi faible des grands nombres}{Soit $(X_n)_{n\in\N^*}$ une suite de variables indépendantes de même loi, de variance finie.
+\Thr{Loi faible des grands nombres}{Soit $(X_n)_{n\in\N^*}$ une suite de variables réelles indépendantes de même loi, de variance finie.
 \par En notant $S_n=\sum\limits_{k=1}^nX_k, m=E(X_1)$ et $\sigma =\sigma(X_1)$, on a :\begin{enumerate}
 \item \begin{center}$\forall \varepsilon>0, P\left(\left\vert\frac{S_n}{n}-m\right\vert\geq\varepsilon\right)\leq\frac{\sigma^2}{n\varepsilon^2}$\end{center} \par Cette inégalité doit êtr edémontrée à chaque utilisation d'après le programme
 \item \begin{center}$\forall \varepsilon>0, P\left(\left\vert\frac{S_n}{n}-m\right\vert\geq\varepsilon\right)\to_{n\to+\infty} 0$\end{center}
 \end{enumerate}}
+\Pre{On a ici que $(frac{\S_n}{n}) = \frac{1}{n}\sum\limits_{i=1}^nE(X_i) = m$
+\par Par indépendance, $V(S_n) = \frac{1}{n^2}\sum\limits_{i=1}^nV(X_i) = \frac{\sigma^2}{n}$
+
+}
 \begin{Rem}
 La loi faible des grands nombres est utilisée lorsque l'on cherche à comparer la probabilité $p$ d'un événement $A$ et la fréquence d'apparition de cet événement quand l'on répète un grand nombre de fois l'expérience aléatoire associée à $A$
 \par On suppose les expériences indépendantes.

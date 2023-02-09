@@ -2242,8 +2242,6 @@ La loi binomiale $\mathcal{B}(n,p)$ est lme nombre de succès pour une expérien
 \par $V(X) = np(1-p) + n(n-1)\frac{p(p-1)}{N-1} = np(1-p)\left(1-\frac{n-1}{N-1}\right)$
 
 
-
-
 \section{Lois usuelles}
 \subsection{Lois usuelles finies}
 Dans toute la suite on considère $n\in\N^*, p\in[0,1]$ et $q=1-p$
@@ -2321,7 +2319,6 @@ L'exemple le plus classique est le teps d'attente d'un premier pile lors des lan
 \par Donc $V(X) =  E(X^2 - X) + E(X) - E(X)^2 = \lambda^2 + \lambda - \lambda^2 =\lambda$}
 
 
-
 \section{Fonctions génératrices}
 Soit $X$ une variable aléatoire discrète à valeurs dans $\N$
 \Def{}{On note $R_X$ le rayon de convergence de la série entière $\sum P(X=n)t^n$
@@ -2388,7 +2385,6 @@ $G_X=G_Y$ si, et seulement si, $X$ et $Y$ ont même loi.
 \par Pour l'extension du théorème, on se contente de faire une récurrence en se servant de la propriété avec deux variables.}
 
 
-
 \section{Couples de variables aléatoires réelles}
 \subsection{Loi conjointe, lois marginales}
 \Def{}{Soient $X$ et $Y$ deux variables aléatoires discrètes réelles sur un même espace probabilisé $(\Omega, \mathcal{A},P)$.\begin{enumerate}
@@ -2445,7 +2441,6 @@ Souvent, lorsque l'on étudie un couple de variables aléatoires réelles :\begi
 \end{Rem}
 
 
-
 \section{Résultats probabilistes asymptotiques}
 \subsection{Inégalités de Markov et Bienaymé-Tchebychev}
 \Thr{Inégalité de Markov}{Soit $X$ une variable aléatoire réelle discrète positive d'espérance finie, on a:
@@ -2492,6 +2487,945 @@ La loi faible des grands nombres est utilisée lorsque l'on cherche à comparer 
 \par\begin{center}$\boxed{\forall p\in [0,1], 0\leq p(1-p)\leq \frac{1}{4}}$
 \end{center}
 \end{Rem}
+
+
+
+\chapter{Espaces préhilbertiens}
+Dans tout le cours, $E$ est un $\R$-ev.
+\section{Préliminaires}
+\Def{}{Soit $E$ un $\R$-ev, on dit qu'une application $\varphi:E\times E\to\R$ est :\begin{itemize}
+\item une forme bilinéaire si : $\forall x\in E, y\mapsto \varphi(x,y)=\varphi(x, .)$ est linéaire et $\varphi(., x)$ est linéaire.
+\item symétrique si : $$\forall x,y\in E, \varphi(x,y)=\varphi(y,x)$$
+\item positive si : $$\forall x\in E, \varphi(x, x)\geq 0$$
+\item définie si : $$\forall x\in E, \varphi(x, x)=0\Rightarrow x=0$$
+\end{itemize}}
+\Def{Produit scalaire}{Une forme bilinéaire symétrique définie positive est un produit scalaire.}
+\begin{Rem}
+L'expression matricielle du produit scalaire, avec $X, Y\in\mathcal{M}_{n,1}(\R)$ est $X^ATY$ avec $A$ la matrice d'une forme bilinéaire symétrique. (ses coefficients sont les $\varphi(e_i, e_j)$)
+\par Comme $\varphi$ est symétrique, $\varphi(e_i, e_j)=\varphi(e_j, e_i)$ donc $A$ est une matrice symétrique.
+\end{Rem}
+\Prop{Identités polaires}{$\varphi$ une forme bilinéaire symétrique.
+\par $$\forall x, y\in E, \varphi(x, y) =\frac{1}{2}(\varphi(x+y, x+y) - \varphi(x, x) - \varphi(y,y))$$
+\par $$ = \frac{1}{4}(\varphi(x+y, x+y) - \varphi(x-y, x-y))$$
+\par $\varphi$ est donc entièrement caractérisée par l'application $u\mapsto \varphi(u,u)$}
+\Def{}{Un espace préhilbertioen réel est un espace vectoriel avec un produit scalaire.
+\par Un espace euclidien est un espace préhilbertien réel de dimension finie.}
+\begin{Rem}
+On note $\langle.,.\rangle$ ou $(.\vert.)$ le produit scalaire dans un espace préhilbertien.
+\par Un produit scalaire induit une norme d'expression $\Vert x\Vert= \sqrt{\langle x, x\rangle}$
+\end{Rem}
+\Thr{Cauchy-Schwarz}{$E$ un $\R$-v et $\varphi$ une forme bilinéaire symétrique positive
+\par Alors $\forall x,y\in E, \vert\varphi(x,y)\vert\leq \varphi(x, x)\varphi(y,y)$
+\par Dans un espace préhilbertien réel $E$, 
+\par $$\forall x,y\in E, \vert\langle x,y\rangle \vert \leq \Vert x\Vert\Vert y\Vert$$
+\par avec le cas d'égalité si, et seulement si, $x$ et $y$ sont colinéaires.}
+\Pre{L'inégalité a déjà été prouvée dans le chapitre de proba.
+\par Si $x$ et $y$ sont colinéaires : si $x=0$ alors $\vert\langle x,y\rangle\vert=0 = \Vert x\Vert \Vert y\Vert$
+\par Sinon, on peut écrire $y=\alpha x$ pour $\alpha\in\R$, et donc :
+\par $$\vert\langle x, y\rangle\vert = \vert\alpha\langle x, x\rangle\vert = \vert\alpha\vert\Vert x\Vert^2 = \Vert x\Vert\Vert\alpha x\Vert = \Vert x\Vert\Vert y\Vert$$
+Réciproquement, on suppose que $\vert\langle x, y\rangle\vert = \Vert x\Vert\Vert y\Vert$
+\par Considérons $P$ le polynôme qui à $t\in\R$ associe $\Vert x+ty\Vert^2 = \Vert x\Vert^2+2t\langle x,y\rangle+t^2\Vert y\Vert$
+\par Ce polynôme est de degré $2$ et de discriminant nul par hypothèse.
+\par Donc il existe un unique $t_0\in\R$ tel que $\Vert x+t_0y\Vert^2=0$
+\par Par définition de la norme, $x=-t_0y$ et les deux vecteurs sont donc colinéaires.}
+\Thr{Inégalit"é triangulaire}{Soient $x, y\in E$, alors :
+\par $$\Vert x+y\Vert^2=\Vert x\Vert^2+\Vert y\Vert^2+2\langle x,y\rangle$$
+\par $$(\Vert x\Vert+\Vert y\Vert)^2=\Vert x\Vert^2+\Vert y\Vert^2 + 2\Vert x\Vert\Vert y\Vert$$
+\par Donc par Cauchy-Schwarz, $\vert\langle x, y\rangle\vert\leq \Vert x\Vert\Vert y\Vert$ et on en déduit l'inégalité triangulaire :
+\par $$\Vert x+y\Vert\leq \Vert x\Vert+\Vert y\Vert$$
+\par Avec cas d'égalité si $x$ et $y$ sont colinéaires et de même sens.}
+
+
+\section{Orthogonaux}
+\Def{Orthogonalité}{\begin{itemize}
+\item pour $u,v\in E$, $u$ et $v$ sont orthogonaux, noté $u\perp v$, si $\langle u, v\rangle = 0$
+\item deux sev $F$ et $G$ de $E$ sont orthogonaux si $\forall x\in F, \forall y\in G, \langle x, y\rangle = 0$
+\item pour $A\subset E$, l'orthogonal de $A$ est l'ensemble $A^\perp = \{x\in E\vert \forall a\in a, \langle a, x\rangle=0\}$
+\end{itemize}}
+\Prop{propriétés des orthogonaux}{\begin{itemize}
+\item Pour $A, B$ inclus dans $E$, $A\subset B\Rightarrow B^\perp \subset A^\perp$ 
+\item $$\forall A\subset E, A^\perp = vect(A)^\perp$$
+\item $A^\perp$ est un sev de $E$
+\item $F, G$ sev de $E$ :
+\par $$ F^\perp\cap G^\perp = (F+G)^\perp$$
+\par $$F^\perp + G^\perp \subset (F\cap G)^\perp$$ (réciproque fausse)
+\item $$F\subset (F^\perp)^\perp$$ 
+\end{itemize}}
+\Pre{$$F^\perp \cap G^\perp  = (F+G)^\perp$$
+\par $F^\perp\cap G^\perp = (F\cup G)^\perp = vect(F\cup G)^\perp = (F+G)^\perp$
+\par $$F^\perp+G^\perp \subset (F\cap G)^\perp$$
+\par $F\cap G\subset F$
+\par $F^\perp\subset (F\cap G)^\perp$
+\par $F\cap G\subset G$
+\par $G^\perp\subset(F\cap G)^\perp$
+\par $$F\subset (F^\perp)^\perp$$
+\par Si $x\in F$, alors $\forall y\in F^\perp, \langle x, y\rangle = 0$. Donc $x\in (F^\perp)^\perp$}
+
+\begin{Rem}
+En dimension finie, si $F$ est un sev de $E$ de base $(u_1, ..., u_p)$, alors :
+\par $$\forall x\in E, x\in F^\perp \Leftrightarrow \left\{\begin{array}{l} \langle x, u_1\rangle =0\\ ... \\\langle x, u_p\rangle\end{array}\right.$$
+\end{Rem}
+
+\begin{Exe}
+$E =\mathcal{C}([0,1],\R)$, muni du produit scalaire $\langle f,g\rangle = \int_0^1f(t)g(t)$
+\par $F = \R[X]$ un sev de $E$
+\par Si $f\in F^\perp$, on considère $(P_n)\in \R[X]^\N$ qui converge uniformément vers $f$ (qui existe par Stone-Weierstrass)
+\par Comme $f$ est bornée contintinue sur le segment $[0,1]$, alors $(f\times P_n) \to f^2$
+\par Donc $\in_0^1f(t)P_n(t)dt \to \int_0^1f^2(t)dt$ par convergence uniforme.
+\par Or $f\in F^\perp$ donc $\forall n\in\N, \langle f, P_n\rangle = 0$
+\par Donc $\int_0^1f^2 = 0$, $f^2$ est positive continue sur le segment $[0,1]$ donc par stricte positivité, $\forall x\in[0,1], f(x)=0$
+\par Donc $f=0$, donc $F^\perp \subset \{0\}$
+\par Donc $F^\perp=\{0\}$
+\end{Exe}
+
+\begin{Rem}
+Si $F$ et $G$ sont deux sev de $E$
+\par $F$ et $G$ sont orthogonaux si, et seulement si, $F\subset G^\perp$
+\end{Rem}
+
+\Def{Familles orthogonales}{Soit $(x_i)_{i\in I}$ une famille de vecteurs d'un espace préhilbertien $E$
+\par $(x_i)$ est une famille orthogonale si :
+\par $$\forall i,\in I, i\neq j \Rightarrow \langle x_i, x_j\rangle$$
+\par $(x_i)$ est une famille orthonormale si :
+\par $(x_i)_{i\in I}$ est orthogonale et $\forall i\in I, \Vert x_i\Vert = 1$}
+\Prop{}{Toute famille orthogonale de vecteurs non nuls est une famille libre.}
+\Pre{$(u_i)_{i\in I}$ une famille orthogonale.
+\par Soit $J$ fini, $J\subset I$
+\par Soit $(\lambda_j)_{j\in J}\in\R^J$
+\par On suppose que $\sum\limits_{j\in J}\lambda_j u_j = 0$
+\par Prenons $j_0\in J$
+\par $\langle u_{j_0}, \sum\limits_{j\in J}\lambda_ju_j\rangle = 0$
+\par Donc $\lambda_{j_0}\langle u_{j_0}, u_{j_0}\rangle  = 0$
+\par Comme $u_{j_0}\neq 0$, donc $\lambda_{j_0}=0$}
+\begin{Rem}
+En particulier dans un espace de dimension $n$, une famille orthonormale de $n$ vecteurs est une base orthonormale (BON).
+\par De l'intérêt dans un espace euclidien de travailler dans une BON :
+\par Soit $E$ euclidien et $B=(e_1,..., e_n)$ une BON
+\par alors avec $\forall x\in E, x  = \sum\limits_{i=1}^nx_i e_i$
+\par et $\forall y\in E, y = \sum\limits_{i=1}^n y_ie_i$
+\par $$\langle x, y\rangle = \sum\limits_{i, j\in\llbracket 1, n\rrbracket}x_iy_j\langle e_i, e_j\rangle$$
+\par $$  = \sum\limits_{i=1}^nx_iy_i = X^TY$$
+\par $\Vert x\Vert^2 = \sum\limits_{i=1}^nx_i^2$ est vrai si, et seulement si, on a une BON
+\par $\forall i\in\llbracket 1, n\rrbracket, x_i = \langle x, e_i\rangle$ est vrai si, et seulement si, on a une BON
+\end{Rem}
+\Thr{}{Soit $E$ un espace euclidien et $F$ un sev de $E$
+\par Alors $$F\oplus F^\perp = E$$
+\par (ie : $F^\perp$ est un supplémentaire de $F$)}
+\Pre{$\forall x\in E, x\in F\cap F^\perp \Rightarrow \langle x,x\rangle = 0$
+\par Donc $x=0$
+\par Donc $F\cap F^\perp = \{0\}$ (ce qui est valable même en dimension infinie)
+\par On note $n$ la dimension de $E$ et $p$ la dimension de $F$. On se donne une base de $F$ $(u_1,..., u_p)$
+\par On considère $\varphi : \left\{\begin{array}{rcl} E & \to & \R^p \\ x & \mapsto & (\langle x, u_1\rangle, ..., \langle x, u_p\rangle)\end{array}\right.$
+\par Donc $\varphi\in\mathcal{L}(E, \R^p)$
+\par On a que $F^\perp = \ker\varphi$
+\par Considérons $\varphi_{|F}$ ie $\varphi_{|F}:\left\{\begin{array}{rcl} F & \to & R^p \\ x& \mapsto & \varphi(x)\end{array}\right.$
+\par Alors $\ker\varphi_{|F} = \ker\varphi\cap F  =\{0\}$
+\par Donc $\varphi_{|F}$ est une application injective de l'espace $F$ de dimension $p$ dans $\R^p$ de dimension $p$
+\par donc $\varphi_{|F}$ est bijective donc surjective
+\par Donc $\varphi$ est surjective
+\par Donc $rg(\varphi) = p$
+\par Donc par théorème du rang, $\dim\ker\varphi = n-p$
+\par Donc $\dim F^\perp + \dim F = \dim E$ et $F+F^\perp$ est directe
+\par Donc $F\oplus F^\perp = E$}
+\Prop{Corollaire}{Tout espace euclidien possède une BON.}
+\Pre{On le fait par récurrence forte sur la dimension :
+\par $H_n$ : tout espace de dimension $n$ ou moins possède une BON.
+\par Dans un espace de dimension $n+1$, en sachant $H_n$, on pourra prendre un espace de dimension $1$ et son orthogonal de dimension $n$, on réutilise l'hypothèse de récurrence pour avoir une BON de l'orthogonal et on norme le vecteur de base de la droite.}
+\Thr{Extension}{Soit $E$ préhilbertien réel et $F$ un sev de $E$ de dimension finie. Alors :
+\par $$F\oplus F^\perp = E$$}
+\Pre{Dans le cadre de l'énoncé, on sait déjà que $F\cap F^\perp = \{0\}$
+\par Soit $x\in E$, on considère $G_x = Vect(x)+F$
+\par $G$ est euclidien. $F$ est un sev de $G_x$ et $x\in G_x$
+\par Donc $G_x = F\oplus F^{\perp_{G_x}}$ (l'orthogonal dans $G_x$)
+\par Donc $\exists u, v\in F\times F^{\perp_{G_x}}, x = u+v$
+\par $\forall f\in F, \langle v, f\rangle = 0$
+\par Donc $v\in F^\perp$
+\par Donc $E\subset F+F^\perp$}
+\Thr{Méthode de Schmidt}{Cette méthode permet de "redresser une boîte à chaussures écrasée", c'est à dire construire une base orthogonale.
+\par Soit $E$ un espace préhilbertien, $(u_i)_{i\in I}$ famille libre de $E$ avec $I\subset \N$
+\par Alors on peut construire par récurrence une famille morthogonale $(v_n)_{n\in I}$ qui vérifie :
+\par $$\forall n\in I, Vect(u_0,..., u_n) =Vect(v_0,..., v_n)$$
+\par $(v_n)$ est définie par la relation :
+\par $\begin{cases} v_0 = u_0 \\ v_{n+1} = u_{n+1} - \sum\limits_{i=1}^n\frac{\langle u_{n+1}, v_i\rangle}{\Vert v_i\Vert^2}v_i \end{cases}$
+\par Pour rendre cette famille orthonormale, il suffit de prendre la famille et de diviser chaque vecteur par sa norme}
+\Pre{Pour montrer que la famille est orthogonale, on procède par récurrence pour montrer que l'espace engendré est bien le même à chaque nouvel élément.}
+
+\Prop{}{Si $E$ est euclidien, $F$ et $G$ deux sev de $E$.\begin{itemize}
+\item $$(F\cap G)^\perp = F^\perp + G^\perp$$
+\item $$ F = (F^\perp)^\perp$$
+\end{itemize}}
+\Pre{On a déjà les inclusions, on se sert juste de l'égaité des dimensions en dimension finie.}
+
+\section{Projections orthogonales}
+\subsection{Généralités}
+\Def{}{Dans tous les cas où $F\oplus F^\perp = E$, on peut définir :\begin{itemize}
+\item la projection orthogonale sur $F$ (la projection sur $F$ parallèlement à $F^\perp$)
+\item la symétrie orthogonale par rapport à $F$
+\end{itemize}}
+\Thr{de la meilleure approximation}{Soit $E$ un espace préhilbertien et $F$ un sev de dimension finie.
+\par Alors pour tout $x$ de $E$,
+\par \begin{center} $d(x,F)$ est atteinte en un unique vecteur de $F$, le projeté orthogonal de $x$ sur $F$\end{center}}
+\Pre{$d(x, F) = \inf_{y\in F}d(x, y)$
+\par Dans les conditions de l'énoncé, soit $y\in F$, on désigne $p$ la projection orthogonale sur $F$
+\par $\Vert x-y\Vert^2 = \Vert x-p(x)+p(x)-y\Vert^2$
+\par Or $x-p(x)\in F^\perp$ et $p(x)-y\in F$, donc les deux sont orthogonaux
+\par Donc $\Vert x-y\Vert^2 = \Vert x - p(x)\Vert^2 + \Vert p(x)-y\Vert^2$ (par pythagore vectoriel)
+\par Donc $\Vert x-y\Vert^2\geq \Vert x-p(x)\Vert^2$
+\par et $\Vert x-y\Vert^2=\Vert x-p(x)^2\Leftrightarrow \Vert p(x)-y\Vert^2=0\Leftrightarrow y=p(x)$}
+
+\subsection{Calcul pratique du projeté orthogonal}
+\Prop{}{$F$ un sev de $E$ de dimension finie $p$, $(u_1, ..., u_p)$ une base de $F$
+\par $x\in E$, $p(x)$ son projeté orthogonal sur $F$
+\par Donc $(px)$ est entièrement défini par les équations :
+\par $$(1)\left\{\begin{array}{l} p(x)\in F \\ x-p(x)\in F^\perp\end{array}\right.$$}
+\Pre{$(1)\Leftrightarrow \left\{\begin{array}{l}\exists (\lambda_1, ...\lambda_p)\in\R^p, p(x) = \sum\limits_{i=1}^p\lambda_iu_i \\ \langle x - p(x), u_1\rangle = 0 \\ ... \\ \langle x - p(x), u_p\rangle = 0\end{array}\right.$
+\par $\left\{\begin{array}{l}\Leftrightarrow \exists (\lambda_1, ...\lambda_p)\in\R^p, p(x) = \sum\limits_{i=1}^p\lambda_iu_i \\ \sum\limits_{j=1}^p\langle u_1, u_j\rangle \lambda j = \langle x, u_1\rangle \\ ... \\ \sum\limits_{j=1}^p\langle u_p, u_j\rangle = \langle x, u_p\rangle\end{array}\right.$
+}
+On note $(S)$ ce dernier système, et $(S)\Leftrightarrow G(u_1,..., u_p)\begin{pmatrix} \lambda_1 \\ ...\\ \lambda_p\end{pmatrix} = \begin{pmatrix} \langle x,u_1\rangle\\ ... \\ \langle x, u_p\rangle\end{pmatrix}$ 
+\par Où $G(u_1, ..., u_p)\in \mathcal{M}_p(\R)$ tel que $G(u_1,..., u_p) = (\langle u_i, u_j\rangle)_{(i,j)\in\llbracket 1,n\rrbracket^2}$
+\par Dans le cas où $(u_1,..., u_p)$ est une BON de $F$ :
+\par $$ p(x) = \langle x, u_1\rangle u_1 + ... + \langle x, u_p\rangle u_p$$
+\par Si $(u_1, ..., u_p)$ est seulement une base orthogonale :
+\par $$p(x) = \frac{\langle x, u_1\rangle}{\Vert u_1\Vert^2}u_1+...+\frac{\langle x, u_p\rangle}{\Vert u_p\Vert^2}u_p$$
+
+
+\subsection{Exemples d'utilisation du projeté orthogonal}
+\begin{Exe}
+\underline{Les séries de Fourier} : soit $E = \mathcal{C}_T(\R)$ l'ensemble des fonctions continues $T$ périodiquies.
+\par On munit $E$ du produit scalaire $\forall f, g\in E, \langle f, g\rangle = \frac{1}{T}\int_0^Tf(t)g(t)dt$
+\par Pour $n\in\N$, on considère $c_n:\left\{\begin{array}{rcl}\R & \to & \R \\ t & \mapsto & \cos\left(\frac{2\pi n}{T} t\right)\end{array}\right.$
+\par Pour $n\in\N^*$, on considère $s_n:\left\{\begin{array}{rcl}\R & \to & \R \\ t & \mapsto & \sin\left(\frac{2\pi n}{T} t\right)\end{array}\right.$
+\par Pour $n\in\N$, on note $F_n= Vect((c_k)_{0\leq k\leq n}, (s_k)_{1\leq k\leq n})$
+\par $\forall n\in\N, c_n\in E, \forall n\in\N^*, s_n\in E$
+\par $\forall n,p\in\N, \langle c_n,c_p\rangle  = \frac{1}{T}\int_0^T\cos\left(\frac{2\pi n}{T}t\right)\cos\left(\frac{2\pi p}{T}t\right)dt$
+\par $ = \frac{1}{2T}\int_0^T\cos\left(\frac{2\pi (n+p)}{T}t\right) + \cos\left(\frac{2\pi (n-p)}{T}t\right)dt = 0$
+\par De même, $\forall n,p, \langle c_n, sp\rangle = 0$ et $\forall n, p, n\neq p\Rightarrow \langle s_n, s_p\rangle = 0$
+\par Donc pour tout $n\in\N$ $(c_0,..., c_n, s_1,..., s_n)$ est une base orthogonale (famille orthogonale de vecteurs non-nuls) de $F_n$.
+\par $\langle c_0, c_0\rangle = 1$
+\par $\forall n\in\N^*, \langle c_n, c_n\rangle = \frac{1}{2}$
+\par $\forall n\in\N^*, \langle s_n, s_n\rangle = \frac{1}{2}$
+\par Pour $f\in E$, et $n\in\N$, on pose :
+\par $$S_n(f) = \frac{\langle f, c_0\rangle}{\Vert c_0\Vert}^2c_0 + \sum\limits_{k=1}^n\frac{\langle f, c_k\rangle}{\Vert c_k\Vert^2}c_k + \frac{\langle s, s_k\rangle}{\Vert s_k\Vert^2}s_k$$
+\par $$ = \langle f, c_0\rangle c_0 + \sum\limits_{k=1}^n2\langle f, c_k\rangle c_k +2\langle f, s_k\rangle s_k$$
+\par $S_n(f)$ est la meilleure approximation de $f$ dans $F_n$
+\par $\Vert f\Vert^2 = \Vert f-S_n(f)\Vert^2+\Vert S_n(f)\Vert^2$
+\par où $\Vert S_n(f)\Vert^2 = \langle f, c_0\rangle^2 + 2\sum\limits_{k=1}^n\langle f, c_k\rangle^2 + \langle f, s_k\rangle$
+\par $(\Vert S_n(f)\Vert^2)$ est la suite des sommes partielles d'une série à termes positifs majorée par $f$, donc $\Vert S_n(f)\Vert^2$ converge en $+\infty$ et $\Vert S_\infty(f)\Vert^2\leq \Vert f\Vert^2$ (inégalité de Parceval)
+\end{Exe}
+
+\begin{Exe}
+\underline{Régression linéaire} : On dispose de $p$ points de $\R^n$
+\par On note $\left\{\begin{array}{lr}x_{1,\cdot}=x_{1,1}, x_{1, 2},..., x_{1, n} & z_1 \\ x_{2, \cdot} = x_{2,1}, x_{2,2},..., x_{2,n} & z_2 \\ ... & ... \\ x_{p, \cdot} = x_{p, 1},..., x_{p,n} & z_p\end{array}\right.$
+\par On cherche le "meilleur modèle" affine expliquant $z$, ie les "meilleurs" coefficients $a_0, ..., a_n$ tels que $a_0 + a_1x_{i,1} +...+a_nx_{i, n}$ approxime le mieux possible $z_i$ 
+\par On va chercher :
+\par $$\inf\limits_{(a_0,..., a_n)\in\R^{n+1}}\left(\sum_{i=1}^p z_i-(a_0+a_1x_{i,1}+...+a_nx_{i,n}\right)^2$$
+\par On munit $\R^p$ du produit scalaire canonique :
+\par $\sum\limits_{i=1}^p(z_i-(a_0+a_1x_{i,1}+...+a_nx_{i, n}))^2 = \Vert z - (a_0u+a_1x_{\cdot, 1} + ...+a_nx_{\cdot, n})\Vert^2$
+\par Où $u = \begin{pmatrix} 1 \\ .\\.\\ 1\end{pmatrix}$ et $z=\begin{pmatrix} z_1 \\.\\.\\ z_p\end{pmatrix}$
+\par Si $(x_{\cdot, 1},..., x_{\cdot, n}, u)$ est libre, le problème a une unique solution $\tilde{a}_0, \tilde{a}_1,..., \tilde{a}_n$ telle que $\tilde{a}_0u + \tilde{a}_1x_{\cdot, 1}+...+\tilde{a}_nx_{\cdot n}$ est le projeté orthogonal de $z$ sur $F = Vect(u, x_{\cdot, 1}, ..., x_{\cdot, n})$
+\end{Exe}
+
+\section{Endormorphismes particuliers des espaces euclidiens}
+\Def{}{Soit $E$ un $\K$-ev. On appelle dual de $E$ l'ensemble $E^*=\mathcal{L}(E, \K)$ des formes linéaires sur $E$.}
+\Prop{}{$E^*$ est un $\K$ ev. Si $E$ est de dimension finie, la dimension de $E^*$ est de dim finie, et $\dim E^* = \dim E$}
+\Thr{de représentation de Reese (cas euclidien)}{Soit $E$ un espace euclidien, l'application :
+\par $\psi\left\{\begin{array}{rcl} E & \to & E^* \\a & \mapsto \varphi_a:\left\{\begin{array}{rcl} E & \to & \K\\ x & \mapsto & \langle a, x\rangle\end{array}\right.\end{array}\right.$ est un isomorphisme}
+\Pre{$\psi$ est linéaire : immédiat ($\psi(a+b)=\psi(a)+\psi(b)$ ie $\forall x\in E, (\psi(a+b))(x) =\psi(a)(x)+\pi(b)(x)$)
+\par Soit $a\in \ker\psi$, alors $\forall x\in E, \langle a, x\rangle = 0$
+\par Donc $a\in E^\perp$
+\par Donc $a=0$
+\par Donc $\psi$ est une application linéaire injective de $E$ dans l'espace de même dimension $E^*$, donc $\psi$ est bijective.}
+
+\Def{Adjoint}{Soit $E$ un espace euclidien et $u\in\mathcal{L}(E)$.
+\par On appelle adjoint de $u$ l'application de $E$ dans $E$ $u^\star$ telle que :
+\par $$\forall x,y\in E\times E, \langle u(x), y \rangle = \langle x, u^\star(y)\rangle$$}
+\begin{Rem}
+Le fait que cette définition soit correcte découle du théorème de représentation des formes linéaires (théorème précédent)
+\par En effet pour $y\in E$ fixé : $x\mapsto \langle u(x), y\rangle\in E^*$
+\par Donc $\exists! u^\star(y), \forall x\in E, \langle y, u(x)\rangle = \langle u^\star(y), x\rangle$
+\end{Rem}
+\Prop{propriétés de l'ajdoint}{Soit $E$ euclidien, $u,v\in\mathcal{L}(E)$.\begin{itemize}
+\item $$u^\star\in\mathcal{L}(E)$$
+\item $$(u^\star)^\star = u$$
+\item $$(u\circ v)^\star =v^\star \circ u^\star$$
+\item $u\to u^\star$ est linéaire, ie $(u+v)^\star = u^\star + v^\star$ et $\forall \lambda\in\R, (\lambda u)^\star = \lambda u^\star$
+\end{itemize}}
+\Pre{$y,z\in E$
+\par Soit $x\in E, \langle x, u^\star(y+z)\rangle = \langle u(x), y+z\rangle$
+\par $ = \langle u(x), y\rangle + \langle u(x), z\rangle = \langle x, u^\star(y)\rangle + \langle x, u^\star(z)\rangle$
+\par Donc $\langle x, u^\star(y+z)\rangle = \langle x, u^\star(y)+u^\star(z)\rangle$
+\par Donc $\forall x\in E, \langle x, u^\star (y+z) - (u^\star(y)+u^\star(z)) \rangle =0$
+\par Donc $u^\star(y+z) - u^\star(y) - u^\star(z) \in E^\perp$
+\par De même, $\forall \lambda\in\R,\forall y\in E, u^\star(\lambda y) = \lambda u^\star(y)$
+\par $\forall (x,y)\in E\times E, \langle u^\star(x), u\rangle = \langle x, u(y)\rangle$ donc $(u^\star)^\star = u$
+\par Soit $x\in E$ et $y\in E$
+\par $\langle u\circ v(x), y\rangle = \langle v(x), u^\star(y)\rangle = \langle x, v^\star\circ u^\star(y)\rangle$
+\par Donc $(u\circ v)^\star = v^\star\circ u^\star$
+\par La dernière propriété est immédiate.}
+\Thr{}{Soit $E$ un espace euclidien. Soit $B$ une BON de $E$. Soit $u\in\mathcal{L}(E)$
+\par On note $A = Mat_B(u)$
+\par Alors $Mat_B(u^\star)= A^T$}
+\Pre{Pour $x\in E$, on note $X = Mat_B(x)\in\mathcal{M}_{n,1}(\R)$
+\par Pour $y\in E$, on note $Y = Mat_B(y)\in\mathcal{M}_{n,1}(\R)$
+\par $\forall x, y\in E, \langle u(x), Y\rangle = (AX)^TY = X^T (A^TY)$ (par propriétés de la transposée)
+\par Si on note $B=Mat_B(u^\star)$, alors $\langle x, u^\star(y)\rangle = X^T BY$
+\par Donc $\forall X,Y\in\mathcal{M}_{n,1}(\R), X^T(A^TY - BY)=0$
+\par Donc $A^T=B$}
+\Prop{}{Soit $E$ un espace euclidien, $u\in\mathcal{L}(E)$, $F$ un sev de $E$.
+\par Si $F$ est stable par $u$ alors $F^\perp$ est stable par $u^\star$}
+\Pre{Soit $y\in F^\perp$. Alors $\forall x\in F, \langle x,y\rangle = 0$
+\par Or $\forall x\in F, u(x)\in F$
+\par Donc $\forall x\in F, \langle u(x), y\rangle = \langle x, u^\star(y)\rangle=0$
+\par Donc $u^\star(y)\in F^\perp$
+\par Donc $F^\perp$ est stable par $u^\star$.}
+
+
+\section{Isométries vectorielles}
+\Def{}{Soit $E$ un espace euclidien et $f\in\mathcal{L}(E)$. On dit que $f$ est une isométrie si
+\par $$\forall x\in E, \Vert f(x)\Vert = \Vert x\Vert$$}
+\Prop{Caractérisation}{Soit $f\in\mathcal{L}(E)$ avec $E$ euclidien muni d'une base $\mathcal{B}$ orthonormée, $f$ est une isométrie si, et seulement si, elle vérifie l'une des propriétés suivantes :\begin{enumerate}
+\item $$\forall x\in E, \Vert f(x)\Vert=\Vert x\Vert$$
+\item $$\forall x,y\in E, \langle f(x), f(y)\rangle = \langle x, y\rangle$$
+\item $f(\mathcal{B})$ est une base orthonormée.
+\item $f\in\mathcal{GL}(E)$ et $f^\star=f^{-1}$
+\end{enumerate}}
+\Pre{$\underline{1\Rightarrow 2}$ : on suppose que $f$ conserve la norme.
+\par Soit $x,y\in E$, alors $\langle f(x), f(y)\rangle = \frac{1}{2}\left(\Vert f(x)+f(y)\Vert^2 - \Vert f(x)\Vert^2 - \Vert f(y)\Vert^2\right) = \frac{1}{2}\left(\Vert f(x+y)\Vert^2 - \Vert f(x)\Vert^2 - \Vert f(y)\Vert^2\right)$
+\par $ = \frac{1}{2}\left(\Vert x+y\Vert^2 - \Vert x\Vert^2-\Vert y\Vert^2\right) = \langle x, y\rangle$
+\par $\underline{2\Rightarrow 3}$ : immédiat, une isométrie conserve le produit scalaire.
+\par $\underline{3\Rightarrow 1}$ : On suppose que $f(\mathcal{B})$ est une base orthonormée. On note $\mathcal{B}=(e_1,..., e_n)$
+\par $\forall x\in E,x =\sum\limits_{i=1}^n x_ie_i$ et $\Vert x\Vert^2=\sum\limits_{i=1}^n x_i^2$ car $\mathcal{B}$ est une base orthonormale.
+\par $f(x) = \sum\limits_{i=1}^nx_if(e_i)$, donc $\Vert f(x)\Vert^2 = \sum\limits_{i=1}^nx_i^2$ car $f(\mathcal{B})$ est une base orthonormale.
+\par Pour la 4 : 
+\par Si $f$ est une isométrie : l'image d'une base par un isomorphisme est une base
+\par Donc $f$ est bijective
+\par $\forall x,y\in E, \langle x, f(y)\rangle = \langle f(f^{-1}(x)), f(y)\rangle = \langle f^{-1}(x), y\rangle$
+\par Donc $f^\star = f^{-1}$
+\par Réciproquement, on suppose que $f\in\mathcal{GL}(E)$ et $f^\star=f^{-1}$
+\par Soit $x\in E$ :
+\par $\Vert f(x)\Vert^2 = \langle f(x), f(x)\rangle = \langle x, f^\star\circ f(x)\rangle = \langle x, x\rangle = \Vert x\Vert^2$}
+\begin{Rem}
+Attention : on emploie parfois le terme d'endomorphisme orthogonal pour désigner les isométries.
+\par Ce vocabulaire est trompeur :\begin{itemize}
+\item Ene projection orthogonale n'est pas un endomorphisme orthogonal (sauf l'identité)
+\item Une symétrie orthogonale est un endomorphisme orthogonal. En effet, notons $x\in E, x= x_F + x_{F^\perp}$
+\par Donc $s(x) = x_F-x_{F^\perp}$
+\par $\Vert x\Vert^2 = \Vert x_F\Vert^2+\Vert x_{F^\perp}\Vert^2=\Vert x_F\Vert^2+\Vert -x_{F^\perp}\Vert^2 = \Vert s(x)\Vert^2$
+\par $s\in\mathcal{L}(E)$ conserve la norme, c'est une isométrie.
+\end{itemize}
+\end{Rem}
+
+\begin{Exe}
+Soit $E$ un espace euclidien et $s$ une symétrie. Montrez que $s$ est une isométrie si, et seulement si, $s$ est une symétrie orthogonale.
+\par On a déjà la première implication par la remarque précédente, raisonnons par contraposée :
+\par Si $s$ est une symétrie non-orthogonale :
+\par $f$ est une symétrie par rapport à $F$ parallèlement à $G$. $s$ n'est pas orthogonale, donc $F$ et $G$ ne sont pas orthogonaux.
+\par Donc on peut noter $f\in F, g\in G$ tels que $\langle f, g\rangle\neq 0$
+\par $\Vert f+g\Vert^2 =\Vert f\Vert^2+2\langle f, g\rangle+\Vert g\Vert^2$
+\par $\Vert f-g\Vert^2 =\Vert f\Vert^2 - 2\langle f, g\rangle + \Vert g\Vert^2$
+\par Et donc $\Vert s(f+g)\Vert\neq \Vert f+g\Vert$
+\par Donc $s$ n'est pas une isométrie.
+\end{Exe}
+
+\subsection{Isométries directes, indirectes}
+\Prop{}{Soit $E$ un espace euclidien, $u$ une isométrie. Alors :
+\par $$(\det u)\in \{-1, 1\}$$
+\par On dit que $u$ est une isométrie directe si $\det(u)=1$, indirecte sinon.}
+\Pre{Si $u$ une isométrie.
+\par $$\det(u)=\det(u^\star)=\det(u^{-1})=\frac{1}{\det(u)}$$}
+\Prop{}{\begin{itemize}
+\item L'ebnsemble des isométries est un groupe pour la loi $\circ$
+\par On l'appelle le groupe orthogonal noté $\mathcal{O}(E)$.
+\item L'ensemble des isométries directes est un groupe pour la loi $\circ$.
+\par On l'appelle le groupe spécial orthogonal, noté $\mathcal{SO}(E)$ ou $\mathcal{O}_+(E)$.
+\item L'ensemble des isométries indirectes \textbf{n'est pas} un groupe pour la loi $\circ$.
+\par On le note $\mathcal{O}_-(E)$
+\end{itemize}}
+\Pre{On démontre que $\mathcal{O}(E)$ est un sous-groupe de $(\mathcal{GL}(E),\circ)$
+\par Si $u,v\in\mathcal{O}(E)$, alors :
+\par $\forall x\in E, \Vert u\circ v(x)\Vert = \Vert u(v(x))\Vert = \Vert v(x)\Vert = \Vert x\Vert$
+\par Donc $u\circ v\in\mathcal{O}(E)$
+\par $\forall x\in E, \Vert u^{-1}(x)\Vert^2 = \langle u^\star(x), u^{-1}(x)\rangle =\langle x, (u^\star)^{-1}u^{-1}(x) \rangle$
+\par $= \langle x, u\circ u^{-1}(x)\rangle = \langle x,x\rangle$
+\par Donc $\mathcal{O}(E)$ est un sous-groupe de $\mathcal{GL}(E)$}
+"Vous revenez pas à Mathusalem" - Chakroun, pour dire de ne pas prouver que quelque chose est un groupe et de prouver que c'est un sous-groupes parce que c'est quand même plus simple.
+
+\subsection{Orientation de l'espace}
+\Def{}{$E$ un espace euclidien, on définit la relation sur les bases de cet espace :
+\par $$B\mathcal{R}B'\Leftrightarrow \det_B(B') > 0$$
+\par $\mathcal{R}$ est une relation d'équivalence.
+\par Il y a deux classes d'équivalence.}
+\Pre{Soit $B=(e_1,e_2,..., e_n)$ une base, alors $B'=(-e_1, e_2,..., e_n)$ n'est pas dans la classe de $B$
+\par Soit $B''$ une base, si $B''$ n'est pas dans la classe de $B$
+\par Alors $\det_{B'}B'' = \det_{B}B'' \det_{B'}{B'}B>0$ ($\det_B(B'')<0$ et $\det_{B'}(B')<0$) donc $B''$ est dans la classe de $B'$.}
+Orienter l'espace, c'est choisir une classe d'équivalence ie choisir la classe des bases directes.
+
+\Prop{}{Soit $E$ un espace euclidien orienté, $\mathcal{B}$ une base orthonormale directe (BOND)
+\par $u\in\mathcal{L}(E)$ est une isométrie directe si, et seulement si, $u(B)$ est une BOND.
+\par $$ \det_B(u(e_1),..., u(e_n)) = \det u\det_B(e_1, ..., e_n)$$}
+\Def{Produit mixte}{Soit $E$ un espace euclidien orienté et $\mathcal{B}$ une base orthonormale directe.
+\par L'application $(x_1,..., x_n)\mapsto \det_\mathcal{B}(x_1,..., x_n)$ ne dépend pas de $\mathcal{B}$
+\par On l'appelle produit mixte noté $[x_1, ..., x_n]$}
+\Pre{B une base orthonormale directe.
+\par $\det_{\mathcal{B}'}(x_1,..., x_n) = \det_\mathcal{B}(x_1,..., x_n)\det_{\mathcal{B}'}(B)$
+\par L'application linéaire qui envoie $\mathcal{B}'$ sur $\mathcal{B}$ est une isométrie directe.
+\par Donc $\det_{\mathcal{B}'}\mathcal{B}=+1$}
+
+
+\section{Matrices orthogonales}
+\subsection{Généralités}
+\Def{}{On dit qu'une matrice $M\in\mathcal{M}_n(\K)$ est orthogonale si elle vérifie l'une des propriétés équivalentes suivantes :\begin{enumerate}
+\item $$M^TM = I$$
+\item $$MM^T = I$$
+\item $M\in\mathcal{GL}_n(\R)$ et $M^T=M^{-1}$
+\item Les vecteurs colonnes de $M$ forment une base orthonormale pour le produit scalaire canonique de $\mathcal{M}_{n,1}(\R)$
+\item Les vecteurs lignes de $M$ forment une base orthonormale pour le produit scalaire canonique de $\mathcal{M}_{1,n}(\R)$
+\end{enumerate}}
+\Pre{Les seules implications à montrer sont $1\Leftrightarrow 4$, puisque $1\Leftrightarrow 2\Leftrightarrow 3$ et $4\Leftrightarrow 5$
+\par Soit $M\in\mathcal{M}_n(\R)$
+\par On considère $C_1,..., C_n$ les vecteurs colonnes de $M$
+\par $\forall j\in\llbracket 1,n\rrbracket, C_j = \begin{pmatrix}M_{1,j}\\ .\\.\\ M_{n, j}\end{pmatrix}$
+\par Pour $j, k\in\llbracket 1, n\rrbracket, \langle C_j, C_k\rangle = \sum\limits_{i=1}^nM_{i,j}M_{i,k} = \sum\limits_{i=1}^nM^T_{j,i}M_{i,k} = (M^TM)_{j,k}$
+\par Donc $M^TM=I\Leftrightarrow (C_1,..., C_n)$ est une BON.}
+\begin{Exe}
+$\begin{pmatrix}\frac{1}{\sqrt{5}} & \frac{-2}{\sqrt{5}} \\ \frac{2}{\sqrt{5}} & \frac{1}{\sqrt{5}}\end{pmatrix}$
+\par $\begin{pmatrix} \frac{1}{\sqrt{14}}&\frac{2}{\sqrt{14}} &\frac{3}{\sqrt{14}} \\\frac{-2}{\sqrt{5}} &\frac{1}{\sqrt{5}} & 0 \\ \frac{-3}{\sqrt{14\times 5}} &\frac{-6}{\sqrt{14\times 5}} &\frac{5}{\sqrt{14\times 5}} \end{pmatrix}$
+\end{Exe}
+\Prop{}{La matrice de passage entre deux BON est une matrice orthogonale.}
+\Prop{}{Le déterminant d'une matrice orthogonale est égal à $1$ ou à $-1$}
+\Def{}{Pour $u\in\mathcal{L}(E)$, on a équivalence entre :\begin{itemize}
+\item $u$ est une isométrie vectorielle
+\item la matrice associée à $u$ dans toute BON est orthogonale
+\item il existe une BON dans laquelle la matrice associée à $u$ est orthogonale
+\end{itemize}}
+
+\subsection{Classification des matrices orthogonales du plan}
+($\mathcal{O}_2(\R)$ l'ensemble des matrices orthogonales de $\mathcal{M}_2(\R)$)
+\par $\mathcal{O}_2(\R)=\{R_\theta\vert\theta\in\R\}\cup\{S_\theta\vert\theta\in\R\}$
+\par $R_\theta = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$
+\par $S_\theta = \begin{pmatrix} \cos\theta & \sin\theta \\ \sin\theta & -\cos\theta\end{pmatrix}$
+\par $\mathcal{SO}_2(\R) = \mathcal{O}_2^+(\R) = \{R_\theta\vert\theta\in\R\}$ (ensemble des rotations d'angle $\theta$, ensemble des matrices de $\mathcal{O}_2(\R)$ de déterminant 1)
+\par $\mathcal{O}_2^-(\R)=\{S_\theta\vert\theta\in\R\}$ (ensemble des matrices de $\mathcal{O}_2(\R)$ de déterminant $-1$)
+\Prop{}{$\forall(\theta,\varphi)\in\R^2$ :\begin{itemize}
+\item $$R_\theta R_\varphi = R_{\theta+\varphi}$$
+\item $$R_\theta^{-1} = R_{-\theta} =R_\theta^T$$
+\item $\mathcal{SO}_2(\R)$ est un groupe commutatif, en particulier :
+\par $$\forall \theta,\varphi\in\R, R_\theta R_\varphi R_\theta^{-1}=R_\varphi$$
+\par Dans ce cas, $R_\theta$ est la matrice de passage d'une BOND dans une BOND.
+\end{itemize}}
+\Pre{Se prouvent par du calcul matriciel, et un peu de trigonométrie.}
+$S_\theta$ est une symétrie orthogonale par rapport à une droite
+\par $S_\theta\times \begin{pmatrix}\cos(\frac{\theta}{2})\\\sin(\frac{\theta}{2})\end{pmatrix} = \begin{pmatrix}\cos(\frac{\theta}{2})\\ \sin\frac{\theta}{2}\end{pmatrix}$
+\par $S_\theta\times \begin{pmatrix}-\sin(\frac{\theta}{2})\\\cos(\frac{\theta}{2})\end{pmatrix} = -\begin{pmatrix}-\sin(\frac{\theta}{2})\\ \cos\frac{\theta}{2}\end{pmatrix}$
+\par Donc $S_p(S_\theta) = \{-1,1\}$ Et $E_1(S_\theta)$ est orthogonal à $E_{-1}(S_\theta)$
+
+\subsection{Classification des matrices orthogonales d'un espace de dimension 2}
+(où $E_2$ un espace euclidien de dimension 2)
+\par D'après l'étude de $\mathcal{O}_2(\R)$, on peut définir dans $E_2$ la rotation d'angle $\theta$:
+\Def{}{Dans $E_2$ euclidien de dimension 2, on définit la rotation d'angle $\theta$ comme $r_\theta$ l'endomorphisme dont la matrice dans une BOND est $R_\theta$}
+\begin{Rem}
+Donc $\mathcal{SO}(E_2) =\{r_\theta\vert\theta\in\R\}$
+\par $\mathcal{O}^-(E_2)$ est alors l'ensemble des symétries orthogonales de $E_2$ par rapport à des droites.
+\end{Rem}
+\Prop{}{Si $u$ et $v$ sont deux vecteurs normés de $E_2$ il existe une unique rotation $r_\theta$ telle que $v=r_\theta(u)$ 
+\par On appellera angle entre $u$ et $v$ cette rotation ($\theta$ est la mesure de cet angle défini à $2\pi$ près)
+\par On retrouve la propriété de Chasles sur les angles.
+}
+\Pre{$u$ et $v$ sont normés
+\par $u^\perp=Vect(w)$ où $\Vert w \Vert=1$
+Donc la droite $Vect(w)$ il y a seulement deux vecteurs normés : $w$ et $-w$ 
+\par Donc il y a exactement 2 BON de premier vecteur $u$, $(u,w)$ et $(u, -w)$
+\par Une seule d'entre eux est directe.
+\par Quitte à échanger $w$ et $-w$, on peut considérer que $(u,w)$ est une BOND.
+\par Donc $v\in Vect(u, w), v= au + bw$ où $a^2+b^2=1$
+\par L'unique rotation $r$ telle que $r(u)=v$ a pour matrice dans $(u,w)$ : $\begin{pmatrix}a & -b\\ b&a\end{pmatrix}$}
+\begin{Rem}
+Par définition pour 2 vecteurs non nuls $u,v$, on appellera angle de $u$ et $v$ l'angle entre $\frac{u}{\Vert u\Vert}$ et $\frac{v}{\Vert v\Vert}$
+\end{Rem}
+\Prop{}{L'angle de deux vecteurs est caractérisé par sa mesure notée $\widehat{u, v}$ définie à $2\pi$ près, donc caractérisée par $\cos(\widehat{u,v})$ et $\sin(\widehat{u,v})$
+\par $$\cos(\widehat{u,v}) = \frac{\langle u,v\rangle}{\Vert u\Vert \Vert v\Vert}$$
+\par $$\sin(\widehat{u,v}) = \frac{[u,v]}{\Vert u\Vert \Vert v\Vert}$$}
+\Pre{$u,v$ non nuls.
+\par On considère $(\frac{u}{\Vert u\Vert}, w)$ l'unique BOND de premier vecteur $\frac{u}{\Vert u\Vert}$
+\par On note $\theta = \widehat{u,v}$
+\par $\frac{v}{\Vert v\Vert} = \cos\theta\frac{u}{\Vert u\Vert}+\sin\theta w$
+\par Donc $\langle \frac{v}{\Vert v\Vert}, \frac{u}{\Vert u\Vert}\rangle = \cos\theta$
+\par $\left[\frac{u}{\Vert u\Vert}, \frac{v}{\Vert v\Vert}\right] = \left\vert\begin{matrix} 1 & \cos\theta \\ 0 & \sin\theta \end{matrix}\right\vert =\sin\theta$}
+\begin{Exe}
+$R^2$ euclidien oritenté (la base canonique est une BOND)
+\par Donner une mesure de l'angle entre $u = (5,3)$ et $v=(1,-2)$
+\par $\cos(\widehat{u,v}) = \frac{5-6}{\sqrt{34}\sqrt{5}}=\frac{-1}{\sqrt{34}\sqrt{5}}$
+\par $\sin\theta = \frac{-10-3}{\sqrt{34}\sqrt{5}} = \frac{-13}{\sqrt{34}\sqrt{5}}$
+\par Donc $\theta =-\arccos\left(\frac{-1}{\sqrt{34}\sqrt{5}}\right)$ (comme le produit mixte de $u$ et $v$ est négatif, ce qui permet de choisir le signe)
+\end{Exe}
+
+\subsection{Classification des matrices orthogonales d'un espace euclidien orienté de dimension 3}
+Pour $u\in\mathcal{O}(E_3)$, on note $F = \ker (u-id)$
+\par Si $\dim F = 3$ : alors $u = id$, donc $u$ est nécessairement dans $\mathcal{O}_+(E_3)$
+\par Si $\dim F=2$, alors $\dim F^\perp=1$, l'endomorphisme induit par $u$ sur $F^\perp$ est égal à $id_{F^\perp}$ ou $-id_{F^\perp}$
+\par Si $u_{F^\perp}$ était égal à $id_{F^\perp}$, alors $u$ serait l'identité. Donc nécessairement, $u_{F^\perp} = -id_{F^\perp}$
+\par Donc $u$ est la symétrie orthogonale par rapport à $F$
+\par Si $\dim F=1$, alors $\dim F^\perp = 2$. Notons $v$ l'endomorphisme induit par $u$ sur $F^\perp$.
+\par $v$ est donc soit une symétrie orthogonale par rapport à une droite, soit une rotation du plan. Si $v$ était une symétrie orthogonale, on aurait $\dim F = 2$, donc $v$ est une rotation du plan $F^\perp$
+\par Donc si on choisit $w$ un vecteur qui oriente $F$ et qu'on choisit $u, v$ dans $F^\perp$ tels que $(u,v)$ soit une base orientée de $F^\perp$ et que $(w, u, v)$ soit une base directe de $E_3$, on a alors que $u$ est la rotation d'axe $w$ orienté par $w$ d'angle $\theta$
+\par Si $\dim F=0$, alors ça veut dire que $1$ n'est pas valeur propre, donc $-1$ est valeur propre. $u$ est donc la composée d'une symétrie orthogonale et d'une rotation.
+\begin{Exe}
+Prenons $u\in\mathcal{L}(E_3)$ avec $\mathcal{B}$ une BOND de $E_3$ telle que $Mat_\mathcal{B}(u) = \frac{1}{3}\begin{pmatrix} 2 & 1 & 2 \\ 2 & -2 & -1 \\ 1 & 2 & -2\end{pmatrix}$
+\par On peut faire les produits scalaires des colonnes les unes avec les autres, et on obtiendra que les produits scalaires sont nuls. Donc $A\in\mathcal{O}_3(\R)$, soit $u\in\mathcal{O}(E_3)$
+\par Le calcul du déterminant de $A$ donne $1$, donc $u\in\mathcal{SO}(E_3)$, et $u\neq id$. Donc $u$ est une rotation d'axe d'angle $\theta$ orientée par $w$.
+\par $w$ est solution de $(id-u)(w)=0$. On échelonne le système, et on obtient que $w$ est solution de $\left\{\begin{array}{ccccl} x & -y & -2z & = & 0 \\ & 3y & -3z & = & 0 \\ & -3y & +3z & = & 0\end{array}\right.$
+\par Choisissons $w = 3e_1+e_2+e_3$, qu'on norme en $e_1' = \frac{1}{\Vert w\Vert}w=\frac{1}{\sqrt{11}}w$
+\par Pour le choix du deuxième élément de la base, on a juste besoin d'un élément de $F^\perp$, donc on peut choisir le vecteur normé qu'on veut. On prend $e_2' = \frac{1}{\sqrt{10}}(e_1-3e_2)$
+\par On n'a plus de choix pour le troisième élément de la base cependant. Pour déterminer un vecteur qui soit orthogonal aux deux précédents, on peut utiliser le produit vectoriel, et on a $e_3' = \frac{1}{\sqrt{10}\sqrt{11}}(3e_1+e_2-10e_3)$
+\par On note $\mathcal{B}' = (e_1', e_2', e_3')$
+\par On a alors $Mat_{\mathcal{B}'}(u) = \begin{pmatrix} 1 & 0 & 0 \\ 0 & \cos\theta & -\sin\theta \\ 0 & \sin\theta & \cos\theta\end{pmatrix}$
+\par (La matrice de passage de $\mathcal{B}$ dans $\mathcal{B}'$ est la matrice d'une BOND dans une BOND, donc son inverse est égal à sa transposée.)
+\par On a que $tr(A)=tr(A')$, donc $\frac{-2}{3} = 1 + 2\cos\theta$.
+\par D'où $\cos\theta = \frac{-5}{6}$
+\par Et donc $\theta=\pm\arccos\left(\frac{-5}{6}\right)$
+\par Pour déterminer le signe, on fait le produit mixe de $w, e_2', r_{w, \theta}(e_2')$, qui vaut $\Vert w\Vert\sin \theta$ dans la base $\mathcal{B}'$.
+\par Dans la base $\mathcal{B}$ d'origine, on a que leur produit mixte vaut $\left\vert\begin{matrix} 3 & \frac{1}{\sqrt{10}} & \frac{-5}{3\sqrt{10}} \\ 1 & \frac{-3}{\sqrt{10}} & \frac{8}{3\sqrt{10}} \\ 1 & 0 & \frac{-5}{3\sqrt{10}}\end{matrix}\right\vert>0$
+\par Donc $\sin\theta>0$
+\par Donc $\theta = +\arccos\left(\frac{-5}{6}\right)$
+\end{Exe}
+
+
+\section{Réduction des isométries dans un espace euclidien}
+\Thr{}{Soit $E$ un espace euclidien et $u\in\mathcal{O}(E)$ alors il existe une base orthonormale $\mathcal{B}$ telle que $Mat_B(u)$ est diagonale par bloc et chaque bloc est de la forme :
+\par $$\begin{matrix} [1] \\ [-1] \\ [R_\theta]\end{matrix}$$
+\par pour $\theta\in\R$
+\par ie chaque bloc est soit $I$, soit $-I$, soit une rotation.}
+\begin{Rem}
+Que l'isométrie soit directe ou non dépend du nombre de $-1$ dans cette matrice
+\par Les seules valeurs propres réelles possibles pour une isométrie sont $1$ et $-1$ comme elle conserve la norme.
+\end{Rem}
+\Pre{\underline{Lemme préparatoire :} tout endomorphisme d'un $\R$-ev E de dimension finie possède une droite stable ou un plan stable.
+\par Si $E$ un $\R$-ev de dimension finie, et $u\in\mathcal{L}(E)$ :\begin{itemize}
+\item Si $u$ possède une valeur propre réelle $\lambda$
+\par Alors on dispose de $x\in E, x\neq 0$ tel que $u(x)=\lambda x$
+\par Donc $Vect(x)$ est stable par $u$
+\item Si $u$ n'a pas de valeur propres réelles : la décomposition en facteurs premiers de $\pi_u$ dans $\R[X]$ ne comporte que des facteurs de degré 2 irréductibles.
+\par $\pi_u = (X^2+aX+b)Q$ où $Q\in\R[X]$
+\par On a donc $(u^2 + au + bid)\circ Q(u) =0$
+\par Par l'absurde, si $\ker (u^2+au+bid) = \{0\}$, alors $u^2+au+bid$ serait injectif. Comme on est en dimension finie, il serait bijectif.
+\par Donc $Q(u)=0$, et donc $Q$ est annulateur de $u$ avec $\deg Q < \deg \pi_u$
+\par D'où la contradiction
+\par On peut donc prendre $x\in E$ non-nul tel que $x\in\ker (u^2+au+bid)$
+\par $(x, u(x))$ est librre car $u$ n'a pas de valeurs propres réelles, donc $F = Vect(x, u(x))$ est un plan, $u(x)\in F$ et $u(u(x))=-au(x)-bx$ donc dans $F$
+\par Donc $F$ stable par $u$ 
+\end{itemize}
+Récurrence sur $n\in\N^*$, $H_n$: Si $E$ est un espace de dimension inférieure ou égale à $n$ alors il existe une BON $B$ de $E$ dans laquelle la matrice est de la bonne forme.
+\par $H_1$ et $H_2$ sont vérifiées
+\par Soit $\in \N^*$, on suppose $H_n$
+\par Soit $E$ un espace euclidien de dimension $n+1$, soit $u\in\mathcal{O}(E)$ :\begin{itemize}
+\item Si $u$ possède une valeur propre réelle $\lambda$ : cette valeur propre est $1$ ou $-1$. Alors $E_\lambda(u)$ est stable par $u$ donc $E_\lambda(u)^\perp$ est stable par $u^\star$ donc $E_\lambda(u)^\perp$ est stable par $u$
+\par On prend $B_1$ une BON de $E_\lambda(u)$, et on note $u_1$ l'endomorphisme induit par $u$ sur $E_\lambda(u)$. Alors $Mat_{B_1}(u_1) = \lambda id$
+\par Par $H_n$, on prend $B_2$ une BON de $E\lambda(u)^\perp$ telle que l'endomorphisme induit par $u$ sur $E_\lambda(u)^\perp$ a une matrice de la forme recherchée.
+\par Donc dans la BON $B=(B_1, B_2)$, $Mat_{B}(u)$ est de la forme recherchée.
+\item Si $u$ n'a pas de valeurs propres réelles : il existe un plan stable de $u$, donc soit $u$ induit sur ce plan est une symétrie orthogonale, soit c'est une rotation. Si c'était une symétrie orthogonale, sa matrice n'aurait que des $1$ et des $-1$ sur la diagonale dans une BON, mais $u$ n'a pas de valeurs propres réelles donc c'est la matrice d'une rotation qu'on doit utiliser et on concatène avec une BON de l'espace orthogonal (l'endomorphisme induit dessus est de la bonne forme par $H_n$)
+\end{itemize}}
+
+
+\section{Les endomorphismes auto-adjoints}
+\Def{}{Soit $E$ un espace euclidien et $u\in\mathcal{L}(E)$.
+\par On dit que $u$ est auto-adjoint si $u^\star = u$
+\par ie $\forall x,y\in E, \langle u(x),y\rangle = \langle x, u(y)\rangle$}
+\Prop{}{Soit $E$ un espace euclidien de dimension $n$, soit $\mathcal{B}$ une \underline{base orthonormale} de $E$, soit $u\in\mathcal{L}(E)$
+\par $u$ est auto-adjoint si $Mat_B(u)\in\mathcal{S}_n(\R)$}
+\begin{Rem}
+On dit parfois que $u$ est symétrique pour désigner un endomorphisme auto-adjoint.
+\end{Rem}
+\begin{Exe}
+Un projecteur orthogonal est un endomorphisme symétrique/auto-adjoint.
+\end{Exe}
+
+\Thr{Théorème spectral}{Tout endomorphisme auto-adjoint d'un espace euclidien est diagonalisable dans une BON.}
+\Pre{\underline{Lemme :} si $E$ est euclidien et $u\in\mathcal{L}(E)$ auto-adjoint, alors $u$ possède une valeur propre réelle.
+\par On considère $\mathcal{B}$ une base orthonormale de $E$ et $S=Mat_\mathcal{B}(u)\in\mathcal{S}_n(\R)$.
+\par On considère $v$ l'endomorphisme de $\C^n$ canoniquement associé à $S$
+\par Alors $\chi_v=\chi_S=\chi_u$
+\par Soit $\lambda$ une valeur propre de $v$
+\par On a donc $X\in\mathcal{M}_{n,1}(\C), X\neq 0$ tel que $SX=\lambda X$
+\par $\overline{X}^T SX = \lambda \overline{X}^TX$
+\par mais on a aussi $\overline{X}^TSX=(S\overline{X})^TX=(\bar{S}\bar{X})^TX=\bar{\lambda}\bar{X}^TX$
+\par Et $\overline{X}^TX\in\R_+^*$
+\par Donc $\lambda\in\R$
+\par Or $v\in\mathcal{L}(\C^n)$ donc $\chi_v$ est scindé, donc $v$ possède au moins une valeur propre qui est réelle. Donc $S$ possède une valeur propre réelle.
+\par Donc $u$ en possède une.
+\par Par récurrence forte, montrons que $\forall n\geq 1$, $H_n$ : tout endomorphisme auto-adjoint d'un espace euclidien de dimension inférieure ou égale à $n$ est diagonalisable en BON.
+\par $H_1$ est vérifiée.
+\par Soit $n\in\N^*$, on suppose $H_n$
+\par Soit $E$ un espace euclidien de dimension $n+1$ et $u\in\mathcal{S}(E)$ (l'ensemble des endormorphismes auto-adjoints/symétriques)
+\par Soit $\lambda$ une valeur propre réelle de $u$ (qui existe d'après le lemme)
+\par On note $F= E_\lambda(u)$
+\par $F$ est stable par $u$, donc $F^\perp$ est stable par $u^\star$ donc par $u$ et l'endomorphisme $u'$ induit par $u$ sur $F^\perp$
+\par $u'$ est auto-adjoint
+\par $\dim F\geq 1$ donc $\dim F^\perp\leq n$
+\par Donc par $H_n$, il existe $\mathcal{B'}$ une BON de $F^\perp$ telle que $Mat_{\mathcal{B}'}u'$ est diagonale.
+\par On prend $\mathcal{B}_1$ une BON de $F$
+\par $\mathcal{B}=(\mathcal{B}_1,\mathcal{B}')$ est une BON de $E$ et $Mat_\mathcal{B}$ est donc diagonale.
+\par Ce qui conclut la récurrence.}
+
+\Prop{théorème spectral matriciel}{Toute matrice symétrique réelle est orthogonalement semblable à une matrice diagonale.
+\par ie $\forall S\in\mathcal{S}_n(\R), \exists D\in\mathcal{D}_n(\R), \exists P\in\mathcal{O}_n(\R), D = P^{-1}SP = P^TSP$}
+\Pre{Soit $S\in\mathcal{S}_n(\R)$
+\par Soit $u\in\mathcal{L}(\R^n)$ canoniquement associé à $S$, on munit $\R^n$ du produit scalaire canonique (ie sa base canonique est une BON).
+\par On note $\mathcal{B}$ la base canonique de $\R^n$
+\par $u$ est auto-adjoint.
+\par Donc d'après le théorème spectral, $u$ est diagonalisable dans une BON $\mathcal{B}'$
+\par La matrice $P$ de passage de $\mathcal{B}$ dans $\mathcal{B}'$ est orthogonale et on a :
+\par $Mat_{\mathcal{B}'}(u) = P^{-1}SP = P^TSP$ où $Mat_{\mathcal{B}'}\in\mathcal{D}_n(R)$}
+
+\section{Endomorphismes auto-adjoints et formes bilinéaires symétriques}
+\Thr{}{Soit $E$ un espace euclidien et $\varphi$ une fbs sur $E$. Il existe un unique endomorphisme auto-adjoint $u$ tel que :
+\par $$\forall x,y\in E, \varphi(x,y) = \langle x, u(y)\rangle$$}
+\Pre{Soit $y\in E$, on note $\psi_y$ la forme linéaire $x\mapsto \varphi(x,y)$
+\par Par théorème de représentation des formes linéaires, il existe un unique vecteur noté $u(y)$ tel que $x\mapsto \langle u(y), x\rangle =\psi_y$
+\par On a montré l'existence d'une unique application de $E$ dans $E$ $u$ vérifiant $\forall x,y\in E, \langle u(x), y\rangle =\varphi(x,y)$
+\par Montrons que $u$ est linéaire et $u=u^\star$
+\par Soient $x, x'\in E$, soit $\lambda\in\R$, soit $y\in E$
+\par $\langle u(\lambda x + x'), y\rangle = \varphi(\lambda x +x',y) = \lambda \varphi(x,y)+\varphi(x', y)$
+\par $ = \lambda \langle u(x), y\rangle + \langle u(x'), y\rangle = \langle \lambda u(x)+u(x'),y\rangle$
+\par Donc $\langle u(\lambda x+x')-\lambda u(x)-u(x'), y\rangle=0$
+\par Donc $u(\lambda x+x')-\lambda u(x) - u(x')\in E^\perp$
+\par Donc $u\in\mathcal{L}(E)$
+\par De plus, $\forall x,y\in E, \varphi(x,y)=\varphi(y,x)$
+\par Donc $\langle u(x), y\rangle =\langle x, u(y)\rangle$
+\par Donc $u=u^\star$}
+\Def{}{Soit $E$ un espace euclidien, $u\in\mathcal{S}(E)$ un endomorphisme auto-adjoint.
+\par On dit que :\begin{itemize}
+\item $u$ est positif si $(x,y)\mapsto \langle u(x),y\rangle$ est une forme bilinéaire symétrique positive. On note l'ensemble de ces endomorphismes $\mathcal{S}_+(E)$.
+\item $u$ est défini positif si $(x,y)\mapsto \langle u(x), y\rangle$ est un produit scalaire. On note l'ensemble de ces endomorphismes $\mathcal{S}_{++}(E)$.
+\end{itemize}}
+\Def{}{Soit $S\in\mathcal{S}_n(\R)$.
+\par On dit que :\begin{itemize}
+\item $S$ est positive si $(X,Y)\mapsto X^T SY$ est une forme bilinéaire symétrique positive sur $\mathcal{M}_{n,1}(\R)$. On note l'ensemble de ces matrices $\mathcal{S}_n^+(\R)$.
+\item $u$ est défini positif si $(X,Y)\mapsto X^TSY$ est un produit scalaire sur $\mathcal{M}_{n,1}(\R)$. On note l'ensemble de ces endomorphismes $\mathcal{S}_n^{++}(\R)$.
+\end{itemize}}
+\Thr{}{Soit $E$ un espace euclidien et $u\in\mathcal{S}(E)$ alors :\begin{itemize}
+\item $u$ est positif si, et seulement si, $S_p(u)\subset\R_+$
+\item $u$ est défini positif si, et seulement si, $S_p(u)\subset\R_+^*$
+\end{itemize}}
+\Pre{$u$ est auto adjoint
+\par Par théorème spectral, on peut trouver une BON $(e_1,..., e_n)$ de vecteurs propres.
+\par Les valeurs propres de $u$ $\lambda_1,...,\lambda_n$
+\par $\forall x\in E, x=\sum\limits_{i=1}^nx_ie_i$
+\par $\langle x, u(x)\rangle  = \langle \sum\limits_{i=1}^n x_ie_i, \sum\limits_{i=1}^n\lambda_ix_ie_i\rangle$
+\par $=\sum\limits_{i=1}^n\lambda_i\langle x_i, x_i\rangle=\sum\limits_{i=1}^n\lambda_ix_i^2$
+\par Ensuite, on raisonne par double implication :
+\par Si $S_p(u)\subset R_+$ : Alors $\langle x, u(x)\rangle\geq 0$ comme on a une somme de termes positifs, donc $u$ est positif
+\par Si $u$ est défini positif : Alors $\forall x\in E, \langle x, u(x)\rangle\geq 0$. En particulier, $\langle e_i, u(e_i)\rangle = \lambda_i \times 1^2$ (la base est normée), donc tous les $\lambda_i$ sont positifs ou nuls.
+\par De même pour $u$ défini positif.}
+\begin{Exe}
+$E=\R^3$ avec $(e_1,e_2,e_3)$ la base canonique.
+\par $\varphi$ la fbs définie par :
+\par $$\forall x = x_1e_1+x_2e_2+x_3e_3, \varphi(x,x) =x_1^2 + 2x_2^2 + x_3^3+x_1x_2-x_1x_3$$
+\par Pour se mettre dans le cadre, on munit $E$ du produit scalaire canonique. Déterminer si $\varphi$ est positive ou positive définie.
+\par On pose $\varphi(x,x) = X^TSX$, et on obtient alors $S=\begin{pmatrix}1 & \frac{1}{2} & \frac{-1}{2} \\ \frac{1}{2} & 2 & 0 \\ \frac{-1}{2} & 0 & 1\end{pmatrix}$
+\par On a $\chi_S =  X^3 - 4X^2 + (\frac{7}{4}+2+\frac{3}{4})X -(2-\frac{1}{2}-\frac{1}{4}) = X^3-4X^2+ \frac{9}{2}X - \frac{5}{4}$
+\par On peut répondre à la question en dérivant le polynôme, en trouvant les racines de ce polynôme du second degré pour avoir un tableau de variations.
+\par Cela permet de savoir que les racines sont strictement positives, et donc que $\varphi$ est un produit scalaire.
+\end{Exe}
+
+
+\section{Hors-programme}
+\subsection{Racine carrées des matrices symétriques définies positives}
+\Thr{}{Soit $S\in\mathcal{S}_n^{++}(\R)$, alors il existe une unique racine carrée définie positive de $S$.}
+\Pre{Analyse : soit $s$ l'endomorphisme canoniquement associé à $S$ dans $\R^n$ muni du produit scalaire et de la base canonique.
+\par On pose $\delta\in\mathcal{S}^{++}(\R)$ tel que $\delta\circ\delta=s$
+\par On a alors $\delta\circ s = \delta^3=s\circ\delta$
+\par Donc $s$ et $\delta$ commutent, et les espaces propres de $s$ sont stables par $\delta$.
+\par Soit $\lambda\in S_p(s)$, on note $s_\lambda$ l'endomorphisme induit par $s$ sur $E_\lambda(s)$ et $\delta_\lambda$ l'endomorphisme induit par $\delta$ sur $E_\lambda(s)$
+\par Prenons $\mu\in S_p(\delta_\lambda)$ et $x$ un vecteur propre de $\delta_\lambda$ associé à la valeur propre $\mu$
+\par $s_\lambda(x) = \lambda x$ et $\delta_\lambda(x) = \mu x$
+\par Donc $s_\lambda(x)=\delta_\lambda\circ\delta_\lambda(x) = \mu^2x$
+\par Donc $\mu^2 = \lambda$
+\par $\delta$ est définie positive donc $\mu>0$, d'où $\mu = +\sqrt{\lambda}$
+\par $\delta_\lambda$ est auto-adjoint et diagonalisable, il a dnc $1$ valeur propre sur chaque espace propre.
+\par Donc $\delta_\lambda (x) =\sqrt{\lambda}x$
+\par Et comme $E = \bigoplus_{\lambda\in S_p(s)}E_\lambda(s)$, $\delta$ est unique.
+\par Synthèse : Soit $s\in\mathcal{S}^{++}(\R^n)$, notons $\delta$ l'endomorphisme tel que $\forall\lambda\in S_p(s)\forall x\in E_\lambda(s), \delta(x)=\sqrt{\lambda}x$
+\par On a bien que $\delta$ est un endomorphisme.
+\par Pour $\lambda\in S_p(s)$, notons $\mathcal{B}_\lambda$ une base orthonormale de $E_\lambda(s)$.
+\par $\mathcal{B}=(\mathcal{B}_{\lambda_1},...,\mathcal{B}_{\lambda_p})$ est une base orthonormale de $E$ telle que $Mat_\mathcal{B}(\delta)\in\mathcal{S}_n(\R)$
+\par Donc $\delta$ est bien auto-adjoint.
+\par On a de plus que $S_p(\delta) =\{\sqrt{\lambda}\vert \lambda\in S_p(s)\}$, donc $S_p(\delta)\subset\R_+^*$
+\par Donc $\delta\in\mathcal{S}^{++}(\R^n)$}
+
+
+\subsection{Matrices de Gramm d'une famille de vecteurs}
+\Def{}{$E$ un $\R$-ev euclidien de dimension $n$ ou un espace préhilbertien.
+\par $(u_1,..., u_p)$ une famille de $E$.
+\par $G(u_1,..., u_p)  = (\langle u_i, u_j\rangle)_{(i,j)\in\llbracket 1,p\rrbracket^2}$
+\par (immédiatement, $G\in S_p(\R)$)}
+\Prop{}{$F=Vect(u_1,..., u_p)$ avec $\dim F = q \leq p$
+\par $\mathcal{B}$ une BON de $F$, $\mathcal{B}=(f_1,...,f_q)$
+\par $A =Mat_\mathcal{B}(u_1,...,u_p)\in\mathcal{M}_{q,p}(\R)$
+\par Alors $A = (\langle u_j, f_i\rangle)_{(i,j)\in\llbracket 1,p\rrbracket\times\llbracket 1,q\rrbracket}$
+\par De plus, $A^TA = G(u_1,..., u_p)$}
+\Pre{$A^TA = \sum\limits_{k=1}^qA_{i,k}^TA_{k,j} = \sum\limits_{k=1}^qA_{k,i}A_{k,j}$
+\par $ = \sum\limits_{k=1}^q\langle u_i, f_k\rangle\langle u_j, f_k\rangle = \langle u_i, u_j\rangle$
+\par (puisque $f_1,...,f_q$ est une BON de $F$)}
+\Prop{Corollaire}{$(u_1,...,u_p)$ et $G(u_1,...,u_p)$ sont de même rang.}
+\Pre{Soit $A$ la matrice de $(u_1,..., u_p)$ dans une BON de $F$
+\par $rg(A) = rg(u_1,..., u_p)$ et $G(u_1,..., u_p)=A^TA$
+\par Soit $X\in\mathcal{M}_{p,1}(\R)$
+\par $X\in \ker A\Rightarrow X\in\ker(A^TA)$
+\par Réciproquement :
+\par Si $X\in\ker(A^TA)$, alors $A^TAX = 0$
+\par Donc $X^TA^TAX=0$
+\par D'où $(AX)^T(AX)=0$ qui est le produit scalaire canonique de $AX$ avec lui-même.
+\par Par définition du produit scalaire, $AX=0$ donc $X\in \ker A$
+\par Donc $\ker A=\ker A^TA$
+\par $A\in\mathcal{M}_{q,p}(\R)$ et $A^TA\in\mathcal{M}_p(\R)$
+\par $a\in\mathcal{L}(\R^p,\R^q)$ canoniquement associée à $A$, $b\in\mathcal{L}(\R^p)$ canoniquement associée à $A^TA$
+\par $\ker a=\ker b$ donc par théorème du rang, $rg (a)= rg (b)$
+\par D'où le résultat.}
+\Prop{}{$G(u_1,...,u_p)\in \mathcal{S}_p^+(\R)$
+\par et $G(u_1,...,u_p)\in \mathcal{S}_p^{++}(\R)$ si, et seulement si, $(u_1,..., u_p)$ est libre}
+\Pre{Rappel : $S\in\mathcal{S}_p(\R)$ : $S\in \mathcal{S}_p^+(\R) \Leftrightarrow S_p(S)\subset\R_+\Leftrightarrow \forall X\in\mathcal{p,1}(\R), X^TSX \geq 0$
+\par On prend $A\in\mathcal{M}_{q,p}(\R)$ telle que $G(u_1,...,u_p) = A^TA$
+\par Soit $X\in\mathcal{M}_{p,1}(\R)$, alors $X^TG(u_1,..., u_p)X = (AX)^T(AX)\geq 0$
+\par Donc $G(u_1,..., u_p)\in\mathcal{S}_p^+(\R)$
+\par Le rang donne l'équivalence.}
+\begin{Rem}
+On a le problème réciproque : Si $S\in\mathcal{S}_p^{++}(\R)$, $E$ un espace euclidien de dimension $n\geq p$ (ou un espace préhilbertien). Existe-t-il $p$ vecteurs de $(u_1,..., u_p)$ tels que $G(u_1,...,u_p)=S$ ?
+\par On fixe $\mathcal{B}$ une BON de $E$ et on considère $s\in\mathcal{L}(E)$ tel que $Mat_\mathcal{B}(s) =S$
+\par Comme $\mathcal{B}$ est une BON, alors $s\in S^{++}(E)$
+\par Par théorème spectral, on considère $\mathcal{B}'=(e_1',..., e_p')$ une BON de $E$ des vecteurs propres de $s$.
+\par Alors $Mat_{\mathcal{B}'} = Diag(\lambda_1,...,\lambda_p)$, et $\forall i\in\llbracket 1,p\rrbracket, \lambda_i>0$
+\par Soit $\Delta = Diag(\sqrt{\lambda_1},...,\sqrt{\lambda_p})$
+\end{Rem}
+
+
+\subsection{Familles isogonales}
+Dans un espace euclidien $E$
+\Def{}{Une famille $(u_i)_{1\leq i\leq p}$ d'un espace eudlidien est dite isogonale si :
+\par $$\left\{\begin{array}{l}\forall i\in\llbracket 1, p\rrbracket, \Vert u_i\Vert = 1 \\ \forall i,j\in\llbracket 1,p\rrbracket, i\neq j \Rightarrow \Vert u_i-u_j\Vert = d\end{array}\right.$$}
+\begin{Exe}
+On a $\Vert u_i-u_j\Vert^2=\Vert u_i\Vert^2 + \Vert u_j\Vert^2 - 2\langle u_i, u_j\rangle = 2 (1-\langle u_i, u_j\rangle) = d^2$
+\par  On note $K = \langle u_i,u_j \rangle$ pour $i\neq j$, qui vaut donc $\frac{2-d^2}{2}$
+\par On a $G(u_1,..., u_p) = S_K$ une matrice avec deux blocs $K$ au-dessus de la diagonale des $1$ (la matrice est symétrique).
+\par Les valeurs propres de $S_K$ sont $1-k$, qui est d'ordre $p-1$. Comme la trace correspond à la somme des valeurs propres, on déduit que la dernière valeur propre est $x = p-(p-1)(1-K)$
+\par $S_K$ est symétrique positive si, et seulement si, $1-K\geq 0$ et $p-(p-1)(1-K)\geq 0$
+\par $$\Leftrightarrow \frac{-1}{p-1}\leq K\leq 1$$
+\par Cas $K= \frac{-1}{p-1}$ :
+\par $S_K$ est de rang $p-1$ (une valeur propre est nulle, mais toutes les autres sont positives), si $(u_1,..., u_p)$ est une rotation, $rg(u_1,..., u_p)=p-1$
+\par Dans $E$ de dimension $n$, trouver $n+1$ vecteurs $(u_1,..., u_{n+1})$ des vecteurs tels que $G(u_1,..., u_{n+1})=S_n=\begin{pmatrix} 1 & \frac{-1}{n} \\ \frac{-1}{n} & 1\end{pmatrix}$
+\par La matrice $S_n$ de $\mathcal{S}_n(\R)$ est symétrique définie positive, on peut bien trouver $(u_1,..., u_n)$ telle que $G(u_1,..., u_n)=S_n$
+\par On cherche $u_{n+1}$ : $u_{n+1}=\sum\limits_{i=1}^n\alpha_iu_i$, où $\forall j\in\llbracket 1, n\rrbracket, \langle u_{n+1}, u_j\rangle =\frac{-1}{n}$
+\par$= \sum\limits_{i=1}^n\alpha_i\langle u_i, u_j\rangle = \frac{-1}{n}\sum\limits_{1\leq i\leq n, i\neq j} \alpha_i + \alpha_j$
+\par Si on prend $u_{n+1} = -\sum\limits_{i=1}^nu_i$, on a bien le résultat.
+\par Vérifions que $\langle u_{n+1}, u_{n+1}\rangle= \langle -\sum\limits_{i=1}^nu_i, -\sum\limits_{i=1}^nu_i\rangle=\sum\limits_{1\leq i, j\leq n}\langle u_i, u_j\rangle =-\frac{1}{n}n(n-1) + n = 1$
+\par On a donc cette formule pour les familles isogonales maximales.
+\end{Exe}
+
+
+
+\chapter{Equations différentielles linéaires}
+Dans le cadre de ce chapitre, $E$ est un $\K$-ev de dimension finie ($\K$ est $\R$ ou $\C$) et $I$ est un intervalle de $\R$.
+\par On s'intéresse aux équations différentielles dont les solutions sont des fonctions de $I$ dans $E$.
+\begin{Exe}
+$y'+xy = e^x$ est une équation différentielle linéaire du premier ordre, scalaire, normalisée (le coefficient devant $y'$ vaut $1$)
+\par Ses solutions sont les fonctions $y\in\mathcal{D}(I,\K)$ telles que $\forall x\in\R, y'(x)+xy(x) =e^x$
+\par $y' + xy^2=e^x$ n'est pas linéaire.
+\par $y'y + 3y = e^x$ n'est pas linéaire non plus.
+\par $\left\{\begin{array}{l} x'(t) = 3x(t) + t^2 y(t)+e^t \\ y'(t) = 2x(t) + 3y(t) - e^t\end{array}\right.$ est une équation différentielle linéaire, mais non scalaire.
+\par $y'' +t^2y' + (e^t+1)y = \sin(t)$ est une équation différentielle linéaire du premier ordre scalaire normalisée.
+\end{Exe}
+\section{Généralités}
+\subsection{Définitions}
+\Def{Premier ordre}{Soit $I$ un intervalle, soit $E$ un $\K$-ev de dimension finie.
+\par Soit $a$ une application continue de $I$ dans $\mathcal{L}(E)$
+\par Soit $b$ une application continue de $I$ dans $E$
+\par On appelle $y' + a\cdot y = b$ équation différentielle linéaire du premier ordre normalisée.
+\par Ses solutions sont les fonctions $y\in\mathcal{D}(I, E)$ vérifiant $\forall t\in I, y'(t)+a(t)\cdot y(t)=b(t)$}
+\Def{Traduction matricielle}{Avec les notations ci-dessus, on fixe une base $\mathcal{B}$ de $E$.
+\par $\forall t\in I, Y(t) = Mat_{\mathcal{B}}y(t) \Rightarrow Y'(t) = Mat_\mathcal{B}y'(t)\in\mathcal{M}_{n,1}(\K)$
+\par $A(t) = Mat_\mathcal{B}a(t)\in\mathcal{M}_n(\K)$
+\par $B(t) = Mat_\mathcal{B}b(t)\in\mathcal{M}_{n,1}(\K)$
+\par L'équation devient :
+\par $$Y'(t) = A(t)Y(t) B(t)$$}
+\begin{Exe}
+$\left\{\begin{array}{l}x'(t) 2tx(t) + 3t^2y(t) + \sin(t) \\ y'(t) =  (3t+1)x(t)  + \frac{1}{1+t^2}y(t) + t\end{array}\right.$
+\par Alors $Y'(t) =\begin{pmatrix} 2t & 3t^2 \\ (3t+1) & \frac{1}{1+t^2}\end{pmatrix}Y(t) +\begin{pmatrix}\sin(t) \\ t\end{pmatrix}$
+\end{Exe}
+\begin{Exe}
+Exemple de vectorialisation d'une équation du second ordre :
+\par $(E) : y''(t) + 3ty'(t) + \sin(t)y(t) = t^2$
+\par On pose $Y(t) = \begin{pmatrix} y(t) \\ y'(t)\end{pmatrix}$
+\par $Y$ solution de $(E)$ $\Leftrightarrow$ $Y'(t) = \begin{pmatrix} 0 & 1 \\ -\sin(t) & -3t \end{pmatrix}Y(t) + \begin{pmatrix} 0\\ t^2 \end{pmatrix}$
+\par On transforme donc cette équation différentielle linéaire scalaire du second ordre en une équation différentielle linéaire vectorielle du premier ordre.
+\end{Exe}
+\Def{Equations différentielles linéaires normalisées scalaires d'ordre p}{L'équation $y^{(p)} + a_{p-1}y^{(p-1)}+...+a_0y = b$ où :
+\par $\forall i\in\llbracket 0, p-1\rrbracket$, $a_i$ est une application continue de $I$ dans $\K$
+\par et $b$ est une application continue de $I$ dans $\K$
+\par est une équation différentielle différentielle linéaire normalisée scalaire d'ordre $p$
+\par Ses solutions sont les fonctions $y\in\mathcal{D}_p(I, \K)$ vérifiant $\forall t\in I, y^{(p)}(t) + a_{p-1}(t)y^{(p-1)}(t)+...+a_0(t)y(t) =b(t)$}
+\Prop{Vectorialisation}{Toute équation différentielle linéaire normalisée scalaire (éqdlns) d'ordre $p$ est équivalente à une équation différentielle linéaire d'ordre $1$ dont les solutions sont à valeurs dans $\K^p$}
+\Pre{$(E) : y^{(p)} + a_{p-1}y^{(p-1)}+...+a_0y = b$ une telle équation.
+\par Pour $y\in\mathcal{D}_p(I, \K)$, on pose $z = (y, y', ..., y^{(p-1)})$
+\par On a $z\in\mathcal{D}_1(I, \K)$.
+\par $y$ est solution de $(E)$ si, et seulement si, $\forall t\in I, z'(t) = (y'(t),..., y^{(p)}(t)) = a(t)\cdot z(t) + b_2(t)$
+\par où $a(t):\left\{\begin{array}{rcl} \K^p & \to & \K^p \\ (x_0,..., x_p) & \mapsto & (x_1,..., x_{{p-1}},-\sum\limits_{i=1}^{p-1}a_i(t)x_i)\end{array}\right.$
+\par et $b_2(t) = (0,..., 0, b(t))\in\K^p$}
+\Prop{Traduction matricielle}{On va noter $Y(t) = \begin{pmatrix} y(t) \\ . \\. \\.\\ y^{(p-1)}(t)\end{pmatrix}$, et dans ce cas la vectorialisation sera :
+\par $$Y'(t) = \begin{pmatrix}y'(t)\\.\\.\\.\\y^{(p)}(t)\end{pmatrix} = \begin{pmatrix} 0 & 1 & 0 & . & 0 \\ 0 & 0 & 1 & . & 0 \\.&.&.&.&. \\ 0 & 0 & 0 & . & 1 \\ a_0 & -a_1 & -a_2 & . & -a_{p-1}\end{pmatrix}\begin{pmatrix} y(t)\\.\\.\\.\\ y^{(p-1)}(t)\end{pmatrix} +\begin{pmatrix}0 \\.\\.\\0\\b(t) \end{pmatrix}$$}
+
+\subsection{Généralités sur l'équation du premier ordre}
+\Def{Equation homogène associée}{Avec $(E_q) : y' + a\cdot y = b$
+\par (où $a\in\mathcal{C}(I, \mathcal{L}(E))$ et $b\in\mathcal{C}(I,E)$)
+\par L'équation homogène associée est :
+\par $$(H): y' + a\cdot y = 0$$}
+\Prop{}{$S_H$, l'ensemble des solutions de $(H)$, est un $\K$-ev.}
+\Pre{On peut montrer que c'est un sous-espace vectoriel de $\mathcal{D}(I,E)$
+\par En effet, $0$ est nécessairement solution de $(H)$
+\par Et si on prend $y_1, y_2$ deux solutions et $\lambda\in\K$, par linéarité de $a(t)$ on obtient que $y_1+\lambda y_2$ est solution de $(H)$ aussi.}
+\Prop{}{$S_E$, l'ensemble des solutions de $(E_q)$, est un espace affine.
+\par ie si $y_0$ est une solution particulière de $(E_q)$, alors on a que $S_{E_q} = y_0+S_H = \{y_0 + y_H\vert y_H\in S_H\}$}
+\Pre{Soit $y_0$ une solution de $(E_q)$
+\par Soit $y\in\mathcal{D}(I, E)$
+\par $y$ est solution $\Leftrightarrow$ $\forall t\in I, y'(t)+a(t)\cdot y(t) = y_0'(t)+a(t)\cdot _0(t)$
+\par $$\Leftrightarrow\forall t\in I, (y-y_0)'(t) + a(t)\cdot ((y-y_0)(t))=0$$
+\par $$\Leftrightarrow y-y_0\in S_H$$}
+\Thr{Superposition}{$(E_{q_1})$ et $(E_{q_2})$ deux équations de même équation homogène associé et $\lambda\in\K$ :
+\par $(E_{q_1}) : y' + a(t)\cdot y = b_1$
+\par $(E_{q_2}) : y' + a(t)\cdot y = b_2$
+\par $(E_{q_+}) : y' + a(t)\cdot y = b_1+b_2$
+\par $(E_{q_\lambda}) : y' + a(t)\cdot y = \lambda b_1$
+\par Si $y_1\in S_{E_{q_1}}$ et $y_2\in S_{E_{q_2}}$, alors :
+\par $$ y_1+y_2\in S_{E_{q_+}}$$
+\par et$$ \lambda y_1 \in S_{E_{q_\lambda}}$$}
+\Pre{Immédiate, en se servant du fait que les ensembles de solutions sont des espaces affines.}
+\Thr{Cauchy-Lipschitz linéaire}{Soit $I$ un intervalle de $\R$
+\par Soit $E$ un $\K$-ev de dimension finie
+\par Soit $(E_q)$ une équation différentielle linéaire normalisée $y'+a\cdot y = b$
+\par Soit $t_0\in I$, $y_0\in E$, alors :
+\par Il existe une unique solution $f$ de $(E_q)$ vérifiant :
+\par $$f(t_0)=y_0$$}
+\begin{Rem}
+Toutes les conditions sont importantes :
+\par \underline{Si on n'est pas sur un intervalle} : $(E_q) y'=0$ sur $\R^*$ a comme solutions les fonctions qui valent une constante sur $\R_-^*$ et une autre constante sur $\R_+^*$. Il y a donc un $\R$-ev de dimiension $2$ de solutions.
+\par \underline{Si l'équation n'est pas normalisée (ou normalisable)} : $(E_q) = t^3y'-y=0$ (on cherche des solutions réelles)
+\par Sur $I=\R_+^*$ ou $\R_-^*$, l'équation est normalisable et $S_I = \{t\mapsto \alpha e^{-\frac{1}{2t^2}}\vert \alpha\in\R\}$
+\par Quelles sont les solutions sur $\R$ ? On procède par analyse-synthèse.
+\par Soit $f$ une solution sur $\R$, alors $f_{\vert\R_+^*}$ et $f_{\vert\R_-^*}$ sont solutions.
+\par Donc il existe $\alpha, \beta\in\R$ tels que : $\forall t\in\R_+^*, f_{\vert\R_+^*}(t) =\alpha e^{-\frac{1}{2t^2}}$ et $\forall t\in\R_-^*, f(t) = \beta e^{-\frac{1}{2t^2}}$
+\par Par continuité de $f$ en $0$, on a $f(0)=0$, et donc aucune condition en plus.
+\par Synthèse : Pour tout $\alpha, \beta\in\R$, l'application $f:t\mapsto \left\{\begin{array}{rl}\alpha e^{-\frac{1}{2t^2}} & t>0 \\ \beta e^{-\frac{1}{2t^2}} & t<0 \\ 0 & t=0 \end{array}\right.$ est solution de $(E_q)$
+\par Si on ajoute $t_0, y_0\in\R$ tel que $f(t_0)=y_0$ alors : si $t_0<0$ alors on peut toujours faire varier $\alpha$, si $t_0>0$ on pourra faire varier $\beta$ ; dans les deux cas on aura une infinité de solutions. Si $t_0=0$ et $y_0\neq 0$, on n'a aucune solution. Donc il n'y a ni existence ni unicité de la solution.
+\end{Rem}
+\begin{Exe}
+Exemple d'équation non-linéaire : $(E_q) : y' = 1+y^2$ sur $\R$
+\par Soit $f$ une solution de $(E_q)$ sur un intervalle $I$
+\par Alors $\frac{f'}{1+f^2}=1$
+\par Donc il existe $K\in\R$ tel que $\forall t\in I, \arctan f(x) = x-k$
+\par Donc $\forall x\in I, f(x) =\tan (x-k)$
+\par Les solutions ne sont pas un espace affine.
+\end{Exe}
+\Prop{Corollaire}{Si $I$ est un intervalle et $(H) : y' = a\cdot y$ une équation différentielle linéaire \textbf{normalisée}
+\par L'ensemble des solutions de $(H)$ sur $I$ à valeurs dans $E$ est un $\K$-ev de dimension $\dim E$}
+\Pre{On fixe $t_0$ et on prend $\varphi:\left\{\begin{array}{rcl} S_H(I) & \to & E \\ f & \mapsto & f(t_0)\end{array}\right.$
+\par $\varphi$ est un isomorphisme, donc $\dim E = \dim S_H(I)$}
+\Def{Wronskien}{Soit $I$ un intervalle, $E$ un $\K$-ev de dimension $p$, $\mathcal{B}$ une base de $E$
+\par Soit $(H)$ une équation différentielle linéaire homogène normalisée $(H) : y' + a\cdot y=0$
+\par Pour $(u_1,..., u_p)$ une famille de $p$ fonctions solutions de $(H)$, on définit leur wronskien relativement à la base $\mathcal{B}$ :
+\par $$w(u_1,..., u_p) :\left\{\begin{array}{rcl}I & \to & E \\ t & \mapsto & \det_\mathcal{B}(u_1(t),..., u_p(t))\end{array}\right.$$
+\par (Ou $w(u_1,...,u_p) = \det_\mathcal{B}(u_1,..., u_p)$)}
+\Prop{}{$w(u_1,..., u_p)=0$ si, et seulement si, $\exists t\in I, w(u_1(t),...,u_p(t))=0$}
+\Pre{Si $\forall t\in I, w(u_1(t),..., u_p(t)) = 0$, alors il existe $t\in I$ tel que $w(u_1(t),..., u_p(t))=0$
+\par Réciproquement, supposons qu'il existe $t_0\in I$ tel que $\det_\mathcal{B}(u_1(t_0),...,u_p(t_0)) =0$
+\par On a alors $(u_1(t_0),...,u_p(t_0))$ famille liée de $E$
+\par On a donc $\lambda_1,..., \lambda_p\in\K$ non tous nuls tels que $\lambda_1u_1(t_0) +...+\lambda_pu_p(t_0)=0$
+\par Donc $\lambda_1u_1+...+\lambda_pu_p$ est une solution de $(H)$ qui s'annule en $t_0$
+\par Donc par Cauchy-Lipschitz, $\lambda_1u_1+...+\lambda_pu_p=0$ (comme $0$ est déjà solution qui s'annule en $t_0$ et qu'on a l'unicité de la solution du problème de Cauchy)
+\par Donc $\forall t\in I, (u_1(t),..., u_p(t))$ est liée.}
+\Prop{Autre formulation}{$(u_1,...,u_p)$ est une base de $S_H$ si, et seulement si, $\exists t\in I, (u_1(t),...,u_p(t))$ est une base de $E$.
+\par $\Leftrightarrow \forall t\in I, (u_1(t),...,u_p(t))$ est une base de $E$}
+\begin{Exe}
+$(H) : t^2y'' + ty' + y = 0$ sur $\R_+^*$ :
+\par $\R_+^*$ est un intervalle, $(H)$ est une équation différentielle linéaire normalisable donc $S_H$ est un $\K$-ev de dimension 2.
+\par Cherchons les solutions de la forme $t\mapsto t^\alpha$.
+\par On constate que $f_1:t\mapsto t^i = e^{i\ln(t)}$ et $f_2:t\mapsto t^{-i} = e^{-i\ln(t)}$ sont solutions.
+\par Pour $t\in\R_+^*$, $w(f_1(t), f_2(t)) = \left\vert\begin{matrix}f_1(t) & f_2(t) \\  f_1'(t) & f_2'(t)\end{matrix}\right\vert = \left\vert\begin{matrix}e^{i\ln(t)} & e^{-i\ln(t)} \\ \frac{i}{t}e^{iln(t)} & \frac{-i}{t}e^{-i\ln(t)}\end{matrix}\right\vert = \frac{-2i}{t}$
+\par Donc $w(f_1,f_2)\neq 0$
+\par $f_1$ et $f_2$ sont donc indépendantes
+\par Donc dans $\C$, $S_H(\R_+^*)=Vect(f_1, f_2) = \{\lambda_1f_1 + \lambda_2f_2 \vert \lambda_1,\lambda_2\in\C\}$
+\par Pour les solutions à valeurs réelles, on peut prendre $g_1=\frac{f_1+f_2}{2} =\cos(\ln(t))$ et $g_2 =\frac{f_1-f_2}{2i}=\sin(\ln(t))$ qui sont deux solutions indépendantes et à valeurs réelles, donc une base des solutions réelles.
+\end{Exe}
+\Thr{Variation des constantes}{Soit $I$ un intervalle, $(E_q)$ une équation différentielle linéaire normalisée $y'=a\cdot y + b$
+\par $(H)$ l'équation homogène associée.
+\par Si $(u_1,...,u_p)$ est une base de $S_H$
+\par Alors $(E_q)$ possède une solution particulière de la forme $t\mapsto =\lambda_1(t) +...+\lambda_p(t)u_p(t)$
+\par où $\lambda_1,...,\lambda_p$ sont des fonctions dérivables à valeurs dans $\K$}
+\Pre{$(u_1,...,u_p)$ base de $S_H$, pour $\lambda_1,...,\lambda_p\in\mathcal{D}(I,\K)$, on considère $v = \lambda_1u_1+...+\lambda_pu_p$
+\par $v$ est dérivable et $v' =\lambda_1'u_1 + \lambda u_1' + ...+\lambda_p'u_p + \lambda_pu_p'  = \sum\limits_{i=1}^p(\lambda_i'u_i +\lambda_iu_i')$
+\par $(1)$ : $v$ est solution de $(E_q)$ si, et seulement si, $\forall t\in I, \sum\limits_{i=1}^p (\lambda_i'(t)u_i(t) + \lambda_i(t)u_i'(t)) = a(t)\cdot \left(\sum\limits_{i=1}^p \lambda_i(t)u_i(t)\right) + b(t)$
+\par $= \sum\limits_{i=1}^p\lambda_i(t)a(t)u_i(t)+b(t)$
+\par $(1)\Leftrightarrow \sum\limits_{i=1}^p\lambda_i'(t)u_i(t) = b(t)$
+\par ce qui vient du fait que $\forall i\in\llbracket 1,p\rrbracket, u_i'(t) = a(t)\cdot u_i(t)$
+\par On a vu que $\forall t\in I, (u_1(t),...,u_p(t))$ est une base de $E$
+\par Donc pour $t\in I$, on peut écrire $b(t) = \sum\limits_{i=1}^pb_i(t)u_i(t)$ où $(b_1(t),..., b_p(t))\in\K^p$ sont les coordonnées de $b(t)$ dans la base $(u_1(t),..., u_p(t))$
+\par Donc $(1) \Leftrightarrow \left\{\begin{array}{rcl} \lambda_1' & = & b_1 \\ . & . & . \\ . & . & . \\ \lambda_p' & = & b_p\end{array}\right.$
+\par On admet que les $b_i$ sont continus, et alors le système a une solution.}
+\begin{Exe}
+Avec $(E_q) : y'' + y = \frac{1}{\cos(t)}$ sur $]-\frac{\pi}{2},\frac{\pi}{2}[$, cherchons les solutions réelles.
+\par Les solutions de $(H)$ ($y''+y=0$) sont $S_H = \{t\mapsto \alpha\cos(t)+\beta\sin(t) \vert \alpha, \beta\in\R\}$
+\par On recherche une solution particulière $y$ de $(E)$ telle que :
+\par $\forall t\in ]-\frac{\pi}{2}, \frac{\pi}{2}[, y(t) = \alpha(t)\cos(t) + \beta(t)\sin(t)$ et $y'(t) = \alpha(t)(-\sin(t))+\beta(t)\cos(t)$
+\par On a alors que $\alpha'(t)\cos(t) + \beta'(t)\sin(t) = 0$
+\par Et $y''(t) = \alpha(t)(-\cos(t)) + \beta(t)(-\sin(t)) + \alpha'(t)(-\sin(t))+\beta'(t)\cos(t)$
+\par Et on a alors que $\alpha'(t)(-\sin(t))+\beta'(t)\cos(t)=\frac{1}{\cos(t)}$
+\par Donc $\begin{pmatrix}\alpha' \\ \beta'\end{pmatrix} = \begin{pmatrix} \cos t & -\sin t \\ \sin t & \cos t\end{pmatrix}\begin{pmatrix} 0 \\ \frac{1}{\cos t}\end{pmatrix}$
+\par Donc $\alpha'(t) = -\tan(t)$ et $\beta'(t) = 1$
+\par Et donc, à constante près : $\alpha (t) = \ln(\cos t)$ et $\beta(t) = t$
+\end{Exe}
+
+\Thr{Résolution de l'équation différentielle linéaire normalisée à coefficients constants}{Notons $\forall t\in I,y'(t) = a\cdot y(t)$, où $a\in\mathcal{L}(E)$
+\par L'ensemble des solutions de cette équation est : $\{t\mapsto \exp(t a)\cdot x\vert x\in E\}$
+\par plus précisément, la solution du problème de Cauchy $\left\{\begin{array}{l} y' = a\cdot y \\ y(t_0) = x_0\end{array}\right.$ est $t\mapsto \exp((t-t_0)a)\cdot x_0$
+}
+\Pre{Rappel sur $\exp(ta-t_0a)\cdot x_0 = (\exp(ta)\circ(\exp(-t_0a)))\cdot x_0$ : pour le démontrer, on passe aux matrices, et on le prouve coordonnées par coordonnées en utilisant un binôme de Newton et un produit de Cauchy.
+\par Si $\varphi:\left\{\begin{array}{rcl} \R & \to & \R^p \\ t & \mapsto & \begin{pmatrix} f_1(t) \\ f_2(t)\\.\\f_p(t)\end{pmatrix}\end{array}\right.$, on dit que $\varphi$ est dérivable si toutes ses coordonnées le sont.
+\par Notons $f:\left\{\begin{array}{rcl}\R & \to & \mathcal{L}(E) \\ t & \mapsto & \exp(ta)\end{array}\right.$
+\par Il faut montrer que $f$ est dérivable et que $f':t\mapsto (\exp(ta)\circ a)x = a\cdot f(t)$, puis dans une deuxième partie montrer que toutes les équations différentielles linéaires à coefficients constants ont cette solution.
+\par Utilisons d'abord le théorème de dérivation terme à terme :
+\par On note $f(t) = \sum\limits_{i=1}^{+\infty}u_n(t)$
+\par $u_n = \frac{t^n}{n!}a^n\in\mathcal{C}^1(I, E)$
+\par $\sum u_n$ converge simplement
+\par $\sum u_n'$ converge uniformément
+\par Donc $f$ est $\mathcal{C}^1$ et $f'=\sum u_n'$
+\par $\Vert .\Vert$ une norme d'algèbre, $\forall t\in\R, \Vert \frac{t^n}{n!}a^n\Vert \leq \frac{(\Vert t\Vert \Vert a\Vert)^n}{n!}$
+\par On a $\forall t\in\R, \forall n\in\N^*, u_n'(t) =\frac{t^{n-1}}{n!}a^n$
+\par Et donc $\forall [\alpha,\beta]\subset \R,\forall t\in[\alpha,\beta], \forall n\in\N^*, \Vert u_n(t)\Vert \leq \frac{\max(\vert \alpha\vert,\vert\beta\vert)\Vert a\Vert^n}{n!}$ 
+\par Donc $f'(t) = \sum\limits_{n=1}^{+\infty}\frac{t^{n-1}}{(n-1)!}a^n=a\circ\exp(ta)=\exp(ta)\circ a$
+\par Prouvons le reste : posons $\psi:\left\{\begin{array}{rcl} \R & \to & E \\ t &\mapsto & \varphi(t)\cdot x\end{array}\right.$ pour $\varphi:\R\to\mathcal{L}(E)$
+\par Alors $\psi$ est dérivable et $\forall t\in\R, \psi'(t) = \varphi'(t)\cdot x$, donc $\varphi$ admet un DL au premier ordre.
+\par $\psi(x+h) = \varphi(t+h)\cdot x = (\varphi(t)+h\varphi'(t)+h\varepsilon(h))\cdot x$
+\par $ = \varphi(t)\cdot x + h\varphi'(t)\cdot x + h\varepsilon(h)\cdot x$
+\par et $\Vert \varepsilon(h)\cdot x\Vert \leq \vert\Vert\varepsilon(h)\Vert\vert\Vert x\Vert$ qui tent vers 0 quand $h$ tend vers $0$}
+\begin{Exe}
+$\left\{\begin{array}{rcl} x' & = & 2x+y+z \\ y' &=&x+2y+z \\ z'& = & x+y+2z\end{array}\right.$
+\par On a $Y'=AY$ avec $A=\begin{pmatrix} 2 & 1 & 1 \\ 1 & 2 & 1 \\ 1 & 1 & 2\end{pmatrix}$ et $Y=\begin{pmatrix} x \\ y\\ z\end{pmatrix}$
+\par On a immédiatement que $1$ est vp d'ordre $2$, donc $4$ est vp d'ordre $1$ et $A$ est diagonalisable.
+\par $D$ est semblable à $A$ avec $D = \begin{pmatrix} 1 & 0 & 0 \\ 0&1&0 \\ 0&0&1\end{pmatrix}$, avec la matrice de passage $P=\begin{pmatrix} 1 & 1 & 1 \\ -1 & 0 & 1\\ 0 & -1 & 1\end{pmatrix}$
+\par On aura $A = PDP^{-1}$, et donc $\exp(tA) = P\begin{pmatrix} \exp(t) & 0 & 0 \\ 0 & \exp(t) & 0 \\ 0 & 0 & \exp(4t)\end{pmatrix}P^{-1}$
+\par On peut poser $Y = PZ$, avec $Z = \begin{pmatrix} u \\ v\\ w\end{pmatrix}$
+\par Alors $PZ' = APZ \Leftrightarrow Z' = P^{-1}APZ = DZ$
+\par Donc $Z = \exp(tD)\cdot X$
+\par Donc $Y = P\begin{pmatrix} \alpha e^t \\ \beta e^t \\ \gamma e^{4t}\end{pmatrix}$
+\end{Exe}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

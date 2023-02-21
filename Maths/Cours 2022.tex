@@ -1345,7 +1345,9 @@ Attention à ne pas confondre premiers deux-à-deux et premiers entre eux dans l
 \par Pour l'autre implication : on peut écrire $a =da'$ et $b=db'$. Par l'absurde, si $a'$ et $b'$ ne sont pas premiers, alors $d$ ne serait pas congru au pgcd.}
 
 \section{Application à la réduction des endomorphismes}
-\Thr{Lemme des noyaux}{Soit $E$ un $\K$-ev, $f\in \mathcal{L}(E)$. \par Soit $P\in \K[X]$ tel que $P=P_1...P_n$ où $P_1,...,P_n$ sont premiers entre eux deux à deux. \par $\ker P(f) = \bigoplus\limits_{i=1}^n\ker(P_i(f))$}
+\Thr{Lemme des noyaux}{Soit $E$ un $\K$-ev, $f\in \mathcal{L}(E)$.
+\par Soit $P\in \K[X]$ tel que $P=P_1...P_n$ où $P_1,...,P_n$ sont premiers entre eux deux à deux.
+\par $\ker P(f) = \bigoplus\limits_{i=1}^n\ker(P_i(f))$}
 \Pre{Dans le cadre de l'énoncé : \par On pose pour $i\in\llbracket 1,n\rrbracket$ : $Q_i = \prod\limits_{1\leq j\leq n, j\neq i} P_j = \frac{P}{P_i}$ \par Montrons que $(Q_1,..., Q_n)$ sont premiers entre eux dans leur ensemble. \par Supposons par l'absurde que $Q_1,...,Q_n$ ne sont pas premiers entre eux. \par Donc $Q_1\wedge...\wedge Q_n \neq 1$ \par Donc $Q_1\wedge...\wedge Q_n$ possèdent un diviseur irréductible $Q$ \par En particulier, $Q\vert Q_1$ \par Donc $Q\vert P_2P3...P_n$
 \par Comme $Q$ est irréductible, $\exists i_0\in \llbracket 2,n\rrbracket Q\vert P_{i_0}$ \par Mais $Q\vert Q_{i_0}$, donc $Q\vert \prod\limits_{j\neq i_0}P_j$ \par Donc $Q\vert P_{j_0}$ avec $j_0\neq i_0$ \par Mais $P_{j_0}\wedge P_{i_0}$ \par D'où la contradiction.
 \par Par Bezout généralisé, on peut trouver $U_1,...,U_n\in\K[X]$ tels que $\sum\limits_{i=1}^nQ_iU_i=1$ \par On a que $\forall i\in\llbracket 1,n\rrbracket, \ker P_i(f) \subset\ker P(f)$ donc $\ker P_1(f)+\ker P_2(f)+...+\ker P_n(f)\subset \ker P(f)$ \par Analyse : soit $x\in \ker P(f)$, on suppose qu'il existe $(x_1,...,x_n)\in \ker P_1(f)\times...\times\ker P_n(f)$ tel que $x=x_1+...+x_n$ \par Soit $i\in \llbracket 1,n\rrbracket$, alors $Q_i(f)(x)=Q_i(f)(x_i)$ \par $U_i(f)\circ Q_i(f)(x) = (U_i(f)\circ Q_i(f))(x_i)$
@@ -3233,8 +3235,7 @@ $y'+xy = e^x$ est une équation différentielle linéaire du premier ordre, scal
 \par $\left\{\begin{array}{l} x'(t) = 3x(t) + t^2 y(t)+e^t \\ y'(t) = 2x(t) + 3y(t) - e^t\end{array}\right.$ est une équation différentielle linéaire, mais non scalaire.
 \par $y'' +t^2y' + (e^t+1)y = \sin(t)$ est une équation différentielle linéaire du premier ordre scalaire normalisée.
 \end{Exe}
-\section{Généralités}
-\subsection{Définitions}
+\section{Définitions}
 \Def{Premier ordre}{Soit $I$ un intervalle, soit $E$ un $\K$-ev de dimension finie.
 \par Soit $a$ une application continue de $I$ dans $\mathcal{L}(E)$
 \par Soit $b$ une application continue de $I$ dans $E$
@@ -3245,7 +3246,7 @@ $y'+xy = e^x$ est une équation différentielle linéaire du premier ordre, scal
 \par $A(t) = Mat_\mathcal{B}a(t)\in\mathcal{M}_n(\K)$
 \par $B(t) = Mat_\mathcal{B}b(t)\in\mathcal{M}_{n,1}(\K)$
 \par L'équation devient :
-\par $$Y'(t) = A(t)Y(t) B(t)$$}
+\par $$Y'(t) = A(t)Y(t) +B(t)$$}
 \begin{Exe}
 $\left\{\begin{array}{l}x'(t) 2tx(t) + 3t^2y(t) + \sin(t) \\ y'(t) =  (3t+1)x(t)  + \frac{1}{1+t^2}y(t) + t\end{array}\right.$
 \par Alors $Y'(t) =\begin{pmatrix} 2t & 3t^2 \\ (3t+1) & \frac{1}{1+t^2}\end{pmatrix}Y(t) +\begin{pmatrix}\sin(t) \\ t\end{pmatrix}$
@@ -3261,7 +3262,7 @@ Exemple de vectorialisation d'une équation du second ordre :
 \par $\forall i\in\llbracket 0, p-1\rrbracket$, $a_i$ est une application continue de $I$ dans $\K$
 \par et $b$ est une application continue de $I$ dans $\K$
 \par est une équation différentielle différentielle linéaire normalisée scalaire d'ordre $p$
-\par Ses solutions sont les fonctions $y\in\mathcal{D}_p(I, \K)$ vérifiant $\forall t\in I, y^{(p)}(t) + a_{p-1}(t)y^{(p-1)}(t)+...+a_0(t)y(t) =b(t)$}
+\par Ses solutions sont les fonctions $y\in\mathcal{D}_p(I, \K)$ vérifiant :\par $$\forall t\in I, y^{(p)}(t) + a_{p-1}(t)y^{(p-1)}(t)+...+a_0(t)y(t) =b(t)$$}
 \Prop{Vectorialisation}{Toute équation différentielle linéaire normalisée scalaire (éqdlns) d'ordre $p$ est équivalente à une équation différentielle linéaire d'ordre $1$ dont les solutions sont à valeurs dans $\K^p$}
 \Pre{$(E) : y^{(p)} + a_{p-1}y^{(p-1)}+...+a_0y = b$ une telle équation.
 \par Pour $y\in\mathcal{D}_p(I, \K)$, on pose $z = (y, y', ..., y^{(p-1)})$
@@ -3272,7 +3273,7 @@ Exemple de vectorialisation d'une équation du second ordre :
 \Prop{Traduction matricielle}{On va noter $Y(t) = \begin{pmatrix} y(t) \\ . \\. \\.\\ y^{(p-1)}(t)\end{pmatrix}$, et dans ce cas la vectorialisation sera :
 \par $$Y'(t) = \begin{pmatrix}y'(t)\\.\\.\\.\\y^{(p)}(t)\end{pmatrix} = \begin{pmatrix} 0 & 1 & 0 & . & 0 \\ 0 & 0 & 1 & . & 0 \\.&.&.&.&. \\ 0 & 0 & 0 & . & 1 \\ a_0 & -a_1 & -a_2 & . & -a_{p-1}\end{pmatrix}\begin{pmatrix} y(t)\\.\\.\\.\\ y^{(p-1)}(t)\end{pmatrix} +\begin{pmatrix}0 \\.\\.\\0\\b(t) \end{pmatrix}$$}
 
-\subsection{Généralités sur l'équation du premier ordre}
+\section{Généralités sur l'équation du premier ordre}
 \Def{Equation homogène associée}{Avec $(E_q) : y' + a\cdot y = b$
 \par (où $a\in\mathcal{C}(I, \mathcal{L}(E))$ et $b\in\mathcal{C}(I,E)$)
 \par L'équation homogène associée est :
@@ -3291,8 +3292,8 @@ Exemple de vectorialisation d'une équation du second ordre :
 \Thr{Superposition}{$(E_{q_1})$ et $(E_{q_2})$ deux équations de même équation homogène associé et $\lambda\in\K$ :
 \par $(E_{q_1}) : y' + a(t)\cdot y = b_1$
 \par $(E_{q_2}) : y' + a(t)\cdot y = b_2$
-\par $(E_{q_+}) : y' + a(t)\cdot y = b_1+b_2$
-\par $(E_{q_\lambda}) : y' + a(t)\cdot y = \lambda b_1$
+\par $$(E_{q_+}) : y' + a(t)\cdot y = b_1+b_2$$
+\par $$(E_{q_\lambda}) : y' + a(t)\cdot y = \lambda b_1$$
 \par Si $y_1\in S_{E_{q_1}}$ et $y_2\in S_{E_{q_2}}$, alors :
 \par $$ y_1+y_2\in S_{E_{q_+}}$$
 \par et$$ \lambda y_1 \in S_{E_{q_\lambda}}$$}
@@ -3416,8 +3417,295 @@ $\left\{\begin{array}{rcl} x' & = & 2x+y+z \\ y' &=&x+2y+z \\ z'& = & x+y+2z\end
 \par Donc $Y = P\begin{pmatrix} \alpha e^t \\ \beta e^t \\ \gamma e^{4t}\end{pmatrix}$
 \end{Exe}
 
+\section{Topo sur les exponentielles}
+\subsection{Rappel sur les familles sommables}
+Soit $(a_i)_{i\in I}\in \C^I$ avec $I$ dénombrable est. $(a_i)$ est sommable si $\sum\vert a_i\vert < +\infty$
+\par Alors pour toute bijection $\sigma:\N\to I$, on a $\sum\limits_{i\in I} a_i = \sum\limits_{n\in\N}a_{\sigma(n)}$ ($\sum\limits_{n\in\N} a_{\sigma(n)}$ ne dépend pas de la bijection $\sigma$)
+\par Si $(I_j)_{j\in J}$ est une partition de $I$ dénombrable, et $(a_i)_{i\in I}\in \C^I$, si $\sum\limits_{i\in I}\vert a_i\vert<+\infty$, alors $\sum\limits_{i\in I} a_i = \sum\limits_{j\in J}\sum\limits_{k\in I_j} a_k$
+\par Extension pour $(a_i)\in E^I$ où $E$ un $\K$-ev de dimension finie, où $\Vert.\Vert$ est une norme (équivalente aux autres normes comme on est en dimension finie) :
+\par Si $\sum\limits_{i\in I}\Vert a_i\Vert<+\infty$, alors la famille est sommable et pour toute bijection $\sigma:\N\to I$, on a que $\sum\limits_{n\in\N}a_{\sigma(n)}$ ne dépend pas de la bijection choisie et $\sum\limits_{i\in I} a_i = \sum\limits_{n\in\N}a_{\sigma(n)}$
+\par On le prouve en prenant une base $(e_1,..., e_p)$ de $E$ et en se munissant de la $\Vert.\Vert_{\infty}$
+\par $\forall i\in I, a_i = [a_i]^1e_1+...+[a_i]^pe_p$ et $\forall i\in I, \forall j\in\llbracket 1, p\rrbracket, \vert [a_i]^j\vert\leq \Vert a_i\Vert_\infty$
+
+\subsection{Exponentielle dans une algèbre de dimension finie}
+\Def{Exponentielle}{Si $E$ est une algèbre de dimension finie, on note :
+\par $$\exp(u) = \sum\limits_{n\in\N}\frac{1}{n!}u^n$$
+\par On munit $E$ d'une norme d'algèbre, alors $\Vert\frac{1}{n!}u^n\Vert \leq \frac{\Vert u\Vert^n}{n!}$ et donc $\sum\limits_{n\in\N}\frac{1}{n!}u^n$ est sommable.}
+\Prop{Morphisme d'algèbre}{Si $u,v\in E$ tels que $uv = vu$
+\par $\left(\frac{1}{p!}u^p\frac{1}{q!}v^q\right)_{p,q\in\N}$ est sommable et :
+\par $$\exp(u)\exp(v) = \sum\limits_{p,q\in\N^2} \frac{1}{p!}u^p\frac{1}{q!}u^q = \sum\limits_{s\in\N}\frac{1}{s!}\sum\limits_{p+q=s}\frac{s!}{p!q!}u^pv^q$$
+\par $$=\sum\limits_{s\in\N}\frac{1}{s}\sum\limits_{p+q=s}\binom{s}{p}u^pv^q = \sum\limits_{s\in\N}\frac{1}{s!}(u+v)^s = \exp(u+v)$$}
+\Prop{Changement de base}{Si $M\in\mathcal{M}_n(\K), P\in\mathcal{GL}_n(\K)$ :
+\par Alors $\exp(P^{-1}MP)=P^{-1}\exp(M)P$ }
+\Pre{On voit l'égalité pour tous les rangs ($P$ et $P^{-1}$ se compensent) et ensuite on se sert de la continuité de $M\mapsto P^{-1}M$}
+\Def{Série entière à coefficient matriciel}{On définit l'application :
+\par $\varphi\left\{\begin{array}{rcl}\R & \to & \mathcal{M}_n(\K) \\ t & \mapsto & \exp(tA)=\sum\limits_{n=0}^{+\infty}\frac{t^n}{n!}A^n\end{array}\right.$
+\par On a $\varphi'(t) = \sum\limits_{n=1}^{+\infty}\frac{nt^{n-1}}{n!}A^n = \sum\limits_{n=0}^{+\infty}A\frac{t^n}{n!}A^n = A\exp(tA) = \exp(tA)A$}
+
+\chapter{Calcul différentiel}
+Les fonctions considérées dans ce chapitre sont définies sur un ouvert d'un $\R$-espace vectoriel normé de dimension finie et à valeurs dans un  $\R$-espace vectoriel normé de dimension finie.
+\par Dans tout ce chapitre, sauf mention contraire, $E$ et $F$ désignent deux $\R$-espaces vectoriels normés de dimension finies dont les normes sont notées $\Vert.\Vert$. $U$ désigne un ouvert de $E$.
+
+\section{Applications différentiables}
+\subsection{Dérivée selon un vecteur}
+\Def{}{Soit $f$ une fonction définie d'un ouvert $U$ dans $F$, $a$ un point de $U$ et $v$ un vecteur de $E$.
+\par On dit que $f$ admet une dérivée selon le vecteur $v$ au point $a$ si la fonction $t\mapsto f(a+tv)$ est dérivable en $0$.
+\par Si elle existe, cette dérivée est appelée dérivée de $f$ selon le vecteur $v$ au point $a$ et est notée $D_vf(a)$ :
+\par $$D_vf(a) = \lim\limits_{t\to 0}\frac{f(a+tv)-f(a)}{t}$$}
+\begin{Exe}
+Soit $f$ une fonction définie d'un ouvert $U$ dans $F$, $a$ un point de $U$. La fonction $f$ admet une dérivée selon le vecteur $0$ au point $a$ et $D_0f(a) = 0$
+\end{Exe}
+\begin{Rem}
+La fonction $t\mapsto f(a+tv)$ est définie pour tout $t\in\R$ tel que $a+tv\in U$. Comme $U$ est un ouvert de $E$ contenant $a$, elle est bien définie sur une voisinage de $0$ dans $\R$.
+\end{Rem}
+\begin{Rem}
+Une fonction peut avoir des dérivées selon tout vecteur en un point et ne pas être continue en ce point.
+\end{Rem}
+
+\subsection{Dérivées partielles}
+\Def{}{On suppose ici que $E = \R^n$. Soit $f$ une fonction définie d'un ouvert $U$ dans $F$ et $a=(a_1,..., a_n)$ un point de $U$.
+\par Si elle existe, on appelle $i$-ème dérivée partielle de $f$ en $a$ la dérivée de $f$ selon le vecteur $(0,...,0, 1, 0,...,0)$ (avec le $1$ en $i$-ème place) au point $a$
+\par et on note $\dfrac{\partial f}{\partial x_i}(a)$ ou $\partial_i f(a)$}
+\Def{}{Soit $\mathcal{B}=(e_1,..., e_n)$ une base de $E$. Soit $f$ une fonction définie d'un ouvert $U$ dans $F$ et $a$ un point de $U$.
+\par Si elle existe, on appelle $i$-ème dérivée partielle de $f$ dans $a$ dans la base $\mathcal{B}$ la dérivée de $f$ selon le vecteur $e_i$ au point $a$
+\par et on note $\dfrac{\partial f}{\partial x_i}(a)$ ou $\partial_if(a)$}
+\begin{Rem}
+Lorsqu'une base $\mathcal{B}=(e_1,..., e_n)$ de $E$ est fixée, on sait que l'application :
+\par $$\Phi:\left\{\begin{array}{rcl}\R^n &\to & E \\ (x_1,..., x_n) & \mapsto & \sum\limits_{i=1}^n x_ie_i\end{array}\right.$$
+\par est un isomorphisme. À une application $f$ de $U$ dans $E$ on peut associer l'application :
+\par $$f_\mathcal{B} :\left\{\begin{array}{rcl}\Phi^{-1}(U) & \to & F \\ (x_1,..., x_n) & \mapsto & f\left(\sum\limits_{i=1}^nx_ie_i\right)\end{array}\right.$$
+\par Comme $\Phi$ est une application linéaire et que $\R^n$ est de dimension finie, $\Phi$ est continue et donc $\Phi^{-1}(U)$ est un ouvert de $\R$.
+\par On autorise l'identification entre $f$ et $f_\mathcal{B}$, et donc on s'autorisera à identifier $f(x)$ et $f(x_1,..., x_n)$ où $x= \sum\limits_{i=1}^nx_ie_i$
+\end{Rem}
+\begin{Rem}
+Si $E = \R^n$ et que $\mathcal{B}$ est la base canonique de $\R^n$ alors $f = f_\mathcal{B}$ et la $i$-ème dérivée partielle de $f$ en $a$ est la $i$-ème dérivée partielle de $f$ en $a$ dans la base canonique $\mathcal{B}$ (i.e. la dérivée selon le $i$-ème vecteur de la base canonique)
+\end{Rem}
+
+\subsection{Différentielle}
+\Def{}{Soit $f$ un efonction définie d'un ouvert $U$ dans $F$ et $a$ un point de $U$.
+\par On dit que $f$ est différentiable au point $a$ s'il existe une application $u\in\mathcal{L}(E,F)$ telle qu'au voisinage de $0$ :
+\par $$f(a+h) = f(a) + u(h) + o(h)$$
+\par Dans ce cas, une telle application linéaire $u$ est unique, on la note $df(a)$ et on l'appelle différentielle de $f$ en $a$.
+\par On l'appelle aussi application linéaire tangente à $f$ en $a$.}
+\begin{Rem}
+La notation $o(h)$ désigne une fonction négligeable devant $\Vert h\Vert$
+\end{Rem}
+\Prop{}{Il y a unicité de la différentielle d'une application différentiable.}
+\Pre{Supposons l'existences de deux applications linéaires $u$ et $v$ telles que pour $h$ dans un certain voisinage de $0$, on ait :
+\par $$ f(a+h) - f(a) = u(h) + o(h) = v(h)+o(h)$$
+\par Considérons un vecteur non nul $x\in E$ et $t$ un réel positif.
+\par On obtient pour $t$ dan sun voisinage à droite de $0$ :
+\par $$(u-v)(tx) = \Vert tx\Vert\varepsilon(t)$$
+\par Avec $\varepsilon\to_00$
+\par On en déduit immédiatement que $\Vert (u-v)(x)\Vert = \Vert x\Vert\Vert \varepsilon(t)\Vert$
+\par Par passage à la limite en $9$, on obtient $(u-v)(x)=0$.
+\par La fonction $u-v$ s'annule donc sur $E$, donc $u=v$}
+Note : pour alléger l'écriture, il est d'usag ede noter $df(a)\cdot h$ au lieu de $(df(a))(h)$
+\begin{Rem}
+On dit que $f$ admet un développement limité d'ordre $1$ en $a$ s'il existe $u\in\mathcal{L}(E, F)$ telle qu'au voisinage de $0$ :
+\par $$f(a+h)=f(a)+u(h)+o(h)$$
+\par Une fonction $f$ est différentiable au point $a$ si, et seulement si, elle admet un développement limité d'ordre 1 en $a$.
+\par Dans ce cas, $h\mapsto f(a)+df(a)\cdot h$ est une approximation affine de $f$ au voisinage de $a$.
+\end{Rem}
+\begin{Rem}
+Comme la notion de continuité, la notion de différentiabilité en un point est une notion locale :
+\par Soit $f$ une fonction définie sur un ouvert $U$, $a\in U$ et $V$ un ouvert de $U$ contenant $a$.
+\par La fonction $f$ est différentiable en $a$ si, et seulement si, $f_{|V}$ est différentiable en $a$.
+\end{Rem}
+\Prop{}{Si $E=\R$, soit $f$ une fonction définie de l'ouvert $U$ dans $F$ et $a\in U$. La fonction $f$ est différentiable en $a$ si, et seulement si, $f$ est dérivable en $a$ et dans ce cas $df(a)$ est l'application $h\mapsto hf'(a)$
+\par On a en particulier $f'(a) = df(a)\cdot 1$.}
+\Pre{C'est une des définitions de la dérivabilité : $f$ est dérivable en $a$ si, et seulement si, $f$ possède un développement limité à l'ordre $1$ en $a$ :
+\par $$ f(a+h) = f(a)+\lambda h+o(h)$$
+\par $h\mapsto \lambda h$ est linéaire. La définition de la dérivabilité est donc celle de la différentiabilité dans le cas particulier d'un $\R$-espace vectoriel de dimension $1$}
+\Def{}{Soit $f$ une fonction définie d'un ouvert $U$ dans $F$. Si $f$ est différentiable en tout point de $U$, on dit qe $f$ est différentiable sur $U$ et on appelle différentielle de $f$ sur $U$ l'application :
+\par $$df:\left\{\begin{array}{rcl}U & \to & \mathcal{L}(E,F) \\ a & \mapsto & df(a)\end{array}\right.$$}
+\Prop{}{Soit $f$ une fonction définie d'un ouvert $U$ dans $F$ et $a\in U$.
+Si $f$ est différentiable en $a$, alors $f$ est continue en $a$.}
+\Pre{Si $f$ est différentiable en $a$, il existe une application linéaire $u$ (continue car $F$ est de dimension finie) telle que, pour $h$ dans un voisinage de 0 :
+\par $$f(a+h)-f(a) = u(h)+o(h)$$
+\par Par continuité de $u$, $f(a+h)-f(a)\to_{h\to 0}0$
+\par Donc par définition, $f$ est continue en $a$}
+\Prop{}{Soit $f$ une fonction définie d'un ouvert $U$ dans $F$ et $a\in U$.
+\par Si $f$ est différentiable en $a$, alors $f$ est dérivable en $a$ selon tout vecteur $v\in E$ et :
+\par $$D_vf(a) = df(a)\cdot v$$}
+\Pre{Supposons $f$ différentiable en $a$
+\par Soit $v$ un vecteur de $E$, alors pour tout $t$ réel dans un voisinage de $0$, on a :
+\par $$f(a+tv)(a)=f(a)+df(a)\cdot(tv)+o(t) = f(a)+tdf(a)\cdot v+o(t)$$
+\par Donc $t\mapsto f(a+tv)$ est dérivable en $9$ de dérivée $df(a)\cdot v$
+\par Ce qui conclut la preuve.}
+\begin{Rem}
+La réciproque est fausse.
+\end{Rem}
+\Prop{Corollaire}{Soit $\mathcal{B}=(e_1,..., e_n)$ une base de $E$. Soit $f$ une fonction définie d'un ouvert $U$ dans $F$ et $a\in U$.
+\par Si $f$ est différentiable en $a$, alors $f$ admet des dérivées partielles (dans la base $\mathcal{B}$) et pour $v=\sum\limits_{i=1}^nv_ie_i\in E$ :
+\par $$D_vf(a) = df(a)\cdot f = \sum\limits_{i=1}^nv_i\partial_if(a)$$}
+\Pre{Pour $i\in\llbracket 1, n\rrbracket$, la $i$-ème dérivée partielle est la dérivée suivant le vecteur $e_i$.
+\par On déduit immédiatement de la proposition précéddente l'existence des $n$ dérivées partielles et par linéarité de $df(a)$, pour tout vecteur $v=\sum\limits_{i=1}^nv_ie_i$ :
+\par $$D_vf(a) = df(a)\cdot\left(\sum\limits_{i=1}^nv_ie_i\right) = \sum\limits_{i=1}^nv_idf(a)\cdot e_i=\sum\limits_{i=1}^nv_i\partial_if(a)$$}
+
+\subsection{Matrice jacobienne}
+\Prop{}{Soit $\mathcal{B}=(e_1,..., e_m)$ une base de $E$ et $\mathcal{B}'=(e_1',..., e_n')$ une base de $F$.
+\par Soit $f$ une fonction définie d'un ouvert $U$ dans $F$ différentiable sur $U$. Notons $f_1,..., f_n$ les fonctions composantes de $f$ dans la base $\mathcal{B}'$.
+\par Soit $a\in U$. La matrice dans les bases $\mathcal{B}$ et $\mathcal{B}'$ de l'application linéaire $df(a)$ est :
+\par $$J_f(a) = \begin{pmatrix} \partial_1f_1(a) & \partial_2f_1(a) & \cdot\cdot\cdot & \partial_mf_1(a)
+\\ \partial_1f_2(a) & \partial_2f_2(a) & \cdot\cdot\cdot & \partial_mf_2(a)
+\\ . & . & . & .
+\\ . & . & . & .
+\\ . & . & . & .
+\\ \partial_1f_n(a) & \partial_2f_n(a) & \cdot\cdot\cdot & \partial_mf_n(a)\end{pmatrix}$$}
+\Pre{Pour tout $j\in\llbracket 1,n\rrbracket$ :
+\par $$df(a)\cdot (e_j) =\sum\limits_{i=1}^ndf_i(a)\cdot(e_j)e_i' = \sum\limits_{i=1}^n\partial_jf_i(a)e_i'$$}
+\Def{Matrice Jacobienne}{Si $E=\R^m$ et $F=\R^n$. Soit $f$ une fonction définie d'un ouvert $U$ dans $F$ différentiable sur $U$.
+\par Soit $a\in U$. La matrice, dans les bases canoniques, de l'application linéaire $df(a)$ est :
+\par $$J_f(a) = \begin{pmatrix} \dfrac{\partial f_1}{\partial x_1}(a) & \dfrac{\partial f_1}{\partial x_2}(a) & \cdot\cdot\cdot & \dfrac{\partial f_1}{\partial x_m}(a)
+\\ \dfrac{\partial f_2}{\partial x_1}(a) & \dfrac{\partial f_2}{\partial x_2}(a) & \cdot\cdot\cdot & \dfrac{\partial f_2}{\partial x_m}(a)
+\\ . & . & . & .
+\\ . & . & . & .
+\\ . & . & . & .
+\\ \dfrac{\partial f_n}{\partial x_1}(a) & \dfrac{\partial f_n}{\partial x_2}(a) & \cdot\cdot\cdot & \dfrac{\partial f_n}{\partial x_m}(a)\end{pmatrix}$$
+\par et est appelée matrice jacobienne de $f$ en $a$.}
 
 
+\section{Opérations sur les applications différentiables}
+\subsection{Différentielle d'une combinaison linéaire d'applications différentiables}
+\Prop{}{Soit $f$ et $g$ deux fonctions définies d'un ouvert $U$ dans $F$, différentiables sur $U$. Soit $\lambda, \mu$ deux réels.
+\par La fonction $\lambda f +\mu g$ est différentiable sur $U$ et :
+\par $$d(\lambda f+\mu g) = \lambda df+\mu dg$$}
+\Pre{Soit $a\in U$
+\par Soit $h\in E$ dans un voisinage de $0$
+\par $$(\lambda f +\mu g)(a+h) = (\lambda (f(a)+df(a)\cdot h + o(h)) + \mu (g(a)+dg(a)\cdot h + o(h))) = (\lambda f + \mu g)(a) +(\lambda df+\mu dg)(a)\cdot h + o(h)$$
+\par Donc $\lambda f + \mu g$ est différentiable en $a$ de différentielle en $a$ $(\lambda df+\mu dg)(a)$.}
+
+\subsection{Différentielle de B(f,g) où B est bilinéaie et f et g sont deux applications différentiables}
+\Prop{}{Soit $F, G, H$ des espaces vectoriels normés de dimension finie. Soit $B$ une application bilinéaire définie de $F\times G$ dans $H$.
+\par Il existe $C\in\mathcal{R}_+$ tel que :
+\par $$\forall (x, y)\in F\times G, \Vert B(x, y)\Vert\leq C\Vert x\Vert\Vert y\Vert$$}
+\Pre{En dimension finie, une application bilinéaire est continue (chaque composante est polynômiale en les coordonnées).
+\par Le produit cartésien des disques unités de $F$ et $G$ est compact comme produit de compacts.
+\par Donc $B$ est bornée par une constantce $C$ sur ce compact.
+\par On en déduit :
+\par Pour $(x,y)\in F\times G$ non-nuls, $\left\Vert B\left(\frac{1}{\Vert x\Vert}x\right)\left(\frac{1}{\Vert y\Vert}y\right)\right\Vert\leq C$
+\par Soit, en utilisant la bilinéarité de $B$ et la positivité de la norme: :
+\par $$ \Vert B(x, y)\Vert\leq C\Vert x\Vert\Vert y\Vert$$
+\par L'égalité reste valide pour $x$ ou $y$ nuls.
+\par Ce qui conclut la preuve.}
+\Prop{}{Soit $E, F, G, H$ quatre espaces vectoriels normés de dimension finie et $U$ un ouvert de $E$. Soit $f$ (respectivement $g$) une fonction définie de $U$ dans $F$ (respectivement $G$) et différentiable sur $U$.
+\par Soit $B$ une application bilinéaire définie de $F\times G$ dans $H$.
+\par La fonction $B(f, g):x\mapsto B(f(x), g(x))$ est différentiable sur $U$ et :
+\par $$d(B(f, g)) = B(df, g)+B(f, dg)$$}
+\Pre{Soit $a\in U$
+\par Soit $h\in E$ dans un voisinage de $0$.
+\par $$B(f(a+h), g(a+h)) = B(f(a)+df(a)\cdot h+o(h), g(a)+dg(a)\cdot h+o(h))$$
+\par $$B(f(a), g(a))+B(df(a)\cdot h, dg(a)\cdot h)+o(h)$$
+\par Ce qui conclut la preuve.
+\par On a utilisé la proposition précédente pour montrer que les termes restants étaient bien négligeables devant $h$. Par exemple il existe une constante $C$ et une constante $M$ telles que :
+\par $$ \Vert B(df(a)\cdot h, dg(a)\cdot h)\Vert\leq C\Vert df(a)\cdot h\Vert\Vert dg(a)\cdot h\Vert\leq M\Vert h\Vert^2$$}
+\begin{Rem}
+La proposition s'étend à la différentiation de $M(f_1,..., f_n)$ lorsque $M$ est $n$-linéaire et que les $f_i$ sont différentiables.
+\end{Rem}
+
+\subsection{Différentielle d'une composée d'applications différentiables}
+\Prop{}{Soit $E,F, G$ trois espaces vectoriels normés de dimension finie et $U$ un ouvert de $E$.
+\par Soit $f$ une fonction définie de $U$ dans $F$, différentiable sur $U$. Soit $g$ une fonction définie de $V$ dans $G$, avec $V$ un ouvert de $F$ contenant $f(U)$, différentiable sur $V$.
+\par La fonction $g\circ f$ est différentiable sur $U$ et, pour tout $a\in U$,
+\par $$d(g\circ f)(a) = dg(f(a))\circ df(a)$$}
+\Pre{Soit $a\in U$
+\par Soit $h\in E$ dans un voisinage de $0$
+\par $$(g\circ f)(a+h) = g(f(a+h))$$
+\par $$g(f(a)+df(a)\cdot h+o(h))$$
+\par $$g(f(a))+dg(f(a))\cdot (df(a)\cdot h+o(h))+o(h)$$
+\par $$g(f(a))+(dg(f(a))\circ df(a))\cdot h+ dg(f(a))\cdot (o(h)) +o(h)$$
+\par $$g(f(a))+(dg(f(a))\circ df(a))\cdot h+o(h)$$
+\par On a bien le résultat annoncé.}
+\begin{Rem}
+Avec les notations ci-dessus, si $f$ est à valeurs réelles et $g$ une fonction définie sur un intervalle réel, la formule se ré-écrit :
+\par $$d(g\circ f)(a) =g'(f(a))f'(a)$$
+\end{Rem}
+
+\subsection{Règle de la chaîne}
+\Prop{Règle de la châine}{Soit $m,p,n$ des entiers naturels non nuls.
+\par Soit $f$ une application différentiable sur $U$ un ouvert de $\R^m$ et à valeurs dans $\R^p$.
+\par Soit $g$ une application différentiable sur $V$ un ouvert de $\R^p$ contenant $f(U)$ et à valeurs dans $\R^n$.
+\par On note $f_1,..., f_p$ les fonctions composantes de $f$ et on pose $h = g\circ f$.
+\par On a donc le schéma suivant :
+\par $$\begin{array}{ccccc} \R^m & \to^f & \R^p & \to^g & \R^n \\ (x_1,...,x_m) & \mapsto & (f_1,..., f_p) & \mapsto & (g_1,..., g_n)\end{array}$$
+\par Soit $x=(x_1,..., x_m)\in U$. Pour $j\in \llbracket 1, m\rrbracket$ :
+\par $$\partial_jh(x)=\sum\limits_{k=1}^p\partial_jf_k(x)\partial_kg(f(x))$$
+\par Ou encore sous forme plus mnémotechnique :
+\par $$\dfrac{\partial h}{\partial x_j}(x) =\sum\limits_{i=1}^p\dfrac{\partial f_k}{\partial x_j}(x)\dfrac{\partial g}{\partial f_k}(f(x))$$ 
+\par Et enfin de manière encore plus concise mais abusive (les $g_i$ désignent à la fois les fonctions coordonnées de $g$ et de $g\circ f$ et les points d'application ne sont pas indiqués) :
+\par pour tout $i\in\llbracket 1, n\rrbracket$ et $j\in\llbracket 1,m\rrbracket$ :
+\par $$\dfrac{\partial g_i}{\partial x_j}=\sum\limits_{i=1}^p\dfrac{\partial f_k}{\partial x_j}\dfrac{\partial g_i}{\partial f_k}$$}
+\Pre{On note $(e_1,..., e_m)$ la base canonique de $\R^m$ et $(u_1,..., u_p)$ la base canonique de $\R^p$
+\par Soit $j\in\llbracket 1, m\rrbracket$ et $x\in\R^m$
+\par $$dh(x)\cdot e_j = d(g\circ f)(x)\cdot (e_j) = dg(f(x))\cdot (df(x)\cdot e_j)$$
+\par On écrit $df(x)\cdot e_j$ dans la base canonique de $\R^p$ :
+\par $$df(x)\cdot e_j = \sum\limits_{k=1}^p(df_k(x)\cdot e_j)u_k$$
+\par Et par linéarité de $dg(f(x))$ :
+\par $$dh(x)\cdot e_j = \sum\limits_{i=1}^p(df_k(x)\cdot e_j)dg(f(x))\cdot(u_k)$$
+\par Ce qui est exactement la formule proposée.
+\par On pouvait aussi, si on veut éviter le raisonnement intrinsèque, écrire le produit des jacobiennes des applications.}
+
+
+
+
+
+
+\Pre{Preuve 14 : Immédiat : 
+\par Pour $i\in\llbracket 1, n\rrbracket$, la $i$-ème dérivée partielle de $\lambda f+\mu g$ existe et vaut $\lambda\partial_if + \mu\partial_ig$
+\par Elle est donc continue par opération usuelle.}
+\Pre{Preuve 15 : Immédiat :
+\par Pour $i\in\llbracket 1, n\rrbracket$, la $i$-ème dérivée partielle de $fg$ existe et vaut $(\partial_if)g + f\partial_ig$
+\par Elle est donc continue par opération usuelle.}
+\Pre{Preuve 16 : Immédiat :
+\par Pour $i\in\llbracket 1, n\rrbracket$, la $i$-ème dérivée partielle de $\langle f,g\rangle$ existe et vaut $\langle \partial_if,g\rangle + \langle f,\partial_ig\rangle$
+\par Elle est donc continue par opération usuelle.}
+\Pre{Preuve 17 : Immédiat :
+\par Pour $i\in\llbracket 1, n\rrbracket$, la $i$-ème dérivée partielle de $g\circ f$ existe et vaut
+\par $$\partial_i (g\circ f) = \sum\limits_{k=1}^{\dim F} (\partial_kg\circ f)\partial_if_k$$
+\par Elle est donc continue par opération usuelle.}
+\Pre{Preuve 22 : Notons $v = \frac{1}{\Vert\nabla f(a)\Vert}\nabla f(a)$ le vecteur normé colinéaire à $\nabla f(a)$ de même sens.
+\par $$\D_vf(a) = df(a)\cdot v = \Vert\nabla f(a)\Vert$$
+\par Considérons un vecteur unitaire $u$.
+\par $$D_uf(a) = df(a)\circ u = \langle \nabla f(a), u\rangle$$
+\par Et par inégalité de Cauchy-Schwarz :
+\par $$\vert D_uf(a)\vert\leq \Vert\nabla f(a)\Vert \leq D_vf(a)$$}
+\Pre{Preuve 23 : C'est une simple écriture de la formule de différentiation :
+\par Pour $h\in E$, $h= h_1e_1+...+h_ne_n$ :
+\par $$df(a)\cdot h =\sum\limits_{i=1}^n\partial_if(a)h_i = \left\langle\sum\limits_{i=1}^n\partial_if(a)\cdot e_i, h\right\rangle$$}
+\Pre{Preuve 24 : On peut considérer que $\gamma$ est à valeur dans un espace vectoriel normé.
+\par On a tout simplement :
+\par $$\frac{1}{h}(\gamma(t_0+h)-\gamma(t_0))\to_{h\to 0}\gamma'(t_0)$$
+\par Donc le vecteur normé $\frac{1}{\Vert \gamma(t_0)-\gamma(t_0)+h\Vert}(\gamma(t_0)-\gamma(t_0+h))$ converge vers $\frac{1}{\Vert\gamma'(t_0)\Vert}\gamma'(t_0)$ en 0.}
+\Pre{Preuve 25 : Il s'agit simplement de l'application de la formule donnant la différentielle d'une composée dans un cas particulier.
+\par Pour un réel $h$ au voisinage de $0$ :
+\par $$h(f\circ\gamma)'(t)=d(f\circ\gamma)(t)\cdot h$$
+$$= df(\gamma(t))\cdot (d\gamma(t)\cdot(h))$$
+$$= df(\gamma(t))\cdot(h\gamma'(t))$$
+$$= hdf(\gamma(t))\cdot(\gamma'(t))$$}
+\Pre{Preuve 26 : Dans les conditions de l'énoncé, $t\mapsto df(\gamma(t))\cdot\gamma'(t)$ est la dérivée de la fonction $g :t\mapsto f(\gamma(t))$
+\par Donc :
+\par $$\int_0^1df(\gamma(t))\cdot\gamma'(t)dt = g(1)-g(0) = f(b)-f(a)$$}
+\Pre{Preuve 27 : Si $f$ est constante alors $f$ est différentiable et $df=0$
+\par Réciproquement, supposons que $f$ est différentiable sur un convexe $U$ de différentielle nulle.
+\par Soit $(a,b)$ dans $U$, considérons l'arc $\gamma$ défini sur $[0,1]$ par $t\mapsto (1-t)a+tb$. $\gamma$ est à valeur dans $U$ car $U$ est convexe.
+\par D'après la proposition précédente,
+\par $$f(b)-f(a) = \int_0^1df(\gamma(t))\cdot\gamma'(t)dt=0$$
+\par Donc $f$ est constante.}
+\Pre{Preuve 28 : Tout vecteur $u$ tangent à $X$ en $x_0$ est la dérivée en $0$ d'un arc paramétré $\gamma$ dérivable sur un voisinage de $0$, à valeurs dans $X$ et tel que $\gamma(0)=x_0$
+\par Pour $t$ au voisinage de $0$, $f(\gamma(t))=f(x_0)$
+\par Donc la fonction $t\mapsto f(\gamma(t))$ est constante au voisinage de $0$ donc de dérivée nulle.
+\par On en déduit, toujours pour $t$ au voisinage de $0$ :
+\par $$df(\gamma(t))\cdot\gamma'(t)=0$$
+\par En particulier pour $t=0$ : $df(x_0)\cdot \gamma'(0)=0$, c'est à dire :
+\par $$\langle\nabla f(x_0), u\rangle=0$$}
+\Pre{Preuve 30 : Supposons $df(a)$ non nul.
+\par On peut alors trouver un vecteur $u$ tel que $df(a)\cdot u\neq 0$.
+\par On peut alors écrire pour $t\in\R$ suffisamment petit :
+\par $$f(a+tu) -f(a) = df(a)\cdot tu+o(t)\sim_0 tdf(a)\cdot u$$
+\par Donc $f(a+tu)-f(a)$ change de signe en $0$ et $f$ n'a donc pas d'extrémum en $a$.
+\par On a montré le résultat par contraposée.
+\par Notez l'importance du fait que $U$ est ouvert dans la démonstration.}
 
 
 

@@ -45,6 +45,7 @@
 \renewcommand{\thesection}{\Roman{section}}
 \renewcommand{\thesubsection}{\Roman{section}.\arabic{subsection}}
 \renewcommand{\thesubsubsection}{\Roman{section}.\arabic{subsection}.\Alph{subsubsection}}
+
 \title{Cours}
 \author{Chakroun}
 
@@ -3738,76 +3739,250 @@ Avec les notations ci-dessus, si $f$ est à valeurs réelles et $g$ une fonction
 \par Ce qui est exactement la formule proposée.
 \par On pouvait aussi, si on veut éviter le raisonnement intrinsèque, écrire le produit des jacobiennes des applications.}
 
+\section{Applications de classe $\mathcal{C}^1$}
+\subsection{Définition et caractérisation}
+\Def{}{Une application $f$ d'un ouvert $U$ dans $F$ est dite de de classe $\mathcal{C}^1$ si elle est différentiable sur $U$ et si $df$ est continue sur $U$}
+\Prop{}{Soit $\mathcal{B}$ une bas ede $E$. Soit $f$ une application définie d'un ouvert $U$ dans $F$.
+\par L'application $f$ est de classe $\mathcal{C}^1$ sur $U$ si, et seulement si, les dérivées partielles relativement à la base $\mathcal{B}$ existent en tout point de $U$ et sont continues en $U$.}
+\Pre{Admis}
 
-
-
-
-
-
-
-
-
-
-
-\Pre{Preuve 14 : Immédiat : 
+\subsection{Opérations algébriques sur les applications de classe C1}
+\Prop{}{Soit $f$ et $g$ deux fonctions d'un ouvert $U$ dans $F$ de classe $\mathcal{C}^1$. Soit $\lambda, \mu$ deux réels.
+\par La fonction $\lambda f+\mu g$ est de classe $\mathcal{C}^1$ sur $U$.}
+\Prop{}{Soit $E,F,G,H$ quatre espaces vectoriels normés de dimension finie et $U$ un ouvert de $E$.
+\par Soit $f$ une fonction définie de $U$ dans $F$ de classe $\mathcal{C}^1$.
+\par Soit $g$ une fonction définie de $U$ dans $G$ de classe $\mathcal{C}^1$.
+\par Soit $B$ une application bilinéaire définie de $F\times G$ dans $H$.
+\par La fonction $B(f,g):x\mapsto B(f(x), g(x))$ est de classe $\mathcal{C}^1$ sur $U$.}
+\Pre{Immédiat : 
 \par Pour $i\in\llbracket 1, n\rrbracket$, la $i$-ème dérivée partielle de $\lambda f+\mu g$ existe et vaut $\lambda\partial_if + \mu\partial_ig$
 \par Elle est donc continue par opération usuelle.}
-\Pre{Preuve 15 : Immédiat :
+\Prop{}{Soit $f$ et $g$ deux applications de classe $\mathcal{C}^1$ d'un ouvert $U$ dans $\R$. La fonction $fg$ est $\mathcal{C}^1$.}
+\Pre{Immédiat :
 \par Pour $i\in\llbracket 1, n\rrbracket$, la $i$-ème dérivée partielle de $fg$ existe et vaut $(\partial_if)g + f\partial_ig$
 \par Elle est donc continue par opération usuelle.}
-\Pre{Preuve 16 : Immédiat :
+\Prop{}{Supposons que $F$ est un espace vectoriel euclidien. Soit $f$ et $g$ deux applications de classe $\mathcal{C}^1$ de $U$ dans $F$.
+\par La fonction $\left\{\begin{array}{rcl} U & \to & \R \\ t & \mapsto & \langle f(t), g(t)\rangle\end{array}\right.$ est $\mathcal{C}^1$}
+\Pre{Immédiat :
 \par Pour $i\in\llbracket 1, n\rrbracket$, la $i$-ème dérivée partielle de $\langle f,g\rangle$ existe et vaut $\langle \partial_if,g\rangle + \langle f,\partial_ig\rangle$
 \par Elle est donc continue par opération usuelle.}
-\Pre{Preuve 17 : Immédiat :
+\Prop{}{Soit $E,F,G$ trois espaces vectoriels normés de dimension finie et $U$ un ouvert de $E$.
+\par Soit $f$ une fonction définie de $U$ dans $F$ de classe $\mathcal{C}^1$ sur $U$.
+\par Soit $g$ une fonction définie de $V$ un ouvert de $F$ contenant $f(U)$ dazns $G$, $g$ de classe $\mathcal{C}^1$ sur $V$.
+\par La fonction $g\circ f$ est de classe $\mathcal{C}^1$ sur $U$.}
+\Pre{Immédiat :
 \par Pour $i\in\llbracket 1, n\rrbracket$, la $i$-ème dérivée partielle de $g\circ f$ existe et vaut
 \par $$\partial_i (g\circ f) = \sum\limits_{k=1}^{\dim F} (\partial_kg\circ f)\partial_if_k$$
 \par Elle est donc continue par opération usuelle.}
-\Pre{Preuve 22 : Notons $v = \frac{1}{\Vert\nabla f(a)\Vert}\nabla f(a)$ le vecteur normé colinéaire à $\nabla f(a)$ de même sens.
+
+\section{Dérivées partielles d'ordre supérieur}
+\subsection{Dérivées partielles d'ordre k}
+\Def{}{Soit $\mathcal{B}$ une base de $E$ et $f$ une application d'un ouvert $U$ dans $F$.
+\par Si $f$ admet une $i$-ème dérivée partielle $\partial_if$ sur $U$, on dit que $f$ admet une dérivée partielle seconde d'incides $i, j$ si $\partial_if$ admet une $j$-ème dérivée partielle et on la note alors $\partial_j\partial_i f$.
+\par On utilise aussi la notation $\dfrac{\partial f}{\partial x_ix_j}$ et on l'appelle dérivée partielle seconde par rapport aux variables $x_i, x_j$.
+\par Par récurrence on définit la notion de dérivée partielle d'ordre $k$ d'indices $i_1,..., i_k$ ou dérivée partielle d'ordre $k$ par rapport aux variables $x_{i_1},..., x_{i_k}$, que l'on note $\partial_{i_k}...\partial_{i_1}f$ ou $\dfrac{\partial^kf}{\partial x_{i_1}...x_{i_k}}$}
+\Def{}{Une application $f$ définie d'un ouvert $U$ dans $F$ est dite de classe $\mathcal{C}^k$ sur $U$ si toutes ses dérivées partielles d'ordre $k$ existent et sont continues sur $U$.
+\par Elle est dite de classe $\mathcal{C}^\infty$ si elle est de classe $\mathcal{C}^k$ pour tout $k\in\N^*$}
+
+\subsection{Théorème de Schwarz}
+\Thr{Schwarz}{Soit $\mathcal{B}$ une base de $E$ et soit $f$ définie d'un ouvert $U$ dans $F$.
+\par Si $f$ est de classe $\mathcal{C}^2$ alors :
+\par $$\forall i,j\in\llbracket 1, n\rrbracket^2, \partial_i\partial_jf = \partial_j\partial_if$$}
+\Pre{Admis}
+
+\subsection{Opérations sur les applications de classe Ck}
+Dans ce paragraphe, $k\in\N\cup\{+\infty\}$
+\Prop{}{Soit $f$ et $g$ deux fonctions de $U$ dans $F$ de classe $\mathcal{C}^k$. Soit $\lambda, \mu$ deux réels.
+\par La fonction $\lambda f+\mu g$ est de classe $\mathcal{C}^k$ sur $U$.}
+\Pre{Admis}
+\Prop{}{Soit $E,F,G,H$ quatre espaces vectoriels normés de dimension finie et $U$ un ouver tde $E$.
+\par Soit $f$ une fonction définie de $U$ dans $F$ de classe $\mathcal{C}^k$.
+\par Soit $g$ une fonction définie de $U$ dans $G$ de classe $\mathcal{C}^k$.
+\par Soit $B$ une application bilinéaire définie de $F\times G$ dans $H$.
+\par La fonction $B(f, g)$ est de classe $\mathcal{C}^k$ sur $U$.}
+\Pre{Admis}
+\Prop{}{Soit $E, F,G$ trois espaces vectoriels normés de dimension finie et $U$ un ouvert de $E$.
+\par Soit $f$ une fonction définie de $U$ dans $F$ de classe $\mathcal{C}^k$ sur $U$.
+\par Soit $g$ une fonction définie de $V$ un ouvert de $F$ contenant $f(U)$ dans $G$ et de classe $\mathcal{C}^k$ sur $V$.
+\par La fonction $g\circ f$ est de classe $\mathcal{C}^k$ sur $U$.}
+\Pre{Admis}
+
+
+\section{Cas des applications numériques}
+Dans toute cette partie, $F=\R$
+\subsection{Gradient}
+Dans tout ce paragraphe, $E$ est un espace vectoriel euclidien (et $F=\R$)
+\Def{}{On appelle dual de $E$ et on note $\mathcal{E}^*$ l'ensemble $\mathcal{L}(E,\R)$}
+\Def{}{Soit $f$ une fonction définie et différentiable sur un ouvert $U$ et à valeurs dans $\R$. Soit $a\in U$.
+\par On appelle gradient de $f$ en $a$ et on note $\nabla f(a)$ l'unique vecteur de $E$ tel que :
+\par $$\forall h\in E, df(a)\cdot h=\langle \nabla f(a), h\rangle$$}
+On rencontre parfois aussi la notation $\mathrm{Grad}f(a)$
+\Prop{Interprétation géométrique du gradient}{Pour $h$ un vecteur de $E$, $D_hf(a)= df(a)\cdot h = \langle \nabla f(a), h\rangle$.
+\par Si $\nabla f(a)\neq 0$, il est colinéaire et de même sens que le vecteur unitaire selon lequel la dérivée de $f$ en $a$ est maximale.}
+\Pre{Notons $v = \frac{1}{\Vert\nabla f(a)\Vert}\nabla f(a)$ le vecteur normé colinéaire à $\nabla f(a)$ de même sens.
 \par $$\D_vf(a) = df(a)\cdot v = \Vert\nabla f(a)\Vert$$
 \par Considérons un vecteur unitaire $u$.
 \par $$D_uf(a) = df(a)\circ u = \langle \nabla f(a), u\rangle$$
 \par Et par inégalité de Cauchy-Schwarz :
 \par $$\vert D_uf(a)\vert\leq \Vert\nabla f(a)\Vert \leq D_vf(a)$$}
-\Pre{Preuve 23 : C'est une simple écriture de la formule de différentiation :
+\Prop{}{Soit $f$ une fonction définie et différentiable sur un ouvert $U$ et à valeurs dans $\R$. Soit $a\in U$.
+\par Dans $(e_1,..., e_n)$ une base orthonormale de $E$, $\nabla f(a)$ s'écrit $\nabla f(a) = \sum\limits_{i=1}^n\partial_if(a)\cdot e_i$}
+\Pre{C'est une simple écriture de la formule de différentiation :
 \par Pour $h\in E$, $h= h_1e_1+...+h_ne_n$ :
 \par $$df(a)\cdot h =\sum\limits_{i=1}^n\partial_if(a)h_i = \left\langle\sum\limits_{i=1}^n\partial_if(a)\cdot e_i, h\right\rangle$$}
-\Pre{Preuve 24 : On peut considérer que $\gamma$ est à valeur dans un espace vectoriel normé.
+
+\subsection{Dérivée le long d'un arc}
+\Def{}{On appelle arc paramétré une application définie sur un intervalle $I$ de $\R$ à valeur dans $\R^p$.
+\par Cette notion modélise la notion de courbe dans un espace de dimension $p$ décrite par une fonction horaire de parcours.
+\par Si $\gamma$ est un arc paramétré, l'image de $\gamma$ est appelé son support.}
+\begin{Exe}
+La fonction $\gamma$ définie sur $\R$ à valeur dans $\R^2$ euclidien par :
+\par $$\gamma:t\mapsto\left\{\begin{array}{rcl} x & = & \cos t\\ y & = & \sin t\end{array}\right.$$
+\par $\gamma$ est un arc paramétré dont le support est le cercle centré en $0$ de rayon $1$.
+\end{Exe}
+\Prop{}{Soit $\gamma$ un arc paramétré dérivable sur un intervalle ouvert $I$ et $t_0\in I$.
+\par Si $\gamma'(t_0)$ est un vecteur non nul, alors le support de $\gamma$ admet pourtangente au point $\gamma(t_0)$ la droite dirigée par $\gamma'(t_0)$ passant par le point $\gamma(t_0)$.}
+\Pre{On peut considérer que $\gamma$ est à valeur dans un espace vectoriel normé.
 \par On a tout simplement :
 \par $$\frac{1}{h}(\gamma(t_0+h)-\gamma(t_0))\to_{h\to 0}\gamma'(t_0)$$
 \par Donc le vecteur normé $\frac{1}{\Vert \gamma(t_0)-\gamma(t_0)+h\Vert}(\gamma(t_0)-\gamma(t_0+h))$ converge vers $\frac{1}{\Vert\gamma'(t_0)\Vert}\gamma'(t_0)$ en 0.}
-\Pre{Preuve 25 : Il s'agit simplement de l'application de la formule donnant la différentielle d'une composée dans un cas particulier.
+\begin{Rem}
+La proposition précédente peut être étendue au cas où $\gamma$ est dérivable sur un intervalle d'intérieur non vide. On parlera alors de demi-tangent en $\gamma(t_0)$ si $t_0$ est une extrémité de l'intervalle.
+\end{Rem}
+\Prop{Dérivée le long d'un arc}{Soit $f$ une fonction définie d'un ouvert $U$ dans $F$. Soit $\gamma$ une application définie sur un intervalle d'intérieur non-vide $I$ de $\R$ et à valeurs dans $U$.
+\par Si $\gamma$ est dérivable en $t$ et si $f$ est différentiable en $\gamma(t)$, alors $f\circ\gamma$ est dérivable en $t$ et :
+\par $$(f\circ\gamma)'(t) = df(\gamma(t))\cdot\gamma'(t)$$}
+\Pre{Il s'agit simplement de l'application de la formule donnant la différentielle d'une composée dans un cas particulier.
 \par Pour un réel $h$ au voisinage de $0$ :
 \par \begin{align*}h(f\circ\gamma)'(t)&=d(f\circ\gamma)(t)\cdot h\\
 &= df(\gamma(t))\cdot (d\gamma(t)\cdot(h))\\
 &= df(\gamma(t))\cdot(h\gamma'(t))\\
 &= hdf(\gamma(t))\cdot(\gamma'(t))\end{align*}}
-\Pre{Preuve 26 : Dans les conditions de l'énoncé, $t\mapsto df(\gamma(t))\cdot\gamma'(t)$ est la dérivée de la fonction $g :t\mapsto f(\gamma(t))$
+\begin{Rem}
+Interprétation géométrique :
+\par Si $\gamma'(t)\notin\ker(df(\gamma(t)))$, la tangente au point de paramètre $t$ de l'arc paramétré $f\circ\gamma$ est dirigé par l'image d'un vecteur directeur de la tengente à $\gamma$ au point de paramètre $t$ par l'application $df(\gamma(t))$
+\end{Rem}
+\includegraphics{schemas/dérivée-long-arc.png}
+\begin{Rem}
+Cas particulier fondamental :
+\par Soit $a\in U$, soit $h\in E$ et $\gamma$ l'application définie par $\gamma(t) = a+th$.
+\par Si $f$ est différentiable en $a$, alors l'application $f\circ\gamma$ est dérivable en $0$ et :
+\par $$(f\circ\gamma)'(0) =df(a)\circ h=D_hf(a)$$  
+\end{Rem}
+
+\subsection{Intégration le long d'un arc d'une application de classe C1}
+\Prop{}{Si $f$ est une application de classe $\mathcal{C}^1$ d'un ouvert $U$ dans $F$, si $\gamma$ est une application de classe $\mathcal{C}^1$ de $[0,1]$ dans $\Omega$, si $\gamma(0)=a$, $\gamma(1)=b$, alors :
+\par $$f(b)-f(a) = \int_0^1df(\gamma(t))\cdot\gamma'(t)dt$$}
+\Pre{Dans les conditions de l'énoncé, $t\mapsto df(\gamma(t))\cdot\gamma'(t)$ est la dérivée de la fonction $g :t\mapsto f(\gamma(t))$
 \par Donc :
 \par $$\int_0^1df(\gamma(t))\cdot\gamma'(t)dt = g(1)-g(0) = f(b)-f(a)$$}
-\Pre{Preuve 27 : Si $f$ est constante alors $f$ est différentiable et $df=0$
+\begin{Rem}
+La valeur de $\int_0^1df(\gamma(t))\cdot\gamma'(t)dt$ ne dépend par de l'application $\gamma$ mais uniquement de ses valeurs en $0$ et $1$.
+\end{Rem}
+\begin{Rem}
+Pour $E=\R^2$ ou $\R^3$ :
+\par En physique, on dit qu'un champ de vecteurs $V$ dérive d'un potentiel s'il existe une fonction $f$ différentiable telle que pour tout $h\in E$ et $a\in E$, $df(a)\cdot h = \langle V(a), h\rangle$.
+\par Dans ce cas, $\int_0^1\langle\nabla f(\gamma(t)), \gamma'(t)\rangle dt$ dépend uniquement des valeurs de $f(\gamma(0))$ et $f(\gamma(1))$
+\end{Rem}
+\Prop{}{Si $f$ est une application d'un ouvert $U$ dans $F$.
+\par Si $U$ est connexe par arcs, la fonction $f$ est constante sur $U$ si, et seulement si, elle est différentiable sur $U$ et si $df=0$}
+\Pre{Preuve dans le cas $U$ convexe uniquement :
+\par Si $f$ est constante alors $f$ est différentiable et $df=0$
 \par Réciproquement, supposons que $f$ est différentiable sur un convexe $U$ de différentielle nulle.
 \par Soit $(a,b)$ dans $U$, considérons l'arc $\gamma$ défini sur $[0,1]$ par $t\mapsto (1-t)a+tb$. $\gamma$ est à valeur dans $U$ car $U$ est convexe.
 \par D'après la proposition précédente,
 \par $$f(b)-f(a) = \int_0^1df(\gamma(t))\cdot\gamma'(t)dt=0$$
 \par Donc $f$ est constante.}
-\Pre{Preuve 28 : Tout vecteur $u$ tangent à $X$ en $x_0$ est la dérivée en $0$ d'un arc paramétré $\gamma$ dérivable sur un voisinage de $0$, à valeurs dans $X$ et tel que $\gamma(0)=x_0$
+
+\subsection{Vecteurs tangents à une partie d'un espace normée de dimension finie}
+\Def{}{Si $X$ est une partie de $E$ et $x$ un point de $X$, un vecteur $v$ de $E$ est tangent à $X$ en $x$ s'il existe $\varepsilon>0$ et un arc $\gamma$ défini sur $]-\varepsilon, \varepsilon[$, dérivable en $0$, à valeurs dans $X$, tels que $\gamma(0)=x$ et $\gamma'(0)=v$
+\par On note $T_xX$ l'ensemble des vecteurs tangents à $X$ en $x$.}
+\begin{Exe}
+L'ensemble des vecteurs tangents en un point à un ouvert de $E$ est $E$ lui-même puisque pour tout $x\in U$ et pour tout vecteur $u$ de $E$, on peut définir sur $]-\varepsilon, \varepsilon[$ l'arc $\gamma:t\mapsto x+tu$
+\par (dont le support est une partie de la droite dirigée par $u$)
+\par $\gamma(0)=x$ et $\gamma'$ est constante égale à $u$.
+\end{Exe}
+\Def{}{Si $E$ est un espace vectoriel euclidien.
+\par Soit $f$ une fonction définie d'un ouvert $U$ dans $\R$.
+\par Soit $w\in\R$.
+\par On dit que $X = \{x\in U\vert w= f(x)\}$ est une ligne de niveau de $f$.
+}
+\Prop{}{Si $E$ est un espace vectoriel euclidien.
+\par Soit $f$ une fonction définie d'un ouvert $U$ dans $\R$, différentiable.
+\par Soit $X$ une ligne de niveau de $f$.
+\par Les vecteurs tangents à $X$ au point $x_0$ de $X$ annulent la différentielle de $f$ en $x_0$.
+Ce sont donc des vecteurs orthogonaux au gradient de $f$ en $x_0$.}
+\Pre{Tout vecteur $u$ tangent à $X$ en $x_0$ est la dérivée en $0$ d'un arc paramétré $\gamma$ dérivable sur un voisinage de $0$, à valeurs dans $X$ et tel que $\gamma(0)=x_0$
 \par Pour $t$ au voisinage de $0$, $f(\gamma(t))=f(x_0)$
 \par Donc la fonction $t\mapsto f(\gamma(t))$ est constante au voisinage de $0$ donc de dérivée nulle.
 \par On en déduit, toujours pour $t$ au voisinage de $0$ :
 \par $$df(\gamma(t))\cdot\gamma'(t)=0$$
 \par En particulier pour $t=0$ : $df(x_0)\cdot \gamma'(0)=0$, c'est à dire :
 \par $$\langle\nabla f(x_0), u\rangle=0$$}
-\Pre{Preuve 30 : Supposons $df(a)$ non nul.
+On admettra le théorème plus fort suivant :
+\Thr{}{Soit $E$ un espace vectoriel eculdiein. Soit $f$ une fonction définie d'un ouvert $U$ dans $\R$, de classe $\mathcal{C}^1$. Soit $X$ un eligne de niveau de $f$. Soit $x_0\in X$ de $X$.
+\par Si $df(x_0)\neq 0$, alors :
+\par $$T_{x_0}X =\ker(df(x_0))=(\nabla f(x_0))^\perp$$}
+
+\subsection{Optimisation}
+\subsubsection{Conditions de premier ordre}
+\Def{}{Soit $f$ une fonction défineis ur $A\subset E$ et à valeurs dans $\R$.
+\par On dit que $f$ présente un maximum local en un point $a$ de $A$ s'il existe un voisinage $V$ de $a$ dans $A$ tel que :
+\par $$\forall x\in V, f(x)\leq f(a)$$
+\par On dit que $f$ présente un minimum local en un point $a$ de $A$ s'il existe un voisinage $V$ de $a$ dans $A$ tel que :
+\par $$\forall x\in V, f(x)\geq f(a)$$
+\par On dit que $f$ admet un extremmum local en un point $a$ de $A$ si elle admet un maximum ou un minimum local en $a$.}
+\begin{Rem}
+On dit que $f$ présente un maximum (global) en un point $a$ de $A$ si :
+\par $$\forall x\in U, f(x)\leq f(a)$$
+\par On définit de même la notion de minimum (global) et d'extremum (global). 
+\end{Rem}
+\Def{}{Soit $f$ une fonction définie sur un ouvert $U$ et à valeurs dans $\R$.
+\par Le point $a\in U$ est appelé point critique de $f$ si $f$ est différentiable en $a$ et si $df(a)=0$.}
+\begin{Rem}
+Si $E$ est un espace euclidien, un point $a$ est un point critique si $\nabla f(a)=0$.
+\end{Rem}
+\Prop{}{Soit $f$ une fonction définie sur un ouvert $U$ et à valeurs dans $\R$ et $a\in U$.
+\par Si $f$ admet un extremum local en $a$ et si $f$ est différentiable en $a$, alors $df(a)=0$.
+\par (i.e. $a$ est un point critique de $f$)}
+\Pre{Supposons $df(a)$ non nul.
 \par On peut alors trouver un vecteur $u$ tel que $df(a)\cdot u\neq 0$.
 \par On peut alors écrire pour $t\in\R$ suffisamment petit :
 \par $$f(a+tu) -f(a) = df(a)\cdot tu+o(t)\sim_0 tdf(a)\cdot u$$
 \par Donc $f(a+tu)-f(a)$ change de signe en $0$ et $f$ n'a donc pas d'extrémum en $a$.
 \par On a montré le résultat par contraposée.
 \par Notez l'importance du fait que $U$ est ouvert dans la démonstration.}
+\begin{Exe}
+$x\mapsto x^3$ admet un point critique en $0$ mais ce n'est pas un extremum local.
+\par Ainsi, la réciproque est fausse.
+\end{Exe}
+\begin{Rem}
+Si on doit étudier les extrema d'une fonction $f$ définie sur $A$ partie de $E$ et à valeurs dans $F$ :\begin{enumerate}
+\item On se place sur $\overset{\circ}{A}$. On étudie si $f$ est différentiable sur $\overset{\circ}{A}$ et on détermine les points critiques.
+\item Les points où $f$ admet un extremum sont à chercher dans $A\backslash\overset{\circ}{A}$, les points de $\overset{\circ}{A}$ où $f$ n'est pas différentiable et les points critiques.
+\end{enumerate}
+\end{Rem}
+\Prop{}{Si $f$ est une fonction numérique définie sur l'ouvert $U$, si $X$ est une partie de $U$, si la restriction de $f$ à $X$ admet un extremum local en $x$ et si $f$ est différentiable en $x$, alors $df(x)$ s'annule en tout vecteur tangent à $X$ en $x$.}
+\Thr{optimisation sous une contrainte}{Si $f$ et $g$ sont des fonctions numériques définies et de classe $\mathcal{1}^1$ sur l'ouvert $\Omega$ de $E$, si $X$ est l'ensemble des zéros de $g$, si $x\in X$ et $dg(x)\neq 0$ et si la restriction de $f$ à $X$ admet un extremum local en $x$, alors $df(x)$ est colinéaire à $dg(x)$.}
 
-
-
-
+\subsubsection{Conditions de second ordre}
+\Def{}{Soit $f$ une fonction de classe $\mathcal{C}^2$ sur un ouvert $U$ de $\R^n$ euclidien, à valeurs réelles. Soit $x\in U$.
+\par La matrice hessienne de $f$ en $x$ est la matrice symétrique :
+\par $$H_f(x) = (\partial^2 f_{i,j}(x))_{(i,j)\in\llbracket1,n\rrbracket^2}$$}
+\Prop{Formule de Taylor-Young à l'ordre 2}{Soit $f$ une fonction de classe $\mathcal{C}^2$ sur un ouvert $U$ de $\R^n$ euclidien, à valeurs réelles. Soit $x\in U$.
+\par $$f(x+h)=_{h\to 0} f(x) + \langle \nabla f(x), h\rangle + \frac{1}{2}\langle H_f(x)\cdot h, h\rangle + o(\Vert h\Vert^2)$$
+\par $$f(x+h)=_{h\to 0} f(x) + \nabla f(x)^\top h + \frac{1}{2}h^\top H_f(x)\cdot h + o(\Vert h\Vert^2)$$}
+\Prop{}{\begin{itemize}
+\item Si $f$ est une fonction de classe $\mathcal{C}^2$ sur un ouvert de $\R^n$ et si $f$ admet un minimum local en $x$, alors $x$ est un point critique de $f$ et $H_f(x)\in\mathcal{S}_n^+(\R)$
+\item Si $f$ est une fonction de classe $\mathcal{C}^2$ sur un ouvert de $\R^n$, si $x$ est point critique de $f$ et si $H_f(x)\in\mathcal{S}_n^{++}(\R)$, alors $f$ admet un minimum local strict en $x$.
+\end{itemize}}
+\begin{Rem}
+\begin{itemize}
+\item La proposition précédente s'applique aux maxima en remplaçant $H_f(x)$ par $-H_f(x)$
+\item En particulier, en un point critique $x$ de $f$ tel que $H_f(x)\notin\mathcal{S}_n^+(\R)$ et $-H_f(x)\notin\mathcal{S}_n^+(\R)$, on peut conclure que $f$ n'admet pas d'extrémum en $x$.
+\item La condition $x$ est point critique de $f$ et $H_f(x)\in\mathcal{S}_n^+(\R)$ n'est pas suffisante pour déterminer si $f$ admet un extrémum local en $x$ (voir par exemple $(x,y)\mapsto x^2$ et $(x,y)\mapsto x^2+y^2$)
+\end{itemize}
+\end{Rem}
 
 
 

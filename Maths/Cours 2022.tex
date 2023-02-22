@@ -719,7 +719,7 @@ Si $F,G$ deux sev de $E$, tels que $F\oplus G=E$, notons : $p_F$ la projection s
 Prenons $E=\mathcal{C}([0,1],\Vert 1\Vert)$ et $\varphi : f\mapsto f(0)$ \par Alors $F =\{f\in E,\varphi(f)=0\}$ est un hyperplan, mais $F$ n'est pas fermé.
 \end{Exe}
 \Prop{Norme triple}{Soit $E,F$ deux EVN, on appelle $\mathcal{L}_C(E,F$) l'ensemble des applications linéaires continues de $E$ dans $F$. Alors $\mathcal{L}_C(E,F)$ est un espace vectoriel normé pour la norme $\varphi\mapsto \vert\Vert\varphi\Vert\vert=\sup\limits_{x\in E, x\neq 0} \frac{\Vert \varphi(x)\Vert_F}{\Vert x\Vert_E} = \sup\limits_{x\in E, \Vert x\Vert=1}\Vert \varphi(x)\Vert$}
-\Pre{soit $\varphi\in\mathcal{L}_C(E,F)$ \par On suppose $\vert\Vert\varphi\Vert\vert=0$ alors $\forall x\in E, x\neq 0, \Vert \varphi(x)\Vert\leq 0$ donc $\varphi(x)=0$ \par Et comme $\varphi$ est linéaire, $\varphi(0)=0$ donc $\varphi=0$ \par L'inégalité triangulaire et l'homogénéité sont immédiates.}
+\Pre{soit $\varphi\in\mathcal{L}_C(E,F)$\par On suppose $\vert\Vert\varphi\Vert\vert=0$ alors $\forall x\in E, x\neq 0, \Vert \varphi(x)\Vert\leq 0$ donc $\varphi(x)=0$ \par Et comme $\varphi$ est linéaire, $\varphi(0)=0$ donc $\varphi=0$ \par L'inégalité triangulaire et l'homogénéité sont immédiates.}
 \begin{Rem}
 Dans le cas où $E$ et $F$ sont de dimensions finies : $\mathcal{L}_C(E,F)=\mathcal{L}(E,F)$ \par et $\mathcal{L}_C(E,F)$ est isomorphe à $\mathcal{M}_{n,p}(\K)$ \par Si on fixe une norme dans $\mathcal{M}_{n,1}(\K)$ et une norme dans $\mathcal{M}_{p,1}(\K)$, il est naturel de parler de la norme $\vert\Vert.\Vert\vert$ associée pour $\mathcal{M}_{n,p}(\K)$ \par $A\in\mathcal{M}_{n,p}(\K), \vert\Vert A\Vert\vert =\sup\limits_{\Vert X\Vert=1, X\in\mathcal{M}_{p,1}(\K)} \Vert AX\Vert_n = \sup\limits_{X\in\mathcal{M}_{n,1}(\K), X\neq 0} \frac{\Vert AX\Vert_n}{\Vert X\Vert_p}$
 \end{Rem}
@@ -3442,9 +3442,36 @@ Soit $(a_i)_{i\in I}\in \C^I$ avec $I$ dénombrable est. $(a_i)$ est sommable si
 \par $\varphi\left\{\begin{array}{rcl}\R & \to & \mathcal{M}_n(\K) \\ t & \mapsto & \exp(tA)=\sum\limits_{n=0}^{+\infty}\frac{t^n}{n!}A^n\end{array}\right.$
 \par On a $\varphi'(t) = \sum\limits_{n=1}^{+\infty}\frac{nt^{n-1}}{n!}A^n = \sum\limits_{n=0}^{+\infty}A\frac{t^n}{n!}A^n = A\exp(tA) = \exp(tA)A$}
 
-\chapter{Calcul différentiel}
+
+
+
+\chapter{Calcul différentiel}\subsection{Conditions du chapitre}
 Les fonctions considérées dans ce chapitre sont définies sur un ouvert d'un $\R$-espace vectoriel normé de dimension finie et à valeurs dans un  $\R$-espace vectoriel normé de dimension finie.
 \par Dans tout ce chapitre, sauf mention contraire, $E$ et $F$ désignent deux $\R$-espaces vectoriels normés de dimension finies dont les normes sont notées $\Vert.\Vert$. $U$ désigne un ouvert de $E$.
+\par Si nécessaire, $E$ sera euclidien.
+
+\subsection{Rappels sur la continuité}
+\Def{Limite}{Pour $l\in F$ et $a\in\bar{A}$ avec $A\subset E$, $f\to_a l$ si $\forall \varepsilon\in\R_+^*, \exists \alpha\in \R_+^*, \forall x\in A, x\in\mathcal{B}(a,\alpha)\Rightarrow f(x)\in\mathcal{B}(l, \varepsilon)$}
+\Prop{}{En dimension finie, une fonction respecte une propriété locale si, et seulement si, toutes ses fonctions coordonnées les respectent.}
+\begin{Rem}
+Pour déterminer si une fonction $f$ est continue en $a$, on se sert de $f(x, \lambda x)$ en le faisant tendre vers $a$ pour obtenir une limite.
+\par Si $f$ est continue, c'est la seule limite et on peut trouver une majoration par quelque chose qui tend vers 0.
+\par Sinon, on cherche à trouver une autre limite (par exemple avec $f(a - (x, x+x^{2023}))$)
+\end{Rem}
+\begin{Exe}
+Soit $f:(x, y)\mapsto \frac{2y}{(x^2+y^2)}$ et vaurt $0$ en $(0,0)$
+\par Déjà, $f$ n'est pas continue en $0$ : pour $\lambda_1,\lambda_2\in\R_+, \lambda_1\neq\lambda_2$ :
+\par $\lim\limits_{x\to 0}f(x,\lambda_1 x) = \frac{\lambda_1}{1+\lambda_1}\neq\frac{\lambda_2}{1+\lambda_2}=\lim\limits_{x\to 0}f(x, \lambda_2x)$ 
+\end{Exe}
+\Def{o}{Pour $E, F, G$ $\R$-ev de dimension finie, $A\subset E$.
+\par Soit $f:A\to F$ et $g:A\to G$
+\par On dit que :
+\par $$f =_a o(g)\text{ si } \exists\varepsilon\in\mathcal{F}(A,\R_+), \varepsilon\to_a 0 \text{ et } \Vert f\Vert =\varepsilon\Vert g\Vert$$
+\par Si $g$ ne s'annule pas au voisinage de $a$, on peut écrire :
+\par $$f =_a o(g)\text{ si }\frac{\Vert f\Vert}{\Vert g\Vert}\to_a 0$$}
+\Prop{}{Si on a $x = (x_1,..., x_n)$, $\alpha_1,..., \alpha_n\in\N$ et $\gamma <\alpha_1+\alpha_2+...+\alpha_n$, alors :
+\par $$(x_1^{\alpha_1} x_2^{\alpha_2}...x_n^{\alpha_n})=_0 o(\Vert x\Vert^\gamma)$$}
+
 
 \section{Applications différentiables}
 \subsection{Dérivée selon un vecteur}
@@ -3455,12 +3482,49 @@ Les fonctions considérées dans ce chapitre sont définies sur un ouvert d'un $
 \begin{Exe}
 Soit $f$ une fonction définie d'un ouvert $U$ dans $F$, $a$ un point de $U$. La fonction $f$ admet une dérivée selon le vecteur $0$ au point $a$ et $D_0f(a) = 0$
 \end{Exe}
+\begin{Exe}
+$f:(x,y)\mapsto x^2y + e^{xy}$
+\par Trouver la dérivée en $(0,0)$ suivant $(1, 1)$ :
+\par Pour $t\in\R$, posons $g =f(t,t) = t^3 + e^{t^2}$
+\par Cette fonction est dérivable de dérivée $t\mapsto 3t^2 + 2te^{t^2}$
+\par Donc $D_{(1,1)}f(0,0) = g'(0) = 0$
+\end{Exe}
 \begin{Rem}
 La fonction $t\mapsto f(a+tv)$ est définie pour tout $t\in\R$ tel que $a+tv\in U$. Comme $U$ est un ouvert de $E$ contenant $a$, elle est bien définie sur une voisinage de $0$ dans $\R$.
 \end{Rem}
 \begin{Rem}
 Une fonction peut avoir des dérivées selon tout vecteur en un point et ne pas être continue en ce point.
 \end{Rem}
+\begin{Rem}
+Si $f$ possède une dérivée suivant $v$ en $a$, alors $f$ possède une dérivée selon  $\alpha v$ pour tout $\alpha\in \R^*$
+\par On suppose que $f$ possède une dérivée en $a$ suivant $v$ :
+\par La fonction $g:t\mapsto f(a+tv)$ est dérivable en $0$ et $D_vf(a) = g'(0)$
+\par Considérons $h:t\mapsto f(a+t\alpha u) = g(\alpha t)$
+\par $h$ est dérivable en $0$ et $h'(0) = \alpha g'(0)$
+\par Donc $D_{\alpha v}f(a) = \alpha D_vf(a)$
+\end{Rem}
+\begin{Exe}
+Soit $f:(x,y)\mapsto \frac{xy}{(x^2+y^2)^2}$ et qui vaut $0$ en $(0,0)$.
+\par Cette fonction n'est pas continue en $0$ : $\lim_{x\to 0} f(x, x) = +\infty$
+\par Cette fonction admet des dérivées en $(0,0)$ suivant $(1,0)$ et $(0,1)$ :
+\par $D_{(1,0)}f(1,0) = 0$ et $D_{(0, 1)}f(0, 0) = 0$
+\end{Exe}
+\begin{Exe}
+Soit $f:(x, y)\mapsto \frac{x^2y}{(x^4+y^2)}$ et qui vaut $0$ en $(0,0)$
+\par Pour tout $x\in\R$, on a $f(x, x^2) = \frac{x^4}{2x^4}=\frac{1}{2}\to_0\frac{1}{2}$
+\par Donc $f$ n'est pas continue en $(0,0)$
+\par Si $(\alpha,\beta)\in\R^2\neq (0,0)$ :
+\par $f(t\alpha,t\beta) = \frac{t^3\alpha^3\beta}{t^4\alpha^4+t^2\beta^2}$
+\par Si $\beta = 0$ : $\forall t\in\R, f(t\alpha, t\beta)=0$ donc $D_{(\alpha, 0)}f(0,0)$ existe et vaut $0$
+\par Sinon : $f(t\alpha,t\beta) =t\frac{\alpha^2}{\beta} + o(t)$
+\par Donc $D_{(\alpha, \beta)}f(0,0)$ existe et vaut $\frac{\alpha^2}{\beta^2}$
+\end{Exe}
+\begin{Rem}
+On constate que même si une fonction admet une dérivée suivant n'importe quel vecteur en un point, ça ne veut pas dire qu'elle est continue en ce point.
+\end{Rem}
+
+
+
 
 \subsection{Dérivées partielles}
 \Def{}{On suppose ici que $E = \R^n$. Soit $f$ une fonction définie d'un ouvert $U$ dans $F$ et $a=(a_1,..., a_n)$ un point de $U$.
@@ -3500,7 +3564,8 @@ La notation $o(h)$ désigne une fonction négligeable devant $\Vert h\Vert$
 \par On en déduit immédiatement que $\Vert (u-v)(x)\Vert = \Vert x\Vert\Vert \varepsilon(t)\Vert$
 \par Par passage à la limite en $9$, on obtient $(u-v)(x)=0$.
 \par La fonction $u-v$ s'annule donc sur $E$, donc $u=v$}
-Note : pour alléger l'écriture, il est d'usag ede noter $df(a)\cdot h$ au lieu de $(df(a))(h)$
+Note : pour alléger l'écriture, il est d'usag ede noter $df(a)\cdot h$ au lieu de $(df(a))(h)$.
+\par On utilise parfois $df_a(h)$, mais le problème de cette notation, c'est qu'elle ne conïncide pas bien avec la notation dans $\R$   
 \begin{Rem}
 On dit que $f$ admet un développement limité d'ordre $1$ en $a$ s'il existe $u\in\mathcal{L}(E, F)$ telle qu'au voisinage de $0$ :
 \par $$f(a+h)=f(a)+u(h)+o(h)$$
@@ -3515,10 +3580,26 @@ Comme la notion de continuité, la notion de différentiabilité en un point est
 \Prop{}{Si $E=\R$, soit $f$ une fonction définie de l'ouvert $U$ dans $F$ et $a\in U$. La fonction $f$ est différentiable en $a$ si, et seulement si, $f$ est dérivable en $a$ et dans ce cas $df(a)$ est l'application $h\mapsto hf'(a)$
 \par On a en particulier $f'(a) = df(a)\cdot 1$.}
 \Pre{C'est une des définitions de la dérivabilité : $f$ est dérivable en $a$ si, et seulement si, $f$ possède un développement limité à l'ordre $1$ en $a$ :
-\par $$ f(a+h) = f(a)+\lambda h+o(h)$$
+\par $$f(a+h) = f(a)+\lambda h+o(h)$$
 \par $h\mapsto \lambda h$ est linéaire. La définition de la dérivabilité est donc celle de la différentiabilité dans le cas particulier d'un $\R$-espace vectoriel de dimension $1$}
-\Def{}{Soit $f$ une fonction définie d'un ouvert $U$ dans $F$. Si $f$ est différentiable en tout point de $U$, on dit qe $f$ est différentiable sur $U$ et on appelle différentielle de $f$ sur $U$ l'application :
+\Def{}{Soit $f$ une fonction définie d'un ouvert $U$ dans $F$. Si $f$ est différentiable en tout point de $U$, on dit que $f$ est différentiable sur $U$ et on appelle différentielle de $f$ sur $U$ l'application :
 \par $$df:\left\{\begin{array}{rcl}U & \to & \mathcal{L}(E,F) \\ a & \mapsto & df(a)\end{array}\right.$$}
+\begin{Rem}
+Si $f$ est différentiable :
+\par $$df\in\mathcal{F}(U, \mathcal{L}(E, F))$$
+\par $\forall a\in U, df(a)\in\mathcal{L}(E,F)$
+\end{Rem}
+\begin{Exe}
+$$f:\left\{\begin{array}{rcl}\mathcal{M}_n(\R)^2 & \to & \mathcal{M}_n(\R) \\ (A, B) & \mapsto & AB\end{array}\right.$$
+\par Soit $(A, B)\in\mathcal{M}_n(\R)^2$
+\par $f((A,B)+(H,K)) = (A+H)(B+K) = AB+HB+AK+HK$
+\par On a que $(H,K)\mapsto HB+AK\in\mathcal{L}(\mathcal{M}_n(\R)^2, \mathcal{M}_n(\R))$.
+\par Il suffit alors de montrer que $HK = o(\Vert H\Vert)$ pour obtenir que $f$ est différentiable en $(A,B)$
+\par On prend $\Vert.\Vert$ une norme d'algèbre sur $\mathcal{M}_n(\K)$ et on prend la norme infinie associée sur $\mathcal{M}_n(\K)\times\mathcal{M}_n(\K)$ (le max des normes d'algèbres des deux)
+\par $\frac{\Vert HK\Vert}{\Vert (H, K)\Vert}\leq\frac{\Vert H\Vert\Vert K\Vert}{\max(\Vert H, \Vert K)}\leq \Vert(H, K)\Vert$
+\par Donc $HK = o(\Vert (H, K)\Vert)$
+\par Donc $f$ est différentiable en $AB$ et $df(A,B)\cdot(H,K) = HB+AK$
+\end{Exe}
 \Prop{}{Soit $f$ une fonction définie d'un ouvert $U$ dans $F$ et $a\in U$.
 Si $f$ est différentiable en $a$, alors $f$ est continue en $a$.}
 \Pre{Si $f$ est différentiable en $a$, il existe une application linéaire $u$ (continue car $F$ est de dimension finie) telle que, pour $h$ dans un voisinage de 0 :
@@ -3531,7 +3612,7 @@ Si $f$ est différentiable en $a$, alors $f$ est continue en $a$.}
 \Pre{Supposons $f$ différentiable en $a$
 \par Soit $v$ un vecteur de $E$, alors pour tout $t$ réel dans un voisinage de $0$, on a :
 \par $$f(a+tv)(a)=f(a)+df(a)\cdot(tv)+o(t) = f(a)+tdf(a)\cdot v+o(t)$$
-\par Donc $t\mapsto f(a+tv)$ est dérivable en $9$ de dérivée $df(a)\cdot v$
+\par Donc $t\mapsto f(a+tv)$ est dérivable en $0$ de dérivée $df(a)\cdot v$
 \par Ce qui conclut la preuve.}
 \begin{Rem}
 La réciproque est fausse.
@@ -3573,7 +3654,7 @@ La réciproque est fausse.
 \par $$d(\lambda f+\mu g) = \lambda df+\mu dg$$}
 \Pre{Soit $a\in U$
 \par Soit $h\in E$ dans un voisinage de $0$
-\par $$(\lambda f +\mu g)(a+h) = (\lambda (f(a)+df(a)\cdot h + o(h)) + \mu (g(a)+dg(a)\cdot h + o(h))) = (\lambda f + \mu g)(a) +(\lambda df+\mu dg)(a)\cdot h + o(h)$$
+\par \begin{align*}\lambda f +\mu g)(a+h)& = (\lambda (f(a)+df(a)\cdot h + o(h)) + \mu (g(a)+dg(a)\cdot h + o(h))) \\ &= (\lambda f + \mu g)(a) +(\lambda df+\mu dg)(a)\cdot h + o(h)\end{align*}
 \par Donc $\lambda f + \mu g$ est différentiable en $a$ de différentielle en $a$ $(\lambda df+\mu dg)(a)$.}
 
 \subsection{Différentielle de B(f,g) où B est bilinéaie et f et g sont deux applications différentiables}
@@ -3611,16 +3692,27 @@ La proposition s'étend à la différentiation de $M(f_1,..., f_n)$ lorsque $M$ 
 \par $$d(g\circ f)(a) = dg(f(a))\circ df(a)$$}
 \Pre{Soit $a\in U$
 \par Soit $h\in E$ dans un voisinage de $0$
-\par $$(g\circ f)(a+h) = g(f(a+h))$$
-\par $$g(f(a)+df(a)\cdot h+o(h))$$
-\par $$g(f(a))+dg(f(a))\cdot (df(a)\cdot h+o(h))+o(h)$$
-\par $$g(f(a))+(dg(f(a))\circ df(a))\cdot h+ dg(f(a))\cdot (o(h)) +o(h)$$
-\par $$g(f(a))+(dg(f(a))\circ df(a))\cdot h+o(h)$$
+\par \begin{align*}(g\circ f)(a+h) &= g(f(a+h))\\
+&=g(f(a)+df(a)\cdot h+o(h))\\
+&=g(f(a))+dg(f(a))\cdot (df(a)\cdot h+o(h))+o(h)\\
+&=g(f(a))+(dg(f(a))\circ df(a))\cdot h+ dg(f(a))\cdot (o(h)) +o(h)\\
+&=g(f(a))+(dg(f(a))\circ df(a))\cdot h+o(h)\end{align*}
 \par On a bien le résultat annoncé.}
 \begin{Rem}
 Avec les notations ci-dessus, si $f$ est à valeurs réelles et $g$ une fonction définie sur un intervalle réel, la formule se ré-écrit :
 \par $$d(g\circ f)(a) =g'(f(a))f'(a)$$
 \end{Rem}
+\Prop{Cas d'une algèbre}{Si $F$ est une algèbre
+\par Soient $f,g$ deux applications différentiables en $a$ définies de $U$ dans $F$
+\par Alors $fg$ est différentiable en $a$ et :
+\par $$d(fg):h\mapsto (df(a)\cdot h)g(a) + f(a)(dg(a)\cdot h)$$}
+\Pre{Soit $h\in E$ :
+\par $\varepsilon_1,\varepsilon_2$ des fonctions de $E$ dans $\R$ qui tendent vers $0$ quand $h$ tend vers $0$
+\par \begin{align*} fg(a+h)&=f(a+h)g(a+h)\\
+&=(f(a)+df(a)\cdot h+\varepsilon_1(h)\Vert h\Vert)(g(a)+dg(a)\cdot h+\varepsilon_2(h)\Vert h\Vert)\\
+&= f(a)g(a) +(df(a)\cdot h)g(a) + f(a)(dg(a)\cdot h)\\
+&+ \varepsilon_1(h)\Vert h\Vert[g(a) + (dg(a)\cdot h)]+\varepsilon_2(h)\Vert h\Vert[f(a)+df(a)\cdot h]\\
+&=fg(a) + (df(a)\cdot h)g(a)+f(a)(dg(a)\cdot h)+o(h)\end{align*}}
 
 \subsection{Règle de la chaîne}
 \Prop{Règle de la châine}{Soit $m,p,n$ des entiers naturels non nuls.
@@ -3645,6 +3737,12 @@ Avec les notations ci-dessus, si $f$ est à valeurs réelles et $g$ une fonction
 \par $$dh(x)\cdot e_j = \sum\limits_{i=1}^p(df_k(x)\cdot e_j)dg(f(x))\cdot(u_k)$$
 \par Ce qui est exactement la formule proposée.
 \par On pouvait aussi, si on veut éviter le raisonnement intrinsèque, écrire le produit des jacobiennes des applications.}
+
+
+
+
+
+
 
 
 
@@ -3679,10 +3777,10 @@ Avec les notations ci-dessus, si $f$ est à valeurs réelles et $g$ une fonction
 \par Donc le vecteur normé $\frac{1}{\Vert \gamma(t_0)-\gamma(t_0)+h\Vert}(\gamma(t_0)-\gamma(t_0+h))$ converge vers $\frac{1}{\Vert\gamma'(t_0)\Vert}\gamma'(t_0)$ en 0.}
 \Pre{Preuve 25 : Il s'agit simplement de l'application de la formule donnant la différentielle d'une composée dans un cas particulier.
 \par Pour un réel $h$ au voisinage de $0$ :
-\par $$h(f\circ\gamma)'(t)=d(f\circ\gamma)(t)\cdot h$$
-$$= df(\gamma(t))\cdot (d\gamma(t)\cdot(h))$$
-$$= df(\gamma(t))\cdot(h\gamma'(t))$$
-$$= hdf(\gamma(t))\cdot(\gamma'(t))$$}
+\par \begin{align*}h(f\circ\gamma)'(t)&=d(f\circ\gamma)(t)\cdot h\\
+&= df(\gamma(t))\cdot (d\gamma(t)\cdot(h))\\
+&= df(\gamma(t))\cdot(h\gamma'(t))\\
+&= hdf(\gamma(t))\cdot(\gamma'(t))\end{align*}}
 \Pre{Preuve 26 : Dans les conditions de l'énoncé, $t\mapsto df(\gamma(t))\cdot\gamma'(t)$ est la dérivée de la fonction $g :t\mapsto f(\gamma(t))$
 \par Donc :
 \par $$\int_0^1df(\gamma(t))\cdot\gamma'(t)dt = g(1)-g(0) = f(b)-f(a)$$}

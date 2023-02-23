@@ -3524,9 +3524,6 @@ Soit $f:(x, y)\mapsto \frac{x^2y}{(x^4+y^2)}$ et qui vaut $0$ en $(0,0)$
 On constate que même si une fonction admet une dérivée suivant n'importe quel vecteur en un point, ça ne veut pas dire qu'elle est continue en ce point.
 \end{Rem}
 
-
-
-
 \subsection{Dérivées partielles}
 \Def{}{On suppose ici que $E = \R^n$. Soit $f$ une fonction définie d'un ouvert $U$ dans $F$ et $a=(a_1,..., a_n)$ un point de $U$.
 \par Si elle existe, on appelle $i$-ème dérivée partielle de $f$ en $a$ la dérivée de $f$ selon le vecteur $(0,...,0, 1, 0,...,0)$ (avec le $1$ en $i$-ème place) au point $a$
@@ -3646,6 +3643,19 @@ La réciproque est fausse.
 \\ . & . & . & .
 \\ \dfrac{\partial f_n}{\partial x_1}(a) & \dfrac{\partial f_n}{\partial x_2}(a) & \cdot\cdot\cdot & \dfrac{\partial f_n}{\partial x_m}(a)\end{pmatrix}$$
 \par et est appelée matrice jacobienne de $f$ en $a$.}
+\begin{Exe}
+$$\varphi:\left\{\begin{array}{rcl}\R^2 & \to & \R^2 \\ (r,\theta) & \mapsto & (r\cos\theta, r\sin\theta) = (x, y)\end{array}\right.$$
+\par C'est une application surjective. On admet qu'elle est différentiable, et on calcule sa jacobienne :
+\par $\dfrac{\partial x}{\partial r} = \cos\theta$
+\par $\dfrac{\partial y}{\partial r} = \sin\theta$
+\par $\dfrac{\partial x}{\partial \theta} =-r\sin\theta$
+\par $\dfrac{\partial y}{\partial \theta} =r\cos\theta$
+\par Donc $J_\varphi(r, \theta) = \begin{pmatrix} \cos\theta & -r\sin\theta \\ \sin\theta & r\cos\theta \end{pmatrix}$
+\par Pour ne pas se tromper en l'écrivant, on peut écrire :
+\par avec $(r,\theta)\mapsto x(r, \theta)$, on prend $dx = \dfrac{\partial x}{\partial r}dr + \dfrac{\partial x}{\partial \theta}d\theta$, qui est la somme des expressions sur la ligne $x$, et les éléments différentiels $dr, d\theta$ indiquent dans quelle colonne ils vont.
+\par On note aussi $dy = \dfrac{\partial y}{\partial r}dr + \dfrac{\partial y}{\partial \theta}d\theta$
+\par Et alors $\begin{pmatrix} dx \\ dy\end{pmatrix} = J_\varphi(r,\theta)\begin{pmatrix}dr \\d\theta\end{pmatrix}$
+\end{Exe}
 
 
 \section{Opérations sur les applications différentiables}
@@ -3722,8 +3732,12 @@ Avec les notations ci-dessus, si $f$ est à valeurs réelles et $g$ une fonction
 \par On note $f_1,..., f_p$ les fonctions composantes de $f$ et on pose $h = g\circ f$.
 \par On a donc le schéma suivant :
 \par $$\begin{array}{ccccc} \R^m & \to^f & \R^p & \to^g & \R^n \\ (x_1,...,x_m) & \mapsto & (f_1,..., f_p) & \mapsto & (g_1,..., g_n)\end{array}$$
-\par Soit $x=(x_1,..., x_m)\in U$. Pour $j\in \llbracket 1, m\rrbracket$ :
-\par $$\partial_jh(x)=\sum\limits_{k=1}^p\partial_jf_k(x)\partial_kg(f(x))$$
+\par Soit $x=(x_1,..., x_m)\in U$. Pour $j\in \llbracket 1, m\rrbracket$ et $i\in\llbracket 1,n\rrbracket$ :
+\par Avec des jacobiennes, on a $J_{g\circ f}(x) = J_g(f(x))J_f(x)$ et donc :
+\par $J_g(f(x)) = \begin{pmatrix} \cdot&\cdot&\cdot \\ \dfrac{\partial g_i}{\partial f_1}(f(x)) & \cdot\cdot\cdot&\dfrac{\partial g_i}{\partial f_p}(f(x)) \\ \cdot&\cdot&\cdot\end{pmatrix} \begin{pmatrix} \cdot\cdot\cdot & \dfrac{\partial f_1}{\partial x_j}(x) & \cdot\cdot\cdot \\ . & .&.\\ \cdot\cdot\cdot & \dfrac{\partial f_p}{\partial x_j}(x)& \cdot\cdot\cdot\end{pmatrix}$
+\par Ce qui donne bien :
+\par $$\dfrac{\partial (g\circ f)_i}{\partial x_j}(x) = \sum\limits_{k=1}^p\dfrac{\partial g_i}{\partial f_k}(f(x))\cdot\dfrac{\partial f_k}{\partial x_j}(x)$$
+\par $$\partial_jh(x)=\sum\limits_{k=1}^p\partial_kg(f(x))\partial_jf_k(x)$$
 \par Ou encore sous forme plus mnémotechnique :
 \par $$\dfrac{\partial h}{\partial x_j}(x) =\sum\limits_{i=1}^p\dfrac{\partial f_k}{\partial x_j}(x)\dfrac{\partial g}{\partial f_k}(f(x))$$ 
 \par Et enfin de manière encore plus concise mais abusive (les $g_i$ désignent à la fois les fonctions coordonnées de $g$ et de $g\circ f$ et les points d'application ne sont pas indiqués) :
@@ -3738,13 +3752,50 @@ Avec les notations ci-dessus, si $f$ est à valeurs réelles et $g$ une fonction
 \par $$dh(x)\cdot e_j = \sum\limits_{i=1}^p(df_k(x)\cdot e_j)dg(f(x))\cdot(u_k)$$
 \par Ce qui est exactement la formule proposée.
 \par On pouvait aussi, si on veut éviter le raisonnement intrinsèque, écrire le produit des jacobiennes des applications.}
+\begin{Exe}
+Exprimons la composée(/divergence) en polaire :
+$$\begin{array}{ccccc}\R^2 & \to & \R^2 & \to &\R \\(r,\theta) & \mapsto & (x,y) = (r\cos\theta, r\sin\theta) & \mapsto &f(x,y)\end{array}$$
+\par On note $\varphi:\left\{\begin{array}{rcl}\R^2 & \to & \R^2 \\ (r,\theta) & \mapsto & (r\cos\theta, r\sin\theta) = (x, y)\end{array}\right.$ et $f:\left\{\begin{array}{rcl}\R^2 & \to & \R \\ (x,y) & \mapsto &f(x, y)\end{array}\right.$
+\par On suppose les deux différentiables (on montrera plus tard que $\varphi$ l'est)
+\par Pour $r,\theta\in\R^2$ :
+\par $\dfrac{\partial (f\circ \varphi)}{\partial r}(r,\theta) = \dfrac{\partial f}{\partial x}\dfrac{\partial \varphi}{\partial r}(r,\theta) + \dfrac{\partial f}{\partial y}\dfrac{\partial y}{\partial r} = \dfrac{\partial f}{\partial x}(x,y)\cos\theta+\dfrac{\partial f}{\partial y}(x,y)\sin\theta$
+\par $\dfrac{\partial (f\circ \varphi)}{\partial \theta}(r,\theta) = \dfrac{\partial f}{\partial x}(x,y)(-r\sin\theta)+\dfrac{\partial f}{\partial y}(x,y)r\cos\theta$
+\end{Exe}
+
 
 \section{Applications de classe $\mathcal{C}^1$}
 \subsection{Définition et caractérisation}
-\Def{}{Une application $f$ d'un ouvert $U$ dans $F$ est dite de de classe $\mathcal{C}^1$ si elle est différentiable sur $U$ et si $df$ est continue sur $U$}
-\Prop{}{Soit $\mathcal{B}$ une bas ede $E$. Soit $f$ une application définie d'un ouvert $U$ dans $F$.
-\par L'application $f$ est de classe $\mathcal{C}^1$ sur $U$ si, et seulement si, les dérivées partielles relativement à la base $\mathcal{B}$ existent en tout point de $U$ et sont continues en $U$.}
-\Pre{Admis}
+\Def{}{Une application $f$ d'un ouvert $U$ dans $F$ est dite de de classe $\mathcal{C}^1$ si elle est différentiable sur $U$ et si $df$ est continue sur $U$
+\par (i.e. $\begin{array}{rcl} U & \to & \mathcal{L}(E,F) \\ x & \mapsto & df(x)\end{array}$ continue)}
+\Thr{}{Soit $\mathcal{B}$ une base de $E$. Soit $f$ une application définie d'un ouvert $U$ dans $F$.
+\par L'application $f$ est de classe $\mathcal{C}^1$ sur $U$ si, et seulement si, les dérivées partielles relativement à la base $\mathcal{B}$ existent en tout point de $U$ et sont continues sur $U$.}
+\Pre{Hors-programme :
+\par Si $f$ est $\mathcal{C}^1$ :
+\par Alors $f$ admet une dérivée suivant un vecteur quelconque $u$ en tout point $x$, $df(x)\cdot u$.
+\par L'application $x\mapsto df(x)\cdot u$ est la composée de $df:x\mapsto df(x)$ et de $\varphi:l\mapsto l(u)$ ($l\in\mathcal{L}(E,F)$)
+\par $df$ est continue (comme $f$ est $\mathcal{C}^1$) et $\varphi$ est continue (linéaire en dimension finie).
+\par Donc $\varphi\circ df$ est continue, et donc pour tout point $x$, les dérivées partielles selon tout élément d'une base sont continues.
+\par Réciprouquement, on suppose que $f$ admet $p$ dérivées suivant les vecteurs $e_1,..., e_p$ continues sur $U$.
+\par Soit $x = x_1e_1+...+x_pe_p$ et $h=h_1e_1+...+h_pe_p$ avec $x+h\in U$
+\par \begin{align*}f(x+h)-f(x)&= f(x_1+h_1,...,x_p+h_p) - f(x_1, x_2+h_2,..., x_p+h_p)\\
+&+f(x_1, x_2+h_2,..., x_p+h_p) -f(x_1,, x_2, x_3+h_3, ...,x_p+h_p)\\
+&+...\\
+&+ f(x_1, ..., x_{p-1}, x_p+h_p) -f(x)\\
+&= h_1\partial_1f(x_1, x_2+h_2,..., x_p+h_p) + h_1\varepsilon_1(h_1)\\
+&+h_2\partial_2f(x_1, x_2,x_3+h_3,..., x_p+h_p) + h_2\varepsilon_2(h_2)\\
+&+ ...\\
+&+h_p\partial_pf(x_1,..., x_p)+h_p\varepsilon_p(h_p)
+\end{align*}
+\par où $\varepsilon_1,..., \varepsilon_p$ sont des fonctions qui tendent vers $0$ en $0$.
+\par Par hypothèse, $\forall i\in\llbracket 1,p\rrbracket$, $\partial_if$ est continue.
+\par Donc $\partial_1f(x_1,x_2+h_2,..., x_p+h_p) = \partial_1f(x_1,..., x_p)+\varphi_1(h_1, h_2,..., h_p)$ avec $\varphi_1\to_00$
+\par On raisonne de même pour les autres dérivées partielles.
+\par Donc $f(x+h)-f(x) =\sum\limits_{i=1}^ph_i\partial f_i(x) + \sum\limits_{i=1}^ph_i(\varepsilon_i(h_i) +\varphi_i(h))$
+\par Donc c'est la somme d'une application linéaire en $h$ et d'un $o(h)$.
+\par Donc $f$ est différentiable, et $\forall x\in U, \forall h\in E, df(x)\cdot h = \sum\limits_{i=1}^ph_i\partial_if(x)$
+\par $df$ est une application de $U$ dans $\mathcal{L}(E,F)$
+\par C'est la somme des applications $g_i:x\mapsto (h\mapsto h_i\partial_if(x))$, composées de projections en dimension finie et de $\partial_if$ qui est continue.
+\par Donc $df$ est $\mathcal{C}^1$, donc $df$ est continue.}
 
 \subsection{Opérations algébriques sur les applications de classe C1}
 \Prop{}{Soit $f$ et $g$ deux fonctions d'un ouvert $U$ dans $F$ de classe $\mathcal{C}^1$. Soit $\lambda, \mu$ deux réels.

@@ -3796,7 +3796,21 @@ $$\begin{array}{ccccc}\R^2 & \to & \R^2 & \to &\R \\(r,\theta) & \mapsto & (x,y)
 \par $df$ est une application de $U$ dans $\mathcal{L}(E,F)$
 \par C'est la somme des applications $g_i:x\mapsto (h\mapsto h_i\partial_if(x))$, composées de projections en dimension finie et de $\partial_if$ qui est continue.
 \par Donc $df$ est $\mathcal{C}^1$, donc $df$ est continue.}
-
+\begin{Rem}
+Dire que $df$ est continue, c'est dire que $J_f$ est continue, donc que chacune des applications coordonnées de $J_f$ est continue.
+\end{Rem}
+\begin{Exe}
+$$f:\left\{\begin{array}{rcl} \R^2 & \to & \R^2 \\ (x,y) & \mapsto & (2x^3ye^{x+y},\arctan(xy))\end{array}\right.$$
+\par Montrer que $f$ est différentiable :
+\par $f$ admet deux dérivées partielles sur $\R^2$ :
+\par Pour $(x,y)\in\R^2$ :
+\par $\dfrac{\partial f}{\partial x}(x,y)=\left(2x^2ye^{x+y}(3+x), \frac{y}{1+x^2y^2}\right)$
+\par $\dfrac{\partial f}{\partial y}(x,y) = \left(2x^3e^{x+y}(1+y), \frac{x}{1+x^2y^2}\right)$
+\par $(x, y)\mapsto \dfrac{\partial f}{\partial x}(x,y)$ est continue par opérations usuelles.
+\par $(x, y)\mapsto \dfrac{\partial f}{\partial y}(x,y)$ est continue par opérations usuelles.
+\par Donc $f$ est $\mathcal{C}^1$.
+\par $$J_f(x) = \begin{pmatrix}2x^2ye^{x+y}(3+x) & 2x^3e^{x+y}(1+y) \\ \frac{y}{1+x^2y^2} & \frac{x}{1+x^2y^2} \end{pmatrix}$$
+\end{Exe}
 \subsection{Opérations algébriques sur les applications de classe C1}
 \Prop{}{Soit $f$ et $g$ deux fonctions d'un ouvert $U$ dans $F$ de classe $\mathcal{C}^1$. Soit $\lambda, \mu$ deux réels.
 \par La fonction $\lambda f+\mu g$ est de classe $\mathcal{C}^1$ sur $U$.}

@@ -3991,7 +3991,7 @@ On admettra le théorème plus fort suivant :
 
 \subsection{Optimisation}
 \subsubsection{Conditions de premier ordre}
-\Def{}{Soit $f$ une fonction défineis ur $A\subset E$ et à valeurs dans $\R$.
+\Def{}{Soit $f$ une fonction définie sur $A\subset E$ et à valeurs dans $\R$.
 \par On dit que $f$ présente un maximum local en un point $a$ de $A$ s'il existe un voisinage $V$ de $a$ dans $A$ tel que :
 \par $$\forall x\in V, f(x)\leq f(a)$$
 \par On dit que $f$ présente un minimum local en un point $a$ de $A$ s'il existe un voisinage $V$ de $a$ dans $A$ tel que :
@@ -4002,6 +4002,11 @@ On dit que $f$ présente un maximum (global) en un point $a$ de $A$ si :
 \par $$\forall x\in U, f(x)\leq f(a)$$
 \par On définit de même la notion de minimum (global) et d'extremum (global). 
 \end{Rem}
+\begin{Rem}
+Attention, un extremum global n'est local que si $x_0\in\overset{\circ}{A}$.
+\par Par exemple, $f:\left\{\begin{array}{rcl}[-1, 1] & \to & \R \\ x & \mapsto & x^2\end{array}\right.$ a un extremum global en $1$ mais il n'est pas local.
+\end{Rem}
+
 \Def{}{Soit $f$ une fonction définie sur un ouvert $U$ et à valeurs dans $\R$.
 \par Le point $a\in U$ est appelé point critique de $f$ si $f$ est différentiable en $a$ et si $df(a)=0$.}
 \begin{Rem}

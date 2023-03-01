@@ -3874,7 +3874,7 @@ Dans ce paragraphe, $k\in\N\cup\{+\infty\}$
 
 
 \section{Cas des applications numériques}
-Dans toute cette partie, $F=\R$
+Se limiter au cadre de $E\to\R$ n'est pas un problème, une application de $E$ dans $F$ avec $F$ de dimension $n$ est simplement $n$ applications de $E$ dans $\R$.
 \subsection{Gradient}
 Dans tout ce paragraphe, $E$ est un espace vectoriel euclidien (et $F=\R$)
 \Def{}{On appelle dual de $E$ et on note $\mathcal{E}^*$ l'ensemble $\mathcal{L}(E,\R)$}
@@ -3911,6 +3911,24 @@ La fonction $\gamma$ définie sur $\R$ à valeur dans $\R^2$ euclidien par :
 \par On a tout simplement :
 \par $$\frac{1}{h}(\gamma(t_0+h)-\gamma(t_0))\to_{h\to 0}\gamma'(t_0)$$
 \par Donc le vecteur normé $\frac{1}{\Vert \gamma(t_0)-\gamma(t_0)+h\Vert}(\gamma(t_0)-\gamma(t_0+h))$ converge vers $\frac{1}{\Vert\gamma'(t_0)\Vert}\gamma'(t_0)$ en 0.}
+\begin{Exe}
+$\gamma:t\mapsto \left\{\begin{array}{c}\cos^3(t) \\\sin^3(t)\end{array}\right.$ un astroïde
+\par On note $M(t)$ le point en $t\in\R$ du support de l'arc. On étudie les symétries du support.
+\begin{itemize}
+\item $\forall t\in\R, M(t+2\pi)=M(t)$, donc on peut se restreindre à un intervalle de largeur $2\pi$
+\item $\forall t\in\R, M(t+\pi)=-M(t) = S_0(M(t))$, donc on peut se restreindre à un intervalle de largeur $\pi$ et faire le symétrique
+\item $\forall t\in\R, M\left(\frac{\pi}{2}-t\right) = S_{y=x}(M(t))$
+\item $\forall t\in\R, M(-t) = S_{y=0}(M(t))$
+\end{itemize}
+Donc cette courbe est symétrique par rapport à l'origine, par rapport à l'axe des abscisses (et donc aussi par rapport à l'axe des ordonnées par composition) et par rapport à la droite $y=x$ et $y=-x$
+\par On n'a donc besoin de l'étudier que sur $\left[0, \frac{\pi}{4}\right]$, et on l'étudie sur $\left[0, \frac{\pi}{2}\right]$
+\par $\forall t\in \left[0, \frac{\pi}{2}\right], \gamma'(t) = \left\{\begin{array}{c} -3\cos^2t\sin t \\3\sin^2t\cos t\end{array}\right.$
+\par On constate que $x'(t)$ est négative sur la première moitié de l'intervalle et $y'(t)$ positive sur le même ensemble
+\par étude locale en $0$ :
+\par $x(t)=_0 (1-\frac{t^2}{2}+o(t^3))^3 = 1-\frac{3t^2}{2}+o(t^3)$
+\par $y(t)=_0 (t-\frac{t^3}{6}+o(t^3))^3 = t^3 + o(t^3)$
+\par Donc $\overrightarrow{OM}(t) = \begin{pmatrix} 1 \\ 0\end{pmatrix} + t^2\begin{pmatrix}\frac{-3}{2}\\ 0\end{pmatrix} + t^3\begin{pmatrix} 0 \\ 1\end{pmatrix}+o(t^3)$
+\end{Exe}
 \begin{Rem}
 La proposition précédente peut être étendue au cas où $\gamma$ est dérivable sur un intervalle d'intérieur non vide. On parlera alors de demi-tangent en $\gamma(t_0)$ si $t_0$ est une extrémité de l'intervalle.
 \end{Rem}
@@ -3951,13 +3969,11 @@ Pour $E=\R^2$ ou $\R^3$ :
 \end{Rem}
 \Prop{}{Si $f$ est une application d'un ouvert $U$ dans $F$.
 \par Si $U$ est connexe par arcs, la fonction $f$ est constante sur $U$ si, et seulement si, elle est différentiable sur $U$ et si $df=0$}
-\Pre{Preuve dans le cas $U$ convexe uniquement :
-\par Si $f$ est constante alors $f$ est différentiable et $df=0$
-\par Réciproquement, supposons que $f$ est différentiable sur un convexe $U$ de différentielle nulle.
-\par Soit $(a,b)$ dans $U$, considérons l'arc $\gamma$ défini sur $[0,1]$ par $t\mapsto (1-t)a+tb$. $\gamma$ est à valeur dans $U$ car $U$ est convexe.
-\par D'après la proposition précédente,
-\par $$f(b)-f(a) = \int_0^1df(\gamma(t))\cdot\gamma'(t)dt=0$$
-\par Donc $f$ est constante.}
+\Pre{Hors-programme sauf pour les fonctions $\mathcal{C}^1$ :
+\par Si $f$ constante, immédiat.
+\par Pour $U$ convexe et $f$ $\mathcal{C}^1$ avec $df=0$ :
+\par Pour tout $a, b\in U$
+\par $f(b)-f(a) =\int_0^1 df(a+t(b-a))\cdot (b-a) = 0$}
 
 \subsection{Vecteurs tangents à une partie d'un espace normée de dimension finie}
 \Def{}{Si $X$ est une partie de $E$ et $x$ un point de $X$, un vecteur $v$ de $E$ est tangent à $X$ en $x$ s'il existe $\varepsilon>0$ et un arc $\gamma$ défini sur $]-\varepsilon, \varepsilon[$, dérivable en $0$, à valeurs dans $X$, tels que $\gamma(0)=x$ et $\gamma'(0)=v$
@@ -3970,8 +3986,12 @@ L'ensemble des vecteurs tangents en un point à un ouvert de $E$ est $E$ lui-mê
 \Def{}{Si $E$ est un espace vectoriel euclidien.
 \par Soit $f$ une fonction définie d'un ouvert $U$ dans $\R$.
 \par Soit $w\in\R$.
-\par On dit que $X = \{x\in U\vert w= f(x)\}$ est une ligne de niveau de $f$.
-}
+\par On dit que $X = \{x\in U\vert w= f(x)\}$ est une ligne de niveau de $f$.}
+\Prop{}{$T_xX$ est un espace vectoriel}
+\Pre{Le vecteur nul est tangent : on prend $\gamma$ constant valant $x$.
+\par Si $v\in T_xX$ avec $\gamma$ arc associé et $\lambda\in\R$, alors $\gamma(\lambda t)$ est un arc paramétré qui vaut $x$ en $0$ et $\gamma'(0) =\lambda v$. Donc $\lambda v\in T_xX$.
+\par Si $v_1, v_2\in T_xX$ associés aux arcs $\gamma_1,\gamma_2$, alors $\gamma =\frac{1}{2}(\gamma_1(2t)+\gamma_2(2t))$ défini sur l'intervalle de définition le plus petit est un arc paramétré, $\gamma(0)=x$ et $\gamma'(0)=v_1+v_2$ 
+\par Donc on a bien un sev de $E$.}
 \Prop{}{Si $E$ est un espace vectoriel euclidien.
 \par Soit $f$ une fonction définie d'un ouvert $U$ dans $\R$, différentiable.
 \par Soit $X$ une ligne de niveau de $f$.
@@ -3985,11 +4005,12 @@ Ce sont donc des vecteurs orthogonaux au gradient de $f$ en $x_0$.}
 \par En particulier pour $t=0$ : $df(x_0)\cdot \gamma'(0)=0$, c'est à dire :
 \par $$\langle\nabla f(x_0), u\rangle=0$$}
 On admettra le théorème plus fort suivant :
-\Thr{}{Soit $E$ un espace vectoriel eculdiein. Soit $f$ une fonction définie d'un ouvert $U$ dans $\R$, de classe $\mathcal{C}^1$. Soit $X$ un eligne de niveau de $f$. Soit $x_0\in X$ de $X$.
+\Thr{}{Soit $E$ un espace vectoriel eculdiein. Soit $f$ une fonction définie d'un ouvert $U$ dans $\R$, de classe $\mathcal{C}^1$. Soit $X$ une ligne de niveau de $f$. Soit $x_0\in X$ de $X$.
 \par Si $df(x_0)\neq 0$, alors :
 \par $$T_{x_0}X =\ker(df(x_0))=(\nabla f(x_0))^\perp$$}
 
 \subsection{Optimisation}
+C'est quoi l'optimisation d'un problème qui a plusieurs paramètres ? C'est trouver les meilleurs paramètres. Pour ça, il faut un critère, qu'on modélise par une fonction $f$ à plusieurs variables (les paramètres) et à valeurs réelles. Si $f$ représente un coût, on tente de trouver un minimum, et si $f$ représente une fonction de performance on tente de trouver un maximum.
 \subsubsection{Conditions de premier ordre}
 \Def{}{Soit $f$ une fonction définie sur $A\subset E$ et à valeurs dans $\R$.
 \par On dit que $f$ présente un maximum local en un point $a$ de $A$ s'il existe un voisinage $V$ de $a$ dans $A$ tel que :
@@ -4012,7 +4033,7 @@ Attention, un extremum global n'est local que si $x_0\in\overset{\circ}{A}$.
 \begin{Rem}
 Si $E$ est un espace euclidien, un point $a$ est un point critique si $\nabla f(a)=0$.
 \end{Rem}
-\Prop{}{Soit $f$ une fonction définie sur un ouvert $U$ et à valeurs dans $\R$ et $a\in U$.
+\Thr{}{Soit $f$ une fonction définie sur un ouvert $U$ et à valeurs dans $\R$ et $a\in U$.
 \par Si $f$ admet un extremum local en $a$ et si $f$ est différentiable en $a$, alors $df(a)=0$.
 \par (i.e. $a$ est un point critique de $f$)}
 \Pre{Supposons $df(a)$ non nul.

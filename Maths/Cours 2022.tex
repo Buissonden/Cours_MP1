@@ -4200,6 +4200,138 @@ Donnons le développement limité en ordre 2 du $f$ précédent en $(\frac{2}{3}
 \par $$f(x_0+h, y_0+k) - f(x_0, y_0) = -\frac{1}{2}\frac{K}{3}\begin{pmatrix} h & k\end{pmatrix}\begin{pmatrix} 17 & 4 \\ 4 & 20\end{pmatrix}\begin{pmatrix} h \\ k\end{pmatrix} + o(\Vert (h,k)\Vert^2)$$
 \end{Exe}
 
+\section{Hors programme}
+\subsection{Fonctions k fois différentiables}
+\Def{}{Soit $f:U\subset E\to F$
+\par $f$ est $k$ fois différentiable pour $k\geq 1$ si $f$ est $(k-1)$ fois différentiable et $d^{k-1}f$ est différentiable.
+\par $f$ est $\mathcal{C}^k$ si $f$ est $k$ fois différentiable et $d^kf$ est continue.}
+\begin{Exe}
+Si $f$ deux fois différentiable, pour $x\in U, h,k\in E$
+\par $$d^2f(x)\in\mathcal{L}(E,\mathcal{L}(E,F))$$
+\par $$d^2f(x)\cdot H\in\mathcal{L}(E,F)$$
+\par $$d^2f(x)\cdot h\cdot k = (d^2f(x)\cdot h)\cdot k\in F$$
+\par Par théorème de Schwarz, si $f$ est $2$ fois différentiable alors $\forall h, k\in E, d^2f(x)\cdot h\cdot k = d^2f(x)\cdot k\cdot h$
+\par Si $(e_1,..., e_n)$ est une base de $E$
+\par On sait que $\partial_jf(x) = df(x)\cdot e_j$
+\par Et donc $\partial_i\partial_j f(x) = (t\mapsto df(x+te_i)\cdot e_j)'(0) = d^2f(x)\cdot e_i\cdot e_j$
+\par En effet, $df(x+te_i)\cdot e_j = (df(x)+ d^2 f(x)\cdot e_i+o(t)) = df(x)\cdot e_j + td^2f(x)\cdot e_i\cdot e_j+o(t)$
+\par Si $h = h_1e_1+...+h_ne_n$ et $k=k_1e_1+...+k_ne_n$
+\par \begin{align*}d^2f(x)\cdot h\cdot k &= d^2f(x)\cdot\left(\sum\limits_{i=1}h_ie_i\right)\cdot\left(\sum\limits_{j=1}^nh_je_j\right)\\
+&=\sum\limits_{1\leq i, j\leq n}h_ik_jd^2f(x)\dot e_i\cdot e_j
+&= \sum\limits_{1\leq i, j\leq n}h_ik_j\partial_i\partial_jf(x)
+\end{align*}
+\par Si $F = \R$
+\par $d^2f(x)\cdot h\cdot k = H^TH_f(x)K$ avec $H = Mat_\mathcal{B}(h)$ et $K = Mat_\mathcal{B}(k)$
+\par La formule de Taylor à l'ordre $k$ devient :
+\par Avec $U$ un ouvert connexe, $a,b\in U$.
+\par Si $f$ est une fonction $\mathcal{C}^{k+1}$
+\par $\varphi:\left\{\begin{array}{rcl} [0,1] & \to & F \\ t & \mapsto & f(a+(b-a)t)\end{array}\right.$
+\par Alors $\varphi$ est $\mathcal{C}^{k+1}$
+\par \begin{align*}\forall t\in[0,1], &\varphi'(t) = df(a+t(b-a))\cdot(b-a)\\
+&\varphi''(t) = d^2f(a+t(b-a))\cdot(b-a)\cdot(b-a)
+&...
+&\varphi^p(t) = d^pf(a+t(b-a))\cdot (b-a)^p
+\end{align*}
+\par Et donc $\varphi(1) =\varphi(0)+\varphi'(0)+\frac{1}{2}\varphi''(0) +...+\varphi^{(k)}(0) + \int_0^1\frac{(1-t)^k}{k!}d^{k+1}f(a+t(b-a))\cdot (b-a)^{k+1}dt$
+\par Ce qui nous donne finalement :
+\par $$f(b) = f(a) + df(a)\cdot (b-a)+\frac{1}{2}d^2f(a)\cdot (b-a)\cdot(b-a)+...+\frac{1}{k!}d^kf(a)\cdot (b-a)^k + o(h)$$
+\par Donc pour revenir au premier ordre $f(a+h) = f(a)+df(a)\cdot h + \int_0^1(1-t)d^2f(a+h)\cdot h\cdot hdt$
+\end{Exe}
+
+\subsection{Démo hors-programme : fonction constante différentiable}
+\Def{}{Soit $U$ un ouvert de $E$ connexe par arc.
+\par Si $f:U\to F$ est différentiable, alors :
+\par $$f\text{ constante }\Leftrightarrow \forall x\in U, df(x)=0$$}
+\Pre{On a déjà prouvé le sens direct, et le sens indirect quand $U$ était un ouvert convexe.
+\par On suppose $U$ connexe par arcs non-vide et que $\forall x\in U, df(x)=0$.
+\par On choisit $x_0\in U$
+\par On considère $A =\{x\in U\vert f(x)=f(x_0)\}$
+\par On va montrer que $A = U$
+\par $A = f^{-1}(\{f(x_0)\})$, or $f$ est continue, donc $A$ est l'image réciproque du fermé $\{f(x_0)\}$ par une application continue.
+\par Donc $A$ est un fermé relatif de $U$.
+\par Soit $x\in A$, comme $U$ est ouvert on prend $\alpha>0$ telle que $\mathcal{B}(x,\alpha)\subset U$
+\par Or $\mathcal{B}(x, \alpha)$ est convexe
+\par Donc $\forall y\in B(x, \alpha), f(y)-f(x) = \int_0^1df(x+t(y-x))\cdot (y-x)dt=0$
+\par Donc $\mathcal{B}(x,\alpha)\subset A$
+\par Donc $A$ est un ouvert.
+\par Dans un ouvert connexe par arcs, un ensemble qui est un ouvert et un fermé en même temps est soit vide, soit l'ensemble tout entier.
+\par Pour le montrer, supposons par l'absurde que $\mathcal{C}_UA\neq \emptyset$
+\par On a donc $y_0\in\mathcal{C}_UA$
+\par Comme $U$ est connexe par arcs, on a une arc continu de $x_0$ à $y_0$ :
+\par $$\gamma\left\{\begin{array}{rcl}[0,1] & \to & U \\ t & \mapsto & \gamma(t)\end{array}\right.$$
+\par où $\gamma(0)=x_0\in A$ et $\gamma(1) =y_0\in\mathcal{C}_UA$
+\par On peut donc considérer $t_0\in[0,1]$ tel que $t_0 = \sup\{t\in[0,1]\vert \gamma(t)\in A\}$
+\par $\mathcal{C}_UA$ est ouvert donc $t_0<1$ ($\exists\beta\in\R_+^*, \mathcal{B}(y_0,\beta)\subset\mathcal{C}_UA$)
+\par Et $\gamma(t_0)\in A$ : il existe $t_n\in[0,1]^\N$ tel que $t_n\to t_0$ et $\forall n\in\N,\gamma(t_n)\in A$ par caractérisation séquentielle du sup ; donc par continuité de $f\circ\gamma$, $f\circ\gamma(t_0)=f(x_0)$
+\par Or $A$ est ouvert, donc il existe $\delta\in\R_+^*$ tel que $\mathcal{B}(\gamma(t_0), \delta)\subset A$
+\par Ce qui nie la définition de $t_0$
+\par D'où la contradiction.}
+
+\subsection{Différentielle d'un inverse}
+\Prop{Dans R}{Si $f$ dérivable bijective d'un intervalle $I$ sur un intervalle $J$, si $f'$ ne s'annule pas alors $f^{-1}$ est dérivable et :
+\par $$(f^{-1})' = \dfrac{1}{f'\circ f^{-1}}$$}
+\Prop{Dans le cas général}{Si $f$ est différentiable bijective d'un ouvert $U$ sur un ouvert $V$, et si $f^{-1}$ est différentiable
+\par Alors $\dim E=\dim F$ et :
+\par $$\begin{cases}\forall x\in U, df^{-1}(f(x)) = df(x)^{-1} \\ \forall x\in V, df^{-1}(x) = df(f^{-1}(x))\end{cases}$$}
+\Thr{}{Si $f$ est différentiable bijective d'un ouvert $U$ sur un ouvert $V$
+\par Soit $x\in U$ tel que $df(x)$ est bijective.
+\par Alors $f^{-1}$ est différentiable en $f(x)$ et :
+\par $$df^{-1}(f(x)) = (df(x))^{-1}$$}
+\begin{Exe}
+$$\varphi:\left\{\begin{array}{rcl} \R_+^*\times ]0, 2\pi[ & \to & \R^2\backslash D_+ \\ (r,\theta) & \mapsto & (x,y) = (r\cos\theta, r\sin\theta)\end{array}\right.$$
+\par Avec $D_+$ la demi-droite $\{(x,y)\in\R^2\vert y=0, x\geq0\}$. C'est le seul moyen d'avoir une application en polaire qui soit bijective.
+\par $$J_\varphi(r,\theta) = \begin{pmatrix}\cos\theta & -r\sin\theta \\\ \sin\theta & r\cos\theta\end{pmatrix}$$
+\par Et $J_{\varphi^{-1}}(r\cos\theta,r\sin\theta) = \begin{pmatrix} \cos\theta & \sin\theta \\ \frac{-\sin\theta}{r} & \frac{\cos\theta}{r}\end{pmatrix}$
+\par $$\psi:\left\{\begin{array}{rcl} \R_+^*\times ]0,2\pi[\times ]0,2\pi[ &\to & \R^3\backslash P^+ \\ (r,\theta,\varphi) & \mapsto & (x,y,z) = (r\sin\theta\cos\varphi, r\sin\theta\sin\varphi, r\cos\theta)\end{array}\right.$$
+\par Qui est bijective à l'exception d'un demi-plan.
+\end{Exe}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

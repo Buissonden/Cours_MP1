@@ -4286,6 +4286,125 @@ $$\varphi:\left\{\begin{array}{rcl} \R_+^*\times ]0, 2\pi[ & \to & \R^2\backslas
 \par Qui est bijective à l'exception d'un demi-plan.
 \end{Exe}
 
+\chapter{Groupes et anneaux}
+\section{Rappels de sup}
+\Def{LCI}{Sur un ensemble $E$, une lci $\star$ est une application :
+\par $$\star:\left\{\begin{array}{rcl} E\times E & \to & E \\ (x,y) & \mapsto & x\star y\end{array}\right.$$
+\par On dit qu'elle est associative si :
+\par $$\forall a,b,c\in E, a\star (b\star c) = (a\star b)\star c$$
+\par On dit qu'elle est commutative si :
+\par $$\forall a,b\in E, a\star b = b\star c$$}
+\Def{Neutre}{Un élément neutre est un élément $e$ tel que :
+\par $$\forall x\in E, x\star e= e\star x = x$$}
+\Prop{Unicité du neutre}{Il n'y a qu'un seul élément neutre dans un groupe}
+\Pre{Si $e$ et $e'$ étaient des neutres, alors $e\star e' = e = e'$. D'où l'unicité.}
+\Def{Symétrique}{Le symétrique $x'$ de $x\in E$ est un élément tel que, si la lci admet un neutre $e$ :
+\par $$x\star x' = x'\star x = e$$
+\par On note $x^{-1}$ le symétrique de $H$.}
+\Prop{Unicité du symétrique}{Si la lci est associative, alors $x$ admet un unique symétrique}
+\Pre{Supposons que $x\in E$ admette deux symétriques, $x'$ et $x''$.
+\par \begin{align*}x'\star x\star x'' &= (x'\star x)\star x''
+&= x''
+&= x'\star(x\star x'')
+&=x'
+\end{align*}}
+\Def{Groupe}{Un groupe est un ensemble qui est muni d'une lci associative, qui possède un neutre et où tout élément admet un symétrique.
+\par Un groupe commutatif ou abélien esr un groupe où la lci est commutative.
+\par Un ensemble muni d'une lci associative avec un neutre mais où tout élément n'est pas symétrisable est appelé un monoïde.}
+\Prop{}{Si $G$ un monoïde si $a,b\in G$ sont symétrisables, alors $ab$ est symétrisable et $(ab)^{-1} = b^{-1}a^{-1}$}
+\Pre{\begin{align*} abb^{-1}a^{-1} &= aea^{-1}\\
+&= aa^{-1}
+&= e
+\end{align*}
+\par Donc on a exhibé un inverse de $ab$, qui est unique.}
+\Def{Sous-groupe}{Si $G$ est un groupe pour la loi $\star$ de neutre $e$ :
+\par $H$ est un sous-groupe de $G$ si :
+\par $\begin{cases} \forall (x,y)\in H, x\star y\in H \\
+H\neq\emptyset (\Leftrightarrow e\in H)\\
+\forall x\in H, x^{-1}\in H
+\end{cases}$}
+\begin{Rem}
+Notations : en général, on les prend de manières multiplicatives ou additives. On réserve les notation additives pour les groupes commutatifs la plupart du temps.
+\par On note $\star$ $\cdot$ de manière multiplicative. On note $1$ le neutre le plus souvent.
+\par Pour $a\in G$, on note : $\forall n\in\N^*, a^n = a\cdot...\cdot a$ n fois.
+\par Par convention, on a $a^0 = 1$
+\par Pour $n\in\N^*$, $a^{-n} = a^{-1}\star...\star a^{-1}$ n fois.
+\par On note $\langle a\rangle = \{a^n\vert n\in\Z\}$ le groupe engendré par $a$. C'est le plus petit groupe contenant $a$.
+\par On note $\star$ $\intercal$ de manière additive. On note $0$ le neutre le plus souvent, et $-a$ le symétrique.
+\par Pour $a\in G$, on note : $\forall n\in\N^*, na = a\intercal...\intercal a$ n fois.
+\par Par convention, on a $0a = 0$
+\par Pour $n\in\N^*$, $-na = -a\star...\star -a$ n fois.
+\par On note $\langle a\rangle = \{na\vert n\in\Z\}$ le groupe engendré par $a$. C'est le plus petit groupe contenant $a$.
+\end{Rem}
+\begin{Exe}
+Exemples fondamentaux :
+$(\Z, +)$ est un groupe, mais pas $\N$
+\par Si $G$ un groupe et $A$ un ensemble quelconque, alors $\mathcal{F}(A,G)$ est un groupe pour la loi $(f,g)\mapsto fg =(a\mapsto f(a)\star g(a))$
+\par Avec $(G_1,\star_1), (G_2, \star_2)$ deux groupes, alors $G_1\times G_2$ est un groupe, muni de la loi $(g_1, g_2)\star (g_1', g_2') = (g_1\star_1 g_1', g_2\star_2 g_2')$  
+\par Par exemple, $(\Z, +)\times (\R_+^*, \cdot)$ est un groupe et $(k,x)\cdot (l, y) = (k+l, xy)$ est sa lci.
+\par Avec $A$ un ensemble, $\mathcal{B}(A,A)$ l'ensemble des bijections de $A$ dans $A$, aussi noté $S_A (=\mathfrak{S}(A))$ quand $A$ est fini, est un groupe pour la composition.
+\end{Exe}
+\Def{}{Avec $(G,\star)$ un groupe et $\mathcal{R}$ une relation d'équivalence sur $G$
+\par On note $\mathcal{G}/\mathcal{R} = \{\overline{g_\mathcal{R}}\vert g\in G\}$ où $\overline{g_\mathcal{R}} = \{g'\in G\vert g'\mathcal{R}g\}$
+\par Si $\mathcal{R}$ est compatible avec $\star$ alors on peut définir une lci naturelle sur $G_\mathcal{R}$
+\par $$\cdot:\left\{\begin{array}{rcl} G_\mathcal{R}\times G_\mathcal{R} & \to & G_\mathcal{R} \\ \overline{x}, \overline{y} &\mapsto & \overline{x\star y}\end{array}\right.$$
+\par Et dans ce cas $\varphi:\left\{\begin{array}{rcl} G & \to & G_\mathcal{R} \\ x & \mapsto & \overline{x}\end{array}\right.$ est un morphisme surjectif, qu'on appelle la projection.}
+\begin{Exe}
+Dans $(\Z, +)$, avec $n\in\N, n\geq 2$, on note $\mathcal{R} :\equiv n$ la congruence modulo n définie par :
+\par $$x\mathcal{R} y \leftrightarrow x-y\equiv 0 [n]\Leftrightarrow (x-y)\in n\Z$$
+\par On appelle ce groupe le groupe quotient.
+\par On peut généraliser cette notion : Si $G$ un groupe, et $H$ un sous-groupe de $G$, on définit $\mathcal{R}_H$ sur $G$ par :
+\par $$\forall x,y\in G, x\mathcal{R}_H y \Leftrightarrow xy^{-1}\in H$$
+\par C'est bien une relation d'équivalence :
+\par $\forall x\in G, xx^{-1} = 1$ et $H$ est un sous-groupe de $G$ donc $1\in H$ donc $\mathcal{R}_H$ est réflexive.
+\par $\forall x,y\in G, xy^{-1}\in H$ donne que $(xy^{-1})^{-1}\in H$, or $(xy^{-1})^{-1}=yx^{-1}$, donc $y\mathcal{R}_Hx$, donc $\mathcal{R}_H$ est symétrique.
+\par $\forall x,y,z\in G, x\mathcal{R}_Hy$ et $y\mathcal{R}_Hz$ donne que $xy^{-1}\in H$ et $yz^{-1}\in H$, donc $xy^{-1}=xy^{-1}yz^{-1}\in H$, donc $\mathcal{R}_H$ est transitive.
+\par Malheureusement, cette relation n'est pas toujours compatible. C'est vrai si la loi est commutative.
+\par On peut quand même avoir ce résultat :
+\par Soit $y\in G$, soit $x\in G$.
+\par \begin{align*} x\in \overline{y_{\mathcal{R}_H}} & \Leftrightarrow xy^{-1}\in H\\
+&\Leftrightarrow \exists h\in H, xy^{-1}=h\\
+&\Leftrightarrow \exists h\in H, x = hy\\
+&\Leftrightarrow x\in Hy
+\end{align*}
+\par Et donc $\overline{y_{\mathcal{R}_H}} = Hy = \{hy\vert h\in H\}$
+\par Donc le cardinal d'une classe selon $\mathcal{R}_H$ est le cardinal de $H$.
+\par Donc le cardinal de $G$ est le cardinal de $H$ multiplié par le nombre de classes.
+\par On peut en déduire le théorème (hors-programme) de Lagrange :
+\par Si $G$ est un groupe fini et $H$ un sous-groupe de $G$, alors $\mathrm{card} H\vert\mathrm{card} G$
+\par On le prouve en considérant $\mathcal{R}_H : x\mathcal{R}_Hy \Leftrightarrow xy^{-1}\in H$
+\par Et donc $\forall y\in G, \mathrm{card} \overline{y_{\mathcal{R}_H}}=\mathrm{card} H$
+\par Donc $\mathrm{card} G = \mathrm{card}(G/\mathcal{R}_H)\mathrm{card} H$
+\par Revenons sur la condition de compatibilité de $\mathcal{R}_H$ :
+\par $$\forall (x,y)\in G^2, HxHy = \{h_1xh_2y \vert (h_1,h_2)\in H^2\}\subset Hxy$$
+\par L'autre inclusion est toujours vraie : $\forall x,y\in G, \forall h\in H, hx1y= hxy\in Hxy$ et $1\in H$ car $H$ est un sous-groupe de $G$
+\par Si le groupe est commutatif, alors : $\forall x,y\in G, \forall h_1, h_2\in H, h_1xh_2y = (h_1h_2)xy$ et $h_1h_2\in H$ car $H$ est un sous-groupe de $G$. 
+\par Les sous-groupes qui fonctionnent sont appelés les groupes distingués.
+\end{Exe}
+
+
+\section{Groupes engendrés par une partie non-vide}
+\Prop{Intersection}{Si $G$ un groupe
+\par Si $(H_i)_{i\in I}$ une famille de sous-groupes de $G$
+\par Alors $(\cap H_i)_i\in I$ est un sous-groupe de $E$}
+\Pre{$\forall i\in I, e\in H_i$ donc $e\in (\cap H_i)_{i\in I}$
+\par Si $x,y\in G$ tels que $\forall i\in I, x,y\in H_i$ alors $\forall i\in I, xy\in H_i$ comme c'est un sous-groupe donc $xy\in (\cap H_i)_{i\in I}$
+\par Donc c'est bien un sous-groupe de $G$.}
+\begin{Rem}
+On peut donc définir un groupe engendré par un élément $a$ comme l'intersection de tous les sous-groupes de $G$ contenant $a$.
+\end{Rem}
+\Def{}{Si $A\neq\emptyset$, alors le plus petit sous-groupe de $G$ contenant $A$ est l'intersection de tous les sous-groupes de $G$ contenant $H$.
+\par C'est le groupe engendré par $A$, noté $\langle A\rangle$}
+\Def{Groupe monogène}{On note $\langle \{a\} \rangle = \langle a\rangle =\{a^n\vert n\in\Z\}$}
+\Pre{On prouve que c'est un groupe.
+\par Ensuite, on prouve que tout groupe contenant $a$ contient aussi les itérés de $a$.}
+\Def{}{Si $a,b\in G$ :
+\par Si $G$ est commutatif, alors $\langle\{a,b\rangle = \{a^pb^q\vert (p,q)\in\Z^2\}$
+\par Sinon, on a $\langle\{a,b\}\rangle= \{w\in G\vert \exists n\in\N, w=x_1...x_n\text{ et } \forall i\in\llbracket 1,n\rrbracket, x_i\in\{a,b,a^{-1}, b^{-1}\}\}$}
+\begin{Rem}
+Ainsi, on ne traitera pas les groupes engendrés par plus d'un élément, puisqu'il est très difficile de les manipuler.
+\end{Rem}
+
 
 
 

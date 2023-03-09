@@ -4293,7 +4293,7 @@ $$\varphi:\left\{\begin{array}{rcl} \R_+^*\times ]0, 2\pi[ & \to & \R^2\backslas
 \par On dit qu'elle est associative si :
 \par $$\forall a,b,c\in E, a\star (b\star c) = (a\star b)\star c$$
 \par On dit qu'elle est commutative si :
-\par $$\forall a,b\in E, a\star b = b\star c$$}
+\par $$\forall a,b\in E, a\star b = b\star a$$}
 \Def{Neutre}{Un élément neutre est un élément $e$ tel que :
 \par $$\forall x\in E, x\star e= e\star x = x$$}
 \Prop{Unicité du neutre}{Il n'y a qu'un seul élément neutre dans un groupe}
@@ -4405,7 +4405,225 @@ On peut donc définir un groupe engendré par un élément $a$ comme l'intersect
 Ainsi, on ne traitera pas les groupes engendrés par plus d'un élément, puisqu'il est très difficile de les manipuler.
 \end{Rem}
 
+\section{Groupes monogènes}
+\Def{}{Un groupe est monogène s'il est engendré par un élément.
+\par i.e. $G$ est monogène si $\exists a\in G, G = \{a^n\vert n\in\Z\}\text{ ou }\{na\vert n\in\Z\}$}
+\Def{}{$G$ est cyclique si $G$ est monogène fini.}
+\begin{Rem}
+$(\Z,+)$ est monogène
+\par $\Z/n\Z$ est cyclique
+\par $(\mathbb{U}_n,\times)$ dans $(\C^*,\times)$ est cyclique
+\end{Rem}
 
+
+\section{Morphismes}
+\Def{}{Si $G$ et $G'$ sont deux groupes, alors $\varphi\in\mathcal{F}(G,G')$ est un morphisme si $\forall x,y\in G, \varphi(x\star y) = \varphi(x)\star'\varphi(y)$}
+\Prop{}{Si $\varphi$ est un morphisme de $G$ dans $G'$ :\begin{itemize}
+\item $\varphi(e) = e'$ (avec $e$ neutre de $G$, $e'$ neutre de $G'$) ;
+\item $$\forall x\in G, \varphi(x^{-1}) = (\varphi(x))^{-1}$$ ;
+\item $$\forall n\in\Z,\forall x\in G, \varphi(x^n) = (\varphi(x))^n$$ ;
+\item L'image directe d'un sous-groupe de $G$ par $\varphi$ est un sous-groupe de $G$ ; 
+\item L'image réciproque d'un sous-groupe de $G'$ par $\varphi$ est un sous-groupe de $G$.
+\end{itemize}}
+\Pre{Pour la première, $\varphi(ee) = \varphi(e)\varphi(e) = \varphi(e)$
+\par Donc : $(\varphi(e))^{-1}\varphi(e)\varphi(e) = (\varphi(e))^{-1}\varphi(e) = e'$
+\par Pour l'image directe : $\varphi(H) = \{y\in G', \exists x\in H, \varphi(x)=y\}$
+\par $e\in H$ donc $\varphi(e)\in\varphi(H)$
+\par Si $x', y'\in\varphi(H)$, on a donc $x,y\in H$ tels que $\varphi(x) = x'$ et $\varphi(y)=y'$
+\par Donc $x'y'=\varphi(x)\varphi(y)=\varphi(xy)\in\varphi(H)$
+\par Et on fait de même pour les inverses.
+\par Pour l'image réciproque : on prend $\varphi^{-1} = \{x\in G\vert \varphi(x)\in H'\}$ et on fait le même raisonnement.}
+\begin{Rem}
+À ne pas confondre avec le cas d'un morphisme de lci, qui, si on a $E$ et $E'$ munis de lci, est une application $\varphi$ de $\mathcal{F}(E,E')$
+\par Si $\varphi$ est un morphisme de lci \underline{surjectif}, alors $\varphi$ transporte les propriétés de $E$ dans $E'$ :
+\par Si $E$ possède un neutre $e$ :
+\par Soit $x'\in E'$
+\par Par surjectivité, on a $x\in E$ tel que $\varphi(x)=x$
+\par $\varphi(e)x'=\varphi(e)\varphi(x)=\varphi(ex) =\varphi(x)=x'$
+\par Donc $\varphi(e)$ est le neutre de $E'$.
+\par La commutativité ou l'associativité de la lci sur $E$ et l'existence de symétriques est héritée sur un morphisme de lci surjectif.
+\end{Rem}
+\Def{Sous-groupes particuliers}{Si $\varphi$ est un morphisme de $G$ dans $G'$,
+\par On note $Im(\varphi) = \varphi(G)$ et $\ker\varphi = \varphi^{-1}(\{e'\})$}
+\Prop{}{$\varphi$ est injective si, et seulement si, $\ker\varphi = \{e\}$}
+\Pre{Pour $x,y\in G$
+\par \begin{align*} \varphi(x)=\varphi(y) &\Leftrightarrow \varphi(x)\varphi(y)^{-1} &= e'\\
+&\Leftrightarrow \varphi(xy^{-1}) &= e'\\
+&\Leftrightarrow xy^{-1}\in\ker\varphi
+\end{align*}
+\par Si $\varphi$ est injectif, alors $\varphi(x) =\varphi(y) \Rightarrow x=y$, donc $\ker\varphi =\{xx^{-1}\vert x\in G\}=\{e\}$
+\par Si $\ker\varphi= \{e\}$ : pour $x,y\in G$ tels que $\varphi(x)=\varphi(y)$, alors $xy^{-1} = e\Leftrightarrow x=y$
+\par Donc $\varphi$ est injectif.}
+\Def{}{Un morphisme bijectif est un isomorphisme, un automorphisme est un insomorphisme de $G$ dans $G$
+\par Deux groupes sont isomorphes s'il existe une bijection entre les deux.
+\par Un homomorphisme est un une application de $A$ dans $B$ (avec $A$ et $B$ deux anneaux) tel que :\begin{itemize}
+\item $f(0_A) = 0_B$ et $f(1_A) = 1_B$
+\item $f(x+_Ay) = f(x)+_B f(y)$
+\item $f(x\times_A y) = f(x)\times_B f(y)$
+\end{itemize}
+
+}
+
+\Thr{}{\begin{itemize}
+\item Un groupe monogène infini est isomorphe à $\Z$
+\item Un groupe monogène fini $G$ est isomorphe à $\Z/n\Z$ (où $n = \mathrm{card}(G)$)
+\end{itemize}}
+\Pre{Soit $G$ un groupe monogène, $G = \{a^n\vert n\in\Z\}$.
+\par on considère $\varphi:\left\{\begin{array}{rcl}\Z&\to& G\\ n & \mapsto & a^n\end{array}\right.$
+\par $\varphi$ est un morphisme du groupe $(\Z,+)$ dans $(G,\times)$. Le morphisme est surjectif.
+\par $\ker\varphi$ est un sous-groupe de $\Z$
+\par Donc il existe $n_0\in\N$ tel que $\ker\varphi = n_0\Z$
+\par Si $n_0 = 0$, alors $\varphi$ est homogène donc $G$ est isomorphe à $\Z$
+\par Si $n_0\geq 1$, considérons :
+\par $$\overline{\varphi}:\left\{\begin{array}{rcl} \Z/n_0\Z & \to & G \\ \overline{p} & \mapsto & \varphi(p)\end{array}\right.$$
+\par $\overline{\varphi}$ est surjectif car $\overline{p'}=\overline{p} \Rightarrow \varphi(p)=\varphi(p')$
+\par Alors $\overline{\varphi}$ est un morphisme bijectif de $\Z/n_0\Z$ dans $G$
+\par Donc $\Z/n_0\Z$ est isomorphe à $G$}
+
+\Def{Ordre}{Soit $G$ un groupe
+\par Soit $a\in G$
+\par On dit que $a$ est d'ordre fini si $\langle a\rangle$ est de cardinal fini (cyclique).
+\par On dit alors que l'ordre de $a$ est $\mathrm{card}\langle a\rangle$}
+\begin{Rem}
+Si $G$ est fini, tous les éléments de $G$ ont un ordre.
+\end{Rem}
+\Prop{Théorème de Lagrange}{Si $G$ est fini et $a\in G$, alors l'ordre de $a$ divise le cardinal de $G$.}
+\Prop{}{Soit $G$ un groupe fini et $a\in G$\begin{itemize}
+\item $$\mathrm{ordre}(a) = \mathrm{card}\langle a \rangle = min\{n\in\N^*\vert a^n = e\}$$
+\item $$\forall p\in\Z, a^p = e \Leftrightarrow \mathrm{ordre}(a)\vert p$$
+\end{itemize}}
+\Pre{$\{n\in\N^*\vert a^n=e\}\subset \N$ et $\{n\in\N^*\vert a^n = e\}\neq \emptyset$
+\par On peut donc noter $n_0 = \min \{n\in\N^*\vert a^n = e\}$
+\par Il faut montrer que $\langle a\rangle =\{e, a, a^2,..., a^{n_0-1}\}$ et que $\mathrm{card}\langle a\rangle = n_0$
+\par Pour $n\in\Z$, on peut écrire la division euclidienne de $n$ par $n_0$ :
+\par $n = n_0q+r$ avec $0\leq r<n_0$
+\par Alors $a^n = a^{n_0q}a^r = a^r$
+\par Donc $\langle a\rangle = \{e, ..., a_{n_0-1}\}$
+\par D'autre part, pour $n,p\in\Z$, avec $0\leq p<n<n_0$
+\par Alors $a^{n-p}\neq e$ par définition de $n_0$
+\par Donc $a^n\neq a^p$
+\par Ce qui conclut : deux éléments de l'ensemble $\{e, a, a^2,..., a^{n_0-1}\}$ sont distincts.
+\par Donc l'ordre de $a$ est bien $n_0$.
+\par Pour l'autre propriété, on note $n_0= \mathrm{ordre}\langle a\rangle$
+\par Soit $n\in\Z$, on fait la division euclidienne de $n$ par $n_0$, ce qui donne $n=n_0p+r$
+\par Donc $a^n =  a^r$
+\par Donc \begin{align*} a^n = e &\Leftrightarrow r = 0\\
+&\Leftrightarrow n_0\vert n
+\end{align*}}
+
+\section{étude de Z/nZ}
+On a vu que $(\Z/n\Z,+)$ est un groupe.
+\par En fait, $(\Z/n\Z, +,\times)$ est un anneau commutatif.
+\Def{Anneau}{$(A,\intercal, \cdot)$ est un anneau si :\begin{itemize}
+\item $(A, \intercal)$ est un groupe abélien (commutatif) ;
+\item $\cdot$ est associative et possède un élément neutre ;
+\item $\cdot$ est distributive par rapport à $\intercal$
+\par i.e. $\forall a,b,c\in A, a\cdot (b\intercal c) = (a\cdot b)\intercal (a\cdot c)$
+\end{itemize}}
+On a que les classes d'équivalences sont $\overline{x} = x+n\Z$
+\par La relation d'équivalence est compatible avec la relation de congruence modulo $n$ parce que $x+n\Z+y+n\Z = x+y+n\Z$
+\Def{Lois de composition interne}{On définit la loi additive par :
+\par $$+:\left\{\begin{array}{rcl} \Z/n\Z \times \Z/n\Z & \to & \Z/n\Z \\ (\overline{x}, \overline{y}) & \mapsto & \overline{x}+\overline{y} = \overline{x+y}\end{array}\right.$$
+\par On définit la loi multiplicative par :
+\par $$\times:\left\{\begin{array}{rcl} \Z/n\Z \times \Z/n\Z & \to & \Z/n\Z \\ (\overline{x}, \overline{y}) & \mapsto & \overline{x}\times\overline{y} = \overline{xy}\end{array}\right.$$}
+On n'a pas l'intégrité de cet anneau si $n$ n'est pas premier.
+\Def{}{On note $\varphi(n) = \mathrm{Card}(\Z/n\Z)^\times = \mathrm{Card}\{\in\llbracket 0,n\rrbracket, p\wedge n = 1\}$
+\par On appelle $\varphi$ l'indicatrice d'Euler.}
+\Thr{}{Pour $n\in\N$, $n\geq 2$
+\par Soit $p\in\Z$\begin{itemize}
+\item $\overline{p}$ est un générateur de $(\Z/n\Z,+)$ si, et seulement si, $p\wedge n = 1$
+\item $\overline{p}$ est un inversible de $(\Z/n\Z,\times)$ si, et seulement si, $p\wedge n = 1$
+\end{itemize}}
+\begin{Rem}
+On voit donc que $\varphi(n)$ est le nombre de générateurs de $(\Z/n\Z, +)$
+\end{Rem}
+\Pre{Pour la première propriété :
+\par Si $p\wedge n =1$ :
+\par Soit $q\in\N^*$
+\par \begin{align*}
+q\overline{p} = 0 &\Leftrightarrow n\vert qp\\
+&\Leftrightarrow n\vert q
+\end{align*}
+\par Donc l'ordre de $\overline{p}$ est $n$.
+\par Donc $\overline{p}$ engendre $\Z/n\Z$
+\par Réciproquement :
+\par On suppose que $p\wedge n=d$ avec $d>1$
+\par On pose donc $\begin{cases} p = dp' \\ n = dn'\end{cases}$ avec $p'\wedge n' = 1$
+\par Alors $n'\overline{p} = \overline{n'dp'} = \overline{np'} =\overline{0}$
+\par Donc l'ordre de $\overline{p}$ est strictement inférieur à $n$
+\par D'où l'équivalence.}
+\Pre{Pour la deuxième propriété :
+\par Si $p\wedge n = 1$
+\par D'après le théroème de Bézout, on a $u,v\in \Z$ tels que $pu+nv=1$
+\par Donc $\overline{p}\overline{u} = \overline{1}$
+\par Donc $\overline{p}$ est un inversible de $(\Z/n\Z,\times)$ et $\overline{p}^{-1}=\overline{u}$
+\par Réciproquement :
+\par On suppose que $p\wedge n=d$ avec $d>1$
+\par On pose donc $\begin{cases} p = dp' \\ n = dn'\end{cases}$ avec $p'\wedge n' = 1$
+\par Alors $n'\overline{p} = \overline{n'dp'} = \overline{np'} =\overline{0}$
+\par On a donc $\overline{n'}\overline{p} = \overline{0}$ et $n'\neq 0$
+\par Donc $\overline{p}$ n'est pas inversible.
+\par D'où l'équivalence.}
+
+\Prop{Corollaire}{$\Z/n\Z$ est un corps si, et seulement si, $n$ est premier.
+\par Dans ce cas, on note $\mathbb{F}_n$ ce corps.}
+
+\Thr{Euler-Fermat}{Soit $n\in\N,n\geq 2$ et $a\in(\Z/n\Z)^\times$
+\par Alors :
+\par $$a^{\varphi(n)}=\overline{1}$$}
+\Thr{Euler-Fermat (autre formulation)}{Soit $n\in\N, n\geq 2$, alors :
+\par $$\forall a\in\Z, a\wedge n =1 \Rightarrow a^{\varphi(n)}$$}
+\Pre{Soit $\alpha$ l'ordre de $a$ dans $(\Z/n\Z)^\times$
+\par $q$ divise $\varphi(n)$ (par Lagrange)
+\par Donc $\varphi(n) = \alpha q$ (avec $\alpha\in\N)$
+\par $a^{\varphi(n)}-a^{\alpha q} = 1^q - 1$}
+\Thr{Petit théorème de Fermat}{Si $n$ est premier et $a\in\llbracket 1, n-1\llbracket$, alors
+\par $$a^{n-1}\equiv 1(n)$$}
+\Thr{Lemme chinois}{Si $(n,p)\in(\N\backslash\{0,1\})^2$ avec $n\wedge p=1$,
+\par Alors $\Z/np\Z$ est un anneau isomorphe à $\Z/n\Z\times \Z/p\Z$}
+\Pre{On considère :
+\par $$\varphi:\left\{\begin{array}{rcl}\Z & \to & \Z/n\Z\times \Z/p\Z \\ q & \mapsto & (\overline{q_n}, \overline{q_p})\end{array}\right.$$
+\par $\varphi$ est un morphisme d'anneaux, et on a :
+\par \begin{align*}
+\ker\varphi &= \{q\in\Z\vert n\vert q\text{ et }p\vert q\}\\
+&= \{q\in\Z\vert np\vert q\}\\
+&=np\Z
+\end{align*}
+\par On peut donc considérer :
+\par $$\overline{\varphi} :\left\{\begin{array}{rcl}\Z/np\Z & \to & \Z/n\Z \times \Z/p\Z \\ \overline{x_{np}} & \mapsto & (\overline{x_n},\overline{x_p})\end{array}\right.$$
+\par $\overline{\varphi}$ est donc un morphisme d'anneaux injectif, puisque une version restreinte de $\varphi$ de manière à être injective.
+\par Or $\mathrm{Card}(\Z/np\Z)=\mathrm{Card}(\Z/n\Z\times \Z/p\Z)$
+\par Donc $\overline{\varphi}$ est bijective, d'où l'isomorphie des anneaux.
+\par On remarque aussi que $\overline{\varphi}((\Z/np\Z)^\times) = (\Z/n\Z)^\times\times(\Z/p\Z)^\times$}
+\begin{Rem}
+On va expliciter le caractère surjectif de $\overline{\varphi}$
+\par étant donné $(a,b)\in\Z^2$, on cherche $q$ tel que $\begin{cases} q\equiv b[n] \\ q\equiv a[n] \end{cases}$
+\par Avec l'algorithme d'Euclide étendu, on peut trouver $(u,v)\in\Z^2$ tels que $nu+pv=1$
+\par On a donc :
+\par $\begin{cases} nu \equiv 1 [p] \\ nu \equiv 0 [n] \end{cases}$ donc $\begin{cases} anu \equiv a [p] \\ anu \equiv 0 [n] \end{cases}$
+\par $\begin{cases} pv \equiv 1 [n] \\ pv \equiv 0 [p] \end{cases}$ donc $\begin{cases} bpv \equiv b [n] \\ bpv \equiv 0 [p] \end{cases}$
+\par On peut donc prendre $q=anu+bpv$ qui est un élément de $\Z/np\Z$ tel que $\overline{\varphi}(q) = (a,b)$
+\end{Rem}
+
+\Prop{}{Si $n\wedge p = 1$, alors $\varphi(np) =\varphi(n)\varphi(p)$}
+\Pre{Se fait par décomposition en produit de nombres premiers.}
+\begin{Rem}
+On peut étendre cette propriété par récurrence à des produits de nombres deux à deux premiers. On peut alors en déduire une manière de calculer $\varphi(n)$ de manière plus pratique :
+\par Si $n = \prod\limits_{i=1}^rp_i^{v_{p_i}(n)}$ est la décomposition en nombres premiers de $n$
+\par Alors $\varphi(n) =\prod\limits_{i=1}^r\varphi(p_i^{v_{p_i}(n)})$
+\par Or pour $p$ premier on a que :
+\par \begin{align*}
+\varphi(p^\alpha) &= \mathrm{Card}\llbracket1,p^\alpha\llbracket - \mathrm{Card}\{pk, 1\leq k\leq p^{\alpha-1}\}\\
+&=p^\alpha -p^{\alpha-1}\\
+&=p^\alpha\left(1-\frac{1}{p}\right)
+\end{align*}
+\par Donc :
+\par \begin{align*}
+\varphi(n) &= \prod\limits_{i=1}^rp_i^{v_{p_i}(n)}\left(1-\frac{1}{p_i}\right)\\
+&= n\prod\limits_{i=1}^r\left(1-\frac{1}{p_i}\right)
+\end{align*}
+\end{Rem}
+Et c'est la fin du programme de spé.
 
 
 

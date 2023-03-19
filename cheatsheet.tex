@@ -1,0 +1,1918 @@
+\documentclass[a4paper,12pt]{book}
+\usepackage{ae}
+\usepackage{aeguill}
+\usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[left=1cm, right= 1cm, top=2cm, bottom = 2cm]{geometry}
+\usepackage{array,multirow}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{amsfonts}
+\usepackage{stmaryrd}
+\usepackage{tcolorbox}
+\usepackage{lmodern}
+
+
+
+\newcommand{\Def}[2]{\begin{tcolorbox}[colback=white,colframe=red!10!green!20!blue!75!, title=Définition : #1]#2\end{tcolorbox}}
+\newcommand{\Thr}[2]{\begin{tcolorbox}[sharp corners, colback=white,colframe=red!10!blue!30!green!75!, title=Théorème : #1]#2\end{tcolorbox}}
+\newcommand{\Pre}[1]{\begin{tcolorbox}[sharp corners, colback=white,colframe=green!60!green!30!black!75, title=Preuve]#1\end{tcolorbox}}
+\newcommand{\Meth}[2]{\begin{tcolorbox}[colback=white,colframe=green!60!green!30!black!75, title=Méthode :  #1]#2\end{tcolorbox}}
+\newtheorem{Exe}{Exemple}[section]
+\newtheorem{Exes}{Exemples}[section]
+\newtheorem{Rem}{Remarque}[section]
+\newtheorem{Rems}{Remarques}[section]
+
+\def\R{\mathbb{R}}
+\def\D{\mathbb{D}}
+\def\C{\mathbb{C}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\K{\mathbb{K}}
+\newcommand{\ind}{\perp\!\!\!\!\perp} 
+
+\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\Roman{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\Roman{section}.\arabic{subsection}.\Alph{subsubsection}}
+
+\begin{document}
+\tableofcontents
+\chapter{Maths - sup}
+\section{Analyse pratique}
+\begin{tcolorbox}[colback=white,colframe=black,title=Formulaire de trigo] 
+Avec $a,b\in\R$, on a :\begin{itemize}
+\item $\mathrm{cos}(a+b) = \mathrm{cos}(a)\mathrm{cos}(b) - \mathrm{sin}(a)\mathrm{sin}(b)$ ;
+\item $\mathrm{cos}(a-b) = \mathrm{cos}(a)\mathrm{cos}(b) + \mathrm{sin}(a)\mathrm{sin}(b)$ ;
+\item $\mathrm{sin}(a+b) = \mathrm{sin}(a)\mathrm{cos}(b) + \mathrm{cos}(a)\mathrm{sin}(b)$ ;
+\item $\mathrm{sin}(a-b) = \mathrm{sin}(a)\mathrm{cos}(b) - \mathrm{cos}(a)\mathrm{sin}(b)$ ;
+\item $\mathrm{cos}(a)\mathrm{cos}(b) = \dfrac{1}{2}\left(\mathrm{cos}(a+b) + \mathrm{cos}(a-b)\right)$ ;
+\item $\mathrm{sin}(a)\mathrm{sin}(b) = \dfrac{1}{2}\left(\mathrm{cos}(a-b) - \mathrm{cos}(a+b)\right)$ ;
+\item $\mathrm{sin}(a)\mathrm{cos}(b) = \dfrac{1}{2}\left(\mathrm{sin}(a+b)-\mathrm{sin}(a-b)\right)$ ;
+\item $\mathrm{sin}(2a) = 2\mathrm{sin}(a)\mathrm{cos}(a)$ ;
+\item $\mathrm{cos}(2a) = 1 - 2\mathrm{sin}^2(a) = \mathrm{cos}^2(a) - \mathrm{sin}^2(a) = 2\mathrm{cos}^2(a) - 1$ ;
+\item $\mathrm{tan}(2a) = \dfrac{2\mathrm{tan}(a)}{1-\mathrm{tan}^2(a)}$ ;
+\item $\mathrm{cos}(a) + \mathrm{cos}(b) = 2\mathrm{cos}\left(\dfrac{a+b}{2}\right)\mathrm{cos}\left(\dfrac{a-b}{2}\right)$ ;
+\item $\mathrm{sin}(a) + \mathrm{sin}(b) = 2\mathrm{sin}\left(\dfrac{a+b}{2}\right)\mathrm{cos}\left(\dfrac{a-b}{2}\right)$ ;
+\item $\mathrm{sin}(a) = \dfrac{2\mathrm{tan}\left(\dfrac{a}{2}\right)}{1+\mathrm{tan}^2\left(\dfrac{a}{2}\right)}$ ;
+\item $\mathrm{cos}(a) = \dfrac{1-\mathrm{tan}^2\left(\dfrac{a}{2}\right)}{1+\mathrm{tan}^2\left(\dfrac{a}{2}\right)}$ ;
+\item $\mathrm{tan}(a) = \dfrac{2\mathrm{tan}\left(\dfrac{a}{2}\right)}{1-\mathrm{tan}^2\left(\dfrac{a}{2}\right)}$ ;
+\item $\mathrm{sh}^2 - \mathrm{ch}^2 = 1$ ;
+\item $\mathrm{cos}(a) = \dfrac{e^{ia} + e^{-ia}}{2}$ ;
+\item $\mathrm{sin}(a) = \dfrac{e^{ia} - e^{ia}}{2i}$.
+\end{itemize}
+\end{tcolorbox}
+
+Dérivées et primitives des fonctions usuelles :\\
+\begin{tabular}{|c|c|c|c|c|}
+	\hline Fonction & Dérivée & Primitive & $\mathcal{D}_f$ & $\mathcal{D}_{f'}$
+	\\ \hline $0$ & $0$ & $C$ & $\R$ & $\R$
+	\\ \hline $c$ & $0$ & $cx + C$ & $\R$ & $\R$
+	\\ \hline $\dfrac{1}{x}$ & $\dfrac{-1}{x^2}$ & $\mathrm{ln}|x| + C$ & $\R^*$ & $\R^*$
+	\\ \hline $x^\alpha$ & $\alpha x^{\alpha - 1}$ & $\dfrac{x^{\alpha+1}}{\alpha+1} + C$ & $\mathcal{D}_\alpha$ & $\R_+$
+	\\ \hline $e^{cx}$ & $ce^{cx}$ & $\dfrac{1}{c}e^{cx} + C$ & $\R$ & $\R$
+	\\ \hline $\mathrm{ln}(x)$ & $\dfrac{1}{x}$ & $x\mathrm{ln}(x) - x + C$ & $\R_+^*$ & $\R^*_+$
+	\\ \hline $\mathrm{sin}(\alpha x)$ & $\alpha\mathrm{cos}(\alpha x)$ & $-\dfrac{1}{\alpha}cos(\alpha x) + C$ & $\R$ & $\R$
+	\\ \hline $\mathrm{cos}(\alpha x)$ & $-\alpha\mathrm{sin}(\alpha x)$ & $\dfrac{1}{\alpha}sin(\alpha x) + C$ & $\R$ & $\R$
+	\\ \hline $\mathrm{tan}(x)$ & $1+ \mathrm{tan}^2(x)$ & $-\mathrm{ln}|cos(x)| + C$ & $\mathcal{D}_{tan}$ & $\mathcal{D}_{tan}$
+	\\ \hline $\mathrm{sh}(\alpha x)$ & $\alpha\mathrm{ch}(\alpha x)$ & $\dfrac{1}{a}ch(\alpha x) + C$ & $\R$ & $\R$
+	\\ \hline $\mathrm{ch}(\alpha x)$ & $\alpha\mathrm{sh}(\alpha x)$ & $\dfrac{1}{\alpha}sh(\alpha x) + C$ & $\R$ & $\R$
+	\\ \hline $\mathrm{th}(x)$ & $1-\mathrm{th}^2(x)$ & $\mathrm{ln}(\mathrm{ch}(x)) + C$ & $\R$ & $\R$
+	\\ \hline $\mathrm{arcsin}(x)$ & $\dfrac{1}{\sqrt{1-x^2}}$ & $x\mathrm{arcsin}(x) + \sqrt{1-x^2} + C$ & $[-1;1]$ & $]-1;1[$
+	\\ \hline $\mathrm{arccos}(x)$ & $\dfrac{-1}{\sqrt{1-x^2}}$ & $x\mathrm{arccos}(x) - \sqrt{1-x^2} + C$ & $[-1;1]$ & $]-1;1[$
+	\\ \hline $\mathrm{arctan}(x)$ & $\dfrac{1}{1+x^2}$ & $x\mathrm{arctan}(x) - \dfrac{1}{2}\mathrm{ln}(1+x^2) + C$ & $\R$ & $\R$
+\\ \hline\end{tabular}
+
+\begin{tcolorbox}[colback=white,colframe=black,title=Développements limités]
+On note $x$ un réel au voisinage de $0$ et :\begin{itemize}
+    \item $\mathrm{e}^{x} = 1 + x + \dfrac{x^2}{2} + \dfrac{x^3}{6} + \dfrac{x^4}{24} + ... + \dfrac{x^n}{n!} + o(x^n)$ ;
+    \item $\mathrm{cos}(x) = 1 - \dfrac{x^2}{2} + \dfrac{x^4}{24} + ... + (-1)^{p}\dfrac{x^{2p}}{(2p)!} + o(x^{2p})$ ;
+    \item $\mathrm{sin}(x) = x - \dfrac{x^3}{6} + \dfrac{x^5}{120} + ... + (-1)^p\dfrac{x^{2p+1}}{(2p+1)!} + o(x^{2p+1})$ ;
+    \item $\mathrm{ln}(1+x) = x - \dfrac{x^2}{2} + \dfrac{x^3}{3} + ... + (-1)^{n+1}\dfrac{x^n}{n} + o(x^n)$ ;
+    \item $\dfrac{1}{1-x} = 1 + x + x^2 + x^3 + ... + x^n + o(x^n)$ ;
+    \item $\dfrac{1}{1+x} = 1 - x + x^2 - x^3 + ... + (-1)^nx^n + o(x^n)$ ;
+    \item $(1+x)^\alpha = 1 + \alpha x + \dfrac{\alpha(\alpha-1)x^2}{2} + \dfrac{\alpha(\alpha-1)(\alpha-2)x^3}{6} + ... + \dfrac{\alpha...(\alpha-n+1)x^n}{n!} + o(x^n)$ ;
+    \item $\mathrm{ch}(x) = 1 + \dfrac{x^2}{2} + \dfrac{x^4}{24} + ... + \dfrac{x^{2p}}{(2p)!} + o(x^{2p})$ ;
+    \item $\mathrm{sh}(x) = x + \dfrac{x^3}{6} + \dfrac{x^5}{120} + ... + \dfrac{x^{2p+1}}{(2p+1)!} + o(x^{2p+1})$.
+\end{itemize}
+Les trois DL à connaître absolument sont ceux de $\dfrac{1}{1-x}$, de $\mathrm{exp}(x)$ et de $(1+x)^\alpha$. En effet, tous les autres DL usuels découlent de ceux-ci :\begin{itemize}
+    \item Le DL du sinus est celui des termes impairs de l'exponentielle, avec une alternance de signes, au contraire du sinus hyperbolique qui est aussi les termes impairs, mais avec un signe positif.
+    \item Le DL du cosinus est celui des termes pairs de l'exponentielle, avec une alternance de signes, au contraire du cosinus hyperbolique qui est aisso les termes pairs, mais avec un signe positif signe positif.
+    \item Le DL de $\dfrac{1}{1+x}$ découle de celui de $\dfrac{1}{1-x}$ en composant par $x\mapsto -x$. On a donc une alternance de signes.
+    \item Le DL de $\mathrm{ln}(1+x)$ découle de celui de $\dfrac{1}{1+x}$, par primitivation d'un DL.
+\end{itemize}
+On notera l'équivalent de $n!$ obtenu par la formule de Stirling : $n!\sim \left(\dfrac{n}{e}\right)^n\sqrt{2\pi n}$.
+\end{tcolorbox} 
+    
+\begin{tcolorbox}[colback=white,colframe=black,title=Résolution d'équations différentielles du second ordre] 
+Une équation différentielle de second ordre est de la forme : $y'' = ay' + by = f(x)$.
+\par Pour la résoudre, on trouve d'abord les racines du polynôme $x^2 + ax + b$.
+\par Si $\Delta=0$, on a une seule racine $r_0$, et la solution générale est de la forme $(\lambda + \mu x)e^{r_0 x}$.
+\par Sinon, dans les cas d'une équation différentielle complexe $\Delta\neq0$ ou réelle avec $\Delta>0$, on a avec les racines $r_1,r_2$ les solutions $\lambda e^{r_1x} + \mu e^{r_2x}$.
+\par Dans le cas où $\Delta<0$, on note pour $r$ une des racines du polynôme caractéristique, $\rho = \Re(r)$ et $\omega = \Im(r)$ la solution de la forme :
+$$e^{\rho x} (\lambda \mathrm{cos}(\omega x) + \mu \mathrm{sin}(\omega x))$$
+\end{tcolorbox}
+
+
+\newpage
+\section{Théorèmes d'analyse}
+\subsection{Fondamentaux}
+\Def{Continuité}{$f$ continue en $x_0$ si
+\par $$\forall\varepsilon>0, \exists\alpha>0,\forall x\in D_f, \vert x-x_0\vert<x_0\Rightarrow \vert f(x)-f(x_0)\vert<\varepsilon$$
+$f$ uniformément continue sur $I$ si :
+\par $$\forall \varepsilon>0, \exists\alpha>0, \forall (x,y)\in I, \vert x - y\vert<\alpha\Rightarrow \vert f(x)-f(y)\vert<\varepsilon$$}
+\Thr{Limites monotones}{Avec $a<b$ : soit $g\in\mathcal{F}(]a,b[,\R)$ \begin{itemize}
+\item S $g$ est croisssante majorée, alors $g$ a une limite en $b^-$
+\item Si $g$ est croissante non-majorée, alors $g\to_{b^-}+\infty$
+\item Si $g$ est croissante minorée, alors $g$ a une limite en $a^+$
+\item Si $g$ est croissante non-minorée, alors $g\to_{a^-}-\infty$
+\item S $g$ est décroisssante majorée, alors $g$ a une limite en $a^+$
+\item Si $g$ est décroissante non-majorée, alors $g\to_{a^+}+\infty$
+\item Si $g$ est décroissante minorée, alors $g$ a une limite en $b^-$
+\item Si $g$ est décroissante non-minorée, alors $g\to_{b^+}-\infty$
+\end{itemize}}
+\Thr{Caractérisation séquentielle de la limite}{$\lim\limits_{x\to a}f(x)= l$ si, et seulement si, pour toute suite $(u_n)$ de limite $a$, $\lim\limits_{n\to +\infty}f(u_n)=l$}
+\Thr{Encadrement}{Si au foisinage de $x_0\in\bar{\R}$, on a $f(x)\leq g(x)\leq h(x)$, et si les fonctions $h$ et $f$ admettent une limite commune en $x_0$, alors $g$ admet $l$ comme limite en $x_0$.}
+\Thr{Valeurs intermédiaires}{Si $f$ est continue, l'image d'un intervalle par $f$ est un intervalle.}
+\Thr{Bornes atteintes}{Si $f$ est continue, l'image d'un segment par $f$ est un segment.}
+\Thr{Heine}{Si $f$ est continue sur un segment, alors $f$ est uniformément continue sur ce segment.}
+\subsection{Fondamentaux de dérivabilité}
+\Def{Dérivabilité}{$f$ est dérivable en $x_0$ si $\lim\limits_{h\to 0}\dfrac{f(x_0+h)-f(x_0)}{h}$ existe. En ce cas, on appelle la derivée de $f$ en $x_0$ cette limite, notée $f'(x)$. Tout point où $f'$ s'annule est un point critique.
+\par $f$ est $\mathcal{C}^1$ sur $I$ si $f$ est dérivable en tout point de $I$ et que sa dérivée est continue. On peut étendre cette définition pour $k$ entier ou infini.
+\par $f$ est convexe sur $I$ si $\forall x,y\in I,\forall t\in[0,1], f(tx+(1-t)y)\leq tf(x)+(1-t)f(y)$. Si $f$ est $\mathcal{C}^2$, alors $f$ est convexe quand $f''>0$. Tout point où $f''$ s'annule est un point d'inflexion.}
+\Thr{Opérations de dérivation}{Si $f$ et $g$ sont $n$ fois dérivables :\begin{itemize}
+\item pour $\lambda\in\R$, $(f+\lambda g)' = f'+\lambda g'$
+\item $$(fg)' = f'g+fg'$$
+\item $$(f^n)' = nf'f^{n-1}$$
+\item $$(g\circ f)' =f'(g'\circ f)$$
+\item $$(f^{-1})' = \dfrac{1}{f'\circ f^{-1}}$$
+\item $$(fg)^{(n)} =\sum\limits_{k=0}^n\binom{n}{k}f^{(k)}g^{(n-k)}$$
+\end{itemize}}
+\Thr{Prolongement}{Si $f$ est de classe $\mathcal{C}^1$ sur $]a,b]$, continue en $a$ et que $f'$ admet une limite $l$ en $a$, alors $f$ est de classe $\mathcal{C}^1$ sur $[a,b]$ et $f'(a)=l$}
+\Thr{Rolle}{Si $f(a)=f(b)$, alors $\exists c\in]a,b[, f'(c)=0$}
+\Thr{Accroissements finis}{Il existe $c\in]a,b[$ tel que $f(b)-f(a) = (b-a)f'(c)$}
+\Thr{Inégalité des accroissemens finis}{ Si $\forall t\in]a,b[, \vert f(t)\vert\leq M$, alors $\vert f(b)-f(a)\vert\leq M(b-a)$}
+\Thr{Inégalité de Jensen}{Si $f$ est convexe sur $I$, qu'on a $\lambda_1,...,\lambda_n\in[0,1]$ tels que $\lambda_1+...+\lambda_n=1$ et $x_1,..., x_n\in I^n$, alors :
+\par $$f\left(\sum\limits_{i=1}^n \lambda_ix_i\right)\leq \sum\limits_{i=1}^n \lambda_i f(x_i)$$}
+
+
+\subsection{Analyse asymptotique}
+\Def{}{Avec $f$ et $g$ deux fonctions définies en $b$, on dit que :\begin{itemize}
+\item $f =_b o(g)$ si $f = \varepsilon g$ sur un voisinage de $b$, avec $\varepsilon$ qui tent vers $0$ en $b$
+\item $f =_b \mathcal{O}(g)$ si $f = M g$ sur un voisinage de $b$, avec $M$ bornée sur ce voisinage de $b$
+\item $f \sim_b g$ si $f = \varepsilon g$ sur un voisinage de $b$, avec $\varepsilon$ qui tent vers $1$ en $b$
+\end{itemize}
+$f\sim_b g$ équivaut à $f =_b g+o(g)$ 
+}
+\Thr{Taylor-Reste-Intégral}{Si $f$ est $\mathcal{C}^{n+1}$ sur $[a,b]$, alors :
+\par $$f(b) = \sum\limits_{k=0}^n \frac{f^{(k)}(a)}{k!}(b-a)^k +\int_a^b\frac{(t-a)^n}{n!}f^{(n+1)}(t)dt$$
+\par On note $R_n(b) = \int_a^b\frac{(t-a)^n}{n!}f^{(n+1)}(t)dt$}
+\Thr{Taylor-Lagrange}{En posant $t = a+(b-a)u$, on transforme l'expression du reste en $\int_0^1\frac{(b-a)^{n+1}(1-u)^n}{n!}f^{(n+1)}(a+(b-a)u)du$
+\par On a donc : $R_n(b) = \frac{(b-a)^{n+1}}{n!}\int_0^1(1-u)^nf^{(n+1)}(a+(b-a)u)du$ \par De là on déduit la majoration de Lagrange, en posant $M_{n+1} = \sup\limits_{[a,b]}\vert f^{(n+1)}\vert$
+\par $\vert R_n(b)\vert \leq \frac{\vert b-a\vert^{n+1}}{n!}\int_0^1\vert 1-u\vert^n\vert f^{(n+1)}(a+(b-a)u)\vert du \leq \frac{\vert b-a\vert^{n+1}}{n!}M_{n+1}\int_0^1(1-u)^ndu\leq \frac{\vert b-a\vert^{n+1}}{(n+1)!}M_{n+1}$}
+\Thr{Taylor-Young}{Si $f$ est $\mathcal{C}^n$ sur $[a,b]$, alors :
+\par $$f(x) = \sum\limits_{k=0}^n\dfrac{(x-a)^k}{n!}f^{(k)}(a)+o(x^{n+1})$$}
+
+\subsection{Séries}
+\Thr{Critères de convergence d'une série}{Si $(u_n), (v_n)\in\R_+^\N$ : \begin{itemize}
+\item Si $\forall n\in\N, v_n\leq u_n$, alors si $\sum u_n$ converge alors $\sum u_n$ converge. De même, si $\sum u_n$ diverge, alors $\sum v_n$ aussi (critère de majoration positif)
+\item Si $u_n = o(v_n)$, alors si $\sum v_n$ converge, alors $\sum u_n$ converge (critère de domination positif)
+\item Si $u_n\sim v_n$, alors $\sum v_n$ et $\sum u_n$ sont de même nature (critère d'équivalent positif)\end{itemize}}
+\Thr{Comparaisons séries-intégrales}{Si $f:\R_+\to\R$ fonction positive décroissante continue par morceaux, alors $\left(\sum f(n)\right)$ est de même nature que la suite $\left(\int_0^nf(t)dt\right)$}
+\Thr{Conséquences de l'absolue convergence}{Toute série absolument convergente est convergente}
+\Thr{Théorème spécial des séries alternées}{Soit $(a_n)$ une suite réelle positive décroissante de limite nulle. Alors $\sum(-1)^n a_n$ converge et $\forall n\in\N, \left|\sum\limits_{k=n}^{+\infty}(-1)^ka_k\right|\leq a_n$}
+\Thr{Séries de Riemann}{Pour $\alpha\in\R$, alors $\left(\sum \dfrac{1}{n^\alpha}\right))$ converge si, et seulement si, $\alpha>1$.}
+\Thr{Séries téléscopiques}{$(a_n)\in\K^\N$, la série $(\sum a_n - a_{n+1})$ converge si, et seulement si, la suite $(a_n)$ converge.}
+\Thr{Séries géométriques}{On prend $a\in\C$, la série $(\sum a^n)$ converge si, et seulement si, $\vert a\vert<1$ et alors : $\sum_{n = 0}^{\infty} a^n = \dfrac{1}{1-a}$}
+
+\subsection{Familles sommables}
+\Thr{Sommation par paquets positif}{Soit $I$ dénombrable et $(J_j)_{j\in J}$ une partition de $I$ avec $J$ au plus dénombrable, ie $\cup_{j\in J} J_j = I, \forall j, h\in I, j\neq h \Rightarrow J_j\cap J_h = \emptyset$. Soit $(u_i)_{i\in I}\in\R_+^I$, alors : $\sum\limits_{i\in I} u_i = \sum\limits_{j\in J}\left(\sum\limits_{k\in J_j}u_k\right)$ }
+\Thr{Sommation par paquets}{$I$ dénombrable, dont les $J_j$ sont une partition. Avec $(u_i)_{i\in I}\in\C^I$ sommable. Alors $\sum\limits_{i\in I}u_i = \sum\limits_{j\in J}\sum\limits_{k\in J_j} u_k$}
+\Thr{de Fubini}{Soit $(u_{i,j})_{(i,j)\in I\times J}\in\C^{I\times J}$ sommable. Alors $\sum\limits_{i,j\in I\times J} u_{i,j} = \sum\limits_{i\in I}\sum\limits_{j\in J}u_{i,j} = \sum\limits_{j\in J}\sum\limits_{j\in J}$, avec le cas particulier où $u_{i,j} = a_ib_j$ où : $(a_ib_j)_{i,j\in I\times J}$ qui est sommable si, et seulement si, $(a_i)_{i\in I}$ et $(b_j)_{j\in J}$ sont sommables et dans ce cas, $\sum\limits_{(i,j)\in I\times J} a_ib_j = \left(\sum\limits_{i\in I}a_i\right)\left(\sum\limits_{j\in J}b_j\right)$}
+\Thr{Produit de Cauchy}{Soit $(a_n), (b_n)\in\C^\N$. Si $\sum a_n, \sum b_n$ sont abolument convergentes alors $\sum\left(\sum\limits_{k=0}^na_nb_{n-k}\right)$ est absolument convergente et $\left(\sum\limits_{n=0}^{+\infty}a_n\right)\left(\sum\limits_{n=0}^{+\infty}b_n\right) = \sum\limits_{n=0}^{+\infty}\left(\sum\limits_{k=0}^n a_kb_{n-k}\right)$}
+
+
+\newpage
+\section{Arithmétique}
+\Def{Division euclidienne}{Pour $a,b$ entiers, il existe un unique couple $(q,r)$ tel que :
+\par $$\begin{cases} a = bq + r \\ r < b\end{cases}$$}
+\Def{PGCD et PPCM}{Le PGCD de deux entiers est le maximum de l'intersection de l'ensemble de leurs diviseurs. On le note $pgcd(a,b) = a\wedge b$
+\par Le PPCM de deux entiers est le minimum de l'intersection de l'ensemble de leurs multiples. On le note $ppcm(a,b) = a\vee b$
+\par On dit que $a$ et $b$ sont premiers entre eux quand leur PGCD vaut $1$.
+\par On a que $\vert ab\vert = (a\vee b)(a\wedge b)$}
+\Def{}{Un entier est premier s'il admet deux diviseurs positifs : 1 et lui-même.}
+\Thr{Théorème fondamental de l'arithmétique}{Tout entier peut s'écrire de manière unique sous la forme d'un produit de puissance de nombres premiers.}
+\Thr{Lemme de Gauss}{Si $a$ et $b$ sont premiers entre eux alors :
+\par $$ a\vert bc\Rightarrow a\vert c$$}
+\Thr{Théorème de Bézout}{$a$ et $b$ sont premiers entre eux si, et seulement si, il existe $u,v$ un couple d'entiers tels que $au+bv=1$}
+
+\section{Groupes et anneaux}
+\Def{LCI}{Sur un ensemble $E$, une lci $\star$ est une application :
+\par $$\star:\left\{\begin{array}{rcl} E\times E & \to & E \\ (x,y) & \mapsto & x\star y\end{array}\right.$$
+\par On dit qu'elle est associative si :
+\par $$\forall a,b,c\in E, a\star (b\star c) = (a\star b)\star c$$
+\par On dit qu'elle est commutative si :
+\par $$\forall a,b\in E, a\star b = b\star a$$}
+\Def{Neutre}{Un élément neutre est un élément $e$ tel que :
+\par $$\forall x\in E, x\star e= e\star x = x$$}
+\Thr{Unicité du neutre}{Il n'y a qu'un seul élément neutre dans un groupe}
+\Def{Symétrique}{Le symétrique $x'$ de $x\in E$ est un élément tel que, si la lci admet un neutre $e$ :
+\par $$x\star x' = x'\star x = e$$
+\par On note $x^{-1}$ le symétrique de $H$.}
+\Thr{Unicité du symétrique}{Si la lci est associative, alors $x$ admet un unique symétrique}
+\Def{Sous-groupe}{Si $G$ est un groupe pour la loi $\star$ de neutre $e$ :
+\par $H$ est un sous-groupe de $G$ si :
+\par $$\begin{cases} \forall (x,y)\in H, x\star y\in H \\
+H\neq\emptyset (\Leftrightarrow e\in H)\\
+\forall x\in H, x^{-1}\in H
+\end{cases}$$}
+\Def{}{Si $G$ et $G'$ sont deux groupes, alors $\varphi\in\mathcal{F}(G,G')$ est un morphisme si $\forall x,y\in G, \varphi(x\star y) = \varphi(x)\star'\varphi(y)$
+\par On note $\ker(\varphi) =\varphi^{-1}(\{e_{G'}\})$ et $Im(\varphi) = \varphi(G)$}
+\Thr{Propriétés du morphisme}{Si $\varphi$ est un morphisme de $G$ dans $G'$ :\begin{itemize}
+\item $\varphi(e) = e'$ (avec $e$ neutre de $G$, $e'$ neutre de $G'$) ;
+\item $$\forall x\in G, \varphi(x^{-1}) = (\varphi(x))^{-1}$$ ;
+\item $$\forall n\in\Z,\forall x\in G, \varphi(x^n) = (\varphi(x))^n$$ ;
+\item L'image directe d'un sous-groupe de $G$ par $\varphi$ est un sous-groupe de $G$ ; 
+\item L'image réciproque d'un sous-groupe de $G'$ par $\varphi$ est un sous-groupe de $G$.
+\item $\varphi$ est injective si, et seulement si, $\ker\varphi = \{e\}$
+\end{itemize}}
+\Def{}{Un morphisme bijectif est un isomorphisme, un automorphisme est un insomorphisme de $G$ dans $G$
+\par Deux groupes sont isomorphes s'il existe une bijection entre les deux.
+\par Un homomorphisme est un une application de $A$ dans $B$ (avec $A$ et $B$ deux anneaux) tel que :\begin{itemize}
+\item $f(0_A) = 0_B$ et $f(1_A) = 1_B$
+\item $f(x+_Ay) = f(x)+_B f(y)$
+\item $f(x\times_A y) = f(x)\times_B f(y)$
+\end{itemize}}
+
+\Def{Anneau}{$(A,\intercal, \cdot)$ est un anneau si :\begin{itemize}
+\item $(A, \intercal)$ est un groupe abélien (commutatif) ;
+\item $\cdot$ est associative et possède un élément neutre ;
+\item $\cdot$ est distributive par rapport à $\intercal$
+\par i.e. $\forall a,b,c\in A, a\cdot (b\intercal c) = (a\cdot b)\intercal (a\cdot c)$
+\end{itemize}}
+\Def{Sous-anneau}{$B$ est un sous-anneau de $(A,+,\times)$ si :\begin{itemize}
+\item $B$ sous-groupe de $A$
+\item $B$ stable par $\times$
+\item $B$ contient l'élément neutre pour la loi $\times$ de $A$.
+\end{itemize}}
+\Def{Intégrité}{Un anneau $A$non réduit à $0$ est intègre si il est commutatif et qu'il vérifie :
+\par $$\forall a,b\in A, a\times b = 0\Rightarrow a = 0\text{ ou } b=0$$
+\par On dit aussi que $A$ n'a pas de diviseurs de $0$}
+\Def{Corps}{Un corps est un anneau intègre où tout élément admet un symétrique pour la loi multiplicative}
+
+\section{Théorèmes d'algèbre}
+\Def{Algèbre}{Un magma $(E, +,\times, \cdot)$ est une algèbre si, muni des lci $+$ et $\times$ et de la lce $\cdot$ :\begin{itemize}
+\item $(E,+,\cdot)$ est un $\K$-ev 
+\item $(E,+,\times)$ est un anneau 
+\item pour $\lambda\in\K, a,b\in E, \lambda(ab)=a(\lambda b)$
+\end{itemize}}
+\Thr{Base incomplète}{Toute famille libre peut être complétée en base, on peut enlever des éléments à toute famille génératrice pour la transformer en base}
+\Thr{du rang}{Si $f\in\mathcal{L}(E)$ et $E$ de dimension finie :
+$$\dim E = \mathrm{rg}(f) + \dim\ker g$$}
+\Thr{}{En dimension finie, l'injectivité, la surjectivité et la bijectivité sont équivalentes.}
+\Thr{}{Si $p$ un projecteur, toutes ces conditions sont équivalentes :\begin{itemize}
+\item $$\ker p\oplus Im p = E$$
+\item $$\ker (p-id) = Im p$$
+\item $$Im (p-id) = \ker p$$
+\item $$p\circ p =p$$
+\end{itemize}}
+\Thr{}{Si $s$ est une symétrie, toutes ces conditions sont équivalentes :\begin{itemize}
+\item $$\ker (s-id)\oplus \ker (s+id)=E$$
+\item $$Im (s-id)\oplus Im(s+id)=E$$
+\item $$s\circ s=id$$
+\end{itemize}}
+\Thr{Inversibilité d'une matrice}{Une matrice $M\in\mathcal{M}_n(\K)$ est inversible si, et seulement si, on a une des conditions équivalentes suivantes :\begin{itemize}
+\item $\exists B\in\mathcal{M}_n(\K), MB = BM = I_n$
+\item Il y a une suite de transformations élémentaires sur les lignes (resp. les colonnes) qui rend $M$ inversible
+\item $M$ est la matrice canoniquement associée à un isomorphisme
+\item $M$ est un produit de matrices inversibles
+\item $M^T$ est inversible
+\item Le système $AX =0$ admet une unique solution
+\item $\det A\neq 0$
+\end{itemize}}
+\Thr{}{Le déterminant est une forme n-linéaire symétrique, et :
+\par $$\det M =\sum\limits_{\sigma\in\mathfrak{S}_n}\varepsilon(\sigma)\prod\limits_{k=1}^nM_{\sigma(k),k}$$
+\par Le déterminant ne dépend pas de la base choisie.
+\par $$(\det MN) = (\det M)(\det N)$$
+\par $$\det (\lambda M) = \lambda^n\det (M)$$
+\par $$\det M^T = \det M$$
+\par $$\det M^{-1} =\frac{1}{\det M}$$}
+
+\section{Polynômes}
+\Thr{Opérations sur le degré}{Avec $P,Q\in\K[X], \lambda\in\K, k\in\N$ :\begin{itemize}
+\item Si $\lambda\neq 0$, alors $\deg\lambda P = \deg P$
+\item $$\deg (PQ) = \deg P+\deg Q$$
+\item $$\deg (P^k) = k\deg P$$
+\item $$\deg (P+Q)\leq \max(\deg P, \deg Q)$$
+\item $$\deg (P') = (\deg P )- 1$$
+\item $\deg (P^{(k)}) = \deg (P) - k$ si $\deg P\geq k$ et $-\infty$ sinon
+\end{itemize}}
+\Thr{Division euclidienne}{Soient $A,B\in\K[X]$ avec $B\neq 0$, il existe un unique couple $(Q,R)\in\K[X]$ tel que :
+\par $$A = BQ+R\text{ et }\deg R<\deg B$$}
+\Thr{}{Si $P\in\K[X]$ non-nul, et $\lambda_1,...,\lambda_r$ ses racines deux à deux distinctes de multiplicités $m_1,...,m_r$, alors :
+\par $$\prod\limits_{i=1}^r(X-\lambda_i)^{m_i}\vert P$$
+\par Ce qui donne qu'un polynôme non-nul a au plus autant de racines comptées avec multiplicité que son degré.}
+\Thr{Formule de Viète}{Soit $P = \sum a_kX^k$ scindé de degré $n$.
+\par Notons $x_1,..., x_n$ ses racines.
+\par Pour $k\in\llbracket 1, n\rrbracket$, on note $\sigma_k$ le $k$-ème polynôme symétrique élémentaire en les $x_i$ :
+\par \begin{align*} \sigma_k &= \sum\limits_{1\leq i_1<...<i_k\leq n}x_{i_1}...x_{i_k}\\
+&=(-1)^k\frac{a_{n-k}}{a_n}
+\end{align*}}
+\Thr{D'Alembert Gauss ou théorème fondamental de l'algèbre}{Tout polynôme non-constant de $\C[X]$ admet une racine.
+\par De là, on déduit que tout polynôme de $\C[x]$ est scindé.
+\par De là, on déduit que les polynômes irréductibles de $\C$ sont les $(X-\lambda)_{\lambda\in\C}$
+\par De là, on déduit que les polynômes irréductibles de $\R$ sont les $(X-\lambda)_{\lambda\in\R}$ et les $(X^2+bX+c)_{(b,c)\in\R^2\vert b^2-4c<0}$}
+\Thr{Bézout polynomial}{Deux polynômes $A,B\in\K[X]$ sont premiers entre eux si, et seulement si, il exists $U,V\in\K[X]$ tels que $AU+BV=1$}
+\Thr{}{Si $A,B\in\K[X]$ sont unitaires, alors :
+\par $$AB = (A\wedge B)(A\vee B)$$}
+\Thr{Lemme d'Euclide}{Un polynôme irréductible divise un produit si, et seulement si, il divise l'un des facteurs.}
+\Thr{}{Si $A\in\K[X]$ non-constant, alors il existe $\alpha\in\K^*$, des polynômes irréductibles unitaires deux à deux distincts $P_1,...,P_r$ et des entiers strictement positifs $m_1,..., m_r$ tels que :
+\par $$A =\alpha\prod\limits_{i=1}^r P_i^{m_i}$$
+\par Cette décomposition est unique à l'ordre des facteur près.}
+\Thr{Décomposition en éléments simples}{Si $F=\frac{A}{B}$ est une fraction rationnelle, elle s'écrit de manière unique comme somme d'un polynômme (la partie entière de $F$) et d'éléments simples.}
+
+
+
+\chapter{Maths - spé}
+\section{Analyse - discret}
+\subsection{Suites de fonctions}
+\Def{Convergence simple}{Soit $E,F$, 2 $\K$-ev de dimension finie. Soit $A\subset E$. Soit $(f_n)\in\mathcal{F}(A,F)^\N$.
+\par On dit que $(f_n)$ converge simplement vers $g\in\mathcal{F}(A,F)$ si $\forall t\in A, (f_n(t))\to g(t)$}
+\Def{Convergence uniforme}{Soit $E,F$, 2 $\K$-ev de dimension finie. Soit $A\subset E$. Soit $(f_n)\in\mathcal{F}(A,F)^\N$.
+\par On dit que $(f_n)$ converge uniformément vers $g\in\mathcal{F}(A,F)$ si $\sup\limits_{A}\Vert f_n-g\Vert \to_{n\to\infty} 0$}
+\Thr{}{Toute suite de fonctions qui converge uniformément converge simplement.}
+\Thr{Continuité uniforme}{Soit $(f_n)\in\mathcal{F}(A,F)^\N$ une suite de fonctions.
+\par Si $\forall n\in\N$, $f_n$ est continue sur $A$ et que $(f_n)$ converge uniformémement vers $g$, alors $g$ est continue.
+\par Ce qui correspond à : une limite uniforme de fonctions continues est continue.}
+\Thr{Extension de limite uniforme}{Soit $(f_n)\in\mathcal{F}(A,F)^\N$, soit $a\in\bar{A}$.
+\par Si $\forall n\in\N, f_n(x)\to_{x\to a}l_n\text{ et }f_n\text{ converge uniformement vers }g$
+\par Alors $(l_n)$ est convergente et $g(x)\to_{x\to a}\lim\limits_{n\to+\infty}l_n$
+\par ie : $g$ a une limite finie en $a$ et $\lim\limits_{x\to a} \lim\limits_{n\to+\infty}l_n = \lim\limits_{n\to+\infty}\lim\limits_{x\to a} f_n$
+\par Ce théorème s'étend lorsque $E=\R$ et que $a=\pm\infty$}
+\Thr{Intégration uniforme ou théorème d'échange limite-intégrale uniforme}{Soit ${a,b}$ un segment, $(f_n)\in\mathcal{C}_0([a,b],F)^\N$
+\par si $(f_n)$ converge uniformément vers $g$ sur $[a,b]$, alors $\int_a^bf_n\to \int_a^bg$
+\par Ce qui correspond à $\lim\limits_{n\to+\infty}\int_a^bf_n = \int_a^b\lim\limits_{n\to+\infty}f_n$}
+\Thr{}{Soit $(f_n)$ une suite de fonctions continues d'un intervalle $I$ de $\R$ à valeurs dans $F$ convergeant uniformément vers $g$ sur tout segment de $I$
+\par Soit $a\in I$, on a alors : $F_n:\left\{\begin{array}{rcl}I & \to & F \\ x & \mapsto & \int_a^bf_n(t)dt\end{array}\right.$ et $G:\left\{\begin{array}{rcl}I & \to & F \\ x & \mapsto & \int_a^bg(t)dt\end{array}\right.$
+\par Alors $F_n$ converge uniformément vers $G$ sur tout segment de $I$.}
+\Thr{Dérivation uniforme des suites de fonctions}{Avec $I$ un intervalle, si :\begin{itemize}\item $(f_n)\in\mathcal{C}^1(I,F)^\N$ \item $(f_n)$ converge simplement vers $g_0$ \item $(f'_n)$ converge uniformément vers $g_1$ sur tout segment de $I$\end{itemize} alors $g_0$ est $\mathcal{C}^1$ tel que $g_0'=g_1$ et $(f_n)$ converge uniformément sur tout segment de $I$.
+\par Ce qui correspond à $g_0'=g_1 \Rightarrow (\lim f_n)=\lim (f_n')$}
+\Thr{Théorème de dérivation des suites à l'ordre k}{Avec $I$ un intervalle, si :\begin{itemize}\item $(f_n)\in\mathcal{C}^k(I,F)^\N$ \item $\forall j\in\llbracket0,k-1\rrbracket, (f_n^{(j)})$ converge simplement vers $g_j$ \item $(f_n^{(k)})$ converge uniformément vers $g_k$ sur tout segment de $I$\end{itemize} alors $g_0$ est $\mathcal{C}^l$ tel que $\forall j\in\llbracket0,k\rrbracket, g_0^{(j)}=g_j$ et $(f_n^{(j)})$ converge uniformément sur tout segment de $I$.}
+\Thr{Stone-Weierstrass (admis)}{Toute fonction continue sur un segment à valeurs dans $\K$ est limite uniforme d'une suite de fonctions polynomiales.
+\par Ce qui correspond à : l'ensemble des fonctions polynomiales est dense dans $(\mathcal{C}([a,b],\K),\Vert.\Vert_\infty)$}
+\Thr{Approximmation uniforme par des fonctions en escalier}{Toute fonction continue sur un segment à valeurs dans $F$ est limite uniforme d'une suite de fonctions en escaliers
+\par Ce théorème est encore valable pour les fonctions continues par morceaux sur un segment.}
+
+
+\subsection{Séries}
+\Thr{Critère de d'Alembert}{Soit $(u_n)\in\R_+^{*\N}$. Si $\left(\dfrac{u_{n+1}}{u_n}\right)\to l\in\R$, alors :\begin{itemize}
+\item Si $l<1$ alors $\sum u_n$ converge.
+\item Si $l>1$ alors $\sum u_n$ diverge grossièrement.
+\item Si $l=1$ alors on ne peut rien dire.\end{itemize}
+}	
+\Thr{Sommation des ordres de grandeur}{Avec $(a_n),(b_n)$ deux suites réelles positives :\begin{itemize}
+\item Si $b_n = O(a_n)$ : si $\sum a_n$ converge, alors $\sum b_n$ converge et $\sum\limits_{k=n+1}^{+\infty} b_k = O(\sum\limits_{k=n+1}^{+\infty} a_k)$ ; si $\sum a_n$ diverge, alors $\sum\limits_{k=0}^n b_k = O(\sum\limits_{k=0}^n a_k)$.
+\item Si $b_n = o(a_n)$ : si $\sum a_n$ converge, alors $\sum b_n$ converge et $\sum\limits_{k=n+1}^{+\infty} b_k = o(\sum\limits_{k=n+1}^{+\infty} a_k)$ ; si $\sum a_n$ diverge, alors $\sum\limits_{k=0}^n b_k = o(\sum\limits_{k=0}^n a_k)$.
+\item Si $b_n\sim(a_n)$ : si $\sum a_n$ converge, alors $\sum b_n$ converge et $\sum\limits_{k=n+1}^{+\infty} b_k \sim \sum\limits_{k=n+1}^{+\infty} a_k$ ; si $\sum a_n$ diverge, alors $\sum b_n$ diverge et $\sum\limits_{k=0}^n b_k \sim \sum\limits_{k=0}^n a_k$.
+\end{itemize}}
+
+\subsection{Séries de fonctions}
+\Def{Convergences}{Soit $(u_n)\in\mathcal{F}(A,F)^\N$, on dit que la série de fonction $(\sum u_n)$ converge simplement si la suite des sommes partielles $\left(\sum\limits_{k=0}^n u_k\right)$ converge simplement.
+\par On dit que $(\sum u_n)$ converge uniformément si la suite des sommes partielles $\left(\sum\limits_{k=0}^nu_k\right)$ converge uniformément.
+On dit que $\sum u_n$ converge normalement si $\sum \sup\limits_A \Vert u_n\Vert$ converge.
+}
+\Thr{}{Tout série de fonction qui converge normalement converge uniformément.}
+\Thr{continuité uniforme des séries de fonctions}{Soit $(u_n)\in \mathcal{C}(A,F)^\N$, si $\sum u_n$ converge uniformément sur $A$, alors $x\mapsto\sum\limits_{n=0}^{+\infty}u_n(x)$ est continue.}
+\Thr{échange de limites de séries}{Avec $(u_n)\in\mathcal{F}(A,F)^\N$ et $a\in\bar{A}$
+\par Si $\forall n\in\N, u_n(x)\to_{x\to a}v_n$ et que $(\sum u_n)$ converge uniformément, alors $\left(\sum\limits_{n=0}^{+\infty}u_n\right)$ a une limite en $a$ et 
+\par $$\lim\limits_{x\to a}\sum\limits_{n=0}^{+\infty}u_n(x)=\sum\limits_{n=0}^{+\infty}v_n$$}
+\Thr{Théorème de dérivation terme à terme à l'ordre k}{Avec $I$ un intervalle, si :\begin{itemize}
+\item $(u_n)\in\mathcal{C}^1(I,F)^\N$ 
+\item $(\sum u_n)$ converge simplement 
+\item $(\sum u_n^{(k)})$ converge uniformément sur tout segment de $I$
+\end{itemize}
+alors $\sum\limits_{n=0}^{+\infty}u_n$ est $\mathcal{C}^1$ tel que $\forall j\in\llbracket0,k\rrbracket, \left(\sum\limits_{n=0}^{+\infty}u_n\right)'=\sum\limits_{n=0}^{+\infty}u_n'$ et la somme converge uniformément sur tout segment de $I$.}
+	
+
+\subsection{Séries entières}
+\Def{}{Soit $(a_n)\in\C^\N$. On appelle série entière associée à $(a_n)$ (de variable complexe) la série de fonctions $\left(\sum (z\mapsto a_nz^n)\right)$ qu'on notera en général $\left(\sum a_nz^n\right)$
+\par $z\mapsto \sum\limits_{n=0}^{+\infty}a_nz^n$ est la somme de cette série entière.}
+\Def{Rayon de convergence}{Soit $\sum a_nz^n$ une série entière. On appelle rayon de cette série $R = \sup\{\vert z\vert | z\in\C, (a_nz^n)\text{ est bornée}\}$ \par Par convention, $R=+\infty$ si cet ensemble n'est pas majoré.}
+\Thr{Lemme d'Abel}{Soit $(\sum a_nz^n)$ une série entière. Soit $z_0\in\C^*$. Si $(a_nz_0^n)$ est bornée, alors la série $\sum a_nz^n$ converge absolument pour $z\in\C,\vert z\vert < \vert z_0\vert$}
+\Thr{Relations de comparaison}{Soient $\sum a_nz^n$ et $\sum b_nz^n$ des séries entières de rayons $R_a$ et $R_b$ :\begin{itemize}
+\item Si $a_n = o(b_n)$ alors $R_a\geq R_b$
+\item Si $a_n = \mathcal{O}(b_n)$ alors $R_a\geq R_b$
+\item Si $a_n\sim b_n$ alors $R_a=R_b$
+\end{itemize}}
+\Thr{Critère de D'Alembert}{Si $(a_n)$ ne s'annule pas à partir d'un certain rang :
+\par si $\left\vert\frac{a_{n+1}}{a_n}\right\vert\to l$ avec $l\in\bar{\R}$, alors $R_a = \frac{1}{l}$
+\par (On prend la convention de $\frac{1}{+\infty}=0$ et que $\frac{1}{0}=+\infty$)}
+\Thr{Produit de Cauchy}{Pour $\sum a_nz^n$ et $\sum b_nz^n$ deux séries entières de rayons respectifs $R_a$ et $R_b$ \par On pose pour $n\in\N$, $c_n = \sum\limits_{k=0}^na_kb_{n-k}$ \par La série entière $\sum c_nz^n$ est de rayon de convergence $R\geq\min(R_a,R_b)$ et $\forall z\in\C$ tel que $\vert z\vert < \min(R_a,R_b), \sum\limits_{n=0}^{+\infty}c_nz^n = \sum\limits_{n=0}^{+\infty}a_nz^n\sum\limits_{n=0}^{+\infty}b_nz^n$}
+\Thr{Continuité}{La somme d'une série entière est continue sur son disque ouvert de convergence}
+\Thr{}{Soit $(a_n)\in\C^\N$, alors les séries entières $\sum a_nz^n$ et $\sum na_nz^n$ ont même rayon.}
+\Thr{Corollaire}{La somme d'une série entière est $\mathcal{C}^\infty$ sur son intervalle ouvert de convergence
+\par Les dérivées s'obtiennent par dérivation terme à terme}
+
+\Thr{Convergence radiale}{Soit $(a_n)\in\C^\N$, $(\sum a_nz^n)$ de rayon $R>0$ \par Si $\sum a_nR^n$ converge alors : $\sum\limits_{n=0}^{+\infty}a_nx^n\to_{x\to R}\sum\limits_{n=0}^{+\infty}a_nR^n$ pour $x\in]-R,R[$
+\par Plus précisément, si $f$ définie en $R$ en tant que somme de série entière, alors $f$ continue sur $\mathcal{D}_f$}
+
+
+\section{Analyse - intégration}
+\subsection{Intégration - intégrales impropres}
+\Def{}{Soit $f:[a,b[\to\K$ une fonction continue par morceaux avec $b\in\R\cup\{+\infty\}$
+\par Notons $F$ la fonction :
+\par $$F :\left\{\begin{array}{rcl}[a,b[ & \to & \K \\ x & \mapsto & \int_a^x f\end{array}\right.$$
+\par On dit que $\int_a^bf$ est convergente si $F(x)$ a une limite finie quand $x$ tend vers $b$.
+\par Dans ce cas, on note :
+\par $$\int_a^bf=\lim\limits_{x\to b}\int_a^xf$$
+\par Dans le cas contraire, on dit que $\int_a^bf$ est divergente.
+\par Etudier la nature de $\int_a^bf$, c'est étudier si l'intégrale est convergente ou divergente.}
+\Def{}{Soit $I$ un intervalle, $f$ continue par morceaux sur $I$ à valeurs dans $\K$ \par On dit que $\int_If$ est absolument convergente si $\int_I\vert f\vert$ converge.}
+
+\Thr{}{Soit $a\in \R$, $b\in\R\cup\{+\infty\}$ avec $a<b$. Soit $f\in\mathcal{CM}([a,b[, \R)$
+\par Si $f$ est positive, l'intégrale $\int_a^bf$ converge si, et seulement si, $x\mapsto\int_a^xf$ est majorée.}
+\Thr{}{Soit $f$ continue par morceaux sur un intervalle $I$.
+\par Si $\int_If$ est absolument convergente alors $\int_If$ est convergente.}
+
+\Thr{}{Soit $a\in\R, b\in\R\cup\{+\infty\}$ avec $a<b$
+\par Soit $f,g\in\mathcal{CM}([a,b[,\R)$ deux fonctions à valeurs positives telles que $0\leq f\leq g$:\begin{itemize}
+\item Si $\int_a^bg$ converge alors $\int_a^bf$ converge.
+\item Si $\int_a^bf$ diverge alors $\int_a^bg$ diverge.
+\end{itemize}}
+\Thr{Corollaire}{Soit $a\in\R, b\in\R\cup\{+\infty\}$ avec $a<b$ \par Soit $f,g\in\mathcal{CM}([a,b[,\R)$ deux fonctions à valeurs positives telles que $f=_bo(g)$ ou $f=_b\mathcal{O}(g)$ :\begin{itemize}
+\item Si $\int_a^bg$ converge alors $\int_a^bf$ converge.
+\item Si $\int_a^bf$ diverge alors $\int_a^bg$ diverge.
+\end{itemize}}
+\Thr{}{$\int_1^{+\infty}\frac{dt}{t^\alpha}$ converge si, et seulement si, $\alpha>1$}
+\Thr{}{$\int_0^{+\infty}e^{-\lambda t}dt$ converge si, et seulement si, $\lambda>0$}
+\Thr{}{$\int_0^1\frac{dt}{t^\alpha}$ converge si, et seulement si, $\alpha<1$}
+\Thr{}{$\int_0^1ln(t)dt$ converge}
+\Thr{}{Si $a<b$ : \par $\int_a^b\frac{dt}{\vert t-a\vert^\alpha}$ converge si, et seulement si, $\alpha<1$}
+\Thr{}{Si $a>b$ : \par $\int_b^a\frac{dt}{\vert b-t\vert^\alpha}$ converge si, et seulement si, $\alpha<1$}
+
+
+\subsection{Propriétés des intégrales}
+\Thr{Sommes de Riemann}{Si $f$ est continue sur $[a,b]$, alors :
+\par $$\frac{b-a}{n}\sum\limits_{k=0}^{n-1}f\left(a + k\frac{b-a}{n}\right)\to_{n\to+\infty}\int_a^bf(t)dt$$}
+\Thr{Propriétés des intégrales impropres}{\begin{itemize}
+\item Linéarité : si $I$ un intervalle, $f,g$ continues par morceaux sur $I$ d'intégrales convergentes sur $I$, $\lambda\in\K$, alors : \par \begin{center}$\int_If + \lambda g$ converge et $\int_If+\lambda g = \int_I f+\lambda\int_Ig$ \end{center}
+\item Positivité : si $f$ continue par morceaux sur $I$ réelle positive, d'intégrale sur $I$ convergente, alors $\int_If\geq 0$
+\item Croissance : si $f$ et $g$ sont continues par morceaux sur $I$i réelles positives d'intégrales sur $I$ convergentes avec $f\leq g$, alors $\int_If\leq \int_Ig$
+\item Inégalité triangulaire : si $f$ continue par morceaux sur $I$ intégrable sur $I$, alors $\left\vert\int_If\right\vert \leq\int_I\vert f\vert$ 
+\item Positivité améliorée : si $I$ un intervalle, $f$ continue réelle positive sur $I$ d'intégrale sur $I$ convergente, alors $\int_If = 0 \Rightarrow \forall x\in I, f(x)=0$
+\item Relation de Chasles : Soit $I$ un intervalle, soit $f\in\mathcal{CM}(I,\K)$. Soit $a,b,c$ dans l'adhérence de $I$ dans $\R\cup\{+\infty\}$
+\par Si $\int_If$ converge, alors $\int_a^cf, \int_c^bf$ et $\int_a^bf$ convergent et
+\par $$\int_a^bf=\int_a^cf+\int_c^bf$$
+\item Intégration par parties :Avec $f,g$ $\mathcal{C}^1$ sur $]a,b[$,  si $fg$ a une limite en $a^+$ et en $b^-$ alors $\int_a^bf(t)g'(t)dt$ et $\int_a^bf'(t)g'(t)$ sont de même nature et en cas de convergence :
+\par $$\int_a^bf(t)g'(t) = [f(t)g(t)]_a^b -\int_a^bf'(t)g(t)dt$$
+\item Changement de variables : Soient $a,b,\alpha, \beta$ tels que $-\infty\leq a<b\leq +\infty, -\infty\leq\alpha<\beta\leq+\infty$
+\par Soit $f\in]a,b[\to \K$ une fonction continue.
+\par Soit $\varphi:]\alpha,\beta[\to]a,b[$ une fonction bijective, strictement croissante et de classe $\mathcal{C}^1$
+\par Les intégrales $\int_a^bf(t)dt$ et $\int_\alpha^\beta(f\circ\varphi)(u)\varphi'(u)du$ sont de même nature, et en cas de convergence
+\par $$\int_a^bf(t)dt=\int_\alpha^\beta(f\circ\varphi)(u)\varphi'(u)du$$
+\end{itemize}}
+\Thr{Intégration des ordres de grandeur}{Soit $a\in\R$ et $b\in\R\cup\{+\infty\}$ avec $a<b$ \par Soit $f\in\mathcal{CM}([a,b[,\K)$ \par Soit $\varphi\in\mathcal{CM}([a,b[,\R)$ une fonction positive sur $[a,b[$\begin{itemize}
+\item Si $\varphi$ est intégrable :\begin{itemize}
+	\item Si $f=_b\mathcal{O}(\varphi)$ alors $f$ est intégrable sur $[a,b[$ et $\int_x^bf=_b\mathcal{O}(\int_x^b\varphi)$
+	\item Si $f=_bo(\varphi)$ alors $f$ est intégrable sur $[a,b[$ et $\int_x^bf=_bo(\int_x^b\varphi)$
+	\item Si $f\sim_b\varphi$ alors $f$ est intégrable sur $[a,b[$ et $\int_x^bf\sim_b\int_x^b\varphi$
+\end{itemize}
+\item Si $\varphi$ n'est pas intégrable :\begin{itemize}
+	\item Si $f=_b\mathcal{O}(\varphi)$ alors $\int_a^xf=_b\mathcal{O}(\int_a^x\varphi)$
+	\item Si $f=_bo(\varphi)$ alors $\int_a^xf=_bo(\int_a^x\varphi)$
+	\item Si $f\sim_b\varphi$ alors $f$ n'est pas intégrable sur $[a,b[$ et $\int_a^xf\sim_b\int_a^x\varphi$
+\end{itemize}
+\end{itemize}}
+
+
+\subsection{Intégration - théorèmes de Lesbesgues}
+\Thr{de convergence dominée}{Soit $(f_n)$ une suite de fonctions continues par morceaux de $I$ intervalle de $\R$ dans $\K$. On suppose que :\begin{itemize}
+\item La suite $(f_n)$ converge simplement sur $I$ vers une fonction $f$ continue par morceaux
+\item Il existe une fonction $\varphi$ positive et intégrable sur $I$ telle que
+\par\begin{center}$\forall n\in\N, \vert f_n\vert\leq\varphi$ (hypothèse de domination)\end{center}
+\end{itemize}
+Alors les fonctions $f_n$ pour $n\in\N$ et la fonction $f$ sont intégrables sur $I$ et
+\par$$\int_If_n\to\int_If$$}
+\Thr{Intégration terme à terme positive}{Soit $I$ une intervalle, soit $(u_n)$ une suite de fonctions définies de $I$ dans $\R_+^*$. On suppose que :\begin{itemize}
+\item Pour tout $n\in\N$, $u_n$ est continue par morceaux et intégrable sur $I$
+\item $(\sum u_n)$ converge simplement
+\item $\sum\limits_{n=0}^{+\infty}u_n$ est continue par morceaux sur $I$.
+\end{itemize} 
+Alors :
+\par $$\int_I\sum\limits_{n=0}^{+\infty}u_n = \sum\limits_{n=0}^{+\infty}\int_I u_n$$}
+\Thr{Intégration terme à terme}{Soit $I$ un intervalle \par Soit $(u_n)$ une suite de fonctions à valeur dans $\K$. On suppose que :\begin{itemize}
+\item Pour tout entier $n\in\N$, $u_n$ est continue par morceaux et intégrable sur $I$
+\item La série $\sum u_n$ converge simplement et $\sum\limits_{n=0}^{+\infty}u_n$ est continue par morceaux sur $I$
+\item La série $\sum\int_I\vert u_n\vert$ converge
+\end{itemize}
+Alors $\sum\limits_{n=0}^{+\infty}u_n$ est intégrable sur $I$ et
+\par $$\int_I\sum\limits_{n=0}^{+\infty}u_n=\sum\limits_{n=0}^{+\infty}\int_Iu_n$$}
+\Thr{échange des limites non-discrètes}{Soient $I$, $J$ deux intervalles de $\R$, $f$ une fonction définie sur $J\times I$ à valeurs dans $\K$. Soit $\lambda_0$ dans l'adhérence de $J$ ($\in\bar{R}$). On suppose que :\begin{itemize}
+\item pour tout $\lambda\in J$, la fonction $t\mapsto f(\lambda,t)$ est continue par morceaux sur $I$
+\item il existe une fonction $l$ continue par morceaux de $I$ dans $\K$ telle que pour tout $t\in I, \lim_{\lambda\to \lambda_0}f(\lambda,t)=l(t)$
+\item Il existe une fonction $\varphi$ continue par morceaux positive et intégrable sur $I$ telle que :
+\par \begin{center}$\forall (\lambda, t)\in J\times I, \vert f(\lambda, t)\vert\leq\varphi(t)$ (hypothèse de domination) \end{center}
+\end{itemize}
+Alors les fonctions $t\mapsto f(\lambda, t)$ (pour tout $\lambda\in J$) et la fonction $l$ sont intégrables sur $I$ et :
+\par $$\lim_{\lambda\to\lambda_0}\int_If(\lambda, t)dt = \int_I l(t)dt$$}
+\Thr{Autre formulation}{Soit $I$ et $J$ deux intervalles de $\R$, $(f_\lambda)_{\lambda\in J}$ une famille de fonctionns définie sur $J$ dans $\K$. Soit $\lambda_0$ dans l'adhérence de $J$ (dans $\bar{\R}$). On suppose que :\begin{itemize}
+\item pour tout $\lambda\in J$, la fonction $f_\lambda$ est continue par morceaux sur $I$
+\item il existe une fonction $l$ continue par morceaux de $I$ dans $\K$ telle que pour tout $t\in I$, $\lim\limits_{\lambda\to\lambda_0}f_\lambda(t)=l(t)$
+\item il existe une fonction $\varphi$ continue par morceaux, positive et intégrable sur $I$ telle que
+\par \begin{center}$\forall (\lambda, t)\in J\times I, \vert f_\lambda(t)\vert\leq \varphi(t)$ (hypothèse de domination)\end{center}
+\end{itemize}
+Alors les fonctions $f_\lambda$ (pour $\lambda\in J$) et $l$ sont intégrables sur $I$ et
+\par $$\lim\limits_{\lambda\to\lambda_0}\int_If_\lambda=\int_Il$$}
+
+\Thr{Continuité dominée}{Soit $A$ une partie d'un EVN de dimension finie, $I$ un intervalle de $\R$, $f$ une fonction définie sur $A\times I$ à valeurs dans $\R$. On suppose que :\begin{itemize}
+\item pour tout $x\in A$, la fonction $t\mapsto f(x,t)$ est continue par morceaux sur $I$
+\item pour tout $t\in I$, la fonction $x\mapsto f(x,t)$ est continue sur $A$
+\item il existe une fonction $\varphi$ continue par morceaux, positive et intégrable sur $I$ telle que
+\par \begin{center}$\forall (x,t)\in A\times I, \vert f(x,t)\vert\leq \varphi(t)$ (hypothèse de domination) \end{center}
+\end{itemize}
+Alors, pour tout $x\in A$, la fonction $t\mapsto f(x,t)$ est intégrable sur $I$ et la fonction
+\par \begin{center} $g:\left\{\begin{array}{rcl}A & \to & \K \\ x & \mapsto & \int_If(x,t)dt\end{array}\right.$\end{center} \par est continue.}
+\Thr{Extension}{Si l'hypothèse de domination est satisfaite au voisinage d'un point $a$ de $A$, on peut en conclure la continuité de $x\mapsto \int_If(x,t)dt$ en $a$
+\par Si $A$ est un intervalle de $\R$, et que l'hypothèse de domination est satisfaite sur tout segment de $A$, alors
+\par \begin{center} $g:\left\{\begin{array}{rcl}A&\to&\K\\x&\mapsto&\int_If(x,t)dt\end{array}\right.$ est continue\end{center}}
+\Thr{Dérivabilité}{Soit $I$ et $J$ deux intervalles de $\R$, $f$ une fonction définie sur $J\times I$ à valeurs dans $\K$. On suppose que :\begin{itemize}
+\item pour tout $x\in J$, la fonction $t\mapsto f(x,t)$ est continue par morceaux et dérivable sur $I$
+\item la fonction $f$ admet sur $J\times I$ une dérivée parielle par rapport à la première variable, $\dfrac{\partial f}{\partial x}$
+\item la fonction $\dfrac{\partial f}{\partial x}$ verifie les hypothèses du théorème 36 :\begin{itemize}
+	\item pour tout $x\in J$, la fonction $t\mapsto \dfrac{\partial f}{\partial x}(x,t)$ est continue par morceaux sur $I$
+	\item pour tout $t\in I$, la fonction $x\mapsto \dfrac{\partial f}{\partial x}(x,t)$ est continue sur $J$
+	\item il existe une fonction $\varphi$ continue par morceaux, positive et intégrable sur $I$ telle que
+	\par \begin{center}$\forall (x,t)\in J\times I, \left\vert\dfrac{\partial f}{\partial x}(x,t)\right\vert\leq\varphi(t)$ (hypothèse de domination) \end{center}
+\end{itemize}
+\end{itemize}
+Alors pour tout $x\in J$, la fonction $t\mapsto \dfrac{\partial f}{\partial x}(x,t)$ est intégrable sur $I$,
+\par la fonction $g:x\mapsto \int_If(x,t)dt$ est de classe $\mathcal{C}^1$ sur $J$ et vérifie :
+\par $$\forall x\in J, g'(x)=\int_I\dfrac{\partial f}{\partial x}(x,t)dt$$}
+\Thr{Classe d'une intégrale à paramètre}{Soit $I$ et $J$ deux intervalles de $\R$, $f$ une fonction définie sur $J\times I$ à valeurs dans $\K$ et $k\in\N^*$. On suppose que :\begin{itemize}
+\item pour tout $j\in\llbracket 0,k\rrbracket$, la fonction $f$ admet sur $J\times I$ une dérivée partielle d'ordre $j$ par rapport à la première variable, $\dfrac{\partial^j f}{\partial x^j}$
+\item pour tout $j\in\llbracket 0,k-1\rrbracket$, pour tout $x\in J$, la fonction $\dfrac{\partial^j f}{\partial x^j}(x,t)$ est continue par morceaux et intégrable sur $I$
+\item pour tout $t\in I$, pour tout $j\in\llbracket 0,k\rrbracket$, $x\mapsto \dfrac{\partial^j f}{\partial x^j}(x,t)$ est continue sur $J$
+\item pour tout segment $K$ inclus dans $J$, il existe une fonction $\varphi_K$ continue par morceaux, positive et intégrable sur $I$ telle que
+\par \begin{center}$\forall (x,t)\in K\times I, \left\vert\dfrac{\partial^k f}{\partial x^k}(x,t)\right\vert\leq \varphi_K(t)$ (hypothèse de domination sur tout segment)\end{center}
+\end{itemize}
+Alors, pour tout $x\in J$, la fonction $t\mapsto \dfrac{\partial^kf}{\partial x^k}(x,t)$ est intégrable sur $I$, la fonction $g:x\mapsto\int_If(x,t)dt$ est de classe $\mathcal{C}^k$ sur $J$ et vérifie
+\par $$\forall x\in J, g^{(k)}(x)=\int_I\dfrac{\partial^k f}{\partial x^k}(x,t)dt$$}
+
+
+\newpage
+\section{Analyse - différentiation}
+\subsection{Les équations différentielles}
+\Def{Premier ordre}{Soit $I$ un intervalle, soit $E$ un $\K$-ev de dimension finie.
+\par Soit $a$ une application continue de $I$ dans $\mathcal{L}(E)$
+\par Soit $b$ une application continue de $I$ dans $E$
+\par On appelle $y' + a\cdot y = b$ équation différentielle linéaire du premier ordre normalisée.
+\par Ses solutions sont les fonctions $y\in\mathcal{D}(I, E)$ vérifiant $\forall t\in I, y'(t)+a(t)\cdot y(t)=b(t)$}
+\Def{Traduction matricielle}{Avec les notations ci-dessus, on fixe une base $\mathcal{B}$ de $E$.
+\par $\forall t\in I, Y(t) = Mat_{\mathcal{B}}y(t) \Rightarrow Y'(t) = Mat_\mathcal{B}y'(t)\in\mathcal{M}_{n,1}(\K)$
+\par $A(t) = Mat_\mathcal{B}a(t)\in\mathcal{M}_n(\K)$
+\par $B(t) = Mat_\mathcal{B}b(t)\in\mathcal{M}_{n,1}(\K)$
+\par L'équation devient :
+\par $$Y'(t) = A(t)Y(t) +B(t)$$}
+\Def{Equation homogène associée}{Avec $(E_q) : y' + a\cdot y = b$
+\par (où $a\in\mathcal{C}(I, \mathcal{L}(E))$ et $b\in\mathcal{C}(I,E)$)
+\par L'équation homogène associée est :
+\par $$(H): y' + a\cdot y = 0$$}
+\Thr{Résolution de l'équation différentielle linéaire normalisée à coefficients constants}{Notons $\forall t\in I,y'(t) = a\cdot y(t)$, où $a\in\mathcal{L}(E)$
+\par L'ensemble des solutions de cette équation est : $\{t\mapsto \exp(t a)\cdot x\vert x\in E\}$
+\par plus précisément, la solution du problème de Cauchy $\left\{\begin{array}{l} y' = a\cdot y \\ y(t_0) = x_0\end{array}\right.$ est $t\mapsto \exp((t-t_0)a)\cdot x_0$
+}
+\Thr{Superposition}{$(E_{q_1})$ et $(E_{q_2})$ deux équations de même équation homogène associé et $\lambda\in\K$ :
+\par $(E_{q_1}) : y' + a(t)\cdot y = b_1$
+\par $(E_{q_2}) : y' + a(t)\cdot y = b_2$
+\par $$(E_{q_+}) : y' + a(t)\cdot y = b_1+b_2$$
+\par $$(E_{q_\lambda}) : y' + a(t)\cdot y = \lambda b_1$$
+\par Si $y_1\in S_{E_{q_1}}$ et $y_2\in S_{E_{q_2}}$, alors :
+\par $$ y_1+y_2\in S_{E_{q_+}}$$
+\par et$$ \lambda y_1 \in S_{E_{q_\lambda}}$$}
+\Thr{Cauchy-Lipschitz linéaire}{Soit $I$ un intervalle de $\R$
+\par Soit $E$ un $\K$-ev de dimension finie
+\par Soit $(E_q)$ une équation différentielle linéaire normalisée $y'+a\cdot y = b$
+\par Soit $t_0\in I$, $y_0\in E$, alors :
+\par Il existe une unique solution $f$ de $(E_q)$ vérifiant :
+\par $$f(t_0)=y_0$$}
+\Thr{Corollaire}{Si $I$ est un intervalle et $(H) : y' = a\cdot y$ une équation différentielle linéaire \textbf{normalisée}
+\par L'ensemble des solutions de $(H)$ sur $I$ à valeurs dans $E$ est un $\K$-ev de dimension $\dim E$}
+\Thr{Variation des constantes}{Soit $I$ un intervalle, $(E_q)$ une équation différentielle linéaire normalisée $y'=a\cdot y + b$
+\par $(H)$ l'équation homogène associée.
+\par Si $(u_1,...,u_p)$ est une base de $S_H$
+\par Alors $(E_q)$ possède une solution particulière de la forme $t\mapsto =\lambda_1(t) +...+\lambda_p(t)u_p(t)$
+\par où $\lambda_1,...,\lambda_p$ sont des fonctions dérivables à valeurs dans $\K$}
+
+
+\subsection{Calcul différentiel - différentiabilité et classe}
+\Def{}{Soit $f$ un efonction définie d'un ouvert $U$ dans $F$ et $a$ un point de $U$.
+\par On dit que $f$ est différentiable au point $a$ s'il existe une application $u\in\mathcal{L}(E,F)$ telle qu'au voisinage de $0$ :
+\par $$f(a+h) = f(a) + u(h) + o(h)$$
+\par Dans ce cas, une telle application linéaire $u$ est unique, on la note $df(a)$ et on l'appelle différentielle de $f$ en $a$.
+\par On l'appelle aussi application linéaire tangente à $f$ en $a$.}
+\Def{}{Soit $f$ une fonction définie d'un ouvert $U$ dans $F$. Si $f$ est différentiable en tout point de $U$, on dit que $f$ est différentiable sur $U$ et on appelle différentielle de $f$ sur $U$ l'application :
+\par $$df:\left\{\begin{array}{rcl}U & \to & \mathcal{L}(E,F) \\ a & \mapsto & df(a)\end{array}\right.$$}
+\Thr{}{Soit $f$ une fonction définie d'un ouvert $U$ dans $F$ et $a\in U$.
+Si $f$ est différentiable en $a$, alors $f$ est continue en $a$.}
+\Thr{}{Soit $f$ une fonction définie d'un ouvert $U$ dans $F$ et $a\in U$.
+\par Si $f$ est différentiable en $a$, alors $f$ est dérivable en $a$ selon tout vecteur $v\in E$ et :
+\par $$D_vf(a) = df(a)\cdot v$$}
+\Thr{Corollaire}{Soit $\mathcal{B}=(e_1,..., e_n)$ une base de $E$. Soit $f$ une fonction définie d'un ouvert $U$ dans $F$ et $a\in U$.
+\par Si $f$ est différentiable en $a$, alors $f$ admet des dérivées partielles (dans la base $\mathcal{B}$) et pour $v=\sum\limits_{i=1}^nv_ie_i\in E$ :
+\par $$D_vf(a) = df(a)\cdot f = \sum\limits_{i=1}^nv_i\partial_if(a)$$}
+\Def{Matrice Jacobienne}{Si $E=\R^m$ et $F=\R^n$. Soit $f$ une fonction définie d'un ouvert $U$ dans $F$ différentiable sur $U$.
+\par Soit $a\in U$. La matrice, dans les bases canoniques, de l'application linéaire $df(a)$ est :
+\par $$J_f(a) = \begin{pmatrix} \dfrac{\partial f_1}{\partial x_1}(a) & \dfrac{\partial f_1}{\partial x_2}(a) & \cdot\cdot\cdot & \dfrac{\partial f_1}{\partial x_m}(a)
+\\ \dfrac{\partial f_2}{\partial x_1}(a) & \dfrac{\partial f_2}{\partial x_2}(a) & \cdot\cdot\cdot & \dfrac{\partial f_2}{\partial x_m}(a)
+\\ . & . & . & .
+\\ . & . & . & .
+\\ . & . & . & .
+\\ \dfrac{\partial f_n}{\partial x_1}(a) & \dfrac{\partial f_n}{\partial x_2}(a) & \cdot\cdot\cdot & \dfrac{\partial f_n}{\partial x_m}(a)\end{pmatrix}$$
+\par et est appelée matrice jacobienne de $f$ en $a$.}
+\Thr{Différentielle d'une combinaison linéaire}{Soit $f$ et $g$ deux fonctions définies d'un ouvert $U$ dans $F$, différentiables sur $U$. Soit $\lambda, \mu$ deux réels.
+\par La fonction $\lambda f +\mu g$ est différentiable sur $U$ et :
+\par $$d(\lambda f+\mu g) = \lambda df+\mu dg$$}
+\Thr{Différentielle d'une application bilinéaire}{Soit $E, F, G, H$ quatre espaces vectoriels normés de dimension finie et $U$ un ouvert de $E$. Soit $f$ (respectivement $g$) une fonction définie de $U$ dans $F$ (respectivement $G$) et différentiable sur $U$.
+\par Soit $B$ une application bilinéaire définie de $F\times G$ dans $H$.
+\par La fonction $B(f, g):x\mapsto B(f(x), g(x))$ est différentiable sur $U$ et :
+\par $$d(B(f, g)) = B(df, g)+B(f, dg)$$}
+\Thr{Différentielle d'une composée}{Soit $E,F, G$ trois espaces vectoriels normés de dimension finie et $U$ un ouvert de $E$.
+\par Soit $f$ une fonction définie de $U$ dans $F$, différentiable sur $U$. Soit $g$ une fonction définie de $V$ dans $G$, avec $V$ un ouvert de $F$ contenant $f(U)$, différentiable sur $V$.
+\par La fonction $g\circ f$ est différentiable sur $U$ et, pour tout $a\in U$,
+\par $$d(g\circ f)(a) = dg(f(a))\circ df(a)$$}
+\Thr{Règle de la châine}{Soit $m,p,n$ des entiers naturels non nuls.
+\par Soit $f$ une application différentiable sur $U$ un ouvert de $\R^m$ et à valeurs dans $\R^p$.
+\par Soit $g$ une application différentiable sur $V$ un ouvert de $\R^p$ contenant $f(U)$ et à valeurs dans $\R^n$.
+\par On note $f_1,..., f_p$ les fonctions composantes de $f$ et on pose $h = g\circ f$.
+\par On a donc le schéma suivant :
+\par $$\begin{array}{ccccc} \R^m & \to^f & \R^p & \to^g & \R^n \\ (x_1,...,x_m) & \mapsto & (f_1,..., f_p) & \mapsto & (g_1,..., g_n)\end{array}$$
+\par Soit $x=(x_1,..., x_m)\in U$. Pour $j\in \llbracket 1, m\rrbracket$ et $i\in\llbracket 1,n\rrbracket$ :
+\par $$\dfrac{\partial (g\circ f)_i}{\partial x_j}(x) = \sum\limits_{k=1}^p\dfrac{\partial g_i}{\partial f_k}(f(x))\cdot\dfrac{\partial f_k}{\partial x_j}(x)$$
+\par $$\partial_jh(x)=\sum\limits_{k=1}^p\partial_kg(f(x))\partial_jf_k(x)$$
+\par Ou encore, avec une notation plus abusive :
+\par $$\dfrac{\partial g_i}{\partial x_j}=\sum\limits_{i=1}^p\dfrac{\partial f_k}{\partial x_j}\dfrac{\partial g_i}{\partial f_k}$$}
+\Def{}{Une application $f$ d'un ouvert $U$ dans $F$ est dite de de classe $\mathcal{C}^1$ si elle est différentiable sur $U$ et si $df$ est continue sur $U$
+\par (i.e. $\begin{array}{rcl} U & \to & \mathcal{L}(E,F) \\ x & \mapsto & df(x)\end{array}$ continue)}
+\Thr{de Schwarz}{Soit $\mathcal{B}$ une base de $E$ et soit $f$ définie d'un ouvert $U$ dans $F$.
+\par Si $f$ est de classe $\mathcal{C}^2$ alors :
+\par $$\forall i,j\in\llbracket 1, n\rrbracket^2, \partial_i\partial_jf = \partial_j\partial_if$$}
+\Thr{}{Soit $\mathcal{B}$ une base de $E$. Soit $f$ une application définie d'un ouvert $U$ dans $F$.
+\par L'application $f$ est de classe $\mathcal{C}^1$ sur $U$ si, et seulement si, les dérivées partielles relativement à la base $\mathcal{B}$ existent en tout point de $U$ et sont continues sur $U$.}
+\Thr{Classe d'une combinaison linéaire}{Soit $f$ et $g$ deux fonctions de $U$ dans $F$ de classe $\mathcal{C}^k$. Soit $\lambda, \mu$ deux réels.
+\par La fonction $\lambda f+\mu g$ est de classe $\mathcal{C}^k$ sur $U$.}
+\Thr{Classe d'une application bilinéaire}{Soit $E,F,G,H$ quatre espaces vectoriels normés de dimension finie et $U$ un ouver tde $E$.
+\par Soit $f$ une fonction définie de $U$ dans $F$ de classe $\mathcal{C}^k$.
+\par Soit $g$ une fonction définie de $U$ dans $G$ de classe $\mathcal{C}^k$.
+\par Soit $B$ une application bilinéaire définie de $F\times G$ dans $H$.
+\par La fonction $B(f, g)$ est de classe $\mathcal{C}^k$ sur $U$.}
+\Thr{Classe d'un produit scalaire}{Supposons que $F$ est un espace vectoriel euclidien. Soit $f$ et $g$ deux applications de classe $\mathcal{C}^1$ de $U$ dans $F$.
+\par La fonction $\left\{\begin{array}{rcl} U & \to & \R \\ t & \mapsto & \langle f(t), g(t)\rangle\end{array}\right.$ est $\mathcal{C}^1$}
+\Thr{Classe d'un produit}{Soit $f$ et $g$ deux applications de classe $\mathcal{C}^1$ d'un ouvert $U$ dans $\R$. La fonction $fg$ est $\mathcal{C}^1$.}
+\Thr{Classe d'une composée}{Soit $E, F,G$ trois espaces vectoriels normés de dimension finie et $U$ un ouvert de $E$.
+\par Soit $f$ une fonction définie de $U$ dans $F$ de classe $\mathcal{C}^k$ sur $U$.
+\par Soit $g$ une fonction définie de $V$ un ouvert de $F$ contenant $f(U)$ dans $G$ et de classe $\mathcal{C}^k$ sur $V$.
+\par La fonction $g\circ f$ est de classe $\mathcal{C}^k$ sur $U$.}
+\Thr{Dérivée le long d'un arc}{Soit $f$ une fonction définie d'un ouvert $U$ dans $F$. Soit $\gamma$ une application définie sur un intervalle d'intérieur non-vide $I$ de $\R$ et à valeurs dans $U$.
+\par Si $\gamma$ est dérivable en $t$ et si $f$ est différentiable en $\gamma(t)$, alors $f\circ\gamma$ est dérivable en $t$ et :
+\par $$(f\circ\gamma)'(t) = df(\gamma(t))\cdot\gamma'(t)$$}
+\Thr{Intégrale le long d'un arc}{Si $f$ est une application de classe $\mathcal{C}^1$ d'un ouvert $U$ dans $F$, si $\gamma$ est une application de classe $\mathcal{C}^1$ de $[0,1]$ dans $\Omega$, si $\gamma(0)=a$, $\gamma(1)=b$, alors :
+\par $$f(b)-f(a) = \int_0^1df(\gamma(t))\cdot\gamma'(t)dt$$}
+
+
+\subsection{Calcul différentiel - optimisation}
+\Def{}{Soit $f$ une fonction définie et différentiable sur un ouvert $U$ et à valeurs dans $\R$. Soit $a\in U$.
+\par On appelle gradient de $f$ en $a$ et on note $\nabla f(a)$ l'unique vecteur de $E$ tel que :
+\par $$\forall h\in E, df(a)\cdot h=\langle \nabla f(a), h\rangle$$}
+\Thr{Interprétation géométrique du gradient}{Pour $h$ un vecteur de $E$, $D_hf(a)= df(a)\cdot h = \langle \nabla f(a), h\rangle$.
+\par Si $\nabla f(a)\neq 0$, il est colinéaire et de même sens que le vecteur unitaire selon lequel la dérivée de $f$ en $a$ est maximale.}
+\Thr{Formule du gradient}{Soit $f$ une fonction définie et différentiable sur un ouvert $U$ et à valeurs dans $\R$. Soit $a\in U$.
+\par Dans $(e_1,..., e_n)$ une base orthonormale de $E$, $\nabla f(a)$ s'écrit $\nabla f(a) = \sum\limits_{i=1}^n\partial_if(a)\cdot e_i$}
+\Thr{Constance sur un connexe}{Si $f$ est une application d'un ouvert $U$ dans $F$.
+\par Si $U$ est connexe par arcs, la fonction $f$ est constante sur $U$ si, et seulement si, elle est différentiable sur $U$ et si $df=0$}
+\Def{}{Si $X$ est une partie de $E$ et $x$ un point de $X$, un vecteur $v$ de $E$ est tangent à $X$ en $x$ s'il existe $\varepsilon>0$ et un arc $\gamma$ défini sur $]-\varepsilon, \varepsilon[$, dérivable en $0$, à valeurs dans $X$, tels que $\gamma(0)=x$ et $\gamma'(0)=v$
+\par On note $T_xX$ l'ensemble des vecteurs tangents à $X$ en $x$. C'est un espace vectoriel.}
+\Thr{}{Soit $E$ un espace vectoriel euclidien. Soit $f$ une fonction définie d'un ouvert $U$ dans $\R$, de classe $\mathcal{C}^1$. Soit $X$ une ligne de niveau de $f$. Soit $x_0\in X$ de $X$.
+\par Si $df(x_0)\neq 0$, alors :
+\par $$T_{x_0}X =\ker(df(x_0))=(\nabla f(x_0))^\perp$$}
+\Thr{}{Soit $f$ une fonction définie sur un ouvert $U$ et à valeurs dans $\R$ et $a\in U$.
+\par Si $f$ admet un extremum local en $a$ et si $f$ est différentiable en $a$, alors $df(a)=0$.
+\par (i.e. $a$ est un point critique de $f$)}
+\Thr{optimisation sous une contrainte}{Si $f$ et $g$ sont des fonctions numériques définies et de classe $\mathcal{1}^1$ sur l'ouvert $\Omega$ de $E$, si $X$ est l'ensemble des zéros de $g$, si $x\in X$ et $dg(x)\neq 0$ et si la restriction de $f$ à $X$ admet un extremum local en $x$, alors $df(x)$ est colinéaire à $dg(x)$.}
+\Pre{Ici, on a que $T_xX=\ker dg(x)$ (théorème admis)
+\par $df(x)$ et $dg(x)$ sont des formes linéaires telles que $\ker dg(x)\subset \ker df(x)$
+\par Et donc $df(x) = \lambda dg(x)$
+\par $X = g^{-1}(\{0\})$, $dg(x)\neq 0$ et $f_{|X}$ admet une différentielle en $x$
+\par Ici, $T_xX = \ker dg(x)$ et de plus, $\ker dg(x)\subset\ker df(x)$ par le théorème précédent, comme $f_{|X}$ admet un extrémum en $x$
+\par Si $df(x)=0$ : $df(x) = 0dg(x)$
+\par Sinon : $\ker df(x)$ est un hyperplan (parce que $df(x)$ est une forme linéaire), donc $\ker df(x) = \ker dg(x)$ puisque $\ker dg(x)$ est de dimension 1 en tant que gradient d'un vecteur}
+On a quelques résultats très utiles sur une fonction $\mathcal{C}^2$.
+\Def{}{Soit $f$ une fonction de classe $\mathcal{C}^2$ sur un ouvert $U$ de $\R^n$ euclidien, à valeurs réelles. Soit $x\in U$.
+\par La matrice hessienne de $f$ en $x$ est la matrice symétrique :
+\par $$H_f(x) = (\partial^2 f_{i,j}(x))_{(i,j)\in\llbracket1,n\rrbracket^2}$$}
+\Thr{Formule de Taylor-Young à l'ordre 2}{Soit $f$ une fonction de classe $\mathcal{C}^2$ sur un ouvert $U$ de $\R^n$ euclidien, à valeurs réelles. Soit $x\in U$.
+\par $$f(x+h)=_{h\to 0} f(x) + \langle \nabla f(x), h\rangle + \frac{1}{2}\langle H_f(x)\cdot h, h\rangle + o(\Vert h\Vert^2)$$
+\par $$f(x+h)=_{h\to 0} f(x) + \nabla f(x)^\top h + \frac{1}{2}h^\top H_f(x)\cdot h + o(\Vert h\Vert^2)$$}
+\Thr{Interprétation de la Hessienne}{Si $f:U\subset E\to f$ est $\mathcal{C}^2$ avec $x_0$ un point critique de $f$.\begin{itemize}
+\item Si $H_f(x_0)\in\mathcal{S}_p^{++}(\R)$, $f$ a un minimum local.
+\item Si $-H_f(x_0)\in\mathcal{S}_p^{++}(\R)$, $f$ a un maximum local.
+\item Si $H_f(x_0)$ possède une valeur propre strictement négative ($H_f\notin\mathcal{S}_p^+(\R)$), alors $f$ n'a pas de minimum en $x_0$.
+\item Si $H_f(x_0)$ possède une valeur propre strictement positive ($-H_f\notin\mathcal{S}_p^+(\R)$), alors $f$ n'a pas de maximum en $x_0$.
+\end{itemize}}
+
+
+\subsection{Hors programme - Différentielle d'un inverse}
+\Thr{Dans R}{Si $f$ dérivable bijective d'un intervalle $I$ sur un intervalle $J$, si $f'$ ne s'annule pas alors $f^{-1}$ est dérivable et :
+\par $$(f^{-1})' = \dfrac{1}{f'\circ f^{-1}}$$}
+\Thr{Dans le cas général}{Si $f$ est différentiable bijective d'un ouvert $U$ sur un ouvert $V$, et si $f^{-1}$ est différentiable
+\par Alors $\dim E=\dim F$ et :
+\par $$\begin{cases}\forall x\in U, df^{-1}(f(x)) = df(x)^{-1} \\ \forall x\in V, df^{-1}(x) = df(f^{-1}(x))\end{cases}$$}
+\Thr{}{Si $f$ est différentiable bijective d'un ouvert $U$ sur un ouvert $V$
+\par Soit $x\in U$ tel que $df(x)$ est bijective.
+\par Alors $f^{-1}$ est différentiable en $f(x)$ et :
+\par $$df^{-1}(f(x)) = (df(x))^{-1}$$}
+
+
+\newpage
+\section{Algèbre}
+\subsection{Espaces vectoriels normés}
+Ce chapitre a beaucoup de définitions qui lui sont propres.
+\Def{Norme}{Soit $E$ un $\K$-ev. Soit $\varphi$ une application de $E$ dans $\R_+$. On dit que $\varphi$ est une norme si elle vérifie:\begin{enumerate}
+\item $\forall u\in E, \varphi(u) = 0\Rightarrow u=0$ (on dit que l'application est définie)
+\item homogénéité : $\forall\lambda\in\K, \forall u\in E,\varphi(\lambda u) =\vert \lambda\vert \varphi(u)$
+\item inégalité triangulaire : $\forall u, v\in E, \varphi(u+v) \leq \varphi(u)+\varphi(v)$
+\end{enumerate}}
+\Def{Distance}{Soit $E$ un EVN. On appelle distance associée à la norme sur $E$ l'application :
+\par $$d:\left\{\begin{array}{rcl} E & \to & \R_+ \\ (x,y) & \mapsto & \Vert x-y\Vert \end{array}\right.$$
+\par Une distance définit un espace métrique.}
+\Def{Normes équivalentes}{Soit $E$ un espace vectoriel, et $\Vert.\Vert_1, \Vert.\Vert_2$ deux normes sur $E$. On dit que $\Vert.\Vert_1$ et $\Vert.\Vert_2$ sont équivalentes si : $\exists \alpha,\beta\in\R_+^*,\forall x\in E, \alpha\Vert x\Vert_1\leq \Vert x\Vert_2\leq \beta\Vert x\Vert_1$, ou si $x\neq0$ : $\alpha\leq\dfrac{\Vert x\Vert_2}{\Vert x\Vert_2}\leq\beta$}
+\begin{Rem}
+Toutes les notions topologiques qui suivent sont invariantes par changement de normes équivalentes. En dimension finie, on a même que ce sont des notions qui ne dépendent pas d'une norme.
+\end{Rem}
+\Def{Point intérieur}{Soit $A\subset E$ et $a\in A$, on dit que $a$ est intérieur à $A$ si $\exists\alpha\in\R_+^*,\mathcal{B}(a,\alpha)\subset A$}
+\Def{Intérieur}{Soit $A\subset E$, on appelle intérieur de $A$ l'ensemble des points intérieurs de $A$, noté $\overset{\circ}{A}$ ; on a donc $\overset{\circ}{A}\subset A$}
+\Def{Ouvert}{Soit $A\subset E$, on dit que $A$ est ouvert si tous les points de $A$ sont intérieurs (ou si $A$ contient un voisinage de chacun de ses points), ce qui signifie $A\subset\overset{\circ}{A}$}
+\Def{Point adhérent}{Soit $A\subset E$ et $x\in E$, on dit que $x$ est adhérent à $A$ si : $\forall\alpha\in\R_+^*, \mathcal{B}(x,\alpha)\cap A\neq\emptyset$}
+\Def{Adhérence}{Soit $A\subset E$, on appelle adhérence de $A$ l'ensemble des points adhérents à $A$, noté $\bar{A}$. On notera que $A\subset\bar{A}$}
+\Def{Fermé}{Si $A\subset E$, $A$ est fermé si $\bar{A}=A$ (donc que $\bar{A}\subset A$), donc que $A$ contient tous les points qui lui sont adhérents.}
+\Def{Compact}{Soit $E$ un EVN, soit $A\subset E$. On dit que $A$ est compact si de toute suite de $A$, on peut extraire une suite convergente dans $A$.}
+
+
+
+\Thr{Deuxième forme de l'inégalité triangulaire}{Soit $E$ un EVN, $\forall x,y\in E, \vert\Vert x\Vert-\Vert y\Vert\vert\leq\Vert x\pm y\Vert \leq \Vert x\Vert + \Vert y\Vert$}
+\Thr{L'équivalence des normes}{Toutes les normes sont équivalentes en dimension finie}
+
+\Thr{Réunion et intersection d'ouverts}{Avec $E$ un EVN, $(O_i)_{i\in I}$ une famille d'ouverts de $E$, on a que :\begin{itemize}
+\item $\cup_{i\in I}O_i$ est un ouvert
+\item $\cap_{i\in I}O_i$ est un ouvert à condition que $I$ soit fini\end{itemize}}
+\Thr{Caractérisation séquentielle de l'adhérence}{Soient $A\subset E,x\in E$, alors $x$ est adhérent à $A$ si, et seulement si, $\exists (a_n)\in A^\N, (a_n)\to x$}
+\Thr{Caractérisation séquentielle des fermés}{Soit $A\subset E$, $A$ est fermé si, et seulement si, pour toute suite d'éléments de $A$ convergente vers $l$, $l\in A$. ie $\forall (a_n)\in A^\N, (a_n)\to l\Rightarrow l\in A$}
+\Thr{Complémentarité d'un ouvert}{Soit $E$ un EVN et $A\subset E$, alors $A$ est fermé si, et seulement si, $\mathcal{C}_EA$ est ouvert.}
+\Thr{Compacts}{Dans un espace de dimension finie $E$, les compacts sont les fermés bornés.}
+
+
+\subsection{Limites dans un EVN}
+\Def{Limite}{Soient $E,F$ deux EVN, et $A\subset E$. Soit $f\in\mathcal{F}(A,F)$, $x_0\in\bar{A}$. Soit $l\in F$. On dit que $f$ converge vers $l$ en $x_0$ si :
+\par $$\forall\varepsilon\in\R_+^*,\exists\alpha\in\R_+^*,\forall x\in\mathcal{B}(x_0,\alpha)\cap A, f(x)\in\mathcal{B}(l,\varepsilon)$$
+\par On notera $f\to_{x_0} l$ ou $f(x)\to_{x\to x_0} l$ (notation plus abusive) ou $\lim f = l$ (notation plus adaptée à une conclusion) et $\lim\limits_{x\to x_0}f(x)=l$.}
+\Def{Continuité}{Soit $f\in\mathcal{F}(A,F)$ avec $A\subset E$ et $E,F$ deux EVN. Soit $a\in A$, on dit que $f$ est continue en $a$ si $f\to_a f(a)$.}
+\Def{Uniforme continuité}{Soit $f\in\mathcal{F}(A,F)$ où $A\subset E$ avec $E,F$ deux EVN. On dit que $f$ est uniformément continue si :
+\par $$\forall\varepsilon\in\R_+^*,\exists\eta\in\R_+^*,\forall x,y\in A,\Vert x-y\Vert<\eta\Rightarrow\Vert f(x)-f(y)<\varepsilon\Vert$$}
+\Def{Fonctions lipschitziennes}{Soit $f\in\mathcal{F}(A,F)$, où $A\subset E$ avec $E,F$ EVN. Soit $k\in\R_+^*$. On dit que $f$ est $k-lipschitzienne$ si :
+\par $$\forall x,y\in A,\Vert f(x)-f(y)\Vert\leq k\Vert x-y\Vert$$}
+\Def{Norme triple}{Soit $E,F$ deux EVN, on appelle $\mathcal{L}_C(E,F$) l'ensemble des applications linéaires continues de $E$ dans $F$.
+\par Alors $\mathcal{L}_C(E,F)$ est un espace vectoriel normé pour la norme 
+\par $$\varphi\mapsto \vert\Vert\varphi\Vert\vert=\sup\limits_{x\in E, x\neq 0} \frac{\Vert \varphi(x)\Vert_F}{\Vert x\Vert_E} = \sup\limits_{x\in E, \Vert x\Vert=1}\Vert \varphi(x)\Vert$$}
+\Thr{Union d'applications d'extraction}{Si $\varphi, \psi$ sont deux applications de $\N$ dans $\N$ strictement croissantes vérifiant $\varphi(\N)\cup\varphi(\N)=\N$, si $(u_{\varphi(n)})$ et $(u_{\psi(n)})$ convergent vers $l$, alors $u_n$ est convergente de limite $l$.}
+\Thr{Bolzano-Weierstrass}{De toute suite bornée dans un $\K$-ev de dimension finie on peut extraite une suite convergente.}
+
+\Def{Convergence}{Soit $E$ un EVN sur $\K$, soit $(u_n)\in E^\N$. Soit $l\in E$. On dit que $(u_n)$ converge vers $l$ si $(\Vert u_n-l\Vert)\to 0$
+\par On peut aussi écrire :
+\par $$\forall\varepsilon\in\R_+^*, \exists n_0\in\N,\forall n\in\N, n\geq n_0\Rightarrow u_n\in\mathcal{B}(l, \varepsilon)$$
+\par On parle de suites convergentes et de limites (notées $\lim (u_n)=l$ et $(u_n)\to l$) dans un EVN}
+\Thr{Convergence des suites extraites}{Si une suite $(u_n)\in E^\N$ converge $l$ alors toute suite extraite de $(u_n)$ converge vers $l$.}
+
+\Thr{Caractérisation séquentielle de la limite}{Avec $f\in\mathcal{F}(A,F)$ avec $A\subset E$ et $E,F$ deux EVN. Avec $x_0\in\bar{A}$ et $l\in F$, alors :
+\par$$f\rightarrow_{x_0}l\Leftrightarrow \forall (u_n)\in A^\N, (u_n)\to x_0, (f(u_n))\to l$$}
+\Thr{Images réciproques}{Soit $f\in\mathcal{F}(A,F)$ continue, alors l'image réciproque d'un ouvert de $F$ par $f$ est un ouvert relatif de $A$
+\par L'image réciproque d'un fermé de $F$ par $f$ est un fermé relatif de $A$.}
+\Thr{Théorème de Heine}{Toute fonction continue sur un compact est uniformément continue.}
+\Thr{Bornes atteintes}{L'image d'un compact par une application continue est un compact.}
+\Thr{Valeurs intermédiaires}{L'image d'un connexe par arcs par une application continue est connexe par arcs.}
+
+\Thr{Critère de continuité des applications linéaires}{Soit $E, F$ des $\K$-EVN et $f\in\mathcal{L}(E,F)$. $f$ est continue si, et seulement si, elle vérifie l'une des propriétés équivalentes suivantes :\begin{enumerate}
+\item $f$ est continue en $0$ ;
+\item $\exists k\in\R_+^*,\forall x\in E, \Vert f(x)\Vert_F\leq k\Vert x\Vert_E$ ;
+\item $f$ est lipschitzienne.\end{enumerate}}
+\begin{Rem}
+En dimension finie, toute application linéaire est continue, par continuité des projecteurs (les applications linéaires sont des polynômes de degré au plus 1 sur les coordonnées).
+\par Si $\varphi$ est linéaire et injective en dimension finie, on a que $\Vert\varphi\Vert$ est une norme, qu'on appelle la norme $\varphi$.
+\end{Rem}
+\Thr{Sous-multiplicativité}{Soit $E,F,G$ des EVN, soit $f\in\mathcal{L}_C(E,F)$ et $g\in\mathcal{L}_C(F,G)$, alors $\vert\Vert g\circ f\Vert\vert\leq \vert\Vert g\Vert\vert\vert \Vert f\Vert\vert$}
+
+
+\subsection{Réduction}
+\Def{Valeur propre}{Soit $E$ un $\K$-ev et $f\in\mathcal{L}(E)$. Soit $\lambda \in\K$. \par On dit que $\lambda$ est une valeur propre de $f$ si : $f-\lambda id$ n'est pas injective. \par Ce qui correspond à $\ker (f-\lambda id)\neq\{0\}$ \par Ce qui correspond à $\exists x\in E, x\neq 0, (f-\lambda id)(x)=0$ \par Ce qui correspond à $\exists x\in E,x\neq 0, f(x)-\lambda x=0$}
+\Def{Spectre d'un endomorphisme}{Soit $E$ un $\K$-ev et $f\in \mathcal{L}(E)$. On appelle spectre de $f$ l'ensemble des valeurs propres de $f$, noté $S_p(f)$. \par On peut étendre la notion aux matrices.}
+\Def{Espace propre}{Soit $E$ un $\K$-ev, $f\in\mathcal{L}(E)$ et $\lambda\in S_p(f)$. On appelle espace propre associé à $\lambda$ l'ensemble $\ker (f-\lambda id)$, qu'on note $E_\lambda(f)$ \par C'est un sev de $E$ non-réduit à $0$. \par On étend la notion aux matrices de $\mathcal{M}_n(\K)$. Pour $A\in\mathcal{M}_n(\K)$ et $\lambda\in S_p(A)$, alors $E_\lambda(A) = \ker (A-\lambda I_n)$ est un sev de $\mathcal{M}_{n,1}(\K)$.}
+\Def{Polynôme annulateur}{Soit $P\in\K[X]$ et $f\in\mathcal{L}(E)$. On dit que $P$ est un polynôme annulateur de $f$ si $P(f)=0$}
+\Def{Polynôme minimal}{Soit $f\in\mathcal{L}(E)$. On appelle polynôme minimal de $f$ un polynôme non-nul unitaire annulateur de $f$ de degré minimal, qu'on note $\pi_f$ ou $\mu_f$ (cette notation existe mais elle est très rare).}
+\Def{Polynôme caractéristique}{Avec $f\in\mathcal{L}(E)$, $\begin{array}{rcl} \K & \to & \K \\ \lambda & \mapsto & \det (f-\lambda id)\end{array}$ est polynomiale. Le polynôme associé est de degré $n$ unitaire.
+\par On appelle ce polynôme le polynôme caractéristique de $f$, noté $\chi_f$}
+
+\Thr{}{Une somme finie de sous-espaces propres d'un endomorphisme associés à des valeurs propres distinctes est directe.\par Ce qui correspond à : si $\lambda_1,...,\lambda_p$ sont des valeurs propres distinctes de $f\in\mathcal{L}(E)$, alors $E_1+...+E_p$ est une somme directe.}
+\Thr{}{Soit $E$ un $\K$-ev de dimension finie. Soit $f\in\mathcal{L}(E)$. Soit $\lambda$ une valeur propre de $f$ d'ordre $\alpha$
+\par Alors $\dim E_\lambda(f)\leq\alpha$}
+\Thr{}{Un endomorphisme d'un $\K$-ev $E$ de dimension finie est trigonalisable si, et seulement si, son polynôme caractéristique est scindé.}
+\Thr{}{Soit $E$ un $\K$-ev de dimension finie $n$, $f\in\mathcal{L}(E)$. Alors $f$ est nilpotente si, et seulement si, $\chi_f = X^n$ et $\chi_f=X^n$ si, et seulement si, il existe une base $B$ de $E$ dans laquelle $Mat_B(f)$ est triangulaire avec des 0 sur la diagonale.}
+\Thr{Opérations sur les polynômes d'endomorphismes}{Pour $P,Q\in\K[X]$, $\lambda\in\K$ et $f\in\mathcal{L}(E)$, on a :\begin{itemize}
+\item $(P+Q)(f) = P(f) + Q(f)$
+\item $(\lambda\cdot P)(f) = \lambda P(f)$
+\item $(P\times Q)(f) = P(f)\circ Q(f)=Q(f)\circ P(f)$
+\item $(P\circ Q)(f) = P(Q(f))$
+\end{itemize}}
+\Thr{Cayley-Hamilton}{Avec $E$ un $\K$-ev de dimension finie, $f\in\mathcal{L}(E)$, alors $\chi_f$ est un polynôme annulateur de $f$.}
+\Thr{}{Avec $E$ un $\K$-ev de dimension finie, $f\in\mathcal{L}(E)$. $f$ est diagonalisable si, et seulement si, $\pi_f$ est scindé à racines simples
+\par Ce qui correspond à ce qu'il existe un polynôme annulateur non-nul scindé à racines simples de $f$.}
+
+
+\subsection{Espaces préhilbertiens}
+\Def{}{Soit $E$ un $\R$-ev, on dit qu'une application $\varphi:E\times E\to\R$ est :\begin{itemize}
+\item une forme bilinéaire si : $\forall x\in E, y\mapsto \varphi(x,y)=\varphi(x, .)$ est linéaire et $\varphi(., x)$ est linéaire.
+\item symétrique si : $$\forall x,y\in E, \varphi(x,y)=\varphi(y,x)$$
+\item positive si : $$\forall x\in E, \varphi(x, x)\geq 0$$
+\item définie si : $$\forall x\in E, \varphi(x, x)=0\Rightarrow x=0$$
+\end{itemize}
+Une forme bilinéaire symétrique définie positive est un produit scalaire.}
+\Thr{Identités polaires}{$\varphi$ une forme bilinéaire symétrique.
+\par \begin{align*}\forall x, y\in E, \varphi(x, y) &=\frac{1}{2}(\varphi(x+y, x+y) - \varphi(x, x) - \varphi(y,y))\\
+& = \frac{1}{4}(\varphi(x+y, x+y) - \varphi(x-y, x-y))\end{align*}
+\par $\varphi$ est donc entièrement caractérisée par l'application $u\mapsto \varphi(u,u)$}
+\Thr{Cauchy-Schwarz}{$E$ un $\R$-v et $\varphi$ une forme bilinéaire symétrique positive
+\par Alors $\forall x,y\in E, \vert\varphi(x,y)\vert\leq \varphi(x, x)\varphi(y,y)$
+\par Dans un espace préhilbertien réel $E$, 
+\par $$\forall x,y\in E, \vert\langle x,y\rangle \vert \leq \Vert x\Vert\Vert y\Vert$$
+\par avec le cas d'égalité si, et seulement si, $x$ et $y$ sont colinéaires.}
+\Thr{Inégalité triangulaire}{Soient $x, y\in E$, alors :
+\par $$\Vert x+y\Vert^2=\Vert x\Vert^2+\Vert y\Vert^2+2\langle x,y\rangle$$
+\par $$(\Vert x\Vert+\Vert y\Vert)^2=\Vert x\Vert^2+\Vert y\Vert^2 + 2\Vert x\Vert\Vert y\Vert$$
+\par Donc par Cauchy-Schwarz, $\vert\langle x, y\rangle\vert\leq \Vert x\Vert\Vert y\Vert$ et on en déduit l'inégalité triangulaire :
+\par $$\Vert x+y\Vert\leq \Vert x\Vert+\Vert y\Vert$$
+\par Avec cas d'égalité si $x$ et $y$ sont colinéaires et de même sens.}
+\Def{Orthogonalité}{\begin{itemize}
+\item pour $u,v\in E$, $u$ et $v$ sont orthogonaux, noté $u\perp v$, si $\langle u, v\rangle = 0$
+\item deux sev $F$ et $G$ de $E$ sont orthogonaux si $\forall x\in F, \forall y\in G, \langle x, y\rangle = 0$
+\item pour $A\subset E$, l'orthogonal de $A$ est l'ensemble $A^\perp = \{x\in E\vert \forall a\in a, \langle a, x\rangle=0\}$
+\end{itemize}}
+\Thr{Propriétés des orthogonaux}{\begin{itemize}
+\item Pour $A, B$ inclus dans $E$, $A\subset B\Rightarrow B^\perp \subset A^\perp$ 
+\item $$\forall A\subset E, A^\perp = vect(A)^\perp$$
+\item $A^\perp$ est un sev de $E$
+\item $F, G$ sev de $E$ :
+\par $$ F^\perp\cap G^\perp = (F+G)^\perp$$
+\par $$F^\perp + G^\perp \subset (F\cap G)^\perp$$ (réciproque fausse)
+\item $$F\subset (F^\perp)^\perp$$ 
+\end{itemize}}
+\Def{Familles orthogonales}{Soit $(x_i)_{i\in I}$ une famille de vecteurs d'un espace préhilbertien $E$
+\par $(x_i)$ est une famille orthogonale si :
+\par $$\forall i,\in I, i\neq j \Rightarrow \langle x_i, x_j\rangle$$
+\par $(x_i)$ est une famille orthonormale si :
+\par $(x_i)_{i\in I}$ est orthogonale et $\forall i\in I, \Vert x_i\Vert = 1$
+\par Toute famille orthogonale est libre (s'il n'y a pas de vecteurs nuls dedans).}
+\Thr{}{Soit $E$ un espace euclidien et $F$ un sev de $E$
+\par Alors $$F\oplus F^\perp = E$$
+\par (ie : $F^\perp$ est un supplémentaire de $F$)}
+\Thr{Extension}{Soit $E$ préhilbertien réel et $F$ un sev de $E$ de dimension finie. Alors :
+\par $$F\oplus F^\perp = E$$}
+\Thr{Méthode de Schmidt}{Cette méthode permet de "redresser une boîte à chaussures écrasée", c'est à dire construire une base orthogonale.
+\par (on se sert du fait que tout espace euclidien possède une BON, une base orthogonale où tous les vecteurs ont même norme)
+\par Soit $E$ un espace préhilbertien, $(u_i)_{i\in I}$ famille libre de $E$ avec $I\subset \N$
+\par Alors on peut construire par récurrence une famille morthogonale $(v_n)_{n\in I}$ qui vérifie :
+\par $$\forall n\in I, Vect(u_0,..., u_n) =Vect(v_0,..., v_n)$$
+\par $(v_n)$ est définie par la relation :
+\par $\begin{cases} v_0 = u_0 \\ v_{n+1} = u_{n+1} - \sum\limits_{i=1}^n\frac{\langle u_{n+1}, v_i\rangle}{\Vert v_i\Vert^2}v_i \end{cases}$
+\par Pour rendre cette famille orthonormale, il suffit de prendre la famille et de diviser chaque vecteur par sa norme}
+\Def{}{Dans tous les cas où $F\oplus F^\perp = E$, on peut définir :\begin{itemize}
+\item la projection orthogonale sur $F$ (la projection sur $F$ parallèlement à $F^\perp$)
+\item la symétrie orthogonale par rapport à $F$
+\end{itemize}}
+\Thr{de la meilleure approximation}{Soit $E$ un espace préhilbertien et $F$ un sev de dimension finie.
+\par Alors pour tout $x$ de $E$,
+\par \begin{center} $d(x,F)$ est atteinte en un unique vecteur de $F$, le projeté orthogonal de $x$ sur $F$\end{center}}
+\Thr{Calcul pratique du projeté}{$F$ un sev de $E$ de dimension finie $p$, $(u_1, ..., u_p)$ une base de $F$
+\par $x\in E$, $p(x)$ son projeté orthogonal sur $F$
+\par Donc $(px)$ est entièrement défini par les équations :
+\par $$(1)\left\{\begin{array}{l} p(x)\in F \\ x-p(x)\in F^\perp\end{array}\right.$$}
+\Thr{de représentation de Reese (cas euclidien)}{Soit $E$ un espace euclidien, l'application :
+\par $\psi\left\{\begin{array}{rcl} E & \to & E^* \\a & \mapsto \varphi_a:\left\{\begin{array}{rcl} E & \to & \K\\ x & \mapsto & \langle a, x\rangle\end{array}\right.\end{array}\right.$ est un isomorphisme}
+\Def{Adjoint}{Soit $E$ un espace euclidien et $u\in\mathcal{L}(E)$.
+\par On appelle adjoint de $u$ l'application de $E$ dans $E$ $u^\star$ telle que :
+\par $$\forall x,y\in E\times E, \langle u(x), y \rangle = \langle x, u^\star(y)\rangle$$}
+\Thr{Propriétés de l'ajdoint}{Soit $E$ euclidien, $u,v\in\mathcal{L}(E)$.\begin{itemize}
+\item $$u^\star\in\mathcal{L}(E)$$
+\item $$(u^\star)^\star = u$$
+\item $$(u\circ v)^\star =v^\star \circ u^\star$$
+\item $u\to u^\star$ est linéaire, ie $(u+v)^\star = u^\star + v^\star$ et $\forall \lambda\in\R, (\lambda u)^\star = \lambda u^\star$
+\end{itemize}}
+\Thr{}{Soit $E$ un espace euclidien. Soit $B$ une BON de $E$. Soit $u\in\mathcal{L}(E)$
+\par On note $A = Mat_B(u)$
+\par Alors $Mat_B(u^\star)= A^T$}
+\Thr{}{Soit $E$ un espace euclidien, $u\in\mathcal{L}(E)$, $F$ un sev de $E$.
+\par Si $F$ est stable par $u$ alors $F^\perp$ est stable par $u^\star$}
+\Def{}{Soit $E$ un espace euclidien et $f\in\mathcal{L}(E)$. On dit que $f$ est une isométrie si
+\par $$\forall x\in E, \Vert f(x)\Vert = \Vert x\Vert$$}
+\Thr{Caractérisation}{Soit $f\in\mathcal{L}(E)$ avec $E$ euclidien muni d'une base $\mathcal{B}$ orthonormée, $f$ est une isométrie si, et seulement si, elle vérifie l'une des propriétés suivantes :\begin{enumerate}
+\item $$\forall x\in E, \Vert f(x)\Vert=\Vert x\Vert$$
+\item $$\forall x,y\in E, \langle f(x), f(y)\rangle = \langle x, y\rangle$$
+\item $f(\mathcal{B})$ est une base orthonormée.
+\item $f\in\mathcal{GL}(E)$ et $f^\star=f^{-1}$
+\end{enumerate}}
+\Thr{}{Soit $E$ un espace euclidien, $u$ une isométrie. Alors :
+\par $$(\det u)\in \{-1, 1\}$$
+\par On dit que $u$ est une isométrie directe si $\det(u)=1$, indirecte sinon.}
+\Def{}{On dit qu'une matrice $M\in\mathcal{M}_n(\K)$ est orthogonale si elle vérifie l'une des propriétés équivalentes suivantes :\begin{enumerate}
+\item $$M^TM = I$$
+\item $$MM^T = I$$
+\item $M\in\mathcal{GL}_n(\R)$ et $M^T=M^{-1}$
+\item Les vecteurs colonnes de $M$ forment une base orthonormale pour le produit scalaire canonique de $\mathcal{M}_{n,1}(\R)$
+\item Les vecteurs lignes de $M$ forment une base orthonormale pour le produit scalaire canonique de $\mathcal{M}_{1,n}(\R)$
+\end{enumerate}}
+\Thr{}{La matrice de passage entre deux BON est une matrice orthogonale.
+\par Le déterminant d'une matrice orthogonale est égal à $1$ ou $-1$.
+\par On a ces équivalences pour $u\in\mathcal{L}(E)$:\begin{itemize}
+\item $u$ est une isométrie
+\item la matrice associée à $u$ dans une BON est orthogonale
+\item il existe une BON dans laquelle la matrice associée à $u$ est orthogonale
+\end{itemize}}
+\Thr{}{Soit $E$ un espace euclidien et $u\in\mathcal{O}(E)$ alors il existe une base orthonormale $\mathcal{B}$ telle que $Mat_B(u)$ est diagonale par bloc et chaque bloc est de la forme :
+\par $$\begin{matrix} [1] \\ [-1] \\ [R_\theta]\end{matrix}$$
+\par pour $\theta\in\R$
+\par ie chaque bloc est soit $I$, soit $-I$, soit une rotation.}
+\Thr{}{Soit $E$ un espace euclidien de dimension $n$, soit $\mathcal{B}$ une \underline{base orthonormale} de $E$, soit $u\in\mathcal{L}(E)$
+\par $u$ est auto-adjoint si $Mat_B(u)\in\mathcal{S}_n(\R)$}
+\Thr{Théorème spectral}{Tout endomorphisme auto-adjoint d'un espace euclidien est diagonalisable dans une BON.}
+\Thr{Théorème spectral matriciel}{Toute matrice symétrique réelle est orthogonalement semblable à une matrice diagonale.}
+\Thr{}{Soit $E$ un espace euclidien et $\varphi$ une fbs sur $E$. Il existe un unique endomorphisme auto-adjoint $u$ tel que :
+\par $$\forall x,y\in E, \varphi(x,y) = \langle x, u(y)\rangle$$}
+\Def{}{Soit $S\in\mathcal{S}_n(\R)$.
+\par On dit que :\begin{itemize}
+\item $S$ est positive si $(X,Y)\mapsto X^T SY$ est une forme bilinéaire symétrique positive sur $\mathcal{M}_{n,1}(\R)$. On note l'ensemble de ces matrices $\mathcal{S}_n^+(\R)$.
+\item $u$ est défini positif si $(X,Y)\mapsto X^TSY$ est un produit scalaire sur $\mathcal{M}_{n,1}(\R)$. On note l'ensemble de ces endomorphismes $\mathcal{S}_n^{++}(\R)$.
+\end{itemize}}
+\Thr{}{Soit $E$ un espace euclidien et $u\in\mathcal{S}(E)$ alors :\begin{itemize}
+\item $u$ est positif si, et seulement si, $S_p(u)\subset\R_+$
+\item $u$ est défini positif si, et seulement si, $S_p(u)\subset\R_+^*$
+\end{itemize}}
+
+
+
+\subsection{Classification des matrices orthogonales du plan}
+($\mathcal{O}_2(\R)$ l'ensemble des matrices orthogonales de $\mathcal{M}_2(\R)$)
+\par $\mathcal{O}_2(\R)=\{R_\theta\vert\theta\in\R\}\cup\{S_\theta\vert\theta\in\R\}$
+\par $R_\theta = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$
+\par $S_\theta = \begin{pmatrix} \cos\theta & \sin\theta \\ \sin\theta & -\cos\theta\end{pmatrix}$
+\par $\mathcal{SO}_2(\R) = \mathcal{O}_2^+(\R) = \{R_\theta\vert\theta\in\R\}$ (ensemble des rotations d'angle $\theta$, ensemble des matrices de $\mathcal{O}_2(\R)$ de déterminant 1)
+\par $\mathcal{O}_2^-(\R)=\{S_\theta\vert\theta\in\R\}$ (ensemble des matrices de $\mathcal{O}_2(\R)$ de déterminant $-1$)
+\Thr{}{$\forall(\theta,\varphi)\in\R^2$ :\begin{itemize}
+\item $$R_\theta R_\varphi = R_{\theta+\varphi}$$
+\item $$R_\theta^{-1} = R_{-\theta} =R_\theta^T$$
+\item $\mathcal{SO}_2(\R)$ est un groupe commutatif, en particulier :
+\par $$\forall \theta,\varphi\in\R, R_\theta R_\varphi R_\theta^{-1}=R_\varphi$$
+\par Dans ce cas, $R_\theta$ est la matrice de passage d'une BOND dans une BOND.
+\end{itemize}}
+\Pre{Se prouvent par du calcul matriciel, et un peu de trigonométrie.}
+$S_\theta$ est une symétrie orthogonale par rapport à une droite
+\par $S_\theta\times \begin{pmatrix}\cos(\frac{\theta}{2})\\\sin(\frac{\theta}{2})\end{pmatrix} = \begin{pmatrix}\cos(\frac{\theta}{2})\\ \sin\frac{\theta}{2}\end{pmatrix}$
+\par $S_\theta\times \begin{pmatrix}-\sin(\frac{\theta}{2})\\\cos(\frac{\theta}{2})\end{pmatrix} = -\begin{pmatrix}-\sin(\frac{\theta}{2})\\ \cos\frac{\theta}{2}\end{pmatrix}$
+\par Donc $S_p(S_\theta) = \{-1,1\}$ Et $E_1(S_\theta)$ est orthogonal à $E_{-1}(S_\theta)$
+
+\subsection{Classification des matrices orthogonales d'un espace euclidien orienté de dimension 3}
+Pour $u\in\mathcal{O}(E_3)$, on note $F = \ker (u-id)$
+\par Si $\dim F = 3$ : alors $u = id$, donc $u$ est nécessairement dans $\mathcal{O}_+(E_3)$
+\par Si $\dim F=2$, alors $\dim F^\perp=1$, l'endomorphisme induit par $u$ sur $F^\perp$ est égal à $id_{F^\perp}$ ou $-id_{F^\perp}$
+\par Si $u_{F^\perp}$ était égal à $id_{F^\perp}$, alors $u$ serait l'identité. Donc nécessairement, $u_{F^\perp} = -id_{F^\perp}$
+\par Donc $u$ est la symétrie orthogonale par rapport à $F$
+\par Si $\dim F=1$, alors $\dim F^\perp = 2$. Notons $v$ l'endomorphisme induit par $u$ sur $F^\perp$.
+\par $v$ est donc soit une symétrie orthogonale par rapport à une droite, soit une rotation du plan. Si $v$ était une symétrie orthogonale, on aurait $\dim F = 2$, donc $v$ est une rotation du plan $F^\perp$
+\par Donc si on choisit $w$ un vecteur qui oriente $F$ et qu'on choisit $u, v$ dans $F^\perp$ tels que $(u,v)$ soit une base orientée de $F^\perp$ et que $(w, u, v)$ soit une base directe de $E_3$, on a alors que $u$ est la rotation d'axe $w$ orienté par $w$ d'angle $\theta$
+\par Si $\dim F=0$, alors ça veut dire que $1$ n'est pas valeur propre, donc $-1$ est valeur propre. $u$ est donc la composée d'une symétrie orthogonale et d'une rotation.
+\begin{Exe}
+Prenons $u\in\mathcal{L}(E_3)$ avec $\mathcal{B}$ une BOND de $E_3$ telle que $Mat_\mathcal{B}(u) = \frac{1}{3}\begin{pmatrix} 2 & 1 & 2 \\ 2 & -2 & -1 \\ 1 & 2 & -2\end{pmatrix}$
+\par On peut faire les produits scalaires des colonnes les unes avec les autres, et on obtiendra que les produits scalaires sont nuls. Donc $A\in\mathcal{O}_3(\R)$, soit $u\in\mathcal{O}(E_3)$
+\par Le calcul du déterminant de $A$ donne $1$, donc $u\in\mathcal{SO}(E_3)$, et $u\neq id$. Donc $u$ est une rotation d'axe d'angle $\theta$ orientée par $w$.
+\par $w$ est solution de $(id-u)(w)=0$. On échelonne le système, et on obtient que $w$ est solution de $\left\{\begin{array}{ccccl} x & -y & -2z & = & 0 \\ & 3y & -3z & = & 0 \\ & -3y & +3z & = & 0\end{array}\right.$
+\par Choisissons $w = 3e_1+e_2+e_3$, qu'on norme en $e_1' = \frac{1}{\Vert w\Vert}w=\frac{1}{\sqrt{11}}w$
+\par Pour le choix du deuxième élément de la base, on a juste besoin d'un élément de $F^\perp$, donc on peut choisir le vecteur normé qu'on veut. On prend $e_2' = \frac{1}{\sqrt{10}}(e_1-3e_2)$
+\par On n'a plus de choix pour le troisième élément de la base cependant. Pour déterminer un vecteur qui soit orthogonal aux deux précédents, on peut utiliser le produit vectoriel, et on a $e_3' = \frac{1}{\sqrt{10}\sqrt{11}}(3e_1+e_2-10e_3)$
+\par On note $\mathcal{B}' = (e_1', e_2', e_3')$
+\par On a alors $Mat_{\mathcal{B}'}(u) = \begin{pmatrix} 1 & 0 & 0 \\ 0 & \cos\theta & -\sin\theta \\ 0 & \sin\theta & \cos\theta\end{pmatrix}$
+\par (La matrice de passage de $\mathcal{B}$ dans $\mathcal{B}'$ est la matrice d'une BOND dans une BOND, donc son inverse est égal à sa transposée.)
+\par On a que $tr(A)=tr(A')$, donc $\frac{-2}{3} = 1 + 2\cos\theta$.
+\par D'où $\cos\theta = \frac{-5}{6}$
+\par Et donc $\theta=\pm\arccos\left(\frac{-5}{6}\right)$
+\par Pour déterminer le signe, on fait le produit mixe de $w, e_2', r_{w, \theta}(e_2')$, qui vaut $\Vert w\Vert\sin \theta$ dans la base $\mathcal{B}'$.
+\par Dans la base $\mathcal{B}$ d'origine, on a que leur produit mixte vaut $\left\vert\begin{matrix} 3 & \frac{1}{\sqrt{10}} & \frac{-5}{3\sqrt{10}} \\ 1 & \frac{-3}{\sqrt{10}} & \frac{8}{3\sqrt{10}} \\ 1 & 0 & \frac{-5}{3\sqrt{10}}\end{matrix}\right\vert>0$
+\par Donc $\sin\theta>0$
+\par Donc $\theta = +\arccos\left(\frac{-5}{6}\right)$
+\end{Exe}
+
+
+\subsection{Groupes et anneaux}
+\Def{}{Un groupe est monogène s'il est engendré par un élément.
+\par i.e. $G$ est monogène si $\exists a\in G, G = \{a^n\vert n\in\Z\}\text{ ou }\{na\vert n\in\Z\}$}
+\Def{}{$G$ est cyclique si $G$ est monogène fini.}
+\Def{Ordre}{Soit $G$ un groupe
+\par Soit $a\in G$
+\par On dit que $a$ est d'ordre fini si $\langle a\rangle$ est de cardinal fini (cyclique).
+\par On dit alors que l'ordre de $a$ est $\mathrm{card}\langle a\rangle$}
+\Thr{}{Soit $G$ un groupe fini et $a\in G$\begin{itemize}
+\item $$\mathrm{ordre}(a) = \mathrm{card}\langle a \rangle = min\{n\in\N^*\vert a^n = e\}$$
+\item $$\forall p\in\Z, a^p = e \Leftrightarrow \mathrm{ordre}(a)\vert p$$
+\end{itemize}}
+\Thr{Théorème de Lagrange}{Si $G$ est fini et $a\in G$, alors l'ordre de $a$ divise le cardinal de $G$.}
+\Thr{}{\begin{itemize}
+\item Un groupe monogène infini est isomorphe à $\Z$
+\item Un groupe monogène fini $G$ est isomorphe à $\Z/n\Z$ (où $n = \mathrm{card}(G)$)
+\end{itemize}}
+On étudie ensuite Z/nZ
+\Def{Lois de composition interne de Z/nZ}{On définit la loi additive par :
+\par $$+:\left\{\begin{array}{rcl} \Z/n\Z \times \Z/n\Z & \to & \Z/n\Z \\ (\overline{x}, \overline{y}) & \mapsto & \overline{x}+\overline{y} = \overline{x+y}\end{array}\right.$$
+\par On définit la loi multiplicative par :
+\par $$\times:\left\{\begin{array}{rcl} \Z/n\Z \times \Z/n\Z & \to & \Z/n\Z \\ (\overline{x}, \overline{y}) & \mapsto & \overline{x}\times\overline{y} = \overline{xy}\end{array}\right.$$}
+On n'a pas l'intégrité de cet anneau si $n$ n'est pas premier.
+
+\Thr{}{Pour $n\in\N$, $n\geq 2$
+\par Soit $p\in\Z$\begin{itemize}
+\item $\overline{p}$ est un générateur de $(\Z/n\Z,+)$ si, et seulement si, $p\wedge n = 1$
+\item $\overline{p}$ est un inversible de $(\Z/n\Z,\times)$ si, et seulement si, $p\wedge n = 1$
+\end{itemize}
+Donc $\Z/n\Z$ est un corps si, et seulement si, $n$ est premier. On note $\mathbb{F}_n$ ce corps.}
+\Thr{Euler-Fermat}{Soit $n\in\N,n\geq 2$ et $a\in(\Z/n\Z)^\times$
+\par Alors :
+\par $$a^{\varphi(n)}=\overline{1}$$}
+\Thr{Lemme chinois}{Si $(n,p)\in(\N\backslash\{0,1\})^2$ avec $n\wedge p=1$,
+\par Alors $\Z/np\Z$ est un anneau isomorphe à $\Z/n\Z\times \Z/p\Z$}
+\Def{Indicatrice d'Euler}{On note $\varphi(n) = \mathrm{Card}(\Z/n\Z)^\times = \mathrm{Card}\{\in\llbracket 0,n\rrbracket, p\wedge n = 1\}$
+\par On appelle $\varphi$ l'indicatrice d'Euler. Elle sert à compter les inversibles de $\Z/n\Z$.}
+\Thr{}{Si $n\wedge p = 1$, alors $\varphi(np) =\varphi(n)\varphi(p)$}
+
+
+
+
+
+\subsection{Idéaux et anneaux}
+\Def{Anneau euclidien}{$A$ est un anneau euclidien si :\begin{itemize}
+\item $A$ est un anneau commutatif intègre ($AB=0 \Rightarrow A=0\text{ ou } B=0$)
+\item $A$ est muni d'une division euclidienne : il existe $\varphi\in\mathcal{F}(A\backslash\{0\},\N)$ telle que $\forall b\in A\backslash\{0\}, \forall a\in A, \exists q,r\in A, a =bq+r$ et $(r=0\text{ ou }\varphi(r)<\varphi(b)$
+\end{itemize}}
+\Def{Divisibilité}{Soit $A$ un anneau euclidien (ou intègre). Soit $a,b\in A$. \par On dit que $b$ divise $a$ (noté $b|a$) ou que $a$ est un multiple de $b$ si $\exists c\in A, a = bc$}
+\Thr{Association}{Soit $A$ un anneau euclidien \par Soit $a,b\in A$, $a$ divise $b$ et $b$ divise $a$ si, et seulement si, il existe un inversible tel que $b = au$}
+\Def{Idéal}{Soit $A$ un anneau euclidien. Soit $I\subset A$. \par On dit que $I$ est un idéal si : \begin{itemize}
+\item $I$ est un sous-groupe de $(A,+)$
+\item $\forall i\in I, \forall a\in A, ia\in I$
+\end{itemize}}
+\Def{PGCD}{Avec $A$ un anneau euclidien, soit $a,b\in A$, on appelle $pgcd(a,b)$ un générateur de $aA+bA$
+\par Dans $\Z$ ou $\K[X]$, on choisit un générateur spécifique, noté $a\wedge b$, et on l'appelle le pgcd.
+\par $aA+bA =(a\wedge b)A$}
+
+\Thr{}{Avec $J$ un ensemble quelconque, $(I_j)_{j\in J}$ une famille d'idéaux de $A$, alors $\cap_{j\in J} I_j$ est un idéal}
+\Thr{}{Si $I_1$ et $I_2$ sont des idéaux, alors $I_1+I_2$ est un idéal.
+\par C'est le plus petit idéal contenant $I_1\cup I_2$.}
+\Thr{}{Si $A$ est un anneau euclidien, alors tout idéal de $A$ est principal.
+\par Cela signifie que si $I$ est un idéal de $A$, alors $\exists a\in A, I = aA$}
+\Thr{Bézout}{$a,b\in A$ sont premiers entre eux si, et seulement si, $\exists (u,v)\in A^2, au+bv=1$}
+\Thr{Bézout étendu}{$$\forall a,b\in A, \forall x\in A : \exists u,v\in A, x=au+bv \Leftrightarrow (a\wedge b)\vert x$$}
+\Thr{Bézout généralisé}{$(a_1,a_2...,a_n)\in A^n$ sont premiers entre eux si, et seulement si, $\exists (u_1,...,u_n)\in A^n, 1=a_1u_1+a_2u_2+...+a_nu_n$}
+\Thr{}{Tout élément de $\Z$ et de $\K[X]$ peut se décomposer en un produit unique d'éléments irréductibles (éléments qui, à un inversible près, ont un seul diviseur) et d'un inversible.}
+
+\Def{Espaces caractéristiques}{Soit $E$ un $\K$-ev de dimension finie, soit $f\in\mathcal{L}(E)$ telle que $\chi_f$ est scindé. \par $\chi_f = \prod\limits_{i=1}^p(x-\lambda_i)^{\alpha_i}$ avec $S_p(f)=\{\lambda_1,...,\lambda_p\}$ et $(\alpha_1,...,\alpha_p)\in\N^{*p}$ \par Alors $E=\bigoplus\limits_{1\leq i\leq p}\ker((f-\lambda_iid)^{\alpha_i})$ par lemme des noyaux.
+\par Les sev de $E$, $F_i = \ker((f-\lambda_i)^{\alpha_i})$ sont appelés sous-espaces caractéristiques de $f$.\begin{itemize}
+\item les sous-espaces caractéristiques sont stables par $f$ ;
+\item $f$ est entièrement caractérisée par $f_1,f_2,...,f_p$ les endomorphismes induis par $f$ sur $F_1,...,F_p$ ;
+\item $\forall i\in\llbracket 1,p\rrbracket, (f_i-\lambda_iid)^{\alpha_i}=0$, ou $f_i-\lambda_iid$ est nilpotent, donc $f_i$ a pour unique valeur propre $\lambda_i$ ;
+\item les $f_i$ sont trigonalisables (leur polynôme caractéristique est scindé) ;
+\item dans une base $\mathcal{B}=(\mathcal{B}_1,...,\mathcal{B}_p)$ où $\forall i\in\llbracket 1,p\rrbracket$, $\mathcal{B}_i$ est une base de diagonalisation de $f_i$, alors $Mat_\mathcal{B}(f)$ est diagonale par blocs, chaque bloc étant triangulaire de taille $\alpha_i\times \alpha_i$ ;
+\item pour $i\in\llbracket 1,p\rrbracket$, $\dim F_i = \alpha_i$.
+\end{itemize}}
+\Thr{Lemme des noyaux}{Soit $E$ un $\K$-ev, $f\in \mathcal{L}(E)$.
+\par Soit $P\in \K[X]$ tel que $P=P_1...P_n$ où $P_1,...,P_n$ sont premiers entre eux deux à deux.
+\par $\ker P(f) = \bigoplus\limits_{i=1}^n\ker(P_i(f))$}
+
+
+
+\chapter{Physique - sup}
+\section{L'électrocinétique}
+\Thr{Loi des noeuds}{La somme des courants entrants dans un noeud est égale à la somme des courants sortants.}
+\Thr{Loi des mailles}{La somme des tensions dans une maille est nulle.}
+\Thr{Pont diviseur de tension}{Si la tension entre deux dipôles d'impédance $Z_1$ et $Z_2$ vaut $U_e$ et qu'on cherche la tension $U$ aux bornes de $Z_1$, alors :
+\par $$U =\frac{Z_1U}{Z_1+Z_2}$$}
+\Thr{Pont diviseur de courant}{Avec deux dipôles en parallèle, $Z_1$ dans lequel passe le courant $i_1$ et $Z_2$ dans lequel passe le courant $i_2$, avec $i$ le courant qui arrive dans le noeud qui se sépare dans les branches des deux :
+\par $$i_1 =\dfrac{R_2i}{R_1+R_2}$$}
+\Def{La résistance}{Un dipôle, qui en convention récepteur a une tension de :
+\par $$U = Ri$$
+\par Avec $R$ sa résistance en ohms $\Omega$.
+\par Son impédance complexe est $R$.
+\par Son admittance complexe est $\frac{1}{R}$.}
+\Def{Le condensateur}{Un dipôle constitué de deux barres de métal avec un isolant entre les deux, tel que, en convention récepteur :
+\par $$i = C\dfrac{d u}{dt}$$
+\par $C$ est la capacité du condensateur, en farads F. ($=A.s.V^{-1}=m^{-2}kg^{-1}s^4A^2$)
+\par Il y a continuité de la tension dans un condensateur.
+\par Sur chaque barre du condensateur, on peut mettre une charge $q$. Une barre est chargée positivement, l'autre l'est négativement.
+\par La charge respecte la relation :
+\par $$q = Cu$$
+\par Son impédance complexe est $\frac{1}{jC\omega}=-\frac{j}{C\omega}$
+\par Son admittance complexe est $jC\omega$
+\par En basse fréquence, un condensateur se comporte comme un interrupteur ouvert.
+\par En haute fréquence, un condensateur se comporte comme un fil.}
+\Def{Le solénoïde}{Un dipôle constitué de fils de métal enroulés, tel que, en convention récepteur :
+\par $$U = L\dfrac{di}{dt}$$
+\par $L$ est son inductance en Henry H. ($V.s.A^{-1}$)
+\par Il y a continuité du courant au travers d'un solénoïde.
+\par Son impédance complexe est $jL\omega$
+\par Son admittance complexe est $\frac{1}{jL\omega}=-\frac{j}{L\omega}$
+\par En basse fréquence, un solénoïde se comporte comme un fil.
+\par En haute fréquence, un solénoïde se comporte comme un interrupteur ouvert.}
+
+
+\section{Mécanique du point}
+Dans tout ce chapitre, on se place dans un référentiel galiléen $\mathcal{R}$ et on considère un point $M$ de masse $m$, repéré par un vecteur $\overrightarrow{OM}(t)$, qui subit des forces $(\vec{F_i})$
+\Thr{RFD}{Pour un point de masse $m$ repéré par un vecteur $\overrightarrow{OM(t)}$ en fonction du temps, subissant des forces $\vec{F_i}$ :
+\par $$m\dfrac{d^2\overrightarrow{OM(t)}}{dt^2} = \sum\vec{F_i}$$
+\par On note $\vec{p} = m\dfrac{d\overrightarrow{OM(t)}}{dt} = m\vec{v}(t)$ la quantité de mouvement du point, en 
+\par On note $E_c=\frac{1}{2}mv^2 =\frac{p^2}{2m}$ l'énergie cinétique d'un point, en joules $J$.}
+\Def{Grandeurs relatives à une force}{Une force est représentée par un vecteur, qui a une norme en Newton, ou en $kg.m.s^{-2}$.
+\par On définit la puissance d'une force $\vec{F}$ s'appliquant sur un point qui va à la vitesse $\vec{v}$ comme :
+\par $$\mathcal{P}=\vec{F}\cdot\vec{v}$$
+\par La puissance est en watts $W=J.s^{-1} = kgm^2s^{-3}$
+\par On définit le travail d'une force $\vec{F}$ de puissance $\mathcal{P}$ comme :
+\par $$W = \int_0^\tau\mathcal{P}(t)dt$$
+\par Le travail est une énergie, qui s'exprime en joules $J$
+\par Si le travail entre deux points $A$ et $B$ peut s'exprimer sous la forme de $E_p(A)-E_p(B)$, alors on dit que la fonction $E_p$ représente l'énergie potentielle de la force. On dit aussi que la force est conservative.
+\par Il est à noter que $E_p$ est définie à une constante additive près.
+\par Si le travail est positif, on le dit moteur. Sinon, on le dit résistant. S'il est nul, la force ne travaille pas (elle est orthogonale à la trajectoire)}
+\Thr{Théorème de la puissance mécanique TPM}{En tout instant :
+\par $$\dfrac{d M(t)}{dt} = \sum \mathcal{P}_i$$}
+\Thr{Théorème de l'énergie cinétique TEC}{En intégrant la relation précédente, on a :
+\par $$\Delta E_c = \sum W_i$$}
+\Thr{Conservation de l'énergie mécanique TEM}{Si toutes les forces s'appliquant à $M$ sont conservatives, on peut écrire :
+\par $$E_c + \sum E_{p,i} = cste$$
+\par Même si elle n'est pas constante, on note $E_m =E_c + \sum E_{p,i} = E_c + E_{ptot}$ l'énergie mécanique du point.
+\par Les extréma de $E_{ptot}$ sont appelés des points d'équilibres. Les maxima sont des points instables (un changement d'énergie potentielle va leur faire descendre une pente), et les minima sont des points stables.
+\par On les identifie en regardant les points critiques de $E_{ptot}$ puis en calculant sa dérivée seconde (si elle est positive, c'est un minimum, si elle est négative c'est un maximum)}
+
+\Thr{Modélisation des forces usuelles}{\textbf{Tension ressort :} sa masse est négligeable et on a, avec $\vec{e}_r$ la direction du ressort, $l$ sa longueur, $k$ son coefficient de raiseur et $l_0$ sa longueur au repos : $\vec{T} = -k(l-l_0)\vec{e}_r$
+\par\textbf{Energie potentielle tension ressort :} $E_{pe}= \dfrac{1}{2}k(l-l_0)^2+cste$
+\par\textbf{Pression :} La pression exercée par un fluide sur un plan $S$ solide est $\vec{F} = PS\vec{n}$ avec $\vec{n}$ normal à la surface, dirigé du fluide vers le solide et $P$ pression du fluide. Si un solide est totalement immergé, la force est la poussée d'Archimède, égale à l'opposée du poids du fluide déplacé.
+\par\textbf{Frottement fluide :} Quand un objet est en mouvement dans un fluide, on a la force de frottement : $\vec{F}_f = -h\vec{v}(M)$ ou $\vec{F}_f = -h\vec{v}(M)^2$, avec $h$ une constante.
+\par\textbf{Gravitation :} La gravité entre deux points $A$ et $B$ est : $\vec{F}_{g_{A\to B}} = -G\dfrac{m_Am_B}{AB^2}\vec{e}_{A\to B}$ avec $G=6.674.10^{-11} m^3.kg^{-1}.s^{-2}$ constante de gravitation universelle.
+\par\textbf{Energie potentielle gravitation :} $E_{pg} = -G\dfrac{Mm}{r}+cste$ 
+\par\textbf{Force électrique :} La force électrique entre deux points $A$ et $B$ est : $\vec{F}_{el_{A\to B}} = \dfrac{1}{1\pi\varepsilon_0}\dfrac{q_Aq_B}{AB^2}\vec{e}_{A\to B}$ avec $\varepsilon_0 = 8.854.10^{-12} F.m^{-1}$ la permittivité du vide.
+\par\textbf{Force de Lorentz :} La force induite sur une particule de charge $q$ par un champ électrique $\vec{E}$ et un champ magnétique $\vec{B}$ est : $\overrightarrow{F_L} = q\vec{E} + q\vec{v}\wedge \vec{B}$ 
+\par\textbf{Poids :} Sur Terre, on a $\vec{P} = m\vec{g}$ où $g=9.81 m.s^{-2}$ est la norme du vecteur $\vec{g}$
+\par\textbf{Energie potentielle du poids :} $E_{pp} = mgz+cste$ si $z$ est la position verticale.}
+
+\section{Mécanique du solide}
+On se place toujours dans un référentiel galiléen $\mathcal{R}$, mais désormais dans le cas d'un solide $S$ indéformable, en rotation autour d'un axe $\Delta$, sur lequel s'appliquent les forces $(\vec{F_i})$
+\Def{Moment cinétique}{Pour un point $M$, le moment cinétique par rapport à un point $O$ est le vecteur :
+\par $$\overrightarrow{L_O}(M) = m\overrightarrow{OM}\wedge\overrightarrow{v(M)}$$
+\par Pour un point $M$, le moment cinétique par rapport à l'axe $\Delta$ contenant le point $O$, orienté par $\overrightarrow{e_\Delta}$ est :
+\par $$L_\Delta(M)=\overrightarrow{L_0}(M)\cdot\overrightarrow{e\delta} = m[\overrightarrow{OM}\wedge\overrightarrow{v(M)}]\cdot\overrightarrow{e_\Delta}$$
+\par C'est donc le projeté du moment cinétique de $M$ par rapport à $O$ sur l'axe $\Delta$
+\par On peut définir à partir de ça le moment cinétique d'un système par rapport à un point ou un axe, ça sera la résultante des moments de tous les points du système.}
+\Def{Moment d'une force}{Pour une force $\vec{F}$, son moment vectoriel par rapport au point $O$ est le vecteur :
+\par $$\overrightarrow{\mathcal{M}_O}(\vec{F}) = \overrightarrow{OM}\wedge \vec{F}$$
+\par On peut aussi définit son moment scalaire selon l'axe $\Delta$ passant par $O$ et de vecteur unitaire $\overrightarrow{e_\Delta}$ :
+\par $$\mathcal{M}_\Delta(\vec{F}) = \overrightarrow{\mathcal{M}_O}(\vec{F})\cdot\overrightarrow{e_\Delta} = [\vec{OM}\wedge\vec{F}]\cdot\vec{e_\Delta}$$}
+\Thr{Théorème du moment cinétique}{On a :
+\par $$\dfrac{dL_\Delta(M)}{dt} = \sum\mathcal{M}_\Delta(\vec{F_i})$$
+\par Ce qu'on peut écrire en vectoriel par :
+\par $$\dfrac{d\vec{L_O(M)}}{dt} = \sum\vec{\mathcal{M}_O(\vec{F_i})}$$}
+
+\Def{Rotation}{Un solide $S$ est en rotation autour d'un axe $\Delta$ si tous ses points ont une trajectoire circulaire centrée sur un point de $\Delta$.
+\par Donc tous les points du solide sont à une distance constante les uns des autres, on n'a besoin que d'un seul angle $\theta$ pour tous les repérer dans l'espace.
+\par On définit $\omega = \dot{\theta}$ la vitesse angulaire du solide.
+\par On définit $\dot{\omega}=\ddot{\theta}$ l'accélération angulaire du solide.
+\par Comme $S$ est en rotation, pour un point $M$ de $S$ on peut écrire :
+\par $$\vec{v(M)} = r\omega \vec{e_\theta}$$
+\par $$\vec{\Gamma(M)} = -r\omega^2\vec{e_r} + r\dot{\omega}\vec{e_\theta}$$}
+\Def{Moment d'inertie}{Pour $S$ un solide en rotation autour de $\Delta$, on a toujours que :
+\par $$L_\Delta(S) = J_\Delta\omega$$
+\par Où $J_\Delta$ est une constante, appelée le moment d'inertie du solide.
+\par Donc dans la formule du moment cinétique, on aura très simplement :
+\par $$\dfrac{dL_\Delta(S)}{dt}=J_\Delta\dot{\omega}$$
+\par L'énergie cinétique du solide peut aussi être calculée très facilement, et vaut :
+\par $$ E_c(S) = \frac{1}{2}J_\Delta\omega^2$$}
+\Thr{Exemples de moments d'inertie}{Pour une tige de masse $m$ de longueur $L$ par rapport à un axe orthogonal : $J_\Delta = \dfrac{1}{3}mL^2$ si la tige touche l'axe en ses extrémités ; $J_\Delta = \dfrac{1}{12}mL^2$ si l'axe est au milieu de la tige.
+\par Pour un cerceau de masse $M$ et de rayon $R$ par rapport à son axe de révolution : $J_\Delta=mR^2$.
+\par Disque ou cylindre de masse $m$, de rayon $R$ par rapport à son axe de révolution : $J_\Delta = \dfrac{1}{2}mR^2$.
+\par Boule pleine de masse $m$, de rayon $R$ par rapport à l'un de ses axes de révolution : $J_\Delta = \dfrac{2}{5}mR^2$.}
+\Def{Forces à considérer}{On peut, dans un solide en rotation, avoir deux forces de résultante nulle (elles ont même norme) mais dont la somme des moments ne l'est pas. On l'appelle un couple de forces.
+\par Il y a aussi, pour la rotation entre le solide et l'axe, un pivot qui peut être solide. Soit on néglige le frottement engendré par ce pivot et on dit qu'on a une liaison pivot parfaite, soit on la considère comme un couple de forces résistant.}
+\Thr{Théorème du moment cinétique}{On a vu comment on devait écrire $\dfrac{dL_\Delta}{dt}$, ce qui quand on réinjecte dans le théorème du moment cinétique donne :
+\par $$J_\Delta\dfrac{d\omega}{dt} = \sum\mathcal{M}_\Delta(_vec{F})$$}
+\Def{Grandeurs associées à une force}{Dans ce système, on peut réécrire la puissance d'une force comme :
+\par $$\mathcal{P} =\mathcal{M}_\Delta\omega$$
+\par Et son travail comme :
+\par $$W = \int_{\theta_1}^{\theta_2}\mathcal{M}_\Delta d\theta$$}
+\Thr{Théorème de l'énergie cinétique}{On peut donc réécrire le théorème de l'énergie cinétique :
+\par $$\frac{1}{2}J_\Delta(\omega_f^2-\omega_i^2) = \sum W^{i\to f}$$}
+
+\section{Mouvement à force centrale}
+Une force est centrale lorsque son support passe par un point fixe du référentiel. Dans notre étude, elle sera colinéaire à $\vec{OM}$ (on choisit ce point fixe comme l'origine du repère sphérique)
+\Thr{Conversation du moment cinétique}{Pour $M$ en mouvement à force centrale dans un référentiel galiléen, le moment cinétique de $M$ en $O$ est une constante.
+\par Obligatoirement, ça veut dire que le mouvement de $M$ se passe dans un plan contenant $O$ et orthogonal à son moment. Si le moment devait être nul, alors le mouvement se ferait selon une droite.
+\par Dans le plan du mouvemant, on a que $r^2\dot{\theta}$ est une constante, qu'on appelle la constante des aires $C$.
+\par (On dit ça parce que l'aire balayée pendant un temps $\Delta t$ est $S = \frac{\vert C\vert}{2}\Delta t$)}
+
+
+\newpage
+\chapter{Thermo}
+\Def{Définitions générales}{Un système est une portion de matière séparée du milieu extérieur. L'univers est le système union l'extérieur.
+\par Un système est isolé (resp. fermé, ouvert) s'il n'échange ni matière (resp. ni matière, de la matière) ni énergie (resp. de l'énergie, de l'énergie) avec le milieu.
+\par Une paroi est dite diatherme/diathermane (resp. calorifugée/athermane) si elle permet le transfert thermique (resp. si elle ne le permet pas)
+\par Un équilibre thermodynamique (resp. thermique, mécanique) d'un système est lorsque les variables d'état sont constantes et qu'il n'y a pas d'échange avec le milieu extérieur (resp. égalité des températures intérieures et extérieures, égalité des pressions à l'intérieur et à l'extérieur sur la frontière)
+\par La vitesse quadratique moyenne d'une particule de masse m est $u=\sqrt{\frac{3RT}{m}} =\sqrt{\frac{3k_BT}{m}}$
+\par L'équation d'état d'un gaz parfait est $PV=nRT$, et on suppose en pratique que les gaz réels sont parfaits.
+\par Une phase est une partie d'un système où les grandeurs intensives dépendent de l'espace
+\par Une phase condensée (liquide ou solide) est une phase de volume constant
+\par Un thermostat est un système fermé n'échangeant pas de travail mais capable d'échanger de la chaleur sans que sa température varie (sa capacité thermique est considérée infinie)}
+\Def{Transformations}{Une transformation est infinitésimale quand les états d'équilibre initiaux et finaux sont infiniment proches
+\par Une transformation quasi-statique est une suite de transformations infinitésimales
+\par Une transformation est réversible si elle est quasi-statique et en équilibre thermodynamique permanent, donc que son sens peut être inversée. Toute transformation autre est irréversible.
+\par Une transformation est monotherme (resp. isotherme) si la température extérieure est constante (resp. la température du système est constante)
+\par Une transformation est monobare (resp. isobare) si la pression extérieure est constante (resp. la pression du système est constante)
+\par Une transformation est isochore si le volume du système est constant
+\par Une transformation est cyclique si les états initiaux et finaux sont confondus
+\par Une transformation est adiabatique s'il n'y a pas de transfert thermique avec l'extérieur
+\par Une transformation est isentropique si son entropie est constante, donc si elle est réversible adiabatique}
+\Def{Grandeurs}{Une grandeur d'état est intensive (resp. extensive) si elle a une propriété locale en tout chaque point d'un système (resp. si elle constitue un stock dans le système)
+\par La quantité de matière est n, d'unité la mole (mol), extensive
+\par La pression est P, dont l'unité est le Pascal (Pa), intensive
+\par Le volume est V, dont l'unité est le mètre cube ($m^3$), extensive
+\par La température est T, dont l'unité est le Kelvin (K), intensive
+\par La masse est m, dont l'unité est le kilogramme (kg), extensive
+\par La concentration est c, dont l'unité est la mole par litre ($mol.L^{-1}$), intensive
+\par L'énergie interne d'un système est $U$, correspond aux mouvements de translation aléatoires des molécules et est donc fonction de la température, d'unité le joule (J), extensive}
+\Def{Constantes}{$k_B$ est la constante de Boltzmann, $k_B=1,381.10^{-23} J.K^{-1}$
+\par $n_A = 6,022.10^23 mol^{-1}$ est la constante d'Avogadro, le nombre d'atomes dans une mole
+\par $R = 8,314J.K^{-1}.mol^{-1}$ est la constante des gaz parfaits, $R=k_Bn_A$}
+\Thr{Premier Principe}{Pour tout système fermé, il existe une fonction extensive $E$ appelée énergie qui ne peu têtre qu'échangée (Lavoisier), sous forme de travail $W$ ou de transfert thermique $Q$.
+\par Donc pour une transformation entre deux états : $\Delta E = Q + W$
+\par Donc pour une transformation infinitésimale : $dE =\delta W+\delta Q$}
+\Thr{Capacité thermique du gaz parfait}{Dans un volume constant, on a que $\Delta U = C_V\Delta T$
+\par $C_V$ est la capacité thermique à volume constant du gaz en joules par Kelvin
+\par $C_{Vm} = C_v/n$ est la capacité molaire du gaz en joules par Kelvin par moles
+\par $c_v = C_V/m$ est la capacité thermique massique en joules par Kelvin par kilogrammes
+\par On n'a pas de modélisation pour les variations du volume}
+\Thr{Capacité thermique de la phase condensée}{On a pour une phase condensée que $\Delta U = C_V\Delta T$
+\par $C_V$ est la capacité thermique de la phase}
+\Thr{Travail}{Le travail reçu par un système par la pression pendant une transformation est $W = P_{ext}(V_I-V_F) = -\int_{V_I}^{V_F}P_{ext}dV$}
+\Thr{Transfert thermique}{Le transfert thermique ou la chaleur correspond à l'énergie échangée par l'interaction des particules du système avec celles du milieu extérieur au niveau microscopique.
+\par Il y a trois types de transferts : la conduction qui est de proche en proche, la convection qui vient avec un mouvement de fluide, le rayonnement qui se fait par une onde électromagnétique.}
+\Def{Enthalpie}{Une fonction d'état extensive définie par $H = U + PV$ donc d'unité le joule.
+\par Dans une transformation monobare avec une pression intérieure sans variation entre l'état final et initial ou dans une transformation isobare réversible, on a : $\Delta H = Q +W'$ (où $W'$ est le travail de toutes les forces sauf des forces de pression)
+\par L'enthalpie d'un gaz parfait est définie par la relation $\Delta H = C_P\Delta T$, avec $C_P$ la capacité thermique à pression constante de unité le joule par Kelvin.
+\par On note $\gamma =\frac{C_P}{C_V}$ le rapport des capacités thermiques, on a aussi que $C_P-C_V = nR$
+\par Dans une transformation adiabatique réversible d'un gaz parfait, on a que $PV^\gamma = cste$
+\par En conséquences, $TV^{\gamma-1} =cste$ et $T^\gamma P^{1-\gamma}=cste$
+\par Pour une phase condensée, on a que $PV\ll U\Rightarrow H\simeq U$, donc $C_P\simeq C_V$ et la même équation.}
+\Def{Enthalpie massique de transition de phase}{L'enthalpie massique de transition de phase à la température $T$ est définie comme la différence des enthalpies massiques d'un corps pur entre la phase 2 et la phase 1, à la même température $T$ de changement d'état et à la pression d'équilibre $P_{sat}(T)$
+\par On a donc $\Delta_{1\to 2}h(t) = h_2(t)-h_1(t)$}
+
+\Thr{Second Principe}{Pour tout système thermodynamique fermé, il existe une fonction d'état $S$ extensive appelée l'entropie, qui ne peut qu'augmenter.
+\par On écrit alors : $\Delta S=S_f-S_i=S_e-S_c$ où $S_e$ est l'entropie d'échange reçue depuis l'extérieur et $S_c$ l'entropie de création interne au système.
+\par Dans une transofomation monotherme, on a $S_e=\frac{Q}{T_0}$. L'entropie d'échange est positive si le système reçoit de la chaleur, et négative s'il en cède. On a nécessairement $S_c \leq 0$, avec $S_c=0$ indiquant une transformation réversible.
+\par Un système isolé n'a pas d'échanges, $\Delta S = S_c$ et donc ne peut que croître jusqu'à un équilibre.}
+\Thr{Variation d'entropie d'un gaz parfait}{Pour un gaz parfait on a que $S = \frac{nR}{\gamma-1}\ln(T) +nR\ln V + cste = \frac{nR\gamma}{\gamma-1}\ln T -nR\ln P + cste = \frac{nR}{\gamma-1}\ln P + \frac{nR\gamma}{\gamma-1}\ln V + cste$
+\par Donc on exprime $\Delta S = nC_{Pm}\ln(\frac{T_f}{T_i}) - nR\ln(\frac{P_f}{P_i}) = nC_{Vm}\ln(\frac{T_f}{T_i})+nR\ln(\frac{V_f}{V_i})$
+\par Pour une phase condensée incompressible, on a que $\Delta S = C\ln(\dfrac{T_f}{T_i})$}
+
+\Def{Généralités sur les machines thermiques}{Une machine est un dispositif qui réalise une conversion de données.
+\par Une machine thermique réalise une conversion continue d'énergie. Un fluide y subit une transformation cyclique, permettant la conversion d'énergie.
+\par Une source thermique (resp. mécanique) est un système qui échange de la chaleur mais pas de travail et dont la température ne varie pas (resp. qui échange du travail en l'absence d'énergie thermique)
+\par Un cycle est moteur (resp. récepteur) s'il fournit du travail à l'extérieur au total/si la courbe est parcourue en sens horaire (resp. s'il reçoit du travail à l'extérieur au total/si la courbe est parcourue en sens trigonométrique).}
+
+
+
+\newpage
+\section{Optique}
+Snell-Descartes $n_1\sin i_1 = n_2\sin i_2$ (réfraction) et $i_1'=-i_1$ où $i_1$ l'angle d'incidence
+\par Condition de réfraction limite : si $n_2<n_1$, on note $i_{lim} =\arcsin\left(\frac{n_2}{n_1}\right)$ et $i_1<i_{lim}$ donne réfraction. Sinon, réflexion totale. $n_1<n_2$ et il y a toujours réfraction.
+\par Grandissement : $\gamma = \frac{\overline{A'B'}}{\overline{AB}}$
+\par Formule Descartes : $\frac{1}{\overline{OA'}}-\frac{1}{\overline{OA}}=\frac{1}{\overline{OF}}$ 
+\par (et aussi $\frac{\overline{A'B'}}{\overline{AB}}=\frac{\overline{OA'}}{\overline{OA}}$)
+\par Formule Newton : $\frac{\overline{A'B'}}{\overline{AB}}=\frac{\overline{FO}}{\overline{FA}}=\frac{\overline{F'A'}}{\overline{F'O}}$
+\par (et aussi $\overline{FA}\cdot\overline{F'A'}=-\overline{OF}^2$)
+\par Association de lentilles : $\frac{1}{f_{tot}}=\frac{1}{f_1}+\frac{1}{f_2}$
+
+\section{Cinétique}
+\Def{Généralités}{Une espèce (physico-chimique) est une substance avec une formule chimique et un état (solide, liquide, gaz, soluté).
+\par La composition d'un système est l'ensemble des quantités de matière des constituants du système.
+\par Une espèce dissoute dans un solvant est un soluté, si le solvant est l'eau, l'espèce est aqueuse. Toutes les espèces dans l'eau sont dissoutes, sauf l'eau.
+\par On associe à une espèce dissoute une concentration en $mol.L^{-1} = \frac{n}{V}$ où $n$ est la quantité de matière de l'espèce et $V$ le volume total. On définit la concentration en masse comme la concentration multipliée par la masse molaire de l'espèce.
+\par Une espèce gazeuse se comporte comme un gaz parfait dans cette modélisation, on a donc : $PV = n_{totgaz}RT$
+\par La pression partielle d'une espèce indicée i est donc $P_i V=n_iRT$. La fraction molaire d'un constituant dans un mélange est $\frac{n_i}{n_{totgaz}}$
+\par Une transformation est totale (resp. limitée) si un réactif appelé limitant disparaît (resp. lorsque l'avancement total n'atteint pas sa valeur maximale).
+\par L'état final d'une transfomation est un état d'équilibre chimique : $x_f = x_{eq}$ 
+}
+\Thr{Evolution chimique}{Le quotient de réaction est défini par $Q_r = \prod\limits_{i} a(A_i)^{v_i}$, où $a(A_i)$ réfère à l'activité d'une espèce :\begin{itemize}
+\item L'activité d'un solide ou d'un liquide pur vaut toujours 1.
+\item L'activité d'un soluté est $a(A_i) = \frac{[A_i]}{c^0}$ avec $[A_i]$ concentration molaire et $c^0 = 1 mol.L^{-1}$
+\item L'activité d'un gaz parfait est $a(A_i) = \frac{P_i}{P^0}$ où $P_i$ pression partielle et $P^0 = 1 bar = 10^5 Pa$
+\end{itemize}
+Le quotient de réaction tend vers une constante d'équilibre $K^0(T)$ qui ne dépend que de la température. On a en déduit la loi d'action de masse : $K^0(T)=\prod\limits_{i}a(A_i)_{eq}^{v_i}$.
+\par On a que si $Q_r<K^0(T)$ (resp. $Q_r=K^0(T)$, $Q_r>K^0(T)$), le système évolue dans le sens direct de l'équation de réaction (resp. est à l'équilibre, évolue dans le sens indirect).
+}
+\Def{Vitesses dans une réaction}{La vitesse de consommation d'un réactif (resp. de formation d'un produit) $A_i$ est définie par : $v_{d,A_i} = -\dfrac{d[A_i]}{dt}$ (resp. $v_{f,A_i} = \dfrac{d[A_i]}{dt}$)
+\par La vitesse de volumique de réaction de la réaction $\sum\limits_{i} v_iA_i=0$ est définie par : $v=\frac{1}{V}\dfrac{dx}{dt}$ avec $x$ l'avancement. Alors pour tout constituant, $v= \frac{1}{v_i V}\dfrac{dn_{A_i}}{dt}$
+\par Si la réaction admet un ordre, la vitesse de réaction s'écrit sous la forme : $v=k\prod\limits_{i}[A_i]^{\alpha_i}$ ; $\alpha_i$ est l'ordre partiel de la réaction par rapport à $A_i$, distinct de $v_i$ ; $k$ est la constante de vitesse de la réaction. $\sum\limits_{i} \alpha_i$ est appelé ordre total de la réaction.
+\par La constante $k$ ne dépend que de la température. Loi empirique d'Arrhenius : $k = A\exp(-\dfrac{E_a}{RT})$ où $A$ est une constante et $E_a$ est l'énergie molaire d'activation de la réaction ($J.mol^{-1}$)
+}
+\Meth{Calculs d'ordre}{On a ces avancements pour l'espèce $A$ selon l'ordre de sa réaction :\begin{itemize}
+\item En ordre 0 : $-\frac{1}{\vert v_A\vert}\dfrac{d[A]}{dt}=k\Rightarrow [A]=[A]_0-\vert v_a\vert kt$
+\item En ordre 1 : $-\frac{1}{\vert v_A\vert}\dfrac{d[A]}{dt}=k[A]\Rightarrow \ln([A])=\ln([A]_0)-\vert v_a\vert kt$
+\item En ordre 2 : $-\frac{1}{\vert v_A\vert}\dfrac{d[A]}{dt}=k[A]^2\Rightarrow \dfrac{1}{[A]}-\dfrac{1}{[A]_0}=\vert v_a\vert kt$
+\item Avec les produits $\vert v_a\vert A + \vert v_b\vert B$, si on a des ordres partiels, alors $-\dfrac{1}{\vert v_a\vert}\dfrac{d[A]}{dt}=k[A]^\alpha[B]^\beta$ qui peut parfois se simplifier.
+\end{itemize}
+}
+\Meth{Temps de demi-réaction}{Le temps de demi-réaction est le temps au bout duquel la moitié de l'avancement final est atteint. Avec une réaction totale d'équation $\vert v_A\vert A = produits$, on a :\begin{itemize}
+\item En ordre 0 : $t_{1/2} = \frac{[A]_0}{2\vert v_A\vert k}$ 
+\item En ordre 1 : $t_{1/2} = \frac{ln(2)}{\vert v_A\vert k}$
+\item En ordre 2 : $t_{1/2} = \frac{1}{\vert v_A\vert k[A]_0}$
+\end{itemize}
+}
+\Thr{Beer-Lambert}{La loi de Beer-Lambert est que $A = \varepsilon_{\lambda,T}lc$ avec $\varepsilon_{\lambda,T}$ le coefficient d'absorption molaire à la température T et à la longueur d'onde $\lambda$, $l$ la longeuur de la cuve du spectrophotomètre et $c$ la concentration molaire de l'espèce qui absorbe.
+\par La conductivité d'une solution s'écrit $\sigma =\sum\limits_{i, ions}\lambda_i c_i$ où $\lambda_i$ est la conductivité molaire de l'ion i ($Sm^2mol^{-1}$) et $c_i$ la concentration molaire de l'ion.
+\par On note $G=k_{cell}\sigma$ où $k_{cell}$ la constante de cellule de la sonde du conductimètre.
+}
+
+\section{Molécules et ions}
+\Meth{Déterminer un schéma de Lewis}{La position dans le tableau périodique permet de déterminer le nombre d'électrons de valence : 1 pour la colonne 1, 2 pour la 2, 3 pour la 13, 4 pour la 14, 5 pour la 15, 6 pour la 16, 7 pour la 17 et 8 pour la 18 (sauf l'hélium, qui a 2)
+\par une fois déterminé, on en déduit le nombre $P_v$ de paires de valence : $N_v = \sum\limits_{i}n_i$ et on en déduit $P_v=\frac{N_v}{2}$.
+\par On décide d'un atome central, on répartit ensuite les doublets liants pour respecter la règle de l'octet (et plus rarement celle du duet).
+\par Pour calculer la charge formelle d'un atome dans l'édifice, on détermine son nombre d'électrons de valence $n_v$, puis on détermine son nombre d'électrons de valence dans la molécule noté $n_{v,m}$ (on compte 2 pour tout doublet non-liant, 1 pour tout doublet liant, un par électron célibataire). On en déduit alors la charge formelle $c_f = n_v-n_{v,m}$ 
+}
+
+\Meth{Déterminer la configuration électronique}{\begin{enumerate}
+\item Déterminer le nombre total d'électrons de l'atome
+\item S'il y a assez d'électrons pour remplir une sous-couche, on la note de la forme $md^n$, où $n$ est le nombre d'électrons maximal de la couche, $m$ un nombre (qui indique la couche) et $d$ une lettre (qui indique la sous-cocuhe), $md$ représente une sous-couche.
+\item S'il n'y a pas assez d'électrons pour remplir une sous-couche, on la note de la forme $md^n$, où $n$ est le nombre d'électrons qui restaient après avoir distribué les autres dans les couches précédentes.
+\end{enumerate}
+Les couches sont, dans l'ordre :
+\par $1s$ qui peut contenir $2$ électrons
+\par $2s$ qui peut contenir $2$ électrons
+\par $2p$ qui peut contenir $6$ électrons
+\par $3s$ qui peut contenir $2$ électrons
+\par $3p$ qui peut contenir $6$ électrons
+\par $3d$ qui peut contenir $10$ électrons
+\par $4s$ qui peut contenir $2$ électrons
+\par $4p$ qui peut contenir $6$ électrons
+\par $4s$ qui peut contenir $10$ électrons
+\par $4f$ qui peut contenir $14$ électrons
+}
+
+
+\section{Solides cristallins}
+\Def{Grandeurs}{Coordinence : nombre de plus proches voisins d'un atome, à l'intérieur et à l'extérieur de la meille
+\par Population : nombre d'entités présentes dans la maille, sans compter les bouts de l'entité dans une maille voisine. Noeuds par maille quoi.
+\par Tangence : relation qui relie $a$ le rayon de la maille cubique et $r$ le rayon de l'atome (exemple : $a = 2r$ pour cubique simple)
+\par Compacité $\mathcal{C}$ : rapport du volume occupé par les atomes de la maille sur le volume de la maille (compacité de 1 : tout l'espace serait occupé)
+\par Rayon de Van der Waals : distances entre deux molécule plus proches voisines
+\par Rayon métallique : demi-distance entre les noyaux de deux atomes plus proches voisins
+\par Rayon covalent : demi-distance entre les noyaux de deux atomes liés par liaison covalente
+\par Rayon ionique : distance entre anion et cation voisin (somme de leurs rayons ioniques)}
+
+\Def{Types de cristaux}{Types de cristaux :\begin{itemize}
+\item Les cristaux métalliques : ce sont des cations, dedans, les électrons de valence sont répartis dans tout le cristal. Les liaisons sont dites "métalliques" (donc fortes, il faut $100-600kJ.mol^{-1}$ pour en casser). Les liaisons ne sont pas directionnelles, vu que les électrons se baladent dans tout le cristal, sans se préoccuper des noyaux. Le métal est libertaire ???
+\item Les cristaux covalents : toutes les liaisons sont covalentes, donc elles relient un électron d'un atome à un électron de l'autre (liaisons fortes, il faut $\sim100kJ.mol^{-1}$ pour en casser). Les angles entre liaisons sont régies par règles de Lewis, et donc les liaisons sont directionnelles.
+\item Les cristaux moléculaire : les liaisons entre les molécules sont des liaisons hydrogènes  (donc plus faibles, il faut $10kJ.mol^{-1}$ pour en casser). Les liaisons sont directionnelles.
+\item Les solides ioniques : ce qui compose les éléments de la maille, c'est pas des atomes mais des ions (genre le sel $NaCl$, ou $Na^+, Cl^-$). Dans ce cas, un des ions sera dans les lieux géométriques normaux de la maille, et l'autre ion sera dans les sites interstitiels. Encore une fois, liaisons fortes, il faut quelques centaines de $kJ.mol^{-1}$ pour casser des liaisons. La liaison n'est pas directionnelle.
+\end{itemize}}
+
+
+\Def{Types de mailles}{\begin{itemize}
+\item Cubique simple : un atome sur tous les sommets d'un cube \begin{itemize}
+    \item tangence : $a=2r$ ;
+    \item population $1$ ;
+    \item coordinence $6$ ;
+    \item compacité $\frac{1 \times \frac{4}{3}\pi r^3}{a^3} =\frac{\pi}{6}\simeq 0,52$.
+\end{itemize}
+\item Hexagonale complète : hors programme
+\item Cubique Face Centrée (CFC) : un atome sur tous les sommets du cube, et un atome sur toutes les faces du cube\begin{itemize}
+    \item tangence $\frac{a\sqrt{2}}{2} = 2r$  (ou $a\sqrt{2} = 4r$);
+    \item population $4$ ;
+    \item coordinence $12$ (pour un sommet, les 3 ppv dans une maille sont sur les faces. Le sommet est partagé dans huit cubes, et il faut calculer les ppv sur chaque maille et enlever les redondants pour obtenir 12)
+    \item Compacité : $\frac{4 \times \frac{4}{3}\pi r^3}{a^3} = \frac{\pi}{3\sqrt{2}}\simeq 0,74$ (qui est la compacité max possible, peu importe le sphere packing qu'on tenterait, même l'hexagonale complète fait pas mieux)
+\end{itemize}
+\end{itemize}}
+
+\Thr{Sites intersticiels (CFC)}{Comme on peut le remarquer si on trace les cercles qui se touchent dans la maille CFC, il y a en fait des trous ; les sphères sur des sommets ne touchent que les sphères sur les faces, et pas les autres sphères sur les sommets.
+\par Ces trous sont des sites interstitiels, intéressants parce qu'on peut insérer des atomes dedans... Ils sont en deux catégories.
+\par Les sites intersticiels tétraédriques, au nombre de $8$ par maille. Ils sont situés entre un sommet et les trois atomes les plus proches (ceux sur les faces). Le rayon maximum dans lequel on peut insérer un atome dans un site tétraédrique est $0,225r$ (avec $r$ le rayon d'un atome sommet ou face)
+\par Les sites octaédriques, au nombre de $4$ par maille. Ils sont situés entre deux centres et deux sommets, qui sont étendus aux mailles les plus proches (ce qui donne bien un octaèdre). Le rayon maximum d'insertion est $0,414r$ (avec $r$ le rayon d'un atome sommet ou face)
+\par Les sites intersticiels permettent par exemple de faire des alliages, et faire un solide plus résistant. On parle d'insertion si l'atome est inséré dans un site interstitiel, de substitution si on enlève un atome de la maille pour le remplacer par un autre.
+\par On pourrait faire la même avec la cubique simple.}
+
+\Pre{Pour l'habitabilité du site tétraédrique :
+\par On représente la vue dans le plan diagonal d'un petit cube d'arête $\frac{a}{2}$ (on considère le cube constitué par un sommet et les trois faces les plus proches)
+\par En notant $r$ le rayon des sphères et $r_t$ le rayon du site tétraédrique, on obtient la relation suivante :
+\par $$a\frac{\sqrt{3}}{4} = r+r_t$$
+\par (Schéma du plan qui coupe deux atomes de la maille qui se touchent, rectangle de taille $2r = \frac{a}{2}\sqrt{2}$ et $\frac{a}{2}$)
+\par Sachant que $4r = a\sqrt{2}$, on obtient finalement :
+\par $$r_t = \left(\sqrt{\frac{3}{2}}-1\right)r \simeq 0,225r$$}
+\Pre{Pour l'habitabilité du site octaédrique :
+\par On représente la vue dans le plan médian d'un cube d'arête $a$ (on considère la maille classique et le site octaédrique au milieu de lui)
+\par En notant $r$ le rayon des sphères et $r_o$ le rayon du site tétraédrique, on obtient la relation suivante :
+\par $$2r+2r_o =a $$
+\par (Schéma du plan médian qui coupe quatre atomes de la maille qui se touchent, carré de côté $a$, les centres des cercles au milieu des côtés)
+\par Sachant que $4r = a\sqrt{2}$, on obtient finalement :
+\par $$r_0 = \left(\sqrt{2}-1\right)r \simeq 0,414r$$}
+
+
+
+
+\Meth{Population d'une maille}{Une entité peut appartenir à plusieurs mailles, pour déterminer combien d'entités d'un type appartiennent à une maille, on les compte en pondérant selon ces règles :\begin{itemize}
+\item $\frac{1}{8}$ pour une entité sur un sommet de la maille (participe à huit autres mailles)
+\item $\frac{1}{4}$ pour une entité sur une arête
+\item $\frac{1}{2}$ pour une entité sur une face
+\item $1$ pour une entité complètement à l'intérieur
+\end{itemize}}
+
+\Meth{Rayons des sphères à partir des paramètres de maille}{Il faut déterminer la direction selon laquelle le contact entre sphère se fait, et en déduire la relation entre le rayon et le paramètre de maille $a$
+\par Pour la maille CFC : On a des sphères dans tous les coins de la maille, et une sphère au milieu de la face. Les sphères se touchent toutes.
+\par Le contact se fait sur la diagonale de la face, or la diagonale d'un carré de côté $a$ est de longueur $a\sqrt{2}$, on en déduit $4r=a\sqrt{2}$}
+
+\Meth{Compacité d'une structure}{Déterminer :\begin{itemize}
+\item $N$ la population de la maille
+\item $V$ le volume de la maille
+\item $r$ le rayon des sphères
+\end{itemize}
+La compacité dans le modèle des sphères dures est $C = \frac{N(\frac{4}{3}\pi r^3)}{V}$}
+
+\Meth{Masse volumique d'une structure}{Déterminer :\begin{itemize}
+\item $N$ le nombre d'entités par maille
+\item $V$ le volume de la maille
+\end{itemize}
+La masse volumique est $\rho = \frac{m_{maille}}{V_{maille}}=\frac{NM}{\mathcal{N}_AV}$}
+
+
+\section{Oxydo-réduction}
+\Def{}{Oxydant : peut capter électron
+\par Réducteur : peut céder électron
+\par Couple Ox/Red lié par la demi-équation électronique : $Ox + ne^- +xH^+= Red + yH_2O$
+\par Nombre d'oxydation NO : déficit ou gain en électrons d'un élément (pour un couple, le réducteur a le NO le plus bas).}
+\Meth{Déterminer le NO}{Si monoatomique, égal à la charge de l'édifice.
+\par Sinon, on fait un schéma de Lewis (en notant bien où les charges finales sont localisées). Ensuite, on compte le nombre $n_e$ d'électrons autour de l'atome dont on veut le NO (en considérant que dans une liaison, l'atome le plus électronégatif attire les électrons). Le NO sera $Z-n_e$}
+\Def{Pile}{Avec deux couples Ox/Red, on les met dans des bécher avec une électrode de métal dedans, on appelle ça des électrodes. On relie les béchers par un pont salin (ce qui permet la réaction d'oxydo-réduction, oxydation d'un élément et réduction de l'autre) et les lames de métal par un conducteur de courant.
+\par L'électrode où se produit l'oxydation est l'anode (c'est là qu'un réactif reçoit des électrons, devient plus négatif et ion négatif = anion)
+\par L'électrode où se produit la réduction est la cathode (c'est là qu'un réactif cède des électrons, devient plus positif et ion positif = cation)
+\par La réduction cède des électrons : le courant va de la cathode vers l'anode.
+\par On appelle $\delta q$ la charge élémentaire débitée par une pile.
+\par On a alors $\delta q = idt = zFd\xi$
+\par $F = 96485 C.mol^{-1}$ est la constante de Faraday
+\par $z$ est le nombre d'électrons dans l'équation d'oxydo-réduction (ils s'annulent des deux côtés)}
+\Thr{Nernst}{$E = E^0(Ox/Red) + \frac{RT}{nF}\ln \frac{a_{Ox}a_{H^+}^x}{a_{Red}a_{H_2O}^y}$
+\par $E$ est le potentiel d'un couple Ox/Red particulier.
+\par $E_0(Ox/Red)$ est une constante liée à un couple, le potentiel standard. Plus il est grand, plus on dit que son oxydant est fort, plus il est petit, plus on dit que le réducteur est fort. La réaction prépondérante est entre l'oxydant le plus ofrt et le réducteur le plus fort, et se déroule jusqu'à la consommation du réactif limitant ou jusqu'à l'état où les potentiels des deux couples sont égaux.
+\par $n$ est le nombre d'électrons impliqués.
+\par On a $\frac{RT}{F}\ln(10)\simeq 0,06 V$, ce qu'on utilise en pratique.
+\par La constante d'équilibre d'une réaction d'oxydo-réduction est $K^0 = 10^{\frac{n(E^0(Ox1/Red1)-E^0(Ox2/Red2))}{0,06}}$, où Ox1 est réduit et Red2 est oxydé. $n$ est le nombre d'électrons impliqués.}
+
+
+\section{Acides et bases}
+Pour toute grandeur $X$ de cette section, on peut ajouter $p$ devant afin d'obtenir la grandeur $pX =-\log X$
+\Def{}{Acide : peut céder $H^+$ (proton)
+\par Base : peut capter $H^+$
+\par Couple acide/base $HA/A^-$
+\par Ampholyte ou amphotère : base d'un couple et acide d'un autre.
+\par Constante d'acidité : $K_a = \frac{[A^-][H_3O^+]}{[HA]c_0}$ (constante de basicité : $K_b = K_e/K_a$)
+\par Un acide/une base est fort.e si sa réaction avec l'eau est totale (resp $K_a$ haut, $K_b$ haut)}
+\Def{Réaction}{Soient $HA_1/ A_1^-$ et $HA_2/A_2^-$ deux couples acide/base, le proton qui passe du premier couple à l'autre est $HA_1+A_2^-=HA_2+A_1^-$
+\par La constante d'équilibre s'écrit $K = K_{a_1}/K_{a_2}$
+}
+\Thr{Autoprotolyse}{La réaction $2H_2O=HO^-+H_3O^+$ est l'autoprotolyse de l'eau
+\par Sa constante d'équilibre est $K_e=\frac{[H_3O+][HO^-]}{(c_0)^2}$ (où $c_0 = 1 mol.L^{-1}$)
+\par On a $pH = -\log\frac{[H_3O^+]}{c_0}$
+\par Dans une réaction avec un seul couple $HA/A^-$, on a $pH =pK_a + \log\frac{[A^-]}{[HA]}$ 
+}
+\Meth{Déterminer la réaction prépondérante}{\begin{enumerate}
+\item Déterminer les espèces dans le mélange après la réaction totale des acides et bases fortes avec l'eau
+\item La réaction prépondérante est celle de l'acide le plus fort avec la base la plus faible (règle du Gamma)
+\item écrire l'équation de la RP
+\item Tableau d'avancement
+\item Conclusion
+\end{enumerate}}
+
+\section{Précipités}
+\Def{}{Un précipité est un solide composé de deux ions. On le note $C_xA_y$, où $C_x$ est le cation (positif) et $A_y$ l'anion (négatif).
+\par On parle de couple donneur/accepteur d'anion pour $C_xA_y/C_x$.
+\par Une réaction de dissolution est $C_xA_y = xC^{y+} + yA^{x-}$
+\par Une réaction de précipitation est $xC^{y+}+yA^{x-} = C_xA_y$}
+Comme pour les acides, un cation qui peut être dissous une nouvelle fois est appelé un amphotère.
+\Def{}{La constante de solubilité $K_S$ est la constante d'équilibre thermodynamique de la réaction de dissolution, soit $K_s = \frac{[C^{y+}]^x[A^{x-}]^y}{c_0^{x+y}}$ à l'équilibre.
+\par On peut aussi utiliser le quotient de réaction $Q_r$, en remplaçant $K^0$ par $K_S$
+\par (Rappel :si $Q_r<K^0(T)$ (resp. $Q_r=K^0(T)$, $Q_r>K^0(T)$), le système évolue dans le sens direct de l'équation de réaction (resp. est à l'équilibre, évolue dans le sens indirect).) 
+\par On note $pC = -\log\frac{[C^{y+}]}{c_0}$ et $pA = -\log\frac{[A^{x-}]}{c_0}$
+\par $s$ la solubilité est la quantité maximale de matière qu'on peut dissoudre dans un litre de solution (on la calcule avec un tableau d'avancement et $K_S$)}
+\Meth{Utiliser la condition de précipitation}{On calcule d'abord le quotient de réaction $Q_r$, puis on le compare à $K_S$. Si $Q_r>K_S$, la solution est saturée et le précipité est formé.}
+\Meth{Diagramme d'existence}{On écrit l'équation de dissolution, la frontière du domaine d'existence du précipité est le point où le précipité apparaît. L'espèce soluble est alors de concentration initiale $x_0$}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Physique - spé}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Proba}
+\section{Bases de la proba}
+\Def{}{Une expérience aléatoire est une expérience renouvelable, et qui renouvelée dans des conditions identiques ne donne pas le même résultat à chaque renouvellement.}
+\Def{}{On appelle univers l'ensemble des issues possibles d'une expérience aléatoire donnée. On le note en général $\Omega$}
+\Def{}{Soit $\Omega$ l'univers d'une expérience aléatoire
+\par On appelle tribu sur $\Omega$ une partie de $\mathcal{A}$ vérifiant les trois hypothèses suivantes :\begin{enumerate}
+\item $\Omega\in \mathcal{A}$
+\item $\forall A\in \mathcal{A},\overline{A}\in \mathcal{A}$ (stabilité par passage au complémentaire)
+\item Pour toute suite $(A_n)_{n\in\N}$ d'éléments de $\mathcal{A}$, $\bigcup_{n=0}^{+\infty}A_n\in\mathcal{A}$ (stabilité par réunion dénombrable)
+\end{enumerate}
+Le couple $(\Omega, \mathcal{A})$ est dit espace probabilisable.
+\par $\mathcal{A}$ est l'ensemble des événements (on rappelle qu'un événement est une partie de $\Omega$)}
+\Def{}{Soit $(A_n)_{n\in\N}$ une suite d'événements.\begin{itemize}
+\item La suite $(A_n)$ est dite croissante lorsque \par\begin{center}$\forall n\in\N, A_n\subset A_{n+1}$\end{center} \par ie : pour tout $n\in\N$, la réalisation de $A_n$ implique celle de $A_{n+1}$
+\item La suite $(A_n)$ est dite décroissante lorsque \par\begin{center}$\forall n\in\N, A_{n+1}\subset A_{n}$\end{center} \par ie : pour tout $n\in\N$, la réalisation de $A_{n+1}$ implique celle de $A_{n}$
+\item La suite $(A_n)$ est une suite d'événement deux à deux incompatibles (disjoints) lorsque : \par\begin{center}$\forall i,j\in\N, i\neq j\Rightarrow A_i\cap A_j=\emptyset$\end{center} \par ie : il est impossible que deux événements d'indices différents de la suite soient réalisés simultanément
+\end{itemize}}
+\Def{}{On appelle probabilité sur l'espace probabilisable $(\Omega,\mathcal{A})$ toute application $P$ définie sur $\mathcal{A}$ vérifiant :\begin{enumerate}
+\item $\forall A\in\mathcal{A}, P(A)\in [0,1]$
+\item $P(\Omega)=1$
+\item Pour tout famille dénombrable $(A_i)_{i\in I}$ d'événements deux-à-deux incompatibles : \par\begin{center}$P\left(\bigcup_{i\in I}A_i\right)=\sum\limits_{i\in I}P(A_i)$ ($\sigma$-additivité)\end{center}
+\end{enumerate}}
+\Thr{}{Soit $(\Omega,\mathcal{A})$ un espace probabilisé, et soit $A$ et $B$ deux événements. On a :\begin{itemize}
+\item $P(\overline{A})=1-P(A)$
+\item $P(\emptyset)=0$ (cas particulier du résultat précédent)
+\item $P(A\backslash B)=P(A)-P(A\cap B)$
+\item $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ (formule de Poincaré)
+\item P est croissante : Si $A\subset B$ alors $P(A)\leq P(B)$
+\end{itemize}}
+\Thr{}{Soit $(\Omega, \mathcal{A},P)$ un espace probabilisé.\begin{enumerate}
+\item Pour toute suite croissante $(A_n)_{n\in\N}$ d'événements de $\mathcal{A}$ : \par\begin{center}$P\left(\bigcup_{n=0}^{+\infty}A_n\right)=\lim\limits_{n\to+\infty}P(A_n)$ (Continuité croissante)\end{center}
+\item Pour toute suite décroissante $(A_n)_{n\in\N}$ d'événements de $\mathcal{A}$ : \par\begin{center}$P\left(\bigcap_{n=0}^{+\infty}A_n\right)=\lim\limits_{n\to+\infty}P(A_n)$(Continuité décroissante)\end{center}
+\item Pour toute suite $(A_n)_{n\in\N}$ d'événements de $\mathcal{A}$ :\par\begin{center}$P\left(\bigcup_{n=0}^{+\infty}A_n\right)\leq\sum\limits_{n=0}^{+\infty}P(A_n)$\end{center}
+\end{enumerate}}
+
+
+\section{Dénombrement}
+\Thr{}{On rappelle ces formules pour les coefficients binomiaux :\begin{itemize}
+\item Définition :
+\par $$\forall n\in\N, \forall p\in\llbracket 0,n\rrbracket, \binom{n}{p} = \dfrac{n!}{p!(n-p)!}$$
+\item Formule des compléments :
+\par $$\forall n\in\N, \forall p\in\llbracket 0, n\rrbracket, \binom{n}{n-p}=\binom{n}{p}$$
+\item Petite formule :
+\par $$\forall (n,p)\in(\N^*)^2, p\binom{n}{p} = n\binom{n-1}{p-1}$$
+\item Formule de Pascal :
+\par $$\forall (n,p)\in(\N^*)^2, \binom{n}{p} =\binom{n-1}{p}+\binom{n-1}{p-1}$$
+\end{itemize}}
+\Thr{}{On suppose qu'il existe $p\in\R_+^*$ tel que \par\begin{center}$\forall \omega\in \Omega, P(\{\omega\})=p$\end{center}
+\par Alors :\begin{itemize}
+\item $\Omega$ est un ensemble fini et \par\begin{center}$p=\frac{1}{\mathrm{Card}(\Omega)}$\end{center}
+\item Pour tout événement $A$, \par\begin{center}$P(A)=\frac{\mathrm{Card}(A)}{\mathrm{Card}(\Omega)}$\end{center}
+\end{itemize}}
+Une partie de cardinal $k\in\N$ de $E$ est une $k$-combinaison. On peut voir une $k$-combinaison comme un prélèvement simultané de $k$ éléments de $E$ ; donc sans tenir compte ni d'ordre de tirage, ni de répétition.
+\Thr{Nombre de parties}{Soit $E$ un ensemble à $n$ éléments\begin{enumerate}
+\item Le nombre de $k$-combinaisons de $E$ est \par\begin{center} $\binom{n}{k}=\frac{1}{k!}n(n-1)...(n-k+1)=\left\{\begin{array}{rl} \frac{n!}{k!(n-k)!} & \text{si $k\leq n$} \\ 0 & \text{sinon}\end{array}\right.$\end{center}
+\item Le nombre de parties de $E$ est \par\begin{center}$\sum\limits_{k=0}^n\binom{n}{k}=2^n$\end{center}
+\end{enumerate}}
+\subsubsection{Compter des listes}
+Soit $k\in\N^*$. L'ensemble des $k$-listes d'éléments de $E$ est le produit cartésien $E^k$. On distingue deux cas particuliers de listes :\begin{itemize}
+\item Une $k$-liste sans répétition (ou $k$-arrangement) est un élément $(x_1,...,x_k)\in E^k$ où $x_i\neq x_j$ si $i\neq j$. On rencontre des $k$-listes sans répétition quand par exeple on modélise des tirages successifs sans remise.
+\item Une permutation de $E$ est une $n$-liste sans répétition de l'ensemble $E$ (de cardinal $n$)
+\par On peut voir aussi une permutation de $E$ comme une bijection de $\llbracket 1,n\rrbracket$ dans $E$ ou une façon de réordonner les éléments de $E$.
+\end{itemize}
+\Thr{Nombre de listes}{Soit $E$ un ensemble à $n$ éléments.\begin{enumerate}
+\item Soient $E_1,..., E_k$ $k$ ensembles de cardinaux respectifs $n_1,...,n_k\in\N^*$\par\begin{center}$\mathrm{Card}(E_1\times E_2\times...\times E_k)=n_1n_2...n_k$\end{center}
+\item Le nombre de $k$-listes sans répétitions d'éléments de $E$ est $A_n^k = n(n-1)...(n-k+1)$
+\item Le nombre de permutations d'éléments de $E$ est $n!$
+\end{enumerate}}
+
+\section{Conditionnel}
+\Def{}{Soit $(\Omega, \mathcal{A},P)$ un espace probabilisé et $A$ un événement.
+\par On peut définir la probabilité conditionnelle de $A$ sachant $B$ notée $P(A/B)$ ou $P_B(A)$ :\begin{itemize}
+\item Si $B$ un événement de probabilité non-nulle : \par\begin{center}$P(A/B)=P_B(A)=\frac{P(A\cap B)}{P(B)}$\end{center}
+\item Si $P(B)=0$ \par\begin{center} $P_B(A)=0$\end{center}
+\end{itemize}}
+\Def{}{Un système complet d'événements est une famille $(A_i)_{i\in I}$ au plus dénombrable d'événements tels que :\begin{itemize}
+\item les événements sont deux à deux incompatibles ($\forall i,j\in I, i\neq j\Rightarrow A_i\cap A_j=\emptyset$)
+\item leur union est l'univers tout entier ($\bigcup_{i\in I}A_i=\Omega$)
+\end{itemize}}
+\Def{}{Un système quasi-complet d'événements est uen famille $(A_i)_{i\in I}$ au plus dénombrable d'événements tels que :\begin{itemize}
+\item les événements sont incompatibles deux à deux ($\forall i,j\in I, i\neq j\Rightarrow A_i\cap A_j=\emptyset$)
+\item leur union est presque sûre : $P\left(\bigcup_{i\in I}A_i\right)=1$
+\end{itemize}}
+\Thr{Formule des probabilités composées}{Soit $(A_n)_{n\in\N}$ une famille d'événements telle que pour tout entier $n$, $P\left(\bigcap_{i=1}^{n-1}A_i\right)\neq 0$. Alors, pour tout entier $n$ :
+\par $$P\left(\bigcap_{i=1}^nA_i\right)=P(A_1)P_{A_1}(A_2)...P_{A_1\cap A_2\cap...\cap A_{n-1}}(A_n)$$
+\par $$P\left(\bigcap_{n\in\N}A_n\right) = \lim\limits_{n\to+\infty}P(A_1)P_{A_1}(A_2)...P_{A_1\cap...\cap A_{n-1}}(A_n)$$}
+\Thr{}{Soit $(\Omega, A, P)$ un espace probabilisé. Pour tout système complet d'événements $(A_i)_{i\in I}$, on a :
+\par $$\sum\limits_{i\in I}P(A_i)=1$$}
+\Thr{Formule des probabilités totales}{Soit $(\Omega, \mathcal{A}, P)$ un espace probabilisé. Soit $(A_i)_{i\in I}$ un système complet ou quasi-complet d'événements.
+\par Pour tout événement $B$ :
+\par $$P(B)=\sum\limits_{i\in I}P(A_i\cap B)=\sum\limits_{i\in I}P(A_i)P_{A_i}(B)$$}
+\Thr{Formule d'inversion de Bayes}{Soit $(A_i)_{i\in I}$ un système complet ou quasi-complet d'événements d'un espace probabilisé $(\Omega, \mathcal{A},P)$. Soit $B$ un événement de probabilité non-nulle, soit $i_0\in I$.
+\par Alors :
+\par $$P_B(A_{i_0})=\frac{P(B\cap A_{i_0})}{P(B)}=\frac{P(A_{i_0})P_{A_{i_0}}(B)}{\sum\limits_{i\in I}P(A_i)P_{A_i}(B)}$$}
+
+\section{Variables aléatoires discrètes}
+\subsection{Définitions}
+\Def{}{Soit $E$ un ensemble et $(\Omega, \mathcal{A})$ un espace probabilisable.
+\par Une application $X:\to E$ est une variable aléatoire discrète si :\begin{itemize}
+\item L'ensemble $X(\Omega)$ des valeurs prises par $X$ est au plus dénombrable.
+\item Pour tout $x\in X(\Omega)$, l'ensemble $X^{-1}(\{x\})$, noté $(X=x)$ ou $[X=x]$, est un événement (un élément de $\mathcal{A}$)
+\end{itemize}
+Lorsque $E=\R$, la variable $X$ est dite réelle.}
+\Def{}{Soit $X$ une variable aléatoire discrète sur un espace probabilisé, à valeurs dans un ensemble $E$
+\par La loi $P_X$ de $X$ est la donnée de :\begin{itemize}
+\item l'ensemble des valeurs prises par $X$ appelé univers image : $X(\Omega)$
+\item les probabilités élémentaires : $p_x = P(X=x)$ pour tout $x\in X(\Omega)$
+\end{itemize}}
+
+\Thr{}{Si $X$ est une variable aléatoire discrète sur l'espace probabilisable $(\Omega, \mathcal{A})$, alors la suite $((X=x))_{x\in X(\Omega)}$ est un système complet d'événements de $\Omega$}
+\Thr{}{Si $X$ une variable aléatoire discrète à valeurs dans un ensemble $E$, \begin{itemize}
+\item la famille $(P(X=x))_{x\in E}$ est sommable de somme $1$ :
+\par $$\sum\limits_{x\in E}P(X=x)=1$$
+\item par $\sigma$-additivité, pour toute partie $U$ de $X(\Omega)$,
+\par $$P(X\in U)=P\left(\bigcup_{x\in U}(X=x)\right)=\sum\limits_{x\in U}P(X=x)$$
+\item $(X(\Omega), \mathcal{P}(X(\Omega)), P_X)$ est un espace probabilisé.
+\end{itemize}
+Réciproquement, si $(p_x)_{x\in E}$ est une famille sommable de réels positifs de somme $1$ alors il existe une variable aléatoir discrète $X$ telle que pour tout $x\in E$, $P(X=x)=p_x$}
+\Def{}{$X$ et $Y$ sont deux variables aléatoires discrètes indépendantes lorsque pour toutes parties $A$ et $B$ de $X(\Omega)$ et $Y(\Omega)$ respectivement :
+\par $$P((X\in A)\cap (Y\in B))=P(X\in A)P(Y\in B)$$
+\par On note $X\ind Y$}
+\Thr{}{Deux variables aléatoires discrètes $X$ et $Y$ sont dites indépendantes si, et seulement si,
+\par $$\forall (x,y)\in X(\Omega)\times Y(\Omega), P((X=x)\cap (Y=y))=P(X=x)P(Y=y)$$
+\par ie : $\forall (x,y)\in X(\Omega)\times Y(\Omega)$, les événements $(X=x)$ et $(Y=y)$ sont indépendants.}
+\Thr{}{Les variables aléatoires discrètes $X_1,X_2,...,X_n$ sont (mutuellement) indépendantes si, et seulement si, pour tout $n$-uplet $(x_1,x_2,...,x_n)$ de $X_1(\Omega)\times X_2(\Omega)\times...\times X_n(\Omega)$ :
+\par $$P\left(\bigcap_{i=1}^n(X_i=x_i)\right)=\prod\limits_{i=1}^nP(X_i=x_i)$$}
+\Thr{Lemme des coalitions}{Soient $X_1,X_2,...,X_n$ $n$ variables aléatoires discrètes définies sur $\Omega$ à valeurs dans $E$.
+\par Soient $f$ et $g$ deux applications respectivement de $E^m$ dans $F$ et de $E^{n-m}$ dans $F$.
+\par Si $X_1,X_2,..., X_n$ sont (mutuellement) indépendantes alors $f(X_1,..., X_m)$ et $g(X_{m+1}, X_n)$ le sont aussi.
+\par Ce théorème s'étend à plus de deux coalitions.}
+
+
+\subsection{Lois usuelles}
+\Def{}{Une variable aléatoire discrète $X$ suit une loi de Bernoulli de paramètre $p$ si
+\par\begin{center}$X(\Omega)=\{0,1\}$ et $P(X=1)=p$\end{center}
+\par On note $X\sim\mathcal{B}(p)$}
+\Thr{}{Si $X\sim\mathcal{B}(p)$ alors
+\par $$E(X)=p\text{ et }V(X)=pq$$
+En particulier, le paramètre d'une loi de Bernouilli est son espérance.}
+
+\Def{}{Une variable aléatoire discrète $X$ suite une loi uniforme sur l'ensemble fini non-vide $K\subset \R$ si
+\par $$X(\Omega)=K\text{ et }\forall k\in K, P(X=k) = \frac{1}{\mathrm{Card}(K)}$$
+On note $X\sim \mathcal{U}(K)$}
+\Thr{}{Si $X\sim\mathcal{U}(\llbracket 1,n\rrbracket)$ alors
+\par\begin{center}$E(X)=\frac{n+1}{2}$ et $V(X) = \frac{n^2-1}{12}$\end{center}}
+
+\Def{}{Une variable aléatoire discrète $X$ suit une loi binomiale des paramètres $n$ et $p$ si $X(\Omega)=\llbracket 0,n\rrbracket$ et
+\par $$\forall k\in \llbracket 0,n\rrbracket, P(X=k)=\binom{n}{k}p^kq^{n-k}$$
+\par $X\sim \mathcal{B}(n,p)$}
+\Thr{Modèle loi binomiale}{Si $X$ est le nombre de succès lors de la répétition de $n$ épreuves de Bernouilli indépendantes de même paramètre $p$ alors $X$ suit la loi $\mathcal{B}(n,p)$
+\par Formellement :
+\par On pose pour $k\in\llbracket 1,n\rrbracket$ $X_k$ la variable aléatoire discrète qui vaut $1$ si la $k$-ième épreuve est un euscès et $0$ sinon. Si :\begin{itemize}
+\item pour tout $k\in\llbracket 1,n\rrbracket, X_k\sim\mathcal{B}(p)$
+\item $X_1,X_2,..., X_n$ sont mutuellement indépendantes
+\item $X=X_1+X_2+...+X_n$
+\end{itemize}
+Alors
+\par $$X\sim \mathcal{B}(n,p)$$
+\par En outre
+\par $$E(X)=np\text{ et }V(x)=npq$$}
+
+\Def{}{On suppose que $p\in]0,1[$
+\par Une variable aléatoire discrète $X$ suit une loi géométrique de paramètre $p$ si $X(\Omega)=\N^*$ et
+\par\begin{center}$\forall n\in\N^*, P(X=n)=pq^{n-1}$\end{center}
+\par On note $X\sim\mathcal{G}(p)$}
+\Thr{}{Si $X$ suite une loi géométrique de paramètre $p$ alors pour tout $k\in\N^*$
+\par\begin{center}$P(X>k)=(1-p)^k$\end{center}}
+\Thr{Espérance et variance d'une loi géométrique}{Si la variable aléatoire discrète $X$ suite une loi $\mathcal{G}(p)$ alors $X$ possède une espérance et une variance qui valent
+\par\begin{center}$E(X)=\frac{1}{p}$ et $V(X)=\frac{q}{p^2}$\end{center}}
+\Pre{Espérance : $p\sum\limits_{i=0}^{+\infty} npq^{n-1} = \left(\frac{p}{1-q}\right)'=\frac{1}{p}$
+\par Variance : $ V(X) = E(X^2 - X)+E(X) (E(X))^2 = \frac{2(1-p)}{p^2}+\frac{1}{p} -\frac{1}{p^2} = \frac{1-p}{p^2} = \frac{q}{p^2}$}
+\Thr{Modèle loi géométrique}{Si $X$ est le rand u premier succès dans une suite illimitée d'épreuves de Bernouilli indépendantes de même paramètre $p$ alors $X$ suit la loi $\mathcal{G}(p)$
+\par Formellement :
+\par On pose pour tout $k\in\N^*$ $X_k$ la variable aléatoire discrète qui vaut $1$ si la $k$-ième épreuve est un succés et $0$ sinon.
+\par Si :\begin{itemize}
+\item pour tout $k\in\N^*n, X_k\sim\mathcal{B}(p)$
+\item la suite $(X_n)$ est une suite de variables mutuellement indépendantes
+\item $X = \min\{n\in\N^*, X_n=1\}$
+\end{itemize}
+Alors $X\sim\mathcal{G}(p)$}
+
+\Def{Loi de Poisson}{Une variable aléatoire discrète $X$ suit une loi de Poisson de paramètre $\lambda\in\R_+^*$ si $X(\Omega)=\N$ et
+\par $$\forall n\in\N, P(X=n)=e^{-\lambda}\frac{\lambda^n}{n!}$$
+\par On note $X\sim \mathcal{P}(\lambda)$}
+\Thr{Espérance et variance d'une loi de Poisson}{Si la variable aléatoire discrète $X$ suit une loi $\mathcal{P}(\lambda)$ alors $X$ possède une espérance et une variance et
+\par $$E(X)=V(X)=\lambda$$}
+
+
+\subsection{Espérance}
+\Def{}{Soit $X$ une variable aléatoire discrète à valeurs dans $[0, +\infty]$.
+\par $$E(X)=\sum\limits_{x\in X(\Omega)}xP(X=x)$$
+\par Avec la convention $xP(X=x)=0$ lorsque $X=+\infty$ et $P(X=+\infty)=0$}
+\Thr{}{Soit $X$ une variable aléatoire discrète à valeurs dans $\N\cup\{+\infty\}$. On a :
+\par $$E(X)=\sum\limits_{n\in\N}P(X\geq n)$$}
+\Thr{Transfert}{Soit $X$ une variable aléatoire discrète à valeurs réelles ou complexes et $f:X(\Omega)\to\C$
+\par La variable aléatoire réelle $f(X)$ est d'espérance finie si, et seulement si, la famille $(f(x)P(X=x))_{x\in X(\Omega)}$ est sommable.
+\par Dans ce cas :
+\par\begin{center}$E(f(X))=\sum\limits_{x\in X(\Omega)}f(x)P(X=x)$\end{center}}
+\Thr{Propriétés de l'espérance}{Soient $X,Y$ deux variables aléatoires discrètes à valeurs réelles ou complexes et d'espérance finie.\begin{itemize}
+\item $\forall \lambda, \mu\in C, \lambda X+\mu Y$ est d'espérance finie et
+\par\begin{center}$E(\lambda X+\mu Y)=\lambda E(X)+\mu E(Y)$ (linéarité)\end{center}
+\par On peut généraliser cette propriété avec $n$ variables aléatoires réelles discrètes d'espérance finie, qu'elles soient indépendantes ou non.
+\par Dans la suite, $X$ et $Y$ sont à valeurs réelles.
+\item Si $X\geq 0$ alors $E(X)\geq 0$ (Positivité)
+\item Si $X\geq 0$ et $E(X)=0$ alors $(X=0)$ est presque sûr (stricte positivité)
+\item Si $X\leq Y$ alors $E(X)\leq E(Y)$ (croissance)
+\end{itemize}}
+\Thr{Espérance d'un produit de variables indépendantes}{Soit $X,Y$ deux variables aléatoires discrètes à valeurs réelles ou complexes.
+\par Si on a :\begin{itemize}
+\item $X$ et $Y$ d'espérance finie
+\par ($X$ et $Y$ admettent une espérance serait plus adapté)
+\item $X$ et $Y$ indépendantes
+\end{itemize}
+Alors $XY$ est d'espérance finie et
+\par $$E(XY)=E(X)E(Y)$$}
+\Thr{Espérance d'un produit de n variables indépendantes}{Soit $X_1,...,X_n$ des variables aléatoires discrètes à valeurs réelles ou complexes.
+\par Si on a :\begin{itemize}
+\item $X_1,..., X_n$ d'espérance finie
+\item $X_1,..., X_n$ (mutuellement) indépendantes
+\end{itemize}
+Alors la variable $X_1...X_n$ est d'espérance finie et
+\par $$E\left(\prod\limits_{i=1}^nX_i\right)=\prod\limits_{i=1}^nE(X_i)$$}
+
+
+\subsection{Variance}
+\Def{}{$X$ une variable aléatoire complexe, on dit que $X$ admet un moment d'ordre $k$ pour $k\in\N^*$ si $E(X^k)$ existe}
+\Thr{}{Si $X$ admet un moment d'ordre $k+1$ alors $X$ admet un moment d'ordre $k$.}
+Ce théorème permet de justifier l'existence d'une espérance dans le cas où une variance existe, et donc de justifier la prochaine définition.
+\Def{Variance et ecart-type}{Soit $X$ une variable aléatoire discrète à valeurs réelles.
+\par Si $X^2$ est d'espérance finie, on définit la variance de $X$ par
+\par $$V(X)=E((X-E(X))^2)$$
+\par et son écart-type par
+\par $$\sigma(X)=\sqrt{V(X)}$$}
+\Thr{Propriétés de la variance}{Soit $X$ une variable aléatoire discrète à valeurs réeles.
+\par On suppose que $X^2$ est d'espérance finie.\begin{enumerate}
+\item Köning-Huygens : formule pratique pour la variance :\par\begin{center}$V(X)=E(X^2)-E(X)^2$\end{center}
+\item Soient $a,b\in\R$ \par\begin{center}$V(aX+B)=a^2V(X)$\end{center} \par En particulier, la variance est invariante par translation
+\item $V(X)$ est nulle si, et seulement si, $P(X=E(X))=1$ \par ie : $X$ est presque sûrement constante.
+\end{enumerate}}
+\Def{}{Soit $X$ une variable aléatoire discrète à valeurs réelles telle que $X^2$ est d'espérance finie et telle que $\sigma(X)>0$
+\par La variable $\frac{X}{\sigma(X)}$ a un écart-type égal à $1$. Elle est appelée réduite de $X$.
+\par La variable $\frac{X-E(X)}{\sigma(X)}$ a une espérance nulle et un écart-type égal à $1$. Elle est appelée variable centrée réduite associée à $X$.}
+\Def{}{Si les variables aléatoires $X^2$ et $Y^2$ sont d'espérance finie alors on peut définir la covariance de $X$ et $Y$ par :
+\par $$\mathrm{cov}(X,Y)=E((X-E(X))(Y-E(Y)))$$}
+\Thr{Propriétésde la covariance}{Si les variables aléatoires $X^2$ et $Y^2$ sont d'espérance finie alors :\begin{itemize}
+\item $$\mathrm{cov}(X,X)=V(X)$$
+\item Köning-Huygens : formule pratique pour la covariance :
+\par $$\mathrm{cov}(X,Y)=E(XY)-E(X)E(Y)$$
+\item Si $X$ et $Y$ sont indépendantes alors :
+\par $$\mathrm{cov}(X,Y)=0$$
+\item La covariance est une forme linéaire positive, symétrique et bilinéaire (c'est "presque" un produit scalaire)
+\end{itemize}}
+\Thr{Variance d'une somme}{Si les variables aléatoires $X^2$ et $Y^2$ sont d'espérance finie alors $(X+Y)^2$ aussi avec
+\par $$V(X+Y)=V(X)+2\mathrm{cov}(X,Y)+V(Y)$$
+\par Si de plus les variables $X$ et $Y$ sont indépendantes :
+\par $$V(X+Y)=V(X)+V(Y)$$}
+\Thr{Variance d'une somme}{Si $X_1,...,X_n$ sont $n$ variables telles que $X_1^2,..., X_n^2$ sont d'espérance finie alors $(X_1+...+X_n)^2$ l'est aussi avec :
+\par $$V\left(\sum\limits_{k=1}^nX_k\right)=\sum\limits_{k=1}^nV(X_k)+2\sum\limits_{1\leq i<j\leq n}\mathrm{cov}(X_i, X_j)$$
+\par Si de plus les variables $X_1,...,X_n$ sont indépendantes \textbf{deux à deux} alors :
+\par $$V\left(\sum\limits_{k=1}^nX_k\right)=\sum\limits_{k=1}^nV(X_k)$$}
+
+
+\subsection{Fonctions génératrices}
+\Def{}{On note $R_X$ le rayon de convergence de la série entière $\sum P(X=n)t^n$
+\par La fonction génératrice d'une variable aléatoire $X$ à valeurs dans $\N$ est définie pour tout $t\in]-R_X,R_X[$ par
+\par $$G_X(t)=E(t^X)=\sum\limits_{n=0}^{+\infty}P(X=n)t^n$$}
+\Thr{}{Soit $X$ une variable aléatoire à valeurs dans $\N$.\begin{enumerate}
+\item La loi de $X$ est entièrement caractérisée par la connaissance de sa fonction génératrice $G_X$
+\par ie : $G_X:t\mapsto \sum\limits_{n=0}^{+\infty}a_nt^n$ est la fonction génératrice de $X$ si, et seulement si, $\forall n\in \N, P(X=n)=a_n$
+\item $G_X(1)=1$
+\item $X$ admet une espérance si, et seulement si, $G_X$ est dérivable en $1$, avec dans ce cas
+\par $$E(x) =G_X'(1)$$
+\item $X$ admet une variance si, et suelement si, $G_X$ est deux fois dérivable en $1$, avec dans ce cas :\par\begin{center}$E(X(X-1))=G_X''(1)$\end{center}
+\par et donc
+\par $$V(X)=G_X''(1)+G_X'(1)-(G_X'(1))^2$$
+\end{enumerate}}
+\Thr{}{Si $X$ et $Y$ sont deux variables aléatoires indépendantes à valeurs dans $\N$ alors :
+\par $$\forall t\in[-1,1], G_{X+Y}=G_XG_Y$$
+\par Soit $n\in\N, n\geq 2$. Si $X_1,...,X_n$ sont des variables aléatoire réelles mutuellement indépendantes alors :
+\par $$G_{X_1+...+X_n}=G_{X_1}...G_{X_n}$$}
+
+
+\subsection{Lois conjointes et conditionnelles}
+\Def{}{Soient $X$ et $Y$ deux variables aléatoires discrètes réelles sur un même espace probabilisé $(\Omega, \mathcal{A},P)$.\begin{enumerate}
+\item On appelle couple des variables $X$ et $Y$, et on note $Z=(X,Y)$ l'application \par\begin{center}$Z:\left\{\begin{array}{rcl}\Omega & \to & X(\Omega)\times Y(\Omega) \\ \omega & \mapsto & (X(\omega), Y(\omega)) \end{array}\right.$\end{center}
+\item La loi du couple $Z=(X,Y)$ est appelée loi conjointe, elle est définir par :\begin{itemize}
+    \item $Z(\Omega)=X(\Omega)\times Y(\Omega)$
+    \item Les probabilités élémentaires $P(X=x, Y=y)=P((X=x)\cap(Y=y))$ pour tous $(x,y)\in X(\Omega)\times Y(\Omega)$
+\end{itemize} On a bien sûr \par\begin{center}$\forall (x,y)\in X(\Omega)\times Y(\Omega), P(X=x,Y=y)\geq 0$ et $\sum\limits_{(x,y)\in X(\Omega)\times Y(\omega)}P(X=x,Y=y)=1$\end{center}
+\item Les lois de $X$ et $Y$ sont appelées lois marginales du couple $Z=(X,Y)$
+\par Si la loi conjointe du couple $Z=(X,Y)$ est connue, alors les lois marginales de $X$ et $Y$ le sont aussi :\begin{itemize}
+    \item On détermine la loi de $X$ en appliquant la formule des probabilités totales avec le système complet d'événements $([Y=y])_{y\in Y(\Omega)}$ :
+    \par\begin{center}$\forall x\in X(\Omega), P(X=x)=\sum\limits_{y\in Y(\Omega)}P(X=x, Y=y)$\end{center}
+    \item On détermine la loi de $Y$ en appliquant la formule des probabilités totales avec le système complet d'événements $([X=x])_{x\in X(\Omega)}$ :
+    \par\begin{center}$\forall y\in Y(\Omega), P(Y=y)=\sum\limits_{x\in X(\Omega)}P(X=x, Y=y)$\end{center}
+\end{itemize} La réciproque est évidemment fausse, la connaissance des lois marginales de $X$ et $Y$ ne permet pas de déterminer la loi conjointe du couple $Z=(X,Y)$
+\end{enumerate}}
+\Def{}{Soit $X$ une variable aléatoire réelle discrète sur $(\Omega,\mathcal{A}, P)$ et $A$ un événement de probabilité non-nulle. La loi conditionnelle de $X$ sachant $A$ est la donnée de :\begin{itemize}
+\item $X(\Omega)$
+\item $\forall x\in X(\Omega), P_A(X=x)$
+\end{itemize}
+Elle est notée $X_{/A}$}
+\Def{}{Soit $Z=(X,Y)$ un couple de variables aléatoires réelles discrètes sur $(\Omega, \mathcal{A}, P)$
+\par La loi de $Z$ est donnée par :\begin{enumerate}
+\item Les lois de $X$ conditionnées par $Y$ sont les lois de $X$ conditionnées par les événements $[Y=y]$ pour tout $y\in Y(\Omega)$
+\par Plus précisement, pour $y\in Y(\Omega)$ fixé tel que $P(Y=y)\neq 0$, la loi de $X$ sachant $[Y=y]$ est définie par :\begin{itemize}
+    \item La donnée de $X(\Omega)$
+    \item Les nombres $P_{Y=y}(X=x)=\frac{P(X=x,Y=y)}{P(Y=y)}$ pour tout $x\in X(\Omega)$
+\end{itemize}
+\item Les lois de $Y$ conditionnées par $X$ sont les lois de $Y$ conditionnées par les événements $[X=x]$ pour tout $x\in X(\Omega)$
+\par Plus précisement, pour $x\in X(\Omega)$ fixé tel que $P(X=x)\neq 0$, la loi de $Y$ sachant $[X=x]$ est définie par :\begin{itemize}
+    \item La donnée de $Y(\Omega)$
+    \item Les nombres $P_{X=x}(Y=y)=\frac{P(X=x,Y=y)}{P(X=x)}$ pour tout $x\in X(\Omega)$
+\end{itemize}
+\end{enumerate}}
+
+
+\section{Résultats asymptotiques}
+Les preuves sont à savoir pour ces théorèmes.
+\Thr{Inégalité de Markov}{Soit $X$ une variable aléatoire réelle discrète positive d'espérance finie, on a:
+\par\begin{center}$\forall a>0, P(X\geq a)\leq \frac{E(X)}{a}$\end{center}}
+\Pre{Avec $a\in\R_+$ fixé :
+\par $E(X) = \sum\limits_{x\in X(\Omega)}xP(X=x) \geq \sum\limits_{x\in X(\Omega),x\geq a}xP(X=x)$ (comme $X$ est positive)
+\par $\geq a\sum\limits_{x\in X(\Omega), x\geq a} P(X=x)\geq aP(X\geq A)$
+\par D'où l'inégalité $P(X\geq a)\leq \frac{E(X)}{a}$}
+
+\Thr{Inégalité de Bieinaymé-Tchebychev}{Soit $X$ une variable aléatoire rélle discrète telle que $X^2$ est d'espérance finie, on a :
+\par\begin{center}$\forall \varepsilon>0, P(\vert X-E(X)\vert\geq \varepsilon)\leq \frac{V(X)}{\varepsilon^2}$\end{center}
+\par En passant à l'événement contraire :
+\par\begin{center}$\forall\varepsilon>0, P(\vert X-E(X)\vert<\varepsilon)\geq 1 - \frac{V(X)}{\varepsilon^2}$\end{center}}
+\Pre{Pour $\varepsilon>0$:
+\par $E((X-E(X))^2) = \sum\limits_{x\in X(\Omega)}(x-E(X))^2P(X=x)$
+\par $\geq \varepsilon^2\sum\limits_{x\in X(\Omega), \vert X-E(X)\vert\geq\varepsilon} P(X=x)$
+\par $\geq\varepsilon^2P(\vert X - E(X)\vert\geq\varepsilon)$
+\par D'où l'inégaité.}
+
+\Thr{Loi faible des grands nombres}{Soit $(X_n)_{n\in\N^*}$ une suite de variables réelles indépendantes de même loi, de variance finie.
+\par En notant $S_n=\sum\limits_{k=1}^nX_k, m=E(X_1)$ et $\sigma =\sigma(X_1)$, on a :\begin{enumerate}
+\item \begin{center}$\forall \varepsilon>0, P\left(\left\vert\frac{S_n}{n}-m\right\vert\geq\varepsilon\right)\leq\frac{\sigma^2}{n\varepsilon^2}$\end{center} \par Cette inégalité doit êtr edémontrée à chaque utilisation d'après le programme
+\item \begin{center}$\forall \varepsilon>0, P\left(\left\vert\frac{S_n}{n}-m\right\vert\geq\varepsilon\right)\to_{n\to+\infty} 0$\end{center}
+\end{enumerate}}
+\Pre{On a ici que $(\frac{S_n}{n}) = \frac{1}{n}\sum\limits_{i=1}^nE(X_i) = m$
+\par Par indépendance, $V(S_n) = \frac{1}{n^2}\sum\limits_{i=1}^nV(X_i) = \frac{\sigma^2}{n}$}
+\end{document}

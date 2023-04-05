@@ -16,7 +16,7 @@
 \usepackage{stmaryrd}
 \usepackage{tcolorbox}
 \usepackage{lmodern}
-
+\usepackage{esint}
 
 
 \newcommand{\Def}[2]{\begin{tcolorbox}[colback=white,colframe=red!10!green!20!blue!75!, title=Définition : #1]#2\end{tcolorbox}}
@@ -36,11 +36,17 @@
 \def\Z{\mathbb{Z}}
 \def\K{\mathbb{K}}
 \newcommand{\ind}{\perp\!\!\!\!\perp} 
+\newcommand{\Rot}{\overrightarrow{\mathrm{rot}}}
+\newcommand{\Grad}{\overrightarrow{\mathrm{grad}}}
+\newcommand{\Div}{\mathrm{div}}
+\renewcommand{\Vec}[1]{\overrightarrow{#1}}
+\newcommand{\Phyvex}[3]{\left\vert\begin{matrix}#1\\#2\\#3\end{matrix}\right.}
 
 \renewcommand{\thechapter}{\Roman{chapter}}
 \renewcommand{\thesection}{\Roman{section}}
 \renewcommand{\thesubsection}{\Roman{section}.\arabic{subsection}}
 \renewcommand{\thesubsubsection}{\Roman{section}.\arabic{subsection}.\Alph{subsubsection}}
+
 
 \begin{document}
 \tableofcontents
@@ -157,7 +163,7 @@ $f$ uniformément continue sur $I$ si :
 \Thr{Prolongement}{Si $f$ est de classe $\mathcal{C}^1$ sur $]a,b]$, continue en $a$ et que $f'$ admet une limite $l$ en $a$, alors $f$ est de classe $\mathcal{C}^1$ sur $[a,b]$ et $f'(a)=l$}
 \Thr{Rolle}{Si $f(a)=f(b)$, alors $\exists c\in]a,b[, f'(c)=0$}
 \Thr{Accroissements finis}{Il existe $c\in]a,b[$ tel que $f(b)-f(a) = (b-a)f'(c)$}
-\Thr{Inégalité des accroissemens finis}{ Si $\forall t\in]a,b[, \vert f(t)\vert\leq M$, alors $\vert f(b)-f(a)\vert\leq M(b-a)$}
+\Thr{Inégalité des accroissemens finis}{ Si $\forall t\in]a,b[, \vert f'(t)\vert\leq M$, alors $\vert f(b)-f(a)\vert\leq M(b-a)$}
 \Thr{Inégalité de Jensen}{Si $f$ est convexe sur $I$, qu'on a $\lambda_1,...,\lambda_n\in[0,1]$ tels que $\lambda_1+...+\lambda_n=1$ et $x_1,..., x_n\in I^n$, alors :
 \par $$f\left(\sum\limits_{i=1}^n \lambda_ix_i\right)\leq \sum\limits_{i=1}^n \lambda_i f(x_i)$$}
 
@@ -1105,6 +1111,83 @@ Donc $\Z/n\Z$ est un corps si, et seulement si, $n$ est premier. On note $\mathb
 
 
 
+
+\chapter{Physique - Formulaires}
+\section{Infinitésimaux}
+\Def{Déplacements}{En cartésien :
+\par $$\Vec{dl} = dx\Vec{e_x}+dy\Vec{e_y}+dz\Vec{e_z}$$
+\par En cylindrique :
+\par $$\Vec{dl} = dr\Vec{e_r} +rd\theta\Vec{e_\theta}+dz\Vec{e_z}$$
+\par En sphérique :
+\par $$\Vec{dl} = dr\Vec{e_r} +rd\theta\Vec{e_\theta}+r\sin\theta\Vec{e_\varphi}$$}
+\Def{Surfaces}{Plan :
+\par $$dS = dxdy$$
+\par Cylindre (bord) :
+\par $$dS = rd\theta dz$$
+\par Cylindre (intérieur) :
+\par $$dS = rd\theta dr$$
+\par Sphère (bord) :
+\par $$dS = rd\theta r\sin\theta d\varphi$$}
+\Def{Volumes}{Parallélipipède :
+\par $$d\tau = dV = dxdydz$$
+\par Morceau de cylindre :
+\par $$d\tau = dV = rd\theta drdz$$
+\par Morceau de sphère :
+\par $$d\tau = dV = r^2\sin\theta drd\theta d\varphi$$}
+
+
+
+\section{Identités thermodynamiques}
+Pour un système fermé de composition fixe sans travail autre que celui des forces de pression :
+\par $$dU = -pdV + TdS$$
+\par $$dH = Vdp + TdS$$
+\par $$dS = \frac{\delta Q}{T_e}+\delta S_c$$
+\par $$dG = VdP -SdT+\sum\limits_i\mu_i dn_i$$
+
+
+\section{Analyse vectorielle}
+\Thr{Stokes(-Ampère)}{$$\oint_\mathcal{C}\Vec{A}\Vec{dl} = \iint_\mathcal{S}(\Rot\Vec{A})\Vec{dS}$$
+\par où $\mathcal{C}$ est un contour fermé orienté et $\mathcal{S}$ une surface qui s'appuie sur ce contour, orienté dans son sens direct}
+\Thr{(Green-)Ostrogradski}{$$\oiint_\mathcal{S}\Vec{A}\Vec{dS}=\iiint_\mathcal{V}(\Div \Vec{A})dV$$
+\par où $\mathcal{S}$ est une surface fermée avec normale sortante qui entoure le volume $\mathcal{V}$}
+\Thr{Du gradient}{$$\oiint_\mathcal{S}f\Vec{dS} = \iiint_\mathcal{V}(\Grad f)dV$$}
+\Thr{Identités entre opérateurs}{\begin{itemize}
+\item $$\Rot(\Rot\Vec{A}) = \Grad(\Div\Vec{A})-\Delta\Vec{A}$$
+\item $$\Rot(\Grad f)=\Vec{0}$$
+\item $$\Div(\Rot\Vec{A}) =0$$
+\end{itemize}}
+
+\Def{Nabla}{Le vecteur :
+\par $$\nabla = \left|\begin{matrix}\dfrac{\partial}{\partial x}\\\dfrac{\partial}{\partial y}\\\dfrac{\partial}{\partial z}\end{matrix}\right.$$}
+\Def{Gradient}{$$\Grad f = \Phyvex{\dfrac{\partial f}{\partial x}}{\dfrac{\partial f}{\partial y}}{\dfrac{\partial f}{\partial z}}$$
+\par En cylindrique :
+\par $$\dfrac{\partial f}{\partial r}\Vec{e_r}+\frac{1}{r}\dfrac{\partial f}{\partial\theta}\Vec{e_\theta}+\dfrac{\partial f}{\partial z}$$
+\par En sphérique :
+\par $$\dfrac{\partial f}{\partial r}\Vec{e_r}+\frac{1}{r}\dfrac{\partial f}{\partial\theta}\Vec{e_\theta}+\frac{1}{r\sin\theta}\dfrac{\partial f}{\partial\varphi}\Vec{e_\varphi}$$
+}
+\Def{Divergence}{$$\Div \Vec{A} = \dfrac{\partial \Vec{A}}{\partial x} + \dfrac{\partial \Vec{A}}{\partial y} +\dfrac{\partial \Vec{A}}{\partial z}$$
+\par En cylindrique :
+\par $$\frac{1}{r}\dfrac{\partial rA_r}{\partial r}+\frac{1}{r}\dfrac{\partial A_\theta}{\partial\theta}+\dfrac{\partial A_z}{\partial z}$$
+\par En sphérique :
+\par $$\frac{1}{r^2}\dfrac{\partial r^2A_r}{\partial r}+\frac{1}{r\sin\theta}\dfrac{\partial \in\theta A_\theta}{\partial \theta}+\frac{1}{r\sin\theta}\dfrac{\partial A_\varphi}{\partial\varphi}$$
+}
+\Def{Rotationnel}{$$\Rot \Vec{A} = \Phyvex{\dfrac{\partial \Vec{A_z}}{\partial y}-\dfrac{\partial\vec{A_y}}{\partial z}}{\dfrac{\partial \vec{A_x}}{\partial z}-\dfrac{\partial\Vec{A_z}}{\partial x}}{\dfrac{\partial \Vec{A_y}}{\partial x}-\dfrac{\partial \vec{A_x}}{\partial y}}$$
+\par En cartésien, on le retrouve avec $\Vec{\nabla}\wedge \Vec{A}$
+\par En cylindrique :
+\par $$\left(\frac{1}{r}\dfrac{\partial A_z}{\partial\theta}-\dfrac{\partial A_\theta}{\partial z}\right)\Vec{e_r}+\left(\dfrac{\partial A_r}{\partial z}-\dfrac{\partial A_z}{\partial r}\right)\Vec{e_\theta}+\dfrac{1}{r}\left(\dfrac{\partial (rA_\theta)}{\partial r}-\dfrac{\partial A_r}{\partial \theta}\right)\Vec{e_z}$$
+\par En sphérique :
+\par $$\frac{1}{r\sin\theta}\left(\dfrac{\partial \sin\theta A_\varphi}{\partial\theta}-\dfrac{\partial A_\theta}{\partial\varphi}\right)\Vec{e_x}+\frac{1}{r}\left(\frac{1}{\sin\theta}\dfrac{\partial A_r}{\partial\varphi}-\dfrac{\partial rA_\varphi}{\partial r}\right)\Vec{e_\theta}+\frac{1}{r}\left(\dfrac{\partial rA_\theta}{\partial r}-\dfrac{\partial A_r}{\partial \theta}\right)\Vec{e_\varphi}$$
+}
+\Def{Laplacien scalaire}{$$\Delta f = \dfrac{\partial^2 f}{\partial x^2} + \dfrac{\partial^2 f}{\partial y^2} +\dfrac{\partial^2 f}{\partial z^2}$$
+\par En cylindrique :
+\par $$\frac{1}{r}\dfrac{\partial}{\partial r}\left(r\dfrac{\partial f}{\partial r}\right)+\frac{1}{r^2}\dfrac{\partial^2f}{\partial \theta^2}+\dfrac{\partial^2f}{\partial z}$$
+\par En sphérique :
+\par $$\frac{1}{r^2}\dfrac{\partial}{\partial r}\left(r^2\dfrac{\partial f}{\partial r}\right) +\frac{1}{r^2\sin\theta}\dfrac{\partial}{\partial\theta}\left(\sin\theta\dfrac{\partial f}{\partial\theta}\right)+\frac{1}{r^2\sin^2\theta}\dfrac{\partial^2 f}{\partial \varphi^2}$$
+}
+\Def{Laplacien vectoriel}{$$\Delta\Vec{A} = \Phyvex{\Delta A_x}{\Delta A_y}{\Delta A_z}$$}
+
+
+
 \chapter{Physique - sup}
 \section{L'électrocinétique}
 \Thr{Loi des noeuds}{La somme des courants entrants dans un noeud est égale à la somme des courants sortants.}
@@ -1137,19 +1220,42 @@ Donc $\Z/n\Z$ est un corps si, et seulement si, $n$ est premier. On note $\mathb
 \par Son admittance complexe est $\frac{1}{jL\omega}=-\frac{j}{L\omega}$
 \par En basse fréquence, un solénoïde se comporte comme un fil.
 \par En haute fréquence, un solénoïde se comporte comme un interrupteur ouvert.}
+\Def{Fonction de Transfert}{Un filtre est un quadripôle, avec une tension en entrée $U_e$ et une tension en sortie $U_s$. On définit :
+\par $$H = \frac{U_s}{U_e}$$
+\par qui est appelée la fonction de transfert du filtre. À partir d'elle, on définit aussi :
+\par $$G = \vert H\vert$$
+\par qui est le gain du filtre. On définit :
+\par $$G_{dB} = 20\log(\vert H\Vert)$$
+\par qui est le gain en décibels.}
+\Def{Ordre des filtres}{}
+\Thr{Calcul pratique d'argument}{}
 
 
+
+\newpage
+\section{Optique}
+Snell-Descartes $n_1\sin i_1 = n_2\sin i_2$ (réfraction) et $i_1'=-i_1$ où $i_1$ l'angle d'incidence
+\par Condition de réfraction limite : si $n_2<n_1$, on note $i_{lim} =\arcsin\left(\frac{n_2}{n_1}\right)$ et $i_1<i_{lim}$ donne réfraction. Sinon, réflexion totale. $n_1<n_2$ et il y a toujours réfraction.
+\par Grandissement : $\gamma = \frac{\overline{A'B'}}{\overline{AB}}$
+\par Formule Descartes : $\frac{1}{\overline{OA'}}-\frac{1}{\overline{OA}}=\frac{1}{\overline{OF}}$ 
+\par (et aussi $\frac{\overline{A'B'}}{\overline{AB}}=\frac{\overline{OA'}}{\overline{OA}}$)
+\par Formule Newton : $\frac{\overline{A'B'}}{\overline{AB}}=\frac{\overline{FO}}{\overline{FA}}=\frac{\overline{F'A'}}{\overline{F'O}}$
+\par (et aussi $\overline{FA}\cdot\overline{F'A'}=-\overline{OF}^2$)
+\par Association de lentilles : $\frac{1}{f_{tot}}=\frac{1}{f_1}+\frac{1}{f_2}$
+
+
+\newpage
 \section{Mécanique du point}
-Dans tout ce chapitre, on se place dans un référentiel galiléen $\mathcal{R}$ et on considère un point $M$ de masse $m$, repéré par un vecteur $\overrightarrow{OM}(t)$, qui subit des forces $(\vec{F_i})$
-\Thr{RFD}{Pour un point de masse $m$ repéré par un vecteur $\overrightarrow{OM(t)}$ en fonction du temps, subissant des forces $\vec{F_i}$ :
-\par $$m\dfrac{d^2\overrightarrow{OM(t)}}{dt^2} = \sum\vec{F_i}$$
-\par On note $\vec{p} = m\dfrac{d\overrightarrow{OM(t)}}{dt} = m\vec{v}(t)$ la quantité de mouvement du point, en 
+Dans tout ce chapitre, on se place dans un référentiel galiléen $\mathcal{R}$ et on considère un point $M$ de masse $m$, repéré par un vecteur $\Vec{OM}(t)$, qui subit des forces $(\Vec{F_i})$
+\Thr{RFD}{Pour un point de masse $m$ repéré par un vecteur $\Vec{OM(t)}$ en fonction du temps, subissant des forces $\Vec{F_i}$ :
+\par $$m\dfrac{d^2\Vec{OM(t)}}{dt^2} = \sum\Vec{F_i}$$
+\par On note $\Vec{p} = m\dfrac{d\Vec{OM(t)}}{dt} = m\Vec{v}(t)$ la quantité de mouvement du point, en 
 \par On note $E_c=\frac{1}{2}mv^2 =\frac{p^2}{2m}$ l'énergie cinétique d'un point, en joules $J$.}
 \Def{Grandeurs relatives à une force}{Une force est représentée par un vecteur, qui a une norme en Newton, ou en $kg.m.s^{-2}$.
-\par On définit la puissance d'une force $\vec{F}$ s'appliquant sur un point qui va à la vitesse $\vec{v}$ comme :
-\par $$\mathcal{P}=\vec{F}\cdot\vec{v}$$
+\par On définit la puissance d'une force $\Vec{F}$ s'appliquant sur un point qui va à la vitesse $\Vec{v}$ comme :
+\par $$\mathcal{P}=\Vec{F}\cdot\Vec{v}$$
 \par La puissance est en watts $W=J.s^{-1} = kgm^2s^{-3}$
-\par On définit le travail d'une force $\vec{F}$ de puissance $\mathcal{P}$ comme :
+\par On définit le travail d'une force $\Vec{F}$ de puissance $\mathcal{P}$ comme :
 \par $$W = \int_0^\tau\mathcal{P}(t)dt$$
 \par Le travail est une énergie, qui s'exprime en joules $J$
 \par Si le travail entre deux points $A$ et $B$ peut s'exprimer sous la forme de $E_p(A)-E_p(B)$, alors on dit que la fonction $E_p$ représente l'énergie potentielle de la force. On dit aussi que la force est conservative.
@@ -1165,41 +1271,41 @@ Dans tout ce chapitre, on se place dans un référentiel galiléen $\mathcal{R}$
 \par Les extréma de $E_{ptot}$ sont appelés des points d'équilibres. Les maxima sont des points instables (un changement d'énergie potentielle va leur faire descendre une pente), et les minima sont des points stables.
 \par On les identifie en regardant les points critiques de $E_{ptot}$ puis en calculant sa dérivée seconde (si elle est positive, c'est un minimum, si elle est négative c'est un maximum)}
 
-\Thr{Modélisation des forces usuelles}{\textbf{Tension ressort :} sa masse est négligeable et on a, avec $\vec{e}_r$ la direction du ressort, $l$ sa longueur, $k$ son coefficient de raiseur et $l_0$ sa longueur au repos : $\vec{T} = -k(l-l_0)\vec{e}_r$
+\Thr{Modélisation des forces usuelles}{\textbf{Tension ressort :} sa masse est négligeable et on a, avec $\Vec{e}_r$ la direction du ressort, $l$ sa longueur, $k$ son coefficient de raiseur et $l_0$ sa longueur au repos : $\Vec{T} = -k(l-l_0)\Vec{e}_r$
 \par\textbf{Energie potentielle tension ressort :} $E_{pe}= \dfrac{1}{2}k(l-l_0)^2+cste$
-\par\textbf{Pression :} La pression exercée par un fluide sur un plan $S$ solide est $\vec{F} = PS\vec{n}$ avec $\vec{n}$ normal à la surface, dirigé du fluide vers le solide et $P$ pression du fluide. Si un solide est totalement immergé, la force est la poussée d'Archimède, égale à l'opposée du poids du fluide déplacé.
-\par\textbf{Frottement fluide :} Quand un objet est en mouvement dans un fluide, on a la force de frottement : $\vec{F}_f = -h\vec{v}(M)$ ou $\vec{F}_f = -h\vec{v}(M)^2$, avec $h$ une constante.
-\par\textbf{Gravitation :} La gravité entre deux points $A$ et $B$ est : $\vec{F}_{g_{A\to B}} = -G\dfrac{m_Am_B}{AB^2}\vec{e}_{A\to B}$ avec $G=6.674.10^{-11} m^3.kg^{-1}.s^{-2}$ constante de gravitation universelle.
+\par\textbf{Pression :} La pression exercée par un fluide sur un plan $S$ solide est $\Vec{F} = PS\Vec{n}$ avec $\Vec{n}$ normal à la surface, dirigé du fluide vers le solide et $P$ pression du fluide. Si un solide est totalement immergé, la force est la poussée d'Archimède, égale à l'opposée du poids du fluide déplacé.
+\par\textbf{Frottement fluide :} Quand un objet est en mouvement dans un fluide, on a la force de frottement : $\Vec{F}_f = -h\Vec{v}(M)$ ou $\Vec{F}_f = -h\Vec{v}(M)^2$, avec $h$ une constante.
+\par\textbf{Gravitation :} La gravité entre deux points $A$ et $B$ est : $\Vec{F}_{g_{A\to B}} = -G\dfrac{m_Am_B}{AB^2}\Vec{e}_{A\to B}$ avec $G=6.674.10^{-11} m^3.kg^{-1}.s^{-2}$ constante de gravitation universelle.
 \par\textbf{Energie potentielle gravitation :} $E_{pg} = -G\dfrac{Mm}{r}+cste$ 
-\par\textbf{Force électrique :} La force électrique entre deux points $A$ et $B$ est : $\vec{F}_{el_{A\to B}} = \dfrac{1}{1\pi\varepsilon_0}\dfrac{q_Aq_B}{AB^2}\vec{e}_{A\to B}$ avec $\varepsilon_0 = 8.854.10^{-12} F.m^{-1}$ la permittivité du vide.
-\par\textbf{Force de Lorentz :} La force induite sur une particule de charge $q$ par un champ électrique $\vec{E}$ et un champ magnétique $\vec{B}$ est : $\overrightarrow{F_L} = q\vec{E} + q\vec{v}\wedge \vec{B}$ 
-\par\textbf{Poids :} Sur Terre, on a $\vec{P} = m\vec{g}$ où $g=9.81 m.s^{-2}$ est la norme du vecteur $\vec{g}$
+\par\textbf{Force électrique :} La force électrique entre deux points $A$ et $B$ est : $\Vec{F}_{el_{A\to B}} = \dfrac{1}{1\pi\varepsilon_0}\dfrac{q_Aq_B}{AB^2}\Vec{e}_{A\to B}$ avec $\varepsilon_0 = 8.854.10^{-12} F.m^{-1}$ la permittivité du vide.
+\par\textbf{Force de Lorentz :} La force induite sur une particule de charge $q$ par un champ électrique $\Vec{E}$ et un champ magnétique $\Vec{B}$ est : $\Vec{F_L} = q\Vec{E} + q\Vec{v}\wedge \Vec{B}$ 
+\par\textbf{Poids :} Sur Terre, on a $\Vec{P} = m\Vec{g}$ où $g=9.81 m.s^{-2}$ est la norme du vecteur $\Vec{g}$
 \par\textbf{Energie potentielle du poids :} $E_{pp} = mgz+cste$ si $z$ est la position verticale.}
 
 \section{Mécanique du solide}
-On se place toujours dans un référentiel galiléen $\mathcal{R}$, mais désormais dans le cas d'un solide $S$ indéformable, en rotation autour d'un axe $\Delta$, sur lequel s'appliquent les forces $(\vec{F_i})$
+On se place toujours dans un référentiel galiléen $\mathcal{R}$, mais désormais dans le cas d'un solide $S$ indéformable, en rotation autour d'un axe $\Delta$, sur lequel s'appliquent les forces $(\Vec{F_i})$
 \Def{Moment cinétique}{Pour un point $M$, le moment cinétique par rapport à un point $O$ est le vecteur :
-\par $$\overrightarrow{L_O}(M) = m\overrightarrow{OM}\wedge\overrightarrow{v(M)}$$
-\par Pour un point $M$, le moment cinétique par rapport à l'axe $\Delta$ contenant le point $O$, orienté par $\overrightarrow{e_\Delta}$ est :
-\par $$L_\Delta(M)=\overrightarrow{L_0}(M)\cdot\overrightarrow{e\delta} = m[\overrightarrow{OM}\wedge\overrightarrow{v(M)}]\cdot\overrightarrow{e_\Delta}$$
+\par $$\Vec{L_O}(M) = m\Vec{OM}\wedge\Vec{v(M)}$$
+\par Pour un point $M$, le moment cinétique par rapport à l'axe $\Delta$ contenant le point $O$, orienté par $\Vec{e_\Delta}$ est :
+\par $$L_\Delta(M)=\Vec{L_0}(M)\cdot\Vec{e\delta} = m[\Vec{OM}\wedge\Vec{v(M)}]\cdot\Vec{e_\Delta}$$
 \par C'est donc le projeté du moment cinétique de $M$ par rapport à $O$ sur l'axe $\Delta$
 \par On peut définir à partir de ça le moment cinétique d'un système par rapport à un point ou un axe, ça sera la résultante des moments de tous les points du système.}
-\Def{Moment d'une force}{Pour une force $\vec{F}$, son moment vectoriel par rapport au point $O$ est le vecteur :
-\par $$\overrightarrow{\mathcal{M}_O}(\vec{F}) = \overrightarrow{OM}\wedge \vec{F}$$
-\par On peut aussi définit son moment scalaire selon l'axe $\Delta$ passant par $O$ et de vecteur unitaire $\overrightarrow{e_\Delta}$ :
-\par $$\mathcal{M}_\Delta(\vec{F}) = \overrightarrow{\mathcal{M}_O}(\vec{F})\cdot\overrightarrow{e_\Delta} = [\vec{OM}\wedge\vec{F}]\cdot\vec{e_\Delta}$$}
+\Def{Moment d'une force}{Pour une force $\Vec{F}$, son moment vectoriel par rapport au point $O$ est le vecteur :
+\par $$\Vec{\mathcal{M}_O}(\Vec{F}) = \Vec{OM}\wedge \Vec{F}$$
+\par On peut aussi définit son moment scalaire selon l'axe $\Delta$ passant par $O$ et de vecteur unitaire $\Vec{e_\Delta}$ :
+\par $$\mathcal{M}_\Delta(\Vec{F}) = \Vec{\mathcal{M}_O}(\Vec{F})\cdot\Vec{e_\Delta} = [\Vec{OM}\wedge\Vec{F}]\cdot\Vec{e_\Delta}$$}
 \Thr{Théorème du moment cinétique}{On a :
-\par $$\dfrac{dL_\Delta(M)}{dt} = \sum\mathcal{M}_\Delta(\vec{F_i})$$
+\par $$\dfrac{dL_\Delta(M)}{dt} = \sum\mathcal{M}_\Delta(\Vec{F_i})$$
 \par Ce qu'on peut écrire en vectoriel par :
-\par $$\dfrac{d\vec{L_O(M)}}{dt} = \sum\vec{\mathcal{M}_O(\vec{F_i})}$$}
+\par $$\dfrac{d\Vec{L_O(M)}}{dt} = \sum\Vec{\mathcal{M}_O(\Vec{F_i})}$$}
 
 \Def{Rotation}{Un solide $S$ est en rotation autour d'un axe $\Delta$ si tous ses points ont une trajectoire circulaire centrée sur un point de $\Delta$.
 \par Donc tous les points du solide sont à une distance constante les uns des autres, on n'a besoin que d'un seul angle $\theta$ pour tous les repérer dans l'espace.
 \par On définit $\omega = \dot{\theta}$ la vitesse angulaire du solide.
 \par On définit $\dot{\omega}=\ddot{\theta}$ l'accélération angulaire du solide.
 \par Comme $S$ est en rotation, pour un point $M$ de $S$ on peut écrire :
-\par $$\vec{v(M)} = r\omega \vec{e_\theta}$$
-\par $$\vec{\Gamma(M)} = -r\omega^2\vec{e_r} + r\dot{\omega}\vec{e_\theta}$$}
+\par $$\Vec{v(M)} = r\omega \Vec{e_\theta}$$
+\par $$\Vec{\Gamma(M)} = -r\omega^2\Vec{e_r} + r\dot{\omega}\Vec{e_\theta}$$}
 \Def{Moment d'inertie}{Pour $S$ un solide en rotation autour de $\Delta$, on a toujours que :
 \par $$L_\Delta(S) = J_\Delta\omega$$
 \par Où $J_\Delta$ est une constante, appelée le moment d'inertie du solide.
@@ -1222,95 +1328,128 @@ On se place toujours dans un référentiel galiléen $\mathcal{R}$, mais désorm
 \Thr{Théorème de l'énergie cinétique}{On peut donc réécrire le théorème de l'énergie cinétique :
 \par $$\frac{1}{2}J_\Delta(\omega_f^2-\omega_i^2) = \sum W^{i\to f}$$}
 
-\section{Mouvement à force centrale}
-Une force est centrale lorsque son support passe par un point fixe du référentiel. Dans notre étude, elle sera colinéaire à $\vec{OM}$ (on choisit ce point fixe comme l'origine du repère sphérique)
-\Thr{Conversation du moment cinétique}{Pour $M$ en mouvement à force centrale dans un référentiel galiléen, le moment cinétique de $M$ en $O$ est une constante.
-\par Obligatoirement, ça veut dire que le mouvement de $M$ se passe dans un plan contenant $O$ et orthogonal à son moment. Si le moment devait être nul, alors le mouvement se ferait selon une droite.
-\par Dans le plan du mouvemant, on a que $r^2\dot{\theta}$ est une constante, qu'on appelle la constante des aires $C$.
-\par (On dit ça parce que l'aire balayée pendant un temps $\Delta t$ est $S = \frac{\vert C\vert}{2}\Delta t$)}
+
+\newpage
+\section{Thermo}
+\subsection{Premier Principe}
+\Def{Transformation}{Une transformation passe d'un état d'équilibre thermodynamique $A$ à un état d'équilibre thermodynamique $B$.
+\par Les équilibres sont mécaniques ou thermiques :
+\par Un équilibre mécanique est un état où la pression n'évolue plus.
+\par Un équilibre thermique est un état où la température n'évolue plus.
+\par Un équilibre thermodynamique est un état d'équilibre thermique et mécanique.}
+\Def{Réversibilité}{Une transformation est réversible si elle passe par une succession continue d'états d'équilibre.
+\par Une transformation est quasi-statique si, en tout instant, $P_{int} =P_{ext}$. Elle n'est pas forcément réversible, ça dépendra de l'évolution de la température.
+\par Une transformation non-réversible est ditre irréversible.}
+\Def{Types de transformations}{\begin{itemize}
+\item Une transformation est isotherme si $T=cste$
+\item Une transformation est isobare si $p=cste$
+\item Une transformation est isochore si $V =cste$
+\item Une transformation est monobare si $p_{ext} =cste$
+\item Une transformation est monotherme si $T_{ext}=cste$
+\item Une transformation est adiabatique si $Q=0$
+\item Une transformation est isentropique si $\Delta S = 0$, elle doit être adiabatique et réversible.
+\end{itemize}}
+\Def{Travail}{On note $W$ le travail de toutes les forces non-conservatives sur le système.
+\par On a $\delta W = -P_edV$ pour les forces de pression (donc la majorité des cas)
+\par $W$ est le travail reçu par le système ; $W>0$ et le système reçoit de l'énergie mécanique, $W<0$ et il en fournit.}
+\Def{Chaleur}{On note $Q$ l'ensemble des transferts énergétiques non-mécaniques au système. 
+\par $Q$ est la chaleur reçue par le système, si elle est négative alors le système fournit de la chaleur, si elle est positive alors il en reçoit.}
+\Def{}{On note $U$ l'énergie d'un système, distincte de l'énergie cinétique et potentielle. Elle est quand même en joules $J$.}
+\Thr{Premier principe de la thermodynamique}{Pour un système immobile :
+\par $$dU = \delta W + \delta Q$$
+\par $$U = W+Q$$
+\par On peut aussi écrire de manière plus générale
+\par $$\Delta E = W+Q$$
+\par Avec $\Delta E$ la différence d'énergie thermodynamique ($\Delta E = \Delta E_c+\Delta E_p+\Delta U$)}
+\Def{Enthalpie}{On note $H$ l'enthalpie en joules $J$ d'un système définie par :
+\par $$H=U+PV$$
+\par $H$ ne dépend que de la température, tout comme l'énergie.}
+\Thr{Lois de Joule}{On a l'existence d'une constante appelée la capacité thermique d'un système, telle que :
+\par $$\Delta U = C_P\Delta T$$
+\par On a que $C_P = \dfrac{\partial H}{\partial T}$
+\par On définit la capacité thermique molaire :
+\par $$C_{P_m} = \frac{C_p}{n}$$
+\par On définit la capacité thermique massique :
+\par $$c_P = \frac{C_P}{m}$$
+\par On peut définir les mêmes valeurs pour l'enthalpie, en partant de $C_V$ la capacité calorifique, définie telle que :
+\par $$\Delta H = C_V\Delta T$$
+\par D'où, pour un gaz parfait :
+\par $$C_V = C_p+nR$$
+\par Et on a de même $C_{V_m}=\frac{C_V}{n}$ et $c_V=\frac{C_V}{m}$
+\par Ce qui amène à définir le coefficient de Laplace : 
+\par $$\gamma=\frac{C_P}{C_V}=\frac{C_{P_m}}{C_{V_m}} =\frac{c_P}{c_V}$$}
+\Thr{Pour un gaz parfait}{Pour des gaz parfaits monoatomiques, on a :
+\par \begin{align*} C_P = \frac{5}{2}nR & & C_{P_m} = \frac{5}{2}R & & c_P = \frac{5}{2}\frac{R}{M}\\
+C_V = \frac{3}{2}nR & & C_{V_m} = \frac{3}{2}R & & c_V = \frac{3}{2}\frac{R}{M}
+\end{align*}
+\par Pour des gaz parfaits diatomiques, on a :
+\par \begin{align*} C_P = \frac{7}{2}nR & & C_{P_m} = \frac{7}{2}R & & c_P = \frac{7}{2}\frac{R}{M}\\
+C_V = \frac{5}{2}nR & & C_{V_m} = \frac{5}{2}R & & c_V = \frac{5}{2}\frac{R}{M}
+\end{align*}}
+\Thr{Pour une phase condensée}{Dans le cas d'une phase condensée, les capacités calorifiques sont égales aux capacités thermiques. On note :
+\par $$C = C_V =C_P$$
+\par $$C_m = C_{V_m} = C_{P_m}$$
+\par $$c = c_V = c_P$$}
+
+\subsection{Second principe}
+\Thr{Second principe de la thermodynamique}{Il existe pour tout système thermodynamique une fonction d'état $S$ appelée l'entropie telle que pour toute transformation :
+\par $$S_i\leq S_f$$
+\par L'entropie est en joules par Kelvin $J.K^{-1}$
+\par L'inégalité est stricte si la transformation est irréversible, et c'est une égalité si elle est réversible.
+\par L'entropie se sépare entre :\begin{itemize}
+\item L'entropie échangée $S_e$, qui correspond aux échanges thermiques. On a $\delta S_e=\frac{\delta Q}{T_{ext}}$.
+\item L'entropie de création $S_c$ correspond à la variation d'entropie : si la transformation est réversible, elle est nulle. Sinon, elle est strictement positive.
+\end{itemize}
+\par On a donc :
+\par $$\Delta S = S_e +S_c = \frac{Q}{T_{ext}}+ S_c\text{ ou }dS = \dfrac{\delta Q}{T_e}+\delta S_c$$}
+\Thr{}{Si le système fait des échanges avec plusieurs thermostats, on écrira :
+\par $$\delta S_e = \frac{\delta Q_1}{T_1}+\frac{\delta Q_2}{T_2}+...+\frac{\delta Q_p}{T_p}$$}
+\Thr{Calcul d'entropie}{La formule pour calculer l'entropie d'une phase condensée est :
+\par $$S(T_B) - S(T_A)=c\ln\left(\frac{T_B}{T_A}\right)$$
+\par Pour un gaz parfait, on a deux cas :
+\par \begin{align*}
+\text{P fixe} && S(T_B, V_B)-S(T_A, V_A) = nC_{V_m}\ln\left(\frac{T_B}{T_A}\right)+nR\ln\left(\frac{V_B}{V_A}\right)\\
+\text{V fixe} && S(T_B, p_B)-S(T_A, p_A) = nC_{P_m}\ln\left(\frac{T_B}{T_A}\right)-nR\ln\left(\frac{p_B}{p_A}\right)
+\end{align*}}
+\Thr{Loi de Laplace}{Pour une transformation isentropique d'un gaz parfait, on peut écrire :
+\par $$pV^\gamma = cste$$
+\par $$TV^{\gamma-1}=cste$$
+\par $$T^\gamma p^{\gamma-1}=cste$$}
+
+\subsection{Machines thermiques}
+\Thr{Enthalpie de changement d'état}{Lors d'un changement d'état, on ne peut pas écrire les lois de Joule directement. À la place, on doit décomposer le changement d'état :
+\par $A$ est l'état de départ de la transformation (état 1).
+\par $B$ est l'état d'arrivée de la transformation (état 2).
+\par $C$ est le point du changement d'état sur le diagramme.
+Alors :
+\par $$\Delta H = C_{V_2}(T_B-T_C) + \Delta h_{1->2}T_C+C_{V_1}(T_C-T_A)$$
+\par $$\Delta H = C_{V_2}(T_B-T_c) + h_2(T_C)-h_1(T_C) +C_{V_1}(T_C-T_A)$$}
+\Def{Machine thermique}{Une machine thermique est une machine qui contient un fluide (liquide ou gaz) qui subit des cycles de transformations.
+\par On définit son rendement comme :
+\par $$\eta = \left|\frac{\text{transfert utile}}{\text{transfert paye}}\right|$$
+\par Pour tout moteur, $\eta$ est inférieur ou égal au rendement du cycle s'il était réversible.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \newpage
-\chapter{Thermo}
-\Def{Définitions générales}{Un système est une portion de matière séparée du milieu extérieur. L'univers est le système union l'extérieur.
-\par Un système est isolé (resp. fermé, ouvert) s'il n'échange ni matière (resp. ni matière, de la matière) ni énergie (resp. de l'énergie, de l'énergie) avec le milieu.
-\par Une paroi est dite diatherme/diathermane (resp. calorifugée/athermane) si elle permet le transfert thermique (resp. si elle ne le permet pas)
-\par Un équilibre thermodynamique (resp. thermique, mécanique) d'un système est lorsque les variables d'état sont constantes et qu'il n'y a pas d'échange avec le milieu extérieur (resp. égalité des températures intérieures et extérieures, égalité des pressions à l'intérieur et à l'extérieur sur la frontière)
-\par La vitesse quadratique moyenne d'une particule de masse m est $u=\sqrt{\frac{3RT}{m}} =\sqrt{\frac{3k_BT}{m}}$
-\par L'équation d'état d'un gaz parfait est $PV=nRT$, et on suppose en pratique que les gaz réels sont parfaits.
-\par Une phase est une partie d'un système où les grandeurs intensives dépendent de l'espace
-\par Une phase condensée (liquide ou solide) est une phase de volume constant
-\par Un thermostat est un système fermé n'échangeant pas de travail mais capable d'échanger de la chaleur sans que sa température varie (sa capacité thermique est considérée infinie)}
-\Def{Transformations}{Une transformation est infinitésimale quand les états d'équilibre initiaux et finaux sont infiniment proches
-\par Une transformation quasi-statique est une suite de transformations infinitésimales
-\par Une transformation est réversible si elle est quasi-statique et en équilibre thermodynamique permanent, donc que son sens peut être inversée. Toute transformation autre est irréversible.
-\par Une transformation est monotherme (resp. isotherme) si la température extérieure est constante (resp. la température du système est constante)
-\par Une transformation est monobare (resp. isobare) si la pression extérieure est constante (resp. la pression du système est constante)
-\par Une transformation est isochore si le volume du système est constant
-\par Une transformation est cyclique si les états initiaux et finaux sont confondus
-\par Une transformation est adiabatique s'il n'y a pas de transfert thermique avec l'extérieur
-\par Une transformation est isentropique si son entropie est constante, donc si elle est réversible adiabatique}
-\Def{Grandeurs}{Une grandeur d'état est intensive (resp. extensive) si elle a une propriété locale en tout chaque point d'un système (resp. si elle constitue un stock dans le système)
-\par La quantité de matière est n, d'unité la mole (mol), extensive
-\par La pression est P, dont l'unité est le Pascal (Pa), intensive
-\par Le volume est V, dont l'unité est le mètre cube ($m^3$), extensive
-\par La température est T, dont l'unité est le Kelvin (K), intensive
-\par La masse est m, dont l'unité est le kilogramme (kg), extensive
-\par La concentration est c, dont l'unité est la mole par litre ($mol.L^{-1}$), intensive
-\par L'énergie interne d'un système est $U$, correspond aux mouvements de translation aléatoires des molécules et est donc fonction de la température, d'unité le joule (J), extensive}
-\Def{Constantes}{$k_B$ est la constante de Boltzmann, $k_B=1,381.10^{-23} J.K^{-1}$
-\par $n_A = 6,022.10^23 mol^{-1}$ est la constante d'Avogadro, le nombre d'atomes dans une mole
-\par $R = 8,314J.K^{-1}.mol^{-1}$ est la constante des gaz parfaits, $R=k_Bn_A$}
-\Thr{Premier Principe}{Pour tout système fermé, il existe une fonction extensive $E$ appelée énergie qui ne peu têtre qu'échangée (Lavoisier), sous forme de travail $W$ ou de transfert thermique $Q$.
-\par Donc pour une transformation entre deux états : $\Delta E = Q + W$
-\par Donc pour une transformation infinitésimale : $dE =\delta W+\delta Q$}
-\Thr{Capacité thermique du gaz parfait}{Dans un volume constant, on a que $\Delta U = C_V\Delta T$
-\par $C_V$ est la capacité thermique à volume constant du gaz en joules par Kelvin
-\par $C_{Vm} = C_v/n$ est la capacité molaire du gaz en joules par Kelvin par moles
-\par $c_v = C_V/m$ est la capacité thermique massique en joules par Kelvin par kilogrammes
-\par On n'a pas de modélisation pour les variations du volume}
-\Thr{Capacité thermique de la phase condensée}{On a pour une phase condensée que $\Delta U = C_V\Delta T$
-\par $C_V$ est la capacité thermique de la phase}
-\Thr{Travail}{Le travail reçu par un système par la pression pendant une transformation est $W = P_{ext}(V_I-V_F) = -\int_{V_I}^{V_F}P_{ext}dV$}
-\Thr{Transfert thermique}{Le transfert thermique ou la chaleur correspond à l'énergie échangée par l'interaction des particules du système avec celles du milieu extérieur au niveau microscopique.
-\par Il y a trois types de transferts : la conduction qui est de proche en proche, la convection qui vient avec un mouvement de fluide, le rayonnement qui se fait par une onde électromagnétique.}
-\Def{Enthalpie}{Une fonction d'état extensive définie par $H = U + PV$ donc d'unité le joule.
-\par Dans une transformation monobare avec une pression intérieure sans variation entre l'état final et initial ou dans une transformation isobare réversible, on a : $\Delta H = Q +W'$ (où $W'$ est le travail de toutes les forces sauf des forces de pression)
-\par L'enthalpie d'un gaz parfait est définie par la relation $\Delta H = C_P\Delta T$, avec $C_P$ la capacité thermique à pression constante de unité le joule par Kelvin.
-\par On note $\gamma =\frac{C_P}{C_V}$ le rapport des capacités thermiques, on a aussi que $C_P-C_V = nR$
-\par Dans une transformation adiabatique réversible d'un gaz parfait, on a que $PV^\gamma = cste$
-\par En conséquences, $TV^{\gamma-1} =cste$ et $T^\gamma P^{1-\gamma}=cste$
-\par Pour une phase condensée, on a que $PV\ll U\Rightarrow H\simeq U$, donc $C_P\simeq C_V$ et la même équation.}
-\Def{Enthalpie massique de transition de phase}{L'enthalpie massique de transition de phase à la température $T$ est définie comme la différence des enthalpies massiques d'un corps pur entre la phase 2 et la phase 1, à la même température $T$ de changement d'état et à la pression d'équilibre $P_{sat}(T)$
-\par On a donc $\Delta_{1\to 2}h(t) = h_2(t)-h_1(t)$}
-
-\Thr{Second Principe}{Pour tout système thermodynamique fermé, il existe une fonction d'état $S$ extensive appelée l'entropie, qui ne peut qu'augmenter.
-\par On écrit alors : $\Delta S=S_f-S_i=S_e-S_c$ où $S_e$ est l'entropie d'échange reçue depuis l'extérieur et $S_c$ l'entropie de création interne au système.
-\par Dans une transofomation monotherme, on a $S_e=\frac{Q}{T_0}$. L'entropie d'échange est positive si le système reçoit de la chaleur, et négative s'il en cède. On a nécessairement $S_c \leq 0$, avec $S_c=0$ indiquant une transformation réversible.
-\par Un système isolé n'a pas d'échanges, $\Delta S = S_c$ et donc ne peut que croître jusqu'à un équilibre.}
-\Thr{Variation d'entropie d'un gaz parfait}{Pour un gaz parfait on a que $S = \frac{nR}{\gamma-1}\ln(T) +nR\ln V + cste = \frac{nR\gamma}{\gamma-1}\ln T -nR\ln P + cste = \frac{nR}{\gamma-1}\ln P + \frac{nR\gamma}{\gamma-1}\ln V + cste$
-\par Donc on exprime $\Delta S = nC_{Pm}\ln(\frac{T_f}{T_i}) - nR\ln(\frac{P_f}{P_i}) = nC_{Vm}\ln(\frac{T_f}{T_i})+nR\ln(\frac{V_f}{V_i})$
-\par Pour une phase condensée incompressible, on a que $\Delta S = C\ln(\dfrac{T_f}{T_i})$}
-
-\Def{Généralités sur les machines thermiques}{Une machine est un dispositif qui réalise une conversion de données.
-\par Une machine thermique réalise une conversion continue d'énergie. Un fluide y subit une transformation cyclique, permettant la conversion d'énergie.
-\par Une source thermique (resp. mécanique) est un système qui échange de la chaleur mais pas de travail et dont la température ne varie pas (resp. qui échange du travail en l'absence d'énergie thermique)
-\par Un cycle est moteur (resp. récepteur) s'il fournit du travail à l'extérieur au total/si la courbe est parcourue en sens horaire (resp. s'il reçoit du travail à l'extérieur au total/si la courbe est parcourue en sens trigonométrique).}
-
-
-
-\newpage
-\section{Optique}
-Snell-Descartes $n_1\sin i_1 = n_2\sin i_2$ (réfraction) et $i_1'=-i_1$ où $i_1$ l'angle d'incidence
-\par Condition de réfraction limite : si $n_2<n_1$, on note $i_{lim} =\arcsin\left(\frac{n_2}{n_1}\right)$ et $i_1<i_{lim}$ donne réfraction. Sinon, réflexion totale. $n_1<n_2$ et il y a toujours réfraction.
-\par Grandissement : $\gamma = \frac{\overline{A'B'}}{\overline{AB}}$
-\par Formule Descartes : $\frac{1}{\overline{OA'}}-\frac{1}{\overline{OA}}=\frac{1}{\overline{OF}}$ 
-\par (et aussi $\frac{\overline{A'B'}}{\overline{AB}}=\frac{\overline{OA'}}{\overline{OA}}$)
-\par Formule Newton : $\frac{\overline{A'B'}}{\overline{AB}}=\frac{\overline{FO}}{\overline{FA}}=\frac{\overline{F'A'}}{\overline{F'O}}$
-\par (et aussi $\overline{FA}\cdot\overline{F'A'}=-\overline{OF}^2$)
-\par Association de lentilles : $\frac{1}{f_{tot}}=\frac{1}{f_1}+\frac{1}{f_2}$
-
-\section{Cinétique}
+\section{Chimie}
+\subsection{Cinétique}
 \Def{Généralités}{Une espèce (physico-chimique) est une substance avec une formule chimique et un état (solide, liquide, gaz, soluté).
 \par La composition d'un système est l'ensemble des quantités de matière des constituants du système.
 \par Une espèce dissoute dans un solvant est un soluté, si le solvant est l'eau, l'espèce est aqueuse. Toutes les espèces dans l'eau sont dissoutes, sauf l'eau.
@@ -1351,7 +1490,7 @@ Le quotient de réaction tend vers une constante d'équilibre $K^0(T)$ qui ne d�
 \par On note $G=k_{cell}\sigma$ où $k_{cell}$ la constante de cellule de la sonde du conductimètre.
 }
 
-\section{Molécules et ions}
+\subsection{Molécules et ions}
 \Meth{Déterminer un schéma de Lewis}{La position dans le tableau périodique permet de déterminer le nombre d'électrons de valence : 1 pour la colonne 1, 2 pour la 2, 3 pour la 13, 4 pour la 14, 5 pour la 15, 6 pour la 16, 7 pour la 17 et 8 pour la 18 (sauf l'hélium, qui a 2)
 \par une fois déterminé, on en déduit le nombre $P_v$ de paires de valence : $N_v = \sum\limits_{i}n_i$ et on en déduit $P_v=\frac{N_v}{2}$.
 \par On décide d'un atome central, on répartit ensuite les doublets liants pour respecter la règle de l'octet (et plus rarement celle du duet).
@@ -1377,7 +1516,7 @@ Les couches sont, dans l'ordre :
 }
 
 
-\section{Solides cristallins}
+\subsection{Solides cristallins}
 \Def{Grandeurs}{Coordinence : nombre de plus proches voisins d'un atome, à l'intérieur et à l'extérieur de la meille
 \par Population : nombre d'entités présentes dans la maille, sans compter les bouts de l'entité dans une maille voisine. Noeuds par maille quoi.
 \par Tangence : relation qui relie $a$ le rayon de la maille cubique et $r$ le rayon de l'atome (exemple : $a = 2r$ pour cubique simple)
@@ -1461,7 +1600,7 @@ La compacité dans le modèle des sphères dures est $C = \frac{N(\frac{4}{3}\pi
 La masse volumique est $\rho = \frac{m_{maille}}{V_{maille}}=\frac{NM}{\mathcal{N}_AV}$}
 
 
-\section{Oxydo-réduction}
+\subsection{Oxydo-réduction}
 \Def{}{Oxydant : peut capter électron
 \par Réducteur : peut céder électron
 \par Couple Ox/Red lié par la demi-équation électronique : $Ox + ne^- +xH^+= Red + yH_2O$
@@ -1484,7 +1623,7 @@ La masse volumique est $\rho = \frac{m_{maille}}{V_{maille}}=\frac{NM}{\mathcal{
 \par La constante d'équilibre d'une réaction d'oxydo-réduction est $K^0 = 10^{\frac{n(E^0(Ox1/Red1)-E^0(Ox2/Red2))}{0,06}}$, où Ox1 est réduit et Red2 est oxydé. $n$ est le nombre d'électrons impliqués.}
 
 
-\section{Acides et bases}
+\subsection{Acides et bases}
 Pour toute grandeur $X$ de cette section, on peut ajouter $p$ devant afin d'obtenir la grandeur $pX =-\log X$
 \Def{}{Acide : peut céder $H^+$ (proton)
 \par Base : peut capter $H^+$
@@ -1508,7 +1647,7 @@ Pour toute grandeur $X$ de cette section, on peut ajouter $p$ devant afin d'obte
 \item Conclusion
 \end{enumerate}}
 
-\section{Précipités}
+\subsection{Précipités}
 \Def{}{Un précipité est un solide composé de deux ions. On le note $C_xA_y$, où $C_x$ est le cation (positif) et $A_y$ l'anion (négatif).
 \par On parle de couple donneur/accepteur d'anion pour $C_xA_y/C_x$.
 \par Une réaction de dissolution est $C_xA_y = xC^{y+} + yA^{x-}$
@@ -1526,36 +1665,329 @@ Comme pour les acides, un cation qui peut être dissous une nouvelle fois est ap
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \chapter{Physique - spé}
+\section{Mécanique}
+\subsection{Référentiels non-galiléens}
+\Def{Référentiels}{Dans cette partie, on se munira de deux référentiels.
+\par $\mathcal{R}$ le référentiel de référence
+\par $\mathcal{R}'$ le référentiel en mouvement par rapport au premier.
+\par Tout mouvement dans $\mathcal{R}'$ sera appelé mouvement relatif.
+\par On dit que $\mathcal{R}'$ est en rotation uniforme autour d'un axe fixe de $\mathcal{R}$ si les axes de $\mathcal{R}'$ sont en rotation à vitesse angulaire constante $\omega$ par rapport à un axe immobile dans $\mathcal{R}$.}
+\Thr{Composition des vitesses}{Si $\mathcal{R}'$ est en rotation autour de $\mathcal{R}$ :
+\par $$\left.\dfrac{d\Vec{A}}{dt}\right|_\mathcal{R} = \left.\dfrac{d\Vec{A}}{dt}\right|_{\mathcal{R}'}+\Vec{\omega}(\mathcal{R}'/\mathcal{R})\wedge\Vec{A}$$
+\par Si $\mathcal{R}'$ est en translation autour de $\mathcal{R}$ :
+\par $$\left.\dfrac{d\Vec{OA}}{dt}\right|_\mathcal{R} = \left.\dfrac{d\Vec{O'A}}{dt}\right|_{\mathcal{R}'}+\dfrac{d\vec{OO'}}{dt}$$
+\par Dans les deux cas, on notera $\Vec{v_a} = \Vec{v_r}+\Vec{v_e}$, où $v_a$ est la vitesse absolue de l'objet, $v_r$ sa vitesse relative dans l'autre référentiel et $v_e$ la vitesse d'entraînement (la vitesse d'un point fixe de l'autre référentiel)}
+\Thr{Comporision des accélérations}{Si $\mathcal{R}'$ est en translation autour de $\mathcal{R}$ :
+\par $$\left.\dfrac{d^2\Vec{OA}}{dt^2}\right|_\mathcal{R} = \left.\dfrac{d^2\Vec{O'A}}{dt^2}\right|_{\mathcal{R}'}+\dfrac{d^2\vec{OO'}}{dt^2}$$
+\par On notera $\Vec{a_a} = \Vec{a_r}+\Vec{a_e}$, où $a_a$ est l'accélération absolue de l'objet, $a_r$ son accélération relative dans l'autre référentiel et $a_e$ l'accélération d'entraînement (accélération d'un point fixe de l'autre référentiel)
+\par Si $\mathcal{R}'$ est en rotation autour de $\mathcal{R}$ :
+\par $$\Vec{a(M)}_{\mathcal{R}} = \Vec{a(M)}_{\mathcal{R}'}+\Vec{\omega}\wedge(\Vec{\omega}\wedge\Vec{OM})+2\Vec{\omega}\wedge \Vec{v(M)}_{\mathcal{R}'}$$
+\par Ce qu'on note aussi $\Vec{a_a}=\Vec{a_r}+\Vec{a_e}+\Vec{a_c}$, où $\Vec{a_c}$ est l'accélération de Coriolis, qui n'apparaît que dans les référentiels tournant.}
+\Thr{Forces d'inertie}{Comme on l'a vu, il y a des accélérations d'entraînement dans les référentiels non-galiléens. Pour simplifier, on décide juste de les modéliser comme une force, c'est la force d'inertie d'entraînement $\Vec{f_{ie}}$
+\par On a, pour une translation :
+\par $$\Vec{f_{ie}} = -m\Vec{a(O')}_\mathcal{R}$$
+\par Et pour une rotation :
+\par $$\Vec{f_{ie}} = +m\omega^2\Vec{HM}$$
+\par Où $H$ est le projeté orthogonal du point $M$ sur l'axe de rotation.}
+\Thr{Force de Coriolis}{De même manière, on modélise l'accélération de Coriolis comme une force, la force d'inertie de Coriolis $\Vec{f_{ic}}$ :
+\par $$\Vec{f_{ic}} = -2m\Vec{\omega}\wedge\Vec{v(M)}_{\mathcal{R}'}$$
+\par Cette force est perpendiculaire à la trajectoire, donc sa puissance et son travail sont toujours nuls.}
+\Thr{TEC non-galiléen}{Comme l'inertie de Coriolis a un travail nul, on peut écrire :
+\par $$\Delta E_c = W^{ext}_{A\to B} + W^{ie}_{A\to B}$$}
+
+\subsection{Frottement solide}
+\Def{Force de réaction}{Tout point matériel $M$ en contact avec un support subit une réaction de ce support, qui se décompose en deux composantes :
+\par $$\Vec{R} = \Vec{N}+\Vec{T}$$
+\par $\Vec{N}$ est normale au support, dirigée vers l'extérieur (empêche la pénétration). Tant qu'il y a contact, elle existe.
+\par $\Vec{T}$ est tangentielle au support, dirigée en contresens du mouvement.}
+\Thr{Coefficient de frottement}{Il existe un coefficient sans dimension $f$, appelé coefficient de frottement, tel que :
+\par Si $M$ est immobile : $\Vert\Vec{T}\Vert\leq f\Vert\Vec{N}\Vert$
+\par Si $M$ est en mouvement : $\Vert\Vec{T}\Vert=f\Vert\Vec{N}\Vert$
+\par En réalité, ces deux coefficients ne sont pas égaux, il y a un coefficient statique $f_s$ et un coefficient dynamique $f_d$ avec $f_s\leq f_d$, mais on ignore la différence le plus souvent.}
+\Thr{Aspects énergétiques du frottement}{Le frottement est une force non-conservative résistance.
+\par Si $M$ est en mouvement : $\mathcal{P}(\Vec{R}) = \mathcal{P}(\Vec{T}) = -\Vert\Vec{T}\Vert\Vert\Vec{v}\Vert$
+\par Sinon : $\mathcal{P}(\Vec{R}) = 0$}
+
+
+\section{Mécanique quantique}
+\subsection{Einstein De Broglie vont dans un bar parce que De Broglie a vraiment un nom de merde}
+\Thr{Planck-Einstein et De Broglie}{Les relations de Planck-Einstein pour une onde électromagnétique :
+\par $$E = h\nu = \hbar\omega$$
+\par $$\Vec{p} = \hbar\Vec{k} = \frac{h}{\lambda_0}\Vec{u}$$
+\par Les relations de De Broglie pour la matière :
+\par $$\nu_{DB} = \frac{E}{h}\text{ ou }\omega_{DB} = \frac{E}{\hbar}$$
+\par $$\lambda_{DB} = \frac{h}{p}$$}
+$p$ est l'impulsion, $mv$ pour de la matière.
+
+\subsection{Les bases de la fonction d'onde}
+\Def{Fonction d'onde}{La fonction d'onde $\Psi$ est une fonction telle que, avec $P$ la probabilité de présence de la particule :
+\par $$\frac{dP}{d\tau} = \vert\Psi\vert^2$$
+\par On la considérera dans la suite comme une fonction de $x$ et de $t$ pour simplifier les calculs. On peut alors écrire la condition de normalisation :
+\par $$\int_{-\infty}^{+\infty}\vert\Psi(x,t)\vert^2dx =1$$}
+\Thr{L'équation de Schrödinger}{Si la particule quantique (quanton) est soumis à un potentiel $V$, l'équation d'onde est solution de l'équation :
+\par $$\frac{-\hbar^2}{2m}\dfrac{\partial^2\Psi}{\partial x^2}(x,t)+V(x)\Psi(x,t)=i\hbar\dfrac{\partial\Psi}{\partial t}$$}
+\Thr{Solution stationnaire}{Si la fonction d'onde est stationnaire, c'est à dire que son énergie ne dépend pas du temps, on peut l'écrire sous la forme :
+\par $$\Psi(x,t) = \varphi(x)f(t)$$
+\par On peut réinjecter dans l'équation de Schrödinger pour obtenir les équations de Schrödinger indépendantes de l'espace...
+\par $$i\hbar\dfrac{\partial f}{\partial t} = Ef(t)$$
+\par ... et du temps.
+\par $$\frac{-\hbar^2}{2m}\dfrac{\partial^2\varphi}{\partial x^2} + V(x)\varphi(x)=E\varphi(x)$$
+\par Où $E$ est l'énergie de la particule, une constante définie comme :
+\par $$E = \frac{\hbar^2}{2m}\frac{1}{\varphi(x)}\dfrac{\partial^2\varphi}{\partial x^2} +V(x) = i\hbar\frac{1}{f(t)}\dfrac{\partial f}{\partial t}$$}
+On peut résoudre l'équation indépendante de l'espace facilement : $f(t) = f_0e^{-i\frac{E}{\hbar}t} = f_0e^{i\omega_{DB}t}$
+\par Dans ce cas, $\vert\Psi(x,t)\vert=\Vert\varphi(x)\Vert$, c'est bien un état stationnaire vu que les propriétés ne dépendent pas du temps. Si la résolution était si facile, c'est bien qu'elle servait à rien...
+\Thr{Indétermination d'Heisenberg}{Si $\Delta x$ est l'indétermination sur la position et $\Delta p_x$ l'indétermination sur l'impulsion dans la direction $x$, on a :
+\par $$\Delta p_x\Delta x\geq\frac{\hbar}{2}$$
+\par Ce qu'on notera souvent en ordre de grandeur :
+\par $$\Delta p_x\Delta x\gtrsim \hbar$$}
+\Def{Vecteur densité de probabilité}{Pour une fonction d'onde $\Psi$, on notera le vecteur densité de courant de probabilité :
+\par $$\Vec{J(M)} = \vert\Psi(x,t)\vert^2\frac{\Vec{p}}{m} = \vert\Psi(x,t)\vert^2\frac{\hbar\Vec{k}}{m}$$}
+\Thr{Utilité des ondes stationnaires}{Les solutions stationnaires de Schrödinger constituent une base des solutions de l'équation. Les solutions sont donc des sommes de solutions stationnaires.
+\par Pour être exact, les solutions générales sont des transformées de Fourier des solutions stationnaires, donc des sommations continues. Mais on ne sait pas manipuler des transformées de Fourier en prépa. Et si on sait, on doit pas le dire.}
+
+\subsection{Puits infini}
+\Def{Présentation du problème}{On est dans une cavité unidimensionnelle selon x de longueur L, telle que pour tout point en-dehors du segment, le potentiel appliqué à la particule soit infini ; elle ne peut donc pas sortir de la cavité. Le potentiel dans la cavité est nul.
+\par On décompose $\Psi$ en une fonction d'onde stationnaire $\varphi(x)f(t)$.
+\par On a donc à résoudre, dans la cavité : $\frac{-\hbar^2}{2m}\dfrac{\partial^2\varphi}{\partial x^2} +0\varphi(x) = E\varphi(x)$
+\par De plus, on a que $\varphi(0) = 0$ et $\varphi(L)=0$ par continuité de la fonction d'onde.}
+\Thr{Solutions}{Les solutions sont donc, dans la cavité, de la forme :
+\par $$\Psi(x,t)=\sqrt{\frac{2}{L}}\sin\left(\frac{n\pi}{L}x\right)e^{-i\frac{E}{\hbar}t}$$
+\par On associe à cet état les énergies $E_n = \frac{n^2\pi^2\hbar^2}{2m L^2}$, qui se retrouvent avec $k_n = \sqrt{\frac{2mE_n}{\hbar^2}}= \frac{n\pi}{L}$}
+
+\subsection{Marche de potentiel}
+\Def{Présentation du problème}{Une particule "arrive" de moins l'infini selon Ox et en $0$, est soumise à un potentiel $V_0$.
+\par On peut immédiatement écrire qu'avant la marche de potentiel, la solution stationnaire est de la forme :
+\par $$\Psi(x,t) = Ae^{i(kx-\omega t)}+Be^{i(-kx-\omega t)}$$
+\par On a la continuité de $\Psi$ et de sa dérivée en $0$.}
+\Thr{Solution si l'énergie surpasse le potentiel}{On obtient pour $x\leq 0$ :
+\par $$\varphi(x) =A(e^{ikx}+re^{-ikx})$$
+\par Pour $x\geq 0$ :
+\par $$\varphi(x) = Ate^{ik'x}$$
+\par Où $k = \sqrt{\frac{2mE}{\hbar^2}}$ et $k' =\sqrt{\frac{2m(E-V_0)}{\hbar^2}}$
+\par Et $r = \frac{k-k'}{k+k'}$ et $t=\frac{2k'}{k+k'}$
+\par On définit alors $\Vec{J_i},\Vec{J_r}, \Vec{J_t}$ les vecteurs densité de courant de probabilité associés aux ondes incidentes, réfléchies et transmises.
+\par On pose $R = \frac{\Vert\Vec{J_r}\Vert}{\Vert\Vec{J_i}\Vert}$ et $T=\frac{\Vert\Vec{J_t}\vert}{\Vert\Vec{J_i}\Vert}$ les coefficients de réflexion et de transmission.
+\par On a donc $R+T=1$.}
+\Thr{Solution avec énergie moins forte que le potentiel}{On aura une onde évanescente : elle se propagera sur une petite distance, puis diparaitra et sera entièrement réfléchie.
+\par En $x\geq 0$ on aura quelque chose de la forme :
+\par $$\varphi(x)=Ge^{-\mu x}$$
+\par Avec $\mu=\sqrt{\frac{2m(V_0-E)}{\hbar^2}}$.
+\par On peut poser les mêmes $r$ et $t$ que la dernière fois, mais ils valent désormais :
+\par $$r=\frac{k-i\mu}{k+i\mu}\text{ et }t=\frac{2k}{k+i\mu}$$
+\par On peut alors trouver $T=0$.
+\par Et donc en $x\geq 0$, on a une fonction d'onde qui décroit en module à la manière d'une exponentielle. C'est l'onde évanescente.
+\par On pose $\delta = \frac{1}{\mu}$ la "profondeur caractéristique de pénétration" de l'onde.}
+
+\subsection{Histoire}
+De tous les chapitres de physique, c'est le seul à demander des connaissances sur son histoire dans le programme... Il est donc important de se souvenir de quelques dates. Je propose celles-ci :
+\par 1906 : l'effet photoélectrique est découvert par Einstein, ce qui commence la dualité onde-corpuscule.
+\par 1911 : congrès de Solvay, sur la théorie du rayonnement et des quanta
+\par 1923 : De Broglie affirme que la matière présente la même dualité onde-corpuscule que la lumière.
+\par 1924 : Pauli propose le principe d'exclusion.
+\par 1926 : Schrödinger propose "l'équation de la dynamique de la fonction d'onde".
+\par 1927 : Heisenberg propose les relations d'indétermination posant une limite aux interprétations classiques.
+\par 1927 : congrès de Solvay, sur les électrons et les photons.
+\par 1950 : Kastler et Brossel inventent une technique appelée le pompage optique et depuis que j'ai lu ces mots je fais des cauchemars.
+\par 1980-1982 : Alain Aspect met en place des expériences avec des photons et détrui les inégalités de Bell.
+
+
+
+\newpage
+\section{Electromagnétique}
+\subsection{Champ électrostatique}
+\Thr{Théorème de Gauss}{Le flux du champ électrostatique sortant d'une surface fermée est relié à la charge contenue à l'intérieur de cette surface par :
+\par $$\Phi = \oiint_S\Vec{E}d\Vec{S} = \frac{Q_{int}}{\varepsilon_0}$$}
+Méthode d'étude du champ électrostatique :\begin{enumerate}
+\item Déterminer les invariances de la distribution de charge, on en déduit le système de coordonnées adapté et le nombre de variables dont il dépend.
+\item Déterminer les symétries de la distribution de charges : on trouve tous les plans de symétrie $\Pi$ de la distribution passant par $M$, alors $\Vec{E(M)}\in \Pi$, ou on peut trouver les plans d'antisymétrie $\Pi^*$, dans ce cas $\Vec{E(M)}\perp\Pi^*$
+\item Choisir une surface de Gauss passant par un point $M$ adapté aux symétries du système ($d\Vec{S}\perp$ ou $//$ à $\Vec{E(M)}$)
+\item Calculer la charge intérieure dans la surface de Gauss
+\item Exprimer le flux du champ au travers de la surface
+\item Appliquer le théorème de Gauss, et déduire l'expression du champ.
+\end{enumerate}
+\Thr{Théorème de Gauss gravitationnel}{Le flux du champ de gravité sortant d'une surface fermée est relié à la masse intérieure à cette surface par :
+\par $$\Phi_G = \oiint_S\Vec{G}.d\Vec{S} = -4\pi\mathcal{G}M_{int}$$}
+
+\subsection{Potentiel électrostatique}
+\Def{}{Le potentiel électrostatique est défini à partir du champ $\Vec{E}$ par :
+\par $$\Vec{E} = -\Grad(V)$$
+\par On dit que $\Vec{E}$ dérive du potentiel $V$. $V$ est en Volt}
+\Thr{}{On a l'équation de Poisson :
+\par $$\Delta V = -\frac{\rho}{\varepsilon_0}$$
+\par Et dans une région vide de charge on a l'équation de Laplace :
+\par $$\Delta V =0$$}
+
+\subsection{Magnétostatique}
+La magnétostatique résulte des effets créés par des particules chargées en mouvement.
+\Def{Courant}{Avec $n$ la densité de charges de charge $q$, on note avec $\Vec{v}$ la vitesse des charges lr vecteur densité volumique de courant :
+\par $$\Vec{j} = nq\Vec{v}$$
+\par Alors l'intensité du courant électrique est :
+\par $$i = \iint_S\Vec{j}d\Vec{S}$$}
+\Thr{Théorème d'Ampère}{La circulation du champ magnétostatique le long d'un contour fermé $C$ est reliée à l'intensité traversant une surface s'appuyant sur ce contour (appelée intensité enlacée) par :
+\par $$\oint_C\Vec{B}d\Vec{l} =\mu_0I_{enl}$$}
+On change la méthode sur plusieurs points :\begin{itemize}
+\item Si on trouve un plan de symétrie, alors $\Vec{B}$ est orthogonale à celui-ci.
+\item Si on trouve un plan d'antisymétrie, alors $\Vec{B}$ y appartient.
+\item On choisit un contour d'Ampère, qui est un contour qui entoure une surface. On ne calculera que le courant dans cette surface.
+\end{itemize}
+
+\subsection{Distribution dipolaires}
+\Def{}{On appelle moment dipôlaire électrique d'une distribution de deux charges ($-q$ en $N$ et $+q$ en $P$) le vecteur :
+\par $$\Vec{p} = q\Vec{NP}$$
+\par La résultante des forces électriques agissant sur un dipôle électrique placé dans un champ extérieur uniforme est nulle.
+\par Un dipôle électrique placé dans un champ $\Vec{E_0}$ uniforme subit un couple de forces de moment :
+\par $$\Vec{\Gamma} = \Vec{P}\wedge\Vec{E_0}$$
+\par L'énergie potentielle d'interaction entre un dipôle électrique et un champ $\Vec{E}$ extérieur s'exprime comme :
+\par $$E_p =-\Vec{p}\cdot\Vec{E}$$}
+\Def{}{On appelle moment dipolaire magnétique d'une spire de courant circulaire de surface $S$ parcourue par un courant d'intensité $I$ le vecteur :
+\par $$\Vec{m} = I\Vec{S}$$
+\par La résultante des forces est nulle.
+\par Le moment résultant est :
+\par $$\Vec{\Gamma} = \Vec{m}\wedge\Vec{B}$$
+\par L'énergie potentielle d'interaction s'écrit :
+\par $$E_p = -\Vec{m}\cdot\Vec{B}$$}
+\Thr{}{Le potentiel créé à grande distance par une distribution dipolaire s'écrit sous la forme :
+\par $$V(M) = \frac{\Vec{p}\Vec{r}}{4\pi\varepsilon_0r^3} =\frac{p\cos\theta}{4\pi\varepsilon_0r^2}$$}
+Démonstration (à savoir) :
+\par Symétries et invariances : à cause de la séparation de charge entre N chargé $-q$ et P chargé $+q$, on a invariance par rotation d'angle $\varphi$ autour de l'axe du dipôle. Donc $V(M)=V(r,\theta)$ en coordonnées sphériques.
+\par On a comme symétries de $D$ : tout plan contenant N et P est plan de symétrie. Le plan $(M,\vec{e}_r, \vec{e}_\theta)$ est plan de symétrie donc $\vec{E}\in (O, \vec{e}_r,\vec{e}_\theta)$. Le plan médian qui passe par O est un plan d'antisymétrie, auquel le champ est toujours orthogonal.
+\par Expression du potentiel : par superposition, on aura :
+\par $V(r,\theta) = V_+(r,\theta)+V_-(r,\theta)=\frac{q}{4\pi\varepsilon_0PM} + \frac{-q}{4\pi\varepsilon_0NM}$
+\par On a $PM=\sqrt{PM^2}=\sqrt{\vec{PM}\cdot\vec{PM}}=\sqrt{(\vec{PO}+\vec{OM})(\vec{PO}+\vec{OM})}$ \par $= \sqrt{r^2-ar\vec{e}_z\vec{e}_r+\left(\frac{a}{2}\right)^2} = r\sqrt{1-\frac{a}{r}\cos\theta + \left(\frac{a}{2r}\right)^2}$
+\par Et on a $NM= r\sqrt{1+\frac{a}{r}\cos\theta + \left(\frac{a}{2r}\right)^2}$
+\par D'où $V(r,\theta)=\dfrac{q}{4\pi\varepsilon_0 r\sqrt{1-\frac{a}{r}\cos\theta + \left(\frac{a}{2r}\right)^2}}+\dfrac{-q}{4\pi\varepsilon_0 r\sqrt{1+\frac{a}{r}\cos\theta + \left(\frac{a}{2r}\right)^2}}$
+\par Donc $V(r,\theta)\simeq\frac{q}{4\pi\varepsilon_0r}\left[\left(1+\frac{a}{2r}\cos\theta\right)-\left(1-\frac{a}{2r}\cos\theta\right)\right]$
+\par $V(r,\theta)=\frac{q}{4\pi\varepsilon_0 r}\left[2\frac{a}{2r}\cos\theta\right]= \frac{p}{4\pi\varepsilon_0r^2}$
+\par En trichant un peu, on peut réécrire de manière intrinsèque : $V(r,\theta)=\frac{\vec{p}\cdot\vec{r}}{4\pi\varepsilon_0r^3}$
+
+\subsection{Les équations de Maxwell}
+\Thr{Conservation de la charge}{En un point $M$ de l'espace, portant une densité volumique de charge $\rho(M,t)$ quelconque et une densité de courant $\Vec{j}(M,t)$ quelconque, l'équation de conservation de la charge implique la relation :
+\par $$\dfrac{\partial \rho}{\partial t}+\Div(\Vec{j}(M,t))=0$$}
+\Thr{Maxwell-Gauss}{$$\Div\Vec{E} = \dfrac{\rho}{\varepsilon_0}$$}
+\Thr{Maxwell-Faraday}{$$\Rot\Vec{E} = \dfrac{\partial\Vec{B}}{\partial t}$$}
+\Thr{Maxwell-Thomson}{$$\Div\Vec{B} = 0$$}
+\Thr{Maxwell-Ampère}{$$\Rot\Vec{B} = \mu_0\Vec{j} +\mu_0\varepsilon_0\dfrac{\partial\Vec{E}}{\partial t}$$}
+\Def{ARQS}{L'approximation des régimes quasi-stationnaires arrive quand :
+\par On peut négliger le temps de retard $\tau$ à la propagation du signal dans le circuit par rapport au temps caractéristique de variation des signaux $T_{signal}$.
+\par Avec un circuit de longueur $L$, on a : $\tau= \frac{L}{c}$ (enfin, $\frac{2}{3}c$ plus rigoureusement.)
+\par On veut donc pouvoir écrire :
+\par $$\frac{L}{C}\ll T_{signal}=\frac{1}{f_{signal}}\Leftrightarrow f_{signal}\ll \frac{c}{L}$$
+\par ou :
+\par $$L\ll \lambda_{signal}=\frac{c}{f_{signal}}$$}
+
+\subsection{Aspects énergétiques}
+\Thr{L'équation locale de Poynting}{
+$$\Div\left(\frac{\Vec{E}\wedge\Vec{B}}{\mu_0}\right) + \dfrac{\partial}{\partial t}\left[\frac{\varepsilon_0}{2}\Vec{E}^2+\frac{1}{2\mu_0}\Vec{B}^2\right]=-\Vec{j}\cdot\Vec{E}$$
+\par On note $\Vec{\Pi} = \frac{\Vec{E}\wedge\Vec{B}}{\mu_0}$ le vecteur de Poynting, qui représente le rayonnement d'un champ électromagnétique au travers d'une surface : $\iint_S \Vec{\Pi}d\Vec{S} =\mathcal{P}_{rayonnee}$.
+\par On note $u_{e} = \frac{\varepsilon_0}{2}E^2$, $u_{m} = \frac{1}{2\mu_0}B^2$ et $u_{em} =u_e+u_m$ l'énergie électromagnétique du champ.
+\par $\Vec{j}\cdot\Vec{E}$ représente la puissance cédée par le champ électrique aux charges : $\Vec{j}\cdot\Vec{E} = \dfrac{d\mathcal{P}}{d\tau}$}
+\Def{Loi d'Ohm}{Dans un milieu dit conducteur, on a la relation :
+\par $$\Vec{j} = \gamma\Vec{E}$$
+\par Avec $\gamma$ la conductivité du matériau.}
+
+\subsection{Propagation dans le vide}
+\Def{Vide}{Le vide est une zone de l'espace vide de charge et de courant. On peut donc réécrire les équations de Maxwell :
+\par $$\Div\Vec{E} = 0$$
+\par $$\Rot(\Vec{E}) = -\dfrac{\partial \Vec{B}}{\partial t}$$
+\par $$\Div\Vec{B} = 0$$
+\par $$\Rot(\Vec{B}) = -\mu_0\varepsilon_0\dfrac{\partial \Vec{E}}{\partial t}$$
+\par On se servira ensuite de $\Rot(\Rot(\Vec{A})) = \Grad(\Div\Vec{A}) -\Delta\Vec{A}$ pour un champ $\Vec{A}$ quelconque et de ces équations pour obtenir l'équation de propagation dans le vide.}
+\Thr{L'équation de propagation dans le vide}{$$\Delta\Vec{E} -\frac{1}{c^2}\dfrac{\partial^2\Vec{E}}{\partial t^2}=\Vec{0}$$
+\par $$\Delta\Vec{B} -\frac{1}{c^2}\dfrac{\partial^2\Vec{B}}{\partial t^2}=\Vec{0}$$}
+\Def{Onde}{Une onde est un champ (scalaire ou vectoriel) solution d'une équation de propagation. De manière plus qualitative, c'est un phénomène de propagation d'une perturbation, sans transport de matière mais avec transport d'énergie.
+\par Une one est plane progressive monochromatique si on peut écrire :
+\par $$a(x,t)=A_0\cos(\omega t - \Vec{k}\cdot\Vec{r}+\varphi_0)$$
+\par Où $\Vec{k} = \frac{\omega}{c}\Vec{e_r}$ le vecteur d'onde, dirigé dans le sens de propagation de l'onde. On appelle $\omega = kc$ la relation de dispersion, qui est simple dans le vide mais très compliquée ailleurs.
+\par On appelle phase d'une onde la fonction :
+\par $$\varphi = \omega t - \Vec{k}\cdot\Vec{r}+\varphi_0$$
+\par On notera aussi les OPPM de manière complexe comme : $\underline{\Vec{E}}(\Vec{r},t) = \underline{\Vec{E_0}}e^{i(\omega t -\Vec{k}\cdot\Vec{r}+\varphi_0)}$}
+\Thr{}{Dans le vide, $\Vec{E}$ et $\Vec{B}$ sont des OPPM orthogonales : les deux champs forment un trièdre direct avec le vecteur de Poynting.
+\par En notation complexe, les opérateurs deviennent des opérations vectorielles :
+\par \begin{align*} \Div... &\Leftrightarrow & -i\Vec{k}\cdot...\\
+\Rot...&\Leftrightarrow&-i\Vec{k}\wedge...\\
+\Delta...&\Leftrightarrow&-k^2
+\end{align*}}
+
+\subsection{Propagation dans le plasma}
+Tout le chapitre se fera avec des notations complexes.
+\Def{Plasma}{Un plasma est un milieu ionisé constitué d'ions de masse $M_i$ et de charge $+n_ie$ et d'électrons de masse $m$ et de charge $-e$.
+\par Dedans, on peut négliger le mouvement des ions comparé à celui des électrons créé par la force de Lorentz.
+\par Dans un plasma, la loi d'Ohm s'écrit :
+\par $$\Vec{j} = \frac{ine^2}{m\omega}\Vec{E}$$
+\par Donc la conductivité $\gamma$ est imaginaire pure.}
+\Thr{L'équation de propagation dans le plasma}{Dans un plasma froid et dilué :
+\par $$\Delta\Vec{E} +\frac{1}{c^2}\dfrac{\partial^2\Vec{E}}{\partial t^2} = \mu_0\gamma\dfrac{\partial\Vec{E}}{\partial t}$$}
+\Thr{Relation de dispersion}{En réinjectant la structure d'une OPPM dans l'équation de propagation dans le plasma, on obtient la relation de dispersion :
+\par $$k^2 = \frac{\omega^2-\omega_p^2}{c^2}$$
+\par Où $\omega_p =\sqrt{\frac{n_0e^2}{m\varepsilon_0}}$.
+\par Si $k^2<0$, alors $k\in i\R$ en notant $k = ik'$, et donc l'onde est dite évanescente dans le plasma : son amplitude décroit en $e^{-\Vec{k'}\cdot\Vec{r}}$.
+\par Si $k^2>0$, alors il y a propagation dans le plasma, avec $k$ positif.}
+\Def{Vitesses}{On modélise une onde comme une transformée de Fourier de l'OPPM obtenue précédemment, donc une superposition continue de fréquences. On appelle ce groupe un paquet d'ondes.
+\par La phase de chaque composante OPPM du paquet d'onde se propage à la vitesse dite vitesse de phase :
+\par $$v_\varphi = \frac{\omega}{k} = \frac{w}{\Re(k)}$$
+\par La vitesse de groupe correspond à la vitesse de propagation de l'enveloppe de l'onde :
+\par $$v_g = \frac{d\omega}{dk} =\frac{d\omega}{d\Re(k)}$$
+\par On constatera comme en optique géométrique que la vitesse de phase pourra dépasser $c$ mais pas la vitesse de groupe.}
+
+\subsection{Ondes électromagnétiques dans un milieu ohmique}
+Dans un conducteur métallique, un certain nombre d'électrons de valence des atomes de métal sont délocalisés dans tout le volume du métal et peuvent être mis en mouvement sous l'action d'un champ électrique, créant ainsi un courant de condution. On a déjà vu que la densité volumique de courant était proportionnelle aux champs électriques dans les matériaux ohmiques.
+\par Dans ce cas, on aura deux conséquences :\begin{itemize}
+\item Neutralité locale : $$\forall t,\rho(t) = 0$$
+\item Courant de déplacement négligeable : $$\Vert\Vec{j_D}\Vert\ll\Vert\Vec{j}\Vert$$
+\end{itemize}
+\Thr{Les équations de propagation dans le conducteur}{On peut réécrire :
+\par $$\Delta \Vec{E} = \mu_0\gamma\dfrac{\partial\Vec{E}}{\partial t}$$
+\par $$\Delta\Vec{B} =\mu_0\gamma\dfrac{\partial\Vec{B}}{\partial t}$$}
+\Thr{Relation de dispersion}{On obtient dans un conducteur ohmique :
+\par $$k^2 = i\mu_0\gamma\omega$$
+\par $k$ sera donc complexe, et son amplitude diminuera avec la propagation.
+\par On observera que l'onde sera atténuée sur une distance caractéristique $\delta = \sqrt{\frac{2}{\mu_0\gamma\omega}}$.
+\par $\delta$ est appelée l'épaisseur de peau. Ce phénomène d'atténuation du champ dans le métal est appelé effet de peau.}
+
+\subsection{Réflexion sur un métal parfait}
+\Def{Conducteur parfait}{Un conducteur parfait est un conducteur dont la conductivité tend vers $+\infty$.
+\par comme la puissance volumique cédée aux charges doit rester finie, et que $\dfrac{d\mathcal{P}}{d\tau}=\Vec{j}\cdot\Vec{E} =\gamma\Vert\Vec{E}\Vert^2$, alors $\Vec{E}=\Vec{0}$ dans le conducteur parfait.
+\par On a alors que $\dfrac{\partial\Vec{B}}{\partial t}=\Vec{0}$ par Faraday, donc que le champ magnétique peut être statique. 
+\par De même que sur le conducteur ohmique, on a une densité volumique de charge nulle, mais il peut y avoir une charge surfacique. 
+\par Il peut aussi exister des courants variables en surface du métal, avec des courants stationnaires ou nuls à l'intérieur du métal.}
+\Thr{Réflexion}{Comme il ne peut pas y avoir de champ à l'intérieur, alors il est nécessairement réfléchi. Pour calculer le champ réfléchi dans le milieu 1, on a donc les relations de passages pour les composantes normales et parallèles aux surfaces métalliques de champs électriques et magnétiques :
+\begin{itemize}
+\item $$\Vec{E_{//2}} =\Vec{E_{//1}}$$
+\item $$\Vec{E_{\perp2}}-\Vec{E_{\perp1}} = \frac{\sigma}{\varepsilon}\Vec{n_{12}}$$
+\item $$\Vec{B_{\perp2}}=\Vec{B_{\perp1}}$$
+\item $$\Vec{B_{//2}}-\Vec{B_{//1}}=\mu_0\Vec{j_s}\wedge\Vec{n_{12}}$$
+\end{itemize}}
+\Thr{Expression OPPM}{Si l'onde incidente est de la forme $\Vec{E_i} = E_0\vec{u_y}e^{i(kx-\omega t)}$
+\par On a :
+\begin{align*}
+\Vec{E_r} &= -E_0e^{i(-kx-\omega t)}\\
+\Vec{B_i} &= \frac{E_0}{c}e^{i(kx-\omega t)}\Vec{u_z}\\
+\Vec{B_r} &= \frac{E_0}{c}e^{i(-kx-\omega t)}\Vec{u_z}
+\end{align*}
+\par La superposition des ondes électromagnétiques incidente et réléchie en incidence normale sur un conducteur parfait résulte en une onde stationnaire. Le plan de surface du conducteur est un noeud pour le champ électrique et un ventre pour le champ magnétique.}
+\Thr{Pression de radiation}{Un conducteur parfait soumis à une onde électromagnétique incidente subit une pression dite pression de radiation :
+\par $$p_{rad} = \varepsilon_0E_0^2$$}
+
+\subsection{Rayonnement du dipôle oscillant}
+\Def{Dipôle oscillant}{Un dipôle oscillant est dconstitué d'une charge $-q$ fixe en $O$ et d'une charge $+q$ qui oscille selon l'axe $Oz$ autour de $-q$ avec une amplitude $a$ et une pulsation $\omega$
+\par On a alors : $\Vec{p}(t) = qa\cos(\omega t)\Vec{e_z}$
+\par On a alors trois échelles de longueur caractéristique dans cette étude : la taille $a$ du dipôle, la distance $r$ à laquelle on se trouve et la longueur d'onde $\lambda$ de l'onde électromagnétique qu'elle rayonne. On fera ces approximations dessus :\begin{itemize}
+\item Mouvement non-relativiste : $a\ll\lambda$
+\item Champs lointains/zone de rayonnement : $\lambda\ll r$
+\end{itemize}}
+\Thr{Expressions}{Dans le cadre des approximations précédentes, le champ rayonné par le dipôle s'exprime en sphériques comme :
+\par $$\Vec{E} = \frac{\mu_0\sin\theta}{4\pi r}\ddot{p}\left(t-\frac{r}{c}\right)\Vec{e_\theta}=-\frac{\mu_0\omega^2\sin\theta}{4\pi r}p_0\cos(\omega t-kr)\Vec{e_\theta}$$
+\par $$\Vec{B} = \frac{\mu_0\sin\theta}{4\pi rc}\ddot{p}\left(t-\frac{r}{c}\right)\Vec{e_\varphi}=-\frac{\mu_0\omega^2\sin\theta}{4\pi rc}p_0\cos(\omega t-kr)\Vec{e_\varphi}$$
+Ces expressions ne sont pas à apprendre ou à savoir démontrer.
+\par L'onde rayonnée par le diôle se propage radialement, à pulsation $\omega$, à la vitesse $c$ dans le vide, selon le vecteur $\frac{\omega}{c}\Vec{e_r}$. Ce n'est ni une onde plane ni une onde sphérique.
+\par Elle a localement la structure d'une OPPM, respectant : $\Vec{B} =\frac{\Vec{k}\wedge\Vec{E}}{\omega}$
+\par Elle est anisotrope.
+\par Son amplitude décroît en $\frac{1}{r}$ comme une onde sphérique.
+\par Elle est polarisée rectilignement : $\Vec{E}=E(r,\theta)\Vec{e_\theta}$ et $\Vec{B} = B(r\theta)\Vec{e\varphi}$}
+\Thr{Thr}{La puissance moyenne rayonnée par le dipôle oscillant au travers d'une sphère de rayon $r$ dans la zone de rayonnement s'exprime comme :
+\par $$\mathcal{P} =\frac{p_0^2\omega^4}{3\times 4\pi\varepsilon_0c^3} = \frac{1}{3}\frac{1}{4\pi\varepsilon_0}\dfrac{\langle\ddot{p}\rangle}{c^3}$$
+\par Cette dernière égalité est la formule de Larmor.}
 
 
 
@@ -1563,10 +1995,181 @@ Comme pour les acides, un cation qui peut être dissous une nouvelle fois est ap
 
 
 
+\section{Ondes sur une corde}
+Il y a trois domaines où on peut obtenir l'équation de D'Alembert :\begin{itemize}
+\item Les ondes électromagnétiques, comme on l'a vu en EM7
+\item Les ondes acoustiques mais c'est compliqué
+\item Une onde sur une corde, qui n'est pas au programme de MP mais qui tombe très souvent
+\end{itemize}
+On étudie donc le système d'une corde :
+\par À l'équilibre, elle est horizontale ($\forall x,y(x,0) =0$)
+\par On l'étudie sur le tronçon $\{x,x+dx\}$ : on étudie donc des petits mouvements autour de la situation d'équilibre ; $\Vec{P}$ n'intervient donc pas. Dans ce tronçon, la pente de la corde est droite.
+\par La portion étudiée est de longueur $dx$ et de masse linéique $\mu$
+\par Bilan des forces :
+\par Le poids : on le néglige.
+\par La tension du fil : $\Vec{T}$ la tension exercée en un point $M$ par la droite du fil sur la gauche.
+\par On pose : $\begin{cases} \text{En x+dx :}\Vec{T(x+dx,t)} \\\text{En x :} \Vec{T(x,t)}\end{cases}$
+\par Avec $\Vert\Vec{T}\Vert(x,t) = T_0 = F$ ($F$ est la force appliquée à l'extrémité de la corde.)
+\par On note $\alpha$ l'angle que fait la corde avec l'horizontale.
+\par On applique la RFD :
+\par $$\mu dx\Vec{a} =\Vec{T}(x+dx,t)-\Vec{T}(x,t)$$
+\par On a $\Vec{a} =\dfrac{\partial^2 y}{\partial t^2}\Vec{u_y}$
+\par On projette $\Vec{T}$ sur $\vec{u_y}$ :
+\par $$\Vec{T}(x,t) = T_0\sin\alpha =F=\sin\alpha$$
+\par On réinjecte, et on obtient, en prenant en compte que comme on est dans des petits mouvements :
+\par\begin{align*}\mu dx\dfrac{\partial^2y}{\partial t^2} &= F(\sin\alpha(x+dx,t) -\sin\alpha(x,t))\\
+&\simeq F(\alpha(x+dx,t)-\alpha(x,t))\\
+&=Fdx\dfrac{\partial \alpha}{\partial x}
+\end{align*}
+\par Or on a que $\tan\alpha = \dfrac{dy}{dx}$
+\par D'où, en réutilisant les petits angles :
+\par $$\mu\dfrac{\partial^2y}{\partial t^2} = F\dfrac{\partial^2y}{\partial x^2}$$
+\par $\frac{F}{\mu}$ est une constante, on peut définir la vitesse de la corde comme $c_{corde} =\sqrt{\frac{F}{\mu}}$
+\par On obtient alors :
+\par $$\dfrac{\partial^2y}{\partial t} = c_{corde}^2 \dfrac{\partial^2y}{\partial x^2}$$
+\par Et donc si $F$ augmente, alors $c$ augmente, et si $\mu$ décroit, alors $c$ augmente. 
+\par Si on écrit $y$ comme produit de fonctions à variables séparées et qu'on résout :
+\par \begin{align*} y(x,t) &=f(x)g(t)\\
+&=y_0\sin(k_nx)\sin(\omega_nt)
+\end{align*}
+Et on a $k_n = \frac{n\pi}{L}$ et $\omega_n = k_nc = \frac{n\pi c}{L}$ les facteurs qui décrivent les modes propres.
+
+
+\newpage
+\section{Thermodynamique}
+\section{TH1}
+\Thr{Identités thermodynamiques}{\begin{itemize}
+\item $$dU = \delta W + \delta Q = -P_edV +\delta W' +\delta Q$$
+\item $$dS = \delta S_e+\delta S_c = \frac{\delta Q}{T_e}+\delta S_c$$
+\item $$dU = C_VdT = \frac{nR}{\gamma-1}dT$$
+\item $$dH = C_PdT = \frac{nR\gamma}{\gamma-1}dT$$
+\end{itemize}}
+\Def{Débit massique}{Pour un écoulement d'un fluide, on note $D_m = \frac{dm_{entrant}}{dt} =\frac{dm_{sortant}}{dt}=\frac{dm}{dt}$ en régime stationnaire
+\par On a alors $D_m = \mu S v$ avec $\mu$ la masse volumique du fluide, $S$ la section et $v$ la vitesse de l'écoulement.
+\par On définit alors le vecteur densité volumique de courant de masse :
+\par $$\Vec{j_m} = \mu(M,t)\Vec{v(M,t)}$$
+\par On a alors $D_m = \iint_S\Vec{j_m}\Vec{dS}$}
+\Thr{Conservation de la masse}{Pour tout écoulement :
+\par $$\Div\Vec{j_m(M,t)}+\dfrac{\partial\mu}{\partial t}=0$$
+\par Si l'écoulement est stationnaire, ces deux termes sont constants, et $D_m$ aussi.
+\par Si l'écoulement est incompressible (masse volumique uniforme), on a $\Div\Vec{j_m}=0$, et $D_v$ le débit volumique constant aussi.}
+\Thr{Premier principe en écoulement}{Pour un fluide incompressible en écoulement permanent, on écrit ce bilan d'énergie entre l'entrée et la sortie :
+\par $$\Delta h+\Delta e_M=w_u+q(+w')$$
+\par Dans cette formulation, on considère des grandeurs massiques, d'où la minuscule.
+\par L'énergie mécanique varie peu, donc on n'a souvent pas de terme en $\Delta e_M$}
+\Thr{Théorème de Bernouilli}{Pour un fluide incompressible en écoulement permanent dans le champ de pesanteur uniforme :
+\par $$\Delta\left(\frac{P}{\mu}+\frac{1}{2}v^2+gz\right)=w_u+w_{visc}$$
+\par Dans le cas où le travail massique est nul (pas d'échange de travail avec les parties mobiles de la machine) et où le fluide et parfait, on a la relation de Bernouilli
+\par $$\Delta\left(\frac{P}{\mu}+\frac{1}{2}v^2+gz\right)=0$$}
 
 
 
 
+
+
+\newpage
+\section{Thermochimie}
+\Def{Réacteurs}{Le réacteur est l'endroit où se déroulera la réaction. Comme des transformations thermodynamiques, il peut être isotherme, adiabatique ou isobare.
+\par Dans la suite du chapitre, on se placera dans le cas d'un réacteur isobare et adiabatique ou isobare et isotherme.}
+\Def{Enthalpie standard de réaction}{L'enthalpie du métalnge est donnée par :
+\par $$H(T,P, n_1,n_2,..., n_p) = \sum\limits_{i=1}^pn_iH_{im}^0$$
+\par Où les $n_i$ sont les concentrations des espèces et $H_{im}^0$ l'enthalpie molaire de l'espèce $i$ à l'état standard.
+\par On en déduit l'existence de $\Delta_rH^0$ l'enthalpie standard de réaction telle que :
+\par $$\Delta H = \Delta_rH^0\xi$$
+\par Si $\Delta_rH^0<0$, la réaction est exothermique, elle produit de la chaleur. Si $\Delta_rH^0>0$, la réaction est endothermique, elle a besoin de chaleur pour se faire.}
+\Def{Enthalpie standard de formation}{L'enthalpie standard de formation $\Delta_fH^0$ d'une espèce dans un état donné est l'enthalpie standard de réaction $\Delta_rH^0$ de la réaction standard ce formation à cette température.
+\par Et donc si l'espèce est un corps simple dans son état standard de référence, $\Delta_fH^0 =0$}
+\Thr{Loi de Hess}{Pour toute réaction écrite sous la forme $\sum\nu_iA_i = 0$ où les $\nu_i$ des produits sont positifs et ceux des réactifs sont négatifs, on a :
+\par $$\Delta_rH^0(T) = \sum\limits_i\nu_i\Delta_fH_i^0(T)$$}
+\Thr{Approximation d'Ellingham}{On considère qu'en l'absence de changement d'état, l'enthalpie standard est constante selon la température.
+\par Au passage d'une phase à l'autre, l'enthalpie subit une discontinuité, et donc pour la réaction $\sum\nu_iA_i=0$, si l'espèce $A_j$ change d'état entre $T_0$ et $T$ on aura :
+\par $$\Delta_rH^0(T)=\Delta_rH^0(T_0)+\nu_j\Delta_{r1\to 2}H_j^0$$}
+\Def{Entropie standard de réaction}{L'entropie standard de réaction est donnée de la même manière que l'enthalpie standard de formation :
+\par $$\Delta_rS^0 = \sum\limits_i\nu_iSm^0_i$$
+\par Et on a :
+\par $$\Delta_rS^0>0\Leftrightarrow \sum\limits_{\text{i gaz}}\nu_i>0$$}
+\Def{Enthalpie libre}{On définit l'enthalpie libre d'une réaction comme :
+\par $$G=H-TS$$
+\par On définit le potentiel chimique d'un constituant $A_i$ dans un système composé comme :
+\par $$\mu_i = \left.\dfrac{\partial G}{\partial n_i}\right\vert_{T,P, n_j\neq n_i}$$
+\par On a alors, avec $a_i$ l'activité de $A_i$ :
+\par $$\mu_i = \mu_i^0(T)+RT\ln(a_i)$$}
+\Thr{Relation entre enthalpie enthalpie libre et entropie}{
+\par $$\Delta_rG^0 = \Delta_rH^0 + T\Delta_rS^0$$
+\par et :
+\par $$\Delta_rG = \Delta_rG^0 +RT\ln(Q_r)$$}
+\Def{Interprétation de l'enthalpie libre}{$$\Delta_rGd\xi = -T_e\delta S_c$$
+\par Et donc :\begin{itemize}
+\item $\Delta_rG<0\Rightarrow d\xi>0\Rightarrow$ réaction dans le sens direct
+\item $\Delta_rG>0\Rightarrow d\xi<0\Rightarrow$ réaction dans le sens indirect
+\item Si $\Delta_rGd\xi=0$, alors la réaction ne se produit plus.
+\end{itemize}
+\par On en déduit que :
+\par $$\Delta_rG^0 = RT\ln(K^0(t))$$}
+\Thr{Relation de Van't Hoff}{On a :
+\par $$\dfrac{d(\ln(k^0))}{dT}=\frac{+\Delta_rH^0}{RT^2}$$
+\par Ce qui se traduit par :
+\par $$K(T_2) =K(T_1)\times e^{\frac{-\Delta_rH^0}{R}\left(\frac{1}{T_2}-\frac{1}{T1}\right)}$$}
+\Thr{Loi de Van't Hoff}{Une élévation isobare de température entraîne un déplacement d'équilibre dans le sens endothermique.
+\par Une diminution isobare de température entraîne un déplacement d'équilibre dans le sens exothermique.}
+\Thr{Loi de Le Chatelier}{Une élévation isotherme de pression entraîne un déplacement d'équilibre dans le sens d'une diminution du nombre total de moles de gaz.
+\par Une diminution isotherme de pression entraîne un déplacement d'équilibre dans le sens d'une augmentation du nombre total de mole de gaz.}
+\Thr{Principe de modération}{Par leurs effets, les déplacements d'équilibre tendent à s'opposer aux causes qui les ont engendrés.}
+
+
+
+\section{Electrochimie}
+\subsection{Piles}
+Dans la suite, on pose la demi-équation :
+\par $$\alpha Ox+ne^-=\beta Red$$
+\Def{Vitesse de réaction}{On définit la vitesse de réduction comme :
+\par $$v_{red} = \left.\dfrac{d\xi}{dt}\right|_{Red} =\frac{-1}{n}\dfrac{d n(e-)}{dt}=\frac{-1}{n\mathcal{F}}\dfrac{dq}{dt} = \frac{-1}{N\mathcal{F}}i$$
+\par L'intensité du courant traversant l'électrode est comptée positivement si l'électrode reçoit des électrons, négativement sinon.}
+\Thr{Formule de Nernst}{Pour une oxydo-réduction d'enthalpie libre $\Delta_rG$ avec $n$ électrons échangés, on observe que :
+\par $$\Delta E=E_a-E_c =-\frac{\Delta_rG}{n\mathcal{F}}$$
+\par En découle :
+\par $$E^0 =\frac{-\Delta_rG^0}{n\mathcal{F}}$$
+\par Et aussi :
+\par $$E = E^0 +\frac{RT}{n\mathcal{F}}\ln\left(\frac{a_{Ox}}{a_{Red}}\right)$$}
+\Def{Capacité électrique}{On appelle capacité d'une pile la quantité maximale de charge électrique qu'elle peut fournir.
+\par $$Q = n\mathcal{F}\xi_{max}$$}
+\Thr{Tension réelle}{La tension réelle aux bornes d'une pile, qui prend en compte les surtensions des électrodes et la résistance au passage du courant de la pile elle même, s'écrit :
+\par $$\Delta U = \Delta E_{Nernst}-(\vert\nu_{a0}\vert+\vert\nu_{c0}\vert)-(\vert\nu_a'\vert+\vert\nu_c\vert')-rI$$}
+
+\subsection{L'électrolyse}
+\Def{L'électrolyse}{Il y a des réactions d'oxydo-réductions qui ne sont pas thermodynamiquement favorisées ; la règle du gamma dit que la réaction n'est pas possible, le $K^0$ est inférieur à 1, $E_{N1}-E_{N2}<0$, des considérations du genre.
+\par On peut quand même la provoquer, en imposant une différence de potentiel entre les électrodes.
+\par Dans cette situation, la réduction se produit à la cathode et l'oxydation à l'anode, comme toujours.
+\par Il y a besoin de surtensions anodiques et cathodiques pour forcer la réaction, et trouver non pas un potentiel mixte mais deux potentiels avec des courants opposés, une différence de potentiel mixte quoi.
+\par On appelle tension seuil d'électrolyse la tension minimale à appliquer pour voir le passage d'un courant :
+\par $$\mathcal{U}_{seuil} = \Delta E_{Nernst} + (\vert\nu_{a0}\vert+\vert\nu_{c0}\vert)$$
+\par Dans les faits, la tension pour réaliser l'électrolyse est plus grande, et a cette formule :
+\par $$\mathcal{U} = \Delta E_{Nernst}+(\vert\nu_{a0}\vert+\vert\nu_{c0}\vert)+(\vert\nu_{a}'\vert+\vert\nu_{c}'\vert)+rI$$
+\par Où $I$ est le courant circulant dans la cellule.
+\par On définit le rendement faradique le rapport :
+\par $$rF = \frac{n_{cree}}{n_{th}}$$
+\par Avec $n_{th} =\frac{i}{n\mathcal{F}}\Delta t$, et $n_{cree}$ se mesure.}
+
+\subsection{La corrosion}
+\Def{Corrosion}{On appelle corrrosion humide d'un métal $M$ une réaction d'oxydation de celui-ci de cette forme :
+\par $$M+Ox =M^{n+}+Red$$
+\par Les oxydants de corrosion seront $H^+, H_2O, O_2, Ho^-$ seulon la solution.
+\par La corrosion transforme le métal solide en ion dissous, ce qui n'est pas très utile.}
+\Def{Les domaines}{Sur un diagramme E-pH, il y a plusieurs zones en lien avec la corrosion :\begin{itemize}
+\item La zone d'immunité est le domaine d'existence du métal lui-même, où il n'est pas corrodé
+\item La zone de corrosion est le domaine de prédominance des ions issus de l'oxydation
+\item La zone de passivation est la zone où il y a des hydroxydes/oxydes issus de l'oxydation du métal ; dans ce cas, ils se déposent sur le métal et font une couche protectrice qui empêche le métal d'être totalement oxydé.
+\end{itemize}}
+\Def{Pile de corrosion}{Si on met deux électrodes de métal dans la même solution, au lieu de corroder les deux, seul celui avec le plus petit $E^0$ le sera.
+\par On peut donc protéger un métal de la corrosion en le mettant en contact avec un métal plus réducteur.}
+\Thr{Aération différentielle}{Quand une surface de métal et d'oxydant n'est pas uniforme, on constate que c'est à l'endroit le moins aéré qu'a lieu l'oxydation. C'est une zone anodique, où le métal se fait oxyder.}
+\Def{Types de protection}{Pour se protéger de la corrosion, on a plusieurs solutions :\begin{itemize}
+\item Recouvrir le métal d'un matériau non-conducteur pour empêcher son oxydation ; mais par aération différentielle, si le vernis part à un endroit alors le métal sera très oxydé.
+\item Recouvrir le métal d'un métal résistant mieux à la corrosion, qui a le même défaut que précédemment
+\item Protection par passivation : On peut faire subir un traitement oxydant, de manière à ce qu'un oxyde se forme sur la surface du métal. Cette couche a beau protéger le métal, elle est très fragile.
+\item Protection cathodique passive : le métal jouera non pas le rôle d'anode mais de cathode pour la réduction de $O_2$, en servant d'électrode pour l'oxydation d'un métal plus réducteur.
+\item Protection électrochimique active : le métal jouera encore le rôle de cathode, mais pas juste parce qu'on aura rajouté un métal plus réducteur, c'est aussi en appliquant un courant au métal. 
+\end{itemize}}
 
 
 

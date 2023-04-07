@@ -1227,8 +1227,23 @@ Pour un système fermé de composition fixe sans travail autre que celui des for
 \par qui est le gain du filtre. On définit :
 \par $$G_{dB} = 20\log(\vert H\Vert)$$
 \par qui est le gain en décibels.}
-\Def{Ordre des filtres}{}
-\Thr{Calcul pratique d'argument}{}
+\Def{Ordre des filtres}{Un filtre du premier ordre est un filtre dont la fonction de transfert a dans son dénominateur un polynôme de degré 1 en $x=\frac{\omega}{\omega_0}$.
+\par On a alors :\begin{itemize}
+\item les filtres passe-bas sont de la forme : $$H_0\frac{1}{1+jx}$$
+\item les filtres passe-haut sont de la forme : $$H_0\frac{jx}{1+jx}$$
+\end{itemize}
+Un filtre du deuxième ordre est un filtre dont la fonction de transfert a un polynôme de degré 2 en $x$ au dénominateur
+\par On a alors :\begin{itemize}
+\item les filtres passe-bas sont de la forme : $$H_0\frac{1}{1+j\frac{x}{Q}-x^2} = H_0\frac{-j\frac{Q}{x}}{1+jQ\left(x-\frac{1}{x}\right)}$$
+\item les filtres passe-haut sont de la forme : $$H_0\frac{-x^2}{1+j\frac{x}{Q}-x^2} = H_0\frac{jQx}{1+jQ\left(x-\frac{1}{x}\right)}$$
+\item les filtres passe-bande sont de la forme : $$H_0\frac{j\frac{x}{Q}}{1+j\frac{x}{Q}-x^2} = H_0\frac{1}{1+jQ\left(x-\frac{1}{x}\right)}$$
+\end{itemize}}
+\Thr{Calcul pratique d'argument}{On a ces règles :\begin{itemize}
+\item $$\forall a,b\in\C, \arg\left(\frac{a}{b}\right) = \arg(a)-\arg(b)$$
+\item $$\arg(a+ib) = \arctan\left(\frac{b}{a}\right)\pm\pi\text{ si a<0}$$
+\item $$\arg(a+ib) = \arctan\left(\frac{b}{a}\right)\text{ si a>0}$$
+\item $$\forall a\in\R_-,\arg(a) = -\pi$$
+\end{itemize}}
 
 
 
@@ -2037,7 +2052,7 @@ Et on a $k_n = \frac{n\pi}{L}$ et $\omega_n = k_nc = \frac{n\pi c}{L}$ les facte
 
 \newpage
 \section{Thermodynamique}
-\section{TH1}
+\subsection{TH1}
 \Thr{Identités thermodynamiques}{\begin{itemize}
 \item $$dU = \delta W + \delta Q = -P_edV +\delta W' +\delta Q$$
 \item $$dS = \delta S_e+\delta S_c = \frac{\delta Q}{T_e}+\delta S_c$$
@@ -2061,6 +2076,206 @@ Et on a $k_n = \frac{n\pi}{L}$ et $\omega_n = k_nc = \frac{n\pi c}{L}$ les facte
 \par $$\Delta\left(\frac{P}{\mu}+\frac{1}{2}v^2+gz\right)=w_u+w_{visc}$$
 \par Dans le cas où le travail massique est nul (pas d'échange de travail avec les parties mobiles de la machine) et où le fluide et parfait, on a la relation de Bernouilli
 \par $$\Delta\left(\frac{P}{\mu}+\frac{1}{2}v^2+gz\right)=0$$}
+
+\subsection{TH2}
+\Def{Transferts thermiques}{Les transferts thermiques sont de trois types :\begin{itemize}
+\item le rayonnement de corps noir (qui est lié à des propriétés électromagnétique)
+\item La convection de la matière pour des fluides en mouvement
+\item La conduction, qui est la propagation de proche en proche de la chaleur
+\end{itemize}
+Pour un transfert infinitésimal $\delta Q$, on définit la puissance thermique :
+\par $$\mathcal{P}_{th}=\Phi_Q =\dfrac{\delta Q}{dt}$$
+\par On définit aussi la densité de flux thermique $\varphi_Q$ ou le vecteur densité de flux thermique $\Vec{j_Q}$ de manière à ce que son intégrale surfacique donne la puissance thermique.}
+\Thr{L'équation de la chaleur}{On s'appuie sur l'équation locale de conservation de la chaleur :
+\par $$\Div\Vec{j_Q} + \mu c\dfrac{\partial T}{\partial t}=0$$
+\par où $\mu$ est la masse volumique et $c$ la capacité thermique massique.
+\par Et on ajoute la loi empirique de Fourier :
+\par $$\Vec{j_q} =-\lambda\Grad(T)$$
+\par Où $\lambda$ est appelée la conductivité thermique du matériau.
+\par On obtient donc l'équation de la chaleur :
+\par $$-\lambda\Delta T +\mu c\dfrac{\partial T}{\partial t}$$
+\par Qu'on peut mettre sous la forme :
+\par $$\frac{\lambda}{\mu c}\Delta T -\dfrac{\partial T}{\partial t}=0$$
+\par Et on pose $D_{th}=\frac{\lambda}{\mu c}$ la diffusivité du matériau.}
+\Thr{L'équation générale}{Dans le cas où un apport d'énergie thermique a lieu au sein du matériau, il faut prendre en compte cet effet dans le bilan énergétique.
+\par En présence d'un terme de source locale d'énergie thermique de densité volumique de puissance $p_S$, l'équation de conservation du flux thermique devient :
+\par $$\Div\Vec{j_Q} +\mu c\dfrac{\partial T}{\partial t}=p_S$$
+\par Et l'équation de la chaleur devient :
+\par $$\frac{\lambda}{\mu c}\Delta T - \dfrac{\partial T}{\partial t}=-\frac{p_S}{\mu c}$$}
+\Def{Résistance thermique}{Par analogie avec l'électrocinétique, on définit la résistance thermique d'un matériau par :
+\par $$R_{th}=\dfrac{\Delta Ta}{\Phi_Q} = \dfrac{\Delta T}{\iint_S\Vec{j_Q}\cdot\Vec{dS}}$$
+\par Pour un matériau cylindrique de longueur $L$, de section $S$ et de conductivité thermique $\lambda$, on a :
+\par $$R_{th} = \frac{L}{\lambda S}$$
+\par On peut, comme en électrocinétique, considérer des résistances équivalentes si on met plusieurs matériaux ensembles :\begin{itemize}
+\item En série, on a : $$R_{theq} = R_{th1}+R_{th2}$$
+\item En parallèle, on a : $$\frac{1}{R_{theq}} = \frac{1}{R_{th1}}+\frac{1}{R_{th2}}$$
+\end{itemize}}
+\Thr{Loi de Newton}{Le transfert themrique entre une paroi solide à température $T_s$ et un fluide à température $T_e$ est dit conducto-convectif.
+\par La densité volumique de flux thermique s'exprime :
+\par $$\Vec{j_{cc}} =h(T_s-T_e)\Vec{n}$$
+\par $h$ dépend du type de fluide, et des conditions de l'écoulement dans le fluide.
+\par On ne nous demande pas de connaître la loi de Newton.}
+
+\subsection{TH3}
+\Def{Forces en statique des fluides}{Dans le cadre de la statique des fluides, on a deux types de forces :\begin{itemize}
+\item Les forces volumiques sont à longue portée et s'exercent sur tout le volume. On peut écrire la force volumique associée : $\Vec{f_V} = \dfrac{d\Vec{F}}{dV}$
+\par Exemple : le poids, la force de Lorentz...
+\item Les forces surfaciques sont des forces de contact, qui s'exercent sur des parois du volume. On peut écrire la force surfacique associée : $\Vec{f_S} = \dfrac{d\Vec{F}}{dS}$
+\par Exemple : la pression, la force d'Archimède...
+\end{itemize}}
+\Thr{Relation fondamentale de la statique des fluides}{Pour une particule libre de fluide à l'équilibre :
+\par $$\Grad(P)= -\mu\Vec{g}$$
+\par Avec $\mu$ la masse volumique.
+\par Plus généralement, on aura :
+\par $$\Grad(P) = \Vec{f_V}$$}
+\Def{Modèle atmosphère isotherme}{On considère l'air comme un fluide incompressible. Par les gaz parfaits, on obtient : $\mu =\frac{PM}{RT}$
+\par On fait l'hypothèse d'une température uniforme.
+\par On a alors :
+\par $$\dfrac{dP}{P} = -\frac{Mg}{RT}dz$$
+\par On note $H = \frac{RT}{Mg}$, la hauteur caractéristique de variation de $P$. On obtient alors :
+\par $$\ln\left(\frac{P}{P_0}\right) = -\frac{z}{H}$$
+\par Ou :
+\par $$P(z) = P_0e^{-z/H}$$}
+\Thr{Facteur de Boltzman}{On note $k_B=\frac{R}{\mathcal{N}_A}$ la constante de Boltzmann. On a alors :
+\par $$\frac{Mgz}{RT}=\frac{mgz}{k_BT}$$
+\par Dans un système macroscopique en équilibre à la température $T_0$, la probabilité de trouver une particule dans un état d'énergie $\mathcal{E}$ est proportionnelle au facteur de Boltzmann :
+\par $$\exp\left(-\frac{\mathcal{E}}{k_BT}\right)$$}
+
+\subsection{Th4}
+\Thr{Fonction de partition}{Dans un système à l'équilibre thermique par le biais d'un contact avec un thermostat à la température $T$, la probabilité pour une particule indépendante d'occuper un état $j$ d'énergie $E_j$ non-dégnéré est :
+\par $$p_j = \frac{1}{Z}\exp\left(-\frac{E_j}{k_BT}\right)$$
+\par Et on appelle fonction de partition :
+\par $$Z = \sum\limits_{j}\exp\left(-\frac{E_j}{k_BT}\right)$$}
+\Def{Moyenne et écart quadratique}{Pour une particule d'un système où $p_j$ désigne la probabilité d'occupation d'un état d'énergie non-dégénéré $E_j$, on définit :\begin{itemize}
+\item L'énergie moyenne : $$\overline{\varepsilon} =\sum\limits_jp_jE_j$$
+\item L'écart quadratique énergétique : $$\Delta\varepsilon = \sqrt{\sum\limits_jp_j(E_j-\overline{\varepsilon})^2}=\sqrt{\overline{(\varepsilon - \overline{\varepsilon})^2}}=\sqrt{\overline{\varepsilon^2}-\overline{\varepsilon}^2}$$
+\end{itemize}
+On a alors :
+\par $$\frac{\Delta E_{tot}}{\overline{E_{tot}}} = \frac{1}{\sqrt{N}}\frac{\Delta\varepsilon}{\overline{\varepsilon}}$$
+\par Donc pour un système assez grand ($N\to+\infty$), on peut considérer qu'il n'y a pas de variations trop grandes d'énergie, et donc que le système a une seule énergie.
+\par On écrit alors la capacité thermique :
+\par $$C_V = \dfrac{\partial \overline{E_{tot}}}{\partial T}$$}
+\Thr{L'équipartition de l'énergie}{Dans un système de particules indépendantes avec un spectre d'énergie continu, en équilibre à la température $T$, la valeur moyenne de chaque terme quadratique intervent dans l'expression de l'énergie d'une particule est :
+\par $$\frac{1}{2}k_BT$$
+\par En conséquence, un gaz parfait monoatomique qui a 3 degrés de liberté (translation) aura une énergie moyenne de $\frac{3}{2}k_BT$, donc une capacité thermique molaire de $C_{Vm}\frac{3}{2}R$. Pour un gaz parfait diatomique, on a les trois degrés de translation et deux degrés de translation, d'où $C_{Vm} = \frac{5}{2}R$.}
+
+
+\newpage
+\section{Optique ondulatoire}
+\subsection{Modèle scalaire de la lumière}
+\Def{Rayon lumineux}{Une vibration lumineuse monocrhomatique émise par une source ponctuelle $S$ se propage le long d'un rayon lumineux. La vibration reçue au point $M$ et à l'instant $t$ s'écrit :
+\par $$s(M,t) = s(M)\cos(\omega t -\varphi(M))$$
+\par $\varphi(M)$ est la phase de l'onde, et $\omega$ est sa pulsation.
+\par On appelle éclairement ou intensité lumineuse la grandeur :
+\par $$\mathcal{E} = \langle s^2(M,T)\rangle$$
+\par On appelle chemin optique parcouru par un rayon lumineux entre deux points $A$ et $B$ la quantité :
+\par $$(AB) = \int_A^Bn(P)ds$$
+\par $n$ est l'indice du milieu.
+\par La phase est de la forme : $\varphi(M)=\frac{2\pi}{\lambda}(SM) +\varphi_0$
+\par On appelle surface d'onde l'ensemble des points $M$ de l'espace où la phase de l'onde est constante à un instant donné, donc où $(SM)$ est constante.}
+\Thr{Théorème de Malus}{Les rayons lumineux sont localement orthogonaux aux surfaces d'ondes, quel que soit le nombre de réflexions ou de réfractions subies.}
+\Def{Cohérence}{On appelle temps de cohérence $\tau_c$ d'une source lumineuse le temps caractéristique de variation des propriétés de l'onde lumineuse, relié à la largeur spectrale $\Delta f$ par $\tau_c\Delta f=1$
+\par On appelle longueur de cohérence temporelle $L_c$ la distance parcourue par l'onde lumineuse pendant la durée $\tau_c$ : $L_C = c\tau_c$}
+\Thr{Formule de Fresnel}{L'éclairement résultant de la superposition de deux ondes lumineuses en un point $M$ s'écrit :
+\par $$\mathcal{E}=\mathcal{E}_1+\mathcal{E}_2+2\sqrt{\mathcal{E}_1\mathcal{E}_2}\langle\cos(\Phi_1-Phi_2)\rangle$$
+\par Avec $\Phi(M,t) = \omega t + \varphi(M)$
+\par Pour que le troisième terme soit non-nul (que les ondes interfèrent), il est nécessaire que $\omega_1=\omega_2$.
+\par Deux ondes sont cohérentes si elles sont de même fréquence et de déphasage à l'origine constant.
+\par L'éclairement résultant de la superposition de ces deux ondes cohérentes est donné par la formule de Fresnel :
+\par $$\mathcal{E} = \mathcal{E}_1 +\mathcal{E}_2+2\sqrt{\mathcal{E}_1\mathcal{E}_2}\cos\Delta\varphi$$
+\par Où $\Delta\varphi =\dfrac{2\pi}{\lambda_0}[(S_1M)-(S_2M)]=\dfrac{2\pi}{\lambda_0}\delta(M)$
+\par On appelle $\delta(M)$ la différence de chemin optique/différence de marche.}
+\Def{Ordre d'interférence}{On appelle ordre d'interférence $p$ au point $M$ la quantité : $p(M) = \dfrac{\Delta\varphi(M)}{2\pi} =\dfrac{\delta(M)}{\lambda_0}$.
+\par Si $p$ est entier, alors il y a interférence constructive. Si $p$ est demi-entier, alors il y a des interférences destructives.
+\par Dans une figure d'interférence, on définit le constraste $C$ comme : $C=\frac{\mathcal{E}_{max}-\mathcal{E}_{min}}{\mathcal{E}_{max}+\mathcal{E}_{min}}$}
+
+
+\subsection{Trous d'Young}
+\Def{Dispositif}{Le dispositif est constitué d'une source $S$ ponctuelle monochromatique, d'un écran opaque percé de petits trous $S_1$ et $S_2$ (qui se comportent comme des sources secondaires et sont distants de $a$) et d'un écran à grande distance $D$ du premier écran, sur lequel on observe les interférences.
+\par On a alors :
+\par $$\delta(x) =\frac{nax}{D}$$
+\par Pour que le constraste reste bon malgré la non-monochromaticité dela source, il faut que : $\forall M, \delta(M)<l_c$}
+
+\subsection{Michelson}
+\Def{Dispositif}{Le dispositif est constitué d'une source, de deux miroirs perpendiculaires placés de part et d'autre d'une lame séparatrice qui fait passer d'un côté la moitié des rayons lumineux et réfléchit l'autre moitié.
+\par On caractériste l'interféromètre par la distance relative entre les deux miroires $e$e, et l'angle relatif $\alpha$ entre $M_2'$ et $M_1$.
+\par Les rayons émerents issus d'un rayon de départ sont parallèles entre eux : ils interfèrent à l'infini, et les interférences sont localisées à l'infini.}
+\Thr{Lame d'air}{Pour un Michelson reglé en lame d'air ($e\neq 0, \alpha =0$), la différence de marche est :
+\par $$\delta = 2e\cos i$$
+\par Avec $i$ l'angle d'incidence, et on a alors $p=\frac{2e}{\lambda_0}\cos i$
+\par Si on met une lentille sur le chemin des rayons sortants, on obtient sur l'écran des anneaux d'égale inclinaison, de rayons $R_m = f'\sqrt{\frac{\lambda_0m}{e}}$
+\par Le contact optique est l'état de l'interféromètre où $e=0$, on a alors $p=0$ pour tout angle d'incidence. L'écran est alors uniformément éclairé : c'est la teinte plate.}
+\Thr{Coin d'air}{Pour un Michelson réglé en coin d'air ($e=0, \alpha\neq0$), la différence de marche est :
+\par $$\delta = 2x\alpha$$
+\par Où $x$ réfère à l'endroit du miroir $M_1$ où les rayons frappent.
+\par Et donc on observe des franges rectilignes d'interfrange $i = \frac{\lambda_0}{2\alpha}$}
+
+\subsection{Réseaux}
+\Def{Dispositif}{Un réseau est une surface sur laquelle un motif est répété un très grand nombre de fois ($N\gg 1$). La période spatiale de ce motif es appelée pas du réseau.
+\par L'intensité transmise ou réfléchie par un réseau résulte des interférences entre toutes les ondes cohérentes réémises par les motifs éclairés. On parle d'interférences à $N$ ondes.}
+\Thr{Formule des réseaux}{Supposons le réseau de pas $a$ éclairé par une onde lumineuse monochromatique et plane, dont la direction de propagation fait un angle $\theta_0$ par rapport à la normale du réseau.
+\par On a alors, avec $\theta$ l'angle par rapport à la normale en sortie du motif :
+\par $$\delta = na(\sin\theta -\sin\theta_0)$$
+\par On a donc un ordre d'interférence :
+\par $$p = \frac{a(\sin\theta -\sin\theta_0)}{\lambda_0}$$}
+\Thr{Intensité résultante}{Notons $\varphi = \frac{2\pi}{\lambda_0}\delta$, le déphasage entre deux motifs consécutifs du réseaux. Si $s_0$ est l'onde sortant du premier motif, alors l'onde sortant du $k$-ème motif est :
+\par $$s_k = s_0e^{i(k-1)\varphi}$$
+\par On peut sommer les amplitudes par linéarité de Maxwell, et obtenir :
+\par $$s_{tot} = s_0e^{i(N-1)\frac{\varphi}{2}}\frac{\sin\left(\frac{N\varphi}{2}\right)}{\sin\left(\frac{\varphi}{2}\right)}$$
+\par Et donc l'intensité résultant des interférences entre les $N$ ondes est :
+\par $$I_n = N^2I_0\dfrac{\sin^2\left(\frac{N\varphi}{2}\right)}{N^2\sin^2\left(\frac{\varphi}{2}\right)}$$
+\par Il y a $(N-1)$ annulations de cette fonction entre deux maximums globaux, et le maximum est de l'ordre de $N^2I_0$.}
+
+
+\newpage
+\section{Traitement du signal}
+\subsection{Signaux périodiques et filtrage}
+\Thr{}{Tout signal périodique $v(t)$ définit par sa période $T$, sa fréquence $f=\frac{1}{T}$ et sa pulsation $\omega = \frac{2\pi}{T}$ est décomposable en somme de signaux sinusoïdaux sous la forme d'une série de Fourier :
+\par $$v(t) = V_0+\sum\limits_{k=1}^{+\infty}V_k\cos(k\omega t+\varphi_k)$$
+\par $V_0$ est la composante continue, donc la valeur moyenne du signal.
+\par $\omega_k=k\omega$ est la pulsation de l'harmonique numéro $k$.
+\par $\varphi_k$ est la phase de l'harmonique numéro $k$.
+\par $V_k$ est l'amplitude de l'harmonique numéro $k$.
+\par On appelle spectre de raies du signal la représentation des $V_k$ en fonction de $k$ ou des fréquences $f_k$ correspondantes.
+\par On appelle valeur efficace d'un signal :
+\par $$v_{eff} = \sqrt{\langle v^2(t)\rangle}$$
+\par On a alors que :
+\par $$v_{eff}^2 = V_0^2 +\sum\limits_{k=1}^{+\infty}\frac{V_k^2}{2}$$}
+\Def{Exemples classiques}{La décomposition en série de Fourier d'une fonction en créneaux impaire est :
+\par $$v(t) =\frac{4A}{\pi}\sum\limits_{p=0}^{+\infty}\frac{\sin((2p+1)\omega t)}{2p+1}$$
+\par La décomposition en série de Fourier d'une fonction en triangle paire est :
+\par $$v(t) = -\frac{8A}{\pi^2}\sum\limits_{p=0}^{+\infty}\frac{\cos((2p+1)\omega t)}{(2p+1)^2}$$}
+\Def{Filtre}{Un filtre est un quadripôle auquel on peut associer un opérateur linéaire : sa fonction de transfert $H(\omega)$. C'est à dire que :\begin{itemize}
+\item La réponse à un signal $e(t)$ sinusoïdal de pulsation $\omega$ et d'amplitude $E_0$ est un signal $s(t)$ sinusoïdal de pulsation $\omega$, dont l'amplitude est $E_0\vert H(\omega)\vert$ et dont la phase $\varphi_s$ est $\varphi_e +\arg(H(\omega))$
+\item La réponse à une somme de deux signaux sinusoïdaux est égale à la somme des réponses $s_1$ et $s_2$ à ces signaux.
+\end{itemize}
+La deuxième propriété signifie que pour signal $e(t) = E_0+\sum\limits_{k=1}^{+\infty}E_k\cos(k\omega+\varphi_e)$, la fonction en sortie est :
+\par $$s(t) =E_0\vert H(\omega)\vert + \sum\limits_{k=1}^{+\infty}E_k\vert H(k\omega)\vert\cos(k\omega+\varphi_e+\arg(H(k\omega)))$$
+\par Les raies spectrales du signal d'entrée qui sont situées dans la bande passante du filtre seront transmises, et les autres ne contribueront que très peu à $s(t)$}
+
+\subsection{Echantillonnage}
+\Def{}{La numérisation consiste à transformer un signal analogique dont l'amplitude peut prendre une infinité de valeurs en un signal numérique avec une quantité finie de valeurs.
+\par Le passage de l'analogique au numérique repose sur deux étapes successives : l'échantillonage, et la conversion analogique-numérque (CAN).
+\par Le nombre d'échantillons composant le signal numérique devra être sufisamment grand pour représenter correctement le signal de départ, mais le signal numérique ne doit pas être trop volumineux. Il faut donc ajuster deux paramètres : la rapidité (fréquence d'échantillonnage) et la précision (nombre de bits du CAN).}
+\Thr{Critère de Shannon}{Il faut que $f_e>2f_{max}$ où $f_{max}$ est la fréquence maximale apparaissant dans le signal d'entrée.}
+\Thr{Précision de la quantification}{Le nombre $N$ de bits du CAN ainsi que l'intervalle entre valeur minimale et valeur maximale numérisable $\Delta s = s_{max}-s_{min}$ vont fixer le pas de quantification, la résolution sur la mesure numérisée du signal.
+\par Ce pas vaut :
+\par $$q =\frac{\Delta s}{2^N-1}$$
+\par En pratique, on utilise souvent $N=8,12,16$ bits, ce qui donne $255,4095,65535$ valeurs discrètes possibles pour numériser le signal.}
+
+\subsection{Amplificateurs Linéaires Intégrés (ALI)}
+\Def{ALI}{Un ALI est un composant électronique qui en sortie, rend une version amplifiée de la différence de tension entre ses bornes $+$ et $-$.
+\par En plus d'une alimentation qui fixe $\pm V_{sat}$, l'ALI comprend une borne de sortie dont la tension est notée $V_s$ et deux bornes d'entrée :
+\par L'entrée non-inverseuse ($+$) à une tension notée $V_+$, parcourue par un courant d'entrée $i_+$
+\par L'entrée inverseuse ($-$) à une tension notée $V_-$, parcourue par un courant d'entrée $i_-$
+\par On note $\varepsilon =V_+-V_-$. Les deux courants d'entrée sont très faibles ($<1pA$).
+\par La tension de sortie est limitée par les tensions d'alimentation, telle que :
+\par $$-V_{sat} \leq V_s \leq V_{sat}$$
+\par À l'ALI on associe un gain $\mu$, souvent de l'ordre de $10^5$, tel que $V_s = \mu\varepsilon$ tant que $\vert\mu\varepsilon\vert\leq V_{sat}$. C'est le régime linéaire.
+\par Sinon, $V_s = \pm V_{sat}$. C'est le régime saturé.}
+
+
+
 
 
 
